@@ -4,6 +4,7 @@ import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { updateStudentSchema } from '@/lib/validators/student'
 
 export const runtime = "nodejs";
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   req: NextRequest,

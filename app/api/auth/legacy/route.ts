@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken'
 import { verifyAuth } from '@/lib/auth-utils'
 
 export const runtime = "nodejs";
+export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
   try {
@@ -62,3 +63,4 @@ export async function DELETE(req: NextRequest) {
   response.cookies.delete('access_token')
   return response
 }
+

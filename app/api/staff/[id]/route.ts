@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 
 export const runtime = "nodejs";
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   req: NextRequest,

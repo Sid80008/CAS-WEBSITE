@@ -4,6 +4,7 @@ import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { updateGallerySchema } from '@/lib/validators/gallery'
 
 export const runtime = "nodejs";
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   req: NextRequest,

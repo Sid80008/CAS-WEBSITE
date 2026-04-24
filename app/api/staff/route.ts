@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 
 export const runtime = "nodejs";
+export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
   try {
@@ -66,3 +67,4 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
   }
 }
+

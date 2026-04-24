@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import prisma from './prisma'
+import { prisma } from './prisma'
 import { NextRequest } from 'next/server'
 import { auth } from "@/auth"
 

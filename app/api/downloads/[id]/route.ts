@@ -4,6 +4,7 @@ import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { updateResourceSchema } from '@/lib/validators/resource'
 
 export const runtime = "nodejs";
+export const dynamic = 'force-dynamic';
 
 export async function PUT(
   req: NextRequest,

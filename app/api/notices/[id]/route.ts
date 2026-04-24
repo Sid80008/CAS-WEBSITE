@@ -5,6 +5,7 @@ import { slugify } from '@/lib/utils'
 import { noticeSchema, updateNoticeSchema } from '@/lib/validators/notice'
 
 export const runtime = "nodejs";
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   req: NextRequest,
