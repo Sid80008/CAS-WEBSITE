@@ -44,9 +44,9 @@ export const {
             return {
               id: user.id,
               email: user.email,
-              roles: user.roles.map(r => r.role.name),
-              permissions: user.roles.flatMap(r =>
-                r.role.permissions.map(p => p.permission.name)
+              roles: user.roles.map((r: any) => r.role.name),
+              permissions: user.roles.flatMap((r: any) =>
+                r.role.permissions.map((p: any) => p.permission.name)
               )
             }
           }
@@ -68,8 +68,8 @@ export const {
     async session({ session, token }) {
       if (token.id) {
         session.user.id = token.id as string
-        (session.user as any).roles = token.roles
-        (session.user as any).permissions = token.permissions
+        ;(session.user as any).roles = token.roles as any
+        ;(session.user as any).permissions = token.permissions as any
       }
       return session
     },
