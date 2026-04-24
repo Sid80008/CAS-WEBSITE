@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import { prisma } from './prisma'
+// removed static prisma import
 import { NextRequest } from 'next/server'
 import { auth } from "@/auth"
 
@@ -21,6 +21,7 @@ export async function verifyAuth(req: NextRequest) {
     if (!token) return null
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET!) as { id: string }
+    const { prisma } = await import('./prisma')
 
     const user = await prisma.user.findUnique({
       where: { id: decoded.id },
