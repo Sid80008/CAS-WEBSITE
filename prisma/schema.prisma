@@ -1,0 +1,415 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/* ================= ENUMS ================= */
+
+enum AttendanceStatus {
+  PRESENT
+  ABSENT
+  LEAVE
+}
+
+enum FeeStatus {
+  PENDING
+  PAID
+  PARTIAL
+}
+
+enum AdmissionStatus {
+  NEW
+  CONTACTED
+  CONVERTED
+  REJECTED
+}
+
+/* ================= AUTH ================= */
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  isActive  Boolean  @default(true)
+
+  roles     UserRole[]
+  sessions  Session[]
+
+  student   Student?
+  staff     Staff?
+  parent    Parent?
+
+  // CMS relations
+  notices   Notice[]
+  events    Event[]
+  downloads Download[]
+  tcRecords TCRecord[] @relation("Approver")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Role {
+  id    String @id @default(cuid())
+  name  String @unique
+
+  users UserRole[]
+  permissions RolePermission[]
+}
+
+model UserRole {
+  userId String
+  roleId String
+
+  user User @relation(fields: [userId], references: [id])
+  role Role @relation(fields: [roleId], references: [id])
+
+  @@id([userId, roleId])
+}
+
+model Permission {
+  id   String @id @default(cuid())
+  name String @unique
+
+  roles RolePermission[]
+}
+
+model RolePermission {
+  roleId       String
+  permissionId String
+
+  role       Role       @relation(fields: [roleId], references: [id])
+  permission Permission @relation(fields: [permissionId], references: [id])
+
+  @@id([roleId, permissionId])
+}
+
+model Session {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+
+  user      User     @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+/* ================= ACADEMIC CORE ================= */
+
+model AcademicYear {
+  id        String   @id @default(cuid())
+  name      String
+  startDate DateTime
+  endDate   DateTime
+
+  enrollments Enrollment[]
+  attendance  Attendance[]
+  fees        FeeStructure[]
+
+  createdAt DateTime @default(now())
+}
+
+model Class {
+  id        String    @id @default(cuid())
+  name      String
+
+  sections  Section[]
+  fees      FeeStructure[]
+  enquiries AdmissionEnquiry[]
+
+  createdAt DateTime  @default(now())
+}
+
+model Section {
+  id        String   @id @default(cuid())
+  name      String
+  classId   String
+
+  class     Class    @relation(fields: [classId], references: [id])
+
+  enrollments Enrollment[]
+  staffSubjects StaffSubject[]
+
+  createdAt DateTime @default(now())
+}
+
+/* ================= PEOPLE ================= */
+
+model Student {
+  id          String   @id @default(cuid())
+  userId      String?  @unique
+  firstName   String
+  lastName    String
+  dob         DateTime
+  gender      String
+  admissionNo String   @unique
+
+  enrollments Enrollment[]
+  parents     StudentParent[]
+
+  attendance  Attendance[]
+  fees        FeeRecord[]
+  tcRecords   TCRecord[]
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  user        User?    @relation(fields: [userId], references: [id])
+}
+
+model Parent {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  name      String
+  phone     String
+
+  students  StudentParent[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model StudentParent {
+  studentId String
+  parentId  String
+
+  student   Student @relation(fields: [studentId], references: [id])
+  parent    Parent  @relation(fields: [parentId], references: [id])
+
+  @@id([studentId, parentId])
+}
+
+model Staff {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  name      String
+
+  subjects  StaffSubject[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+/* ================= SUBJECT SYSTEM ================= */
+
+model Subject {
+  id    String @id @default(cuid())
+  name  String
+
+  staff StaffSubject[]
+}
+
+model StaffSubject {
+  staffId   String
+  subjectId String
+  sectionId String
+
+  staff   Staff   @relation(fields: [staffId], references: [id])
+  subject Subject @relation(fields: [subjectId], references: [id])
+  section Section @relation(fields: [sectionId], references: [id])
+
+  @@id([staffId, subjectId, sectionId])
+}
+
+/* ================= ENROLLMENT ================= */
+
+model Enrollment {
+  id         String @id @default(cuid())
+  studentId  String
+  sectionId  String
+  yearId     String
+
+  student Student @relation(fields: [studentId], references: [id])
+  section Section @relation(fields: [sectionId], references: [id])
+  year    AcademicYear @relation(fields: [yearId], references: [id])
+
+  @@unique([studentId, yearId])
+}
+
+/* ================= ATTENDANCE ================= */
+
+model Attendance {
+  id         String @id @default(cuid())
+  studentId  String
+  date       DateTime
+  status     AttendanceStatus
+  yearId     String
+
+  student Student @relation(fields: [studentId], references: [id])
+  year    AcademicYear @relation(fields: [yearId], references: [id])
+
+  @@unique([studentId, date])
+  @@index([yearId])
+}
+
+/* ================= FEES ================= */
+
+model FeeStructure {
+  id        String @id @default(cuid())
+  name      String
+  amount    Float
+  classId   String
+  yearId    String
+
+  class Class @relation(fields: [classId], references: [id])
+  year  AcademicYear @relation(fields: [yearId], references: [id])
+
+  records FeeRecord[]
+}
+
+model FeeRecord {
+  id          String @id @default(cuid())
+  studentId   String
+  structureId String
+  status      FeeStatus
+
+  student   Student      @relation(fields: [studentId], references: [id])
+  structure FeeStructure @relation(fields: [structureId], references: [id])
+
+  payments  Payment[]
+
+  @@index([studentId])
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  feeId     String
+  amount    Float
+  method    String
+  paidAt    DateTime
+
+  fee       FeeRecord @relation(fields: [feeId], references: [id])
+}
+
+/* ================= CMS ================= */
+
+model Notice {
+  id        String   @id @default(cuid())
+  titleEn   String
+  titleHi   String?
+  contentEn String
+  contentHi String?
+  slug      String   @unique
+  published Boolean  @default(false)
+  isPinned  Boolean  @default(false)
+
+  createdBy String
+  author    User     @relation(fields: [createdBy], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([createdAt])
+}
+
+model Event {
+  id            String   @id @default(cuid())
+  titleEn       String
+  titleHi       String?
+  descriptionEn String
+  descriptionHi String?
+  date          DateTime
+  slug          String   @unique
+  published     Boolean  @default(false)
+
+  createdBy     String
+  author        User     @relation(fields: [createdBy], references: [id])
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([date])
+}
+
+model GalleryAlbum {
+  id        String   @id @default(cuid())
+  title     String
+
+  media     Media[]
+
+  createdAt DateTime @default(now())
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  albumId   String
+
+  album     GalleryAlbum @relation(fields: [albumId], references: [id])
+}
+
+model Download {
+  id        String   @id @default(cuid())
+  title     String
+  fileUrl   String
+  slug      String   @unique
+  published Boolean  @default(false)
+
+  createdBy String
+  author    User     @relation(fields: [createdBy], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// Added back Slider table from the plan
+model Slider {
+  id        String   @id @default(cuid())
+  title     String?
+  imageUrl  String
+  link      String?
+  order     Int      @default(0)
+  published Boolean  @default(true)
+
+  createdAt DateTime @default(now())
+}
+
+// Added back Topper table from the plan
+model Topper {
+  id        String   @id @default(cuid())
+  name      String
+  class     String
+  year      String
+  percentage Float
+  imageUrl  String?
+
+  createdAt DateTime @default(now())
+}
+
+/* ================= ADMISSIONS ================= */
+
+model AdmissionEnquiry {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  classId   String
+  status    AdmissionStatus
+
+  class     Class    @relation(fields: [classId], references: [id])
+
+  createdAt DateTime @default(now())
+}
+
+/* ================= TC ================= */
+
+model TCRecord {
+  id            String @id @default(cuid())
+  studentId     String
+  certificateNo String @unique
+  reason        String
+  fileUrl       String
+  issuedAt      DateTime
+  approvedBy    String
+
+  student  Student @relation(fields: [studentId], references: [id])
+  approver User    @relation("Approver", fields: [approvedBy], references: [id])
+}

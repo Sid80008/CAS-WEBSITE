@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery - EduAdmin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "surface-card": "#FFFFFF",
+                    "error": "#ba1a1a",
+                    "secondary": "#575e70",
+                    "background-main": "#F9FAFB",
+                    "background": "#fcf8ff",
+                    "on-primary-container": "#dad7ff",
+                    "inverse-primary": "#c3c0ff",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "sidebar-active": "#1F2937",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "surface-tint": "#4d44e3",
+                    "surface-dim": "#dcd8e5",
+                    "sidebar-bg": "#111827",
+                    "on-tertiary-fixed": "#351000",
+                    "on-primary": "#ffffff",
+                    "surface": "#fcf8ff",
+                    "surface-container": "#f0ecf9",
+                    "primary-container": "#4f46e5",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#777587",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d9dff5",
+                    "inverse-surface": "#302f39",
+                    "on-secondary-container": "#5c6274",
+                    "text-primary": "#111827",
+                    "surface-container-highest": "#e4e1ee",
+                    "tertiary": "#7e3000",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-background": "#1b1b24",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "tertiary-container": "#a44100",
+                    "status-warning": "#F59E0B",
+                    "on-secondary-fixed-variant": "#404758",
+                    "on-surface-variant": "#464555",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "surface-container-high": "#eae6f4",
+                    "surface-bright": "#fcf8ff",
+                    "secondary-fixed": "#dce2f7",
+                    "border-subtle": "#E5E7EB",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#ffd2be",
+                    "status-danger": "#EF4444",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "primary": "#3525cd",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-container-low": "#f5f2ff",
+                    "primary-fixed": "#e2dfff",
+                    "on-surface": "#1b1b24",
+                    "inverse-on-surface": "#f3effc",
+                    "text-secondary": "#6B7280",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1ee",
+                    "outline-variant": "#c7c4d8",
+                    "status-success": "#22C55E"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-gap": "1.5rem",
+                    "section-gap": "1rem",
+                    "card-padding": "1rem",
+                    "topbar-height": "64px",
+                    "container-max": "80rem",
+                    "page-padding": "1.5rem",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "subheading": ["Inter"],
+                    "label": ["Inter"],
+                    "heading": ["Inter"],
+                    "body": ["Inter"]
+            },
+            "fontSize": {
+                    "subheading": ["0.875rem", {"lineHeight": "1.25rem", "fontWeight": "500"}],
+                    "label": ["0.75rem", {"lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "500"}],
+                    "heading": ["1.125rem", {"lineHeight": "1.75rem", "fontWeight": "600"}],
+                    "body": ["0.875rem", {"lineHeight": "1.25rem", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-main min-h-screen flex text-on-background">
+<!-- SideNavBar Component -->
+<aside class="fixed left-0 h-screen w-64 border-r border-slate-800 bg-slate-900 flex flex-col z-50">
+<div class="p-6">
+<h1 class="text-white font-black text-xl tracking-tighter">EduAdmin</h1>
+<p class="text-slate-400 text-xs font-medium uppercase tracking-widest mt-1">Institutional Portal</p>
+</div>
+<nav class="flex flex-col gap-1 p-4 flex-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="school">school</span>
+<span class="font-label text-body">Students</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="groups">groups</span>
+<span class="font-label text-body">Staff</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="campaign">campaign</span>
+<span class="font-label text-body">Notices</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 bg-slate-800 text-white rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="image">image</span>
+<span class="font-label text-body">Gallery</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="calendar_today">calendar_today</span>
+<span class="font-label text-body">Events</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="download">download</span>
+<span class="font-label text-body">Downloads</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="description">description</span>
+<span class="font-label text-body">Admissions</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-800">
+<a class="flex items-center gap-3 px-4 py-2.5 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="logout">logout</span>
+<span class="font-label text-body">Logout</span>
+</a>
+</div>
+</aside>
+<main class="flex-1 ml-64 flex flex-col">
+<!-- TopAppBar Component -->
+<header class="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm px-6 py-3 flex items-center justify-between w-full h-16">
+<div class="flex items-center gap-4">
+<div class="relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-indigo-600 transition-colors" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-slate-100 border-transparent rounded-lg text-sm focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 w-64 transition-all outline-none" placeholder="Search gallery..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<button class="ml-2 px-3 py-1.5 text-sm font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-md transition-colors">
+                        Help
+                    </button>
+</div>
+<div class="h-8 w-px bg-slate-200 mx-2"></div>
+<div class="flex items-center gap-3 cursor-pointer group">
+<div class="text-right">
+<p class="text-xs font-bold text-slate-900">Admin User</p>
+<p class="text-[10px] text-slate-500 font-medium uppercase tracking-tight">Super Admin</p>
+</div>
+<img alt="Admin User Profile" class="h-9 w-9 rounded-full object-cover border border-slate-200 ring-2 ring-transparent group-hover:ring-indigo-500/20 transition-all" data-alt="professional portrait of a male school administrator in a clean modern office setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoiWn13ch_0iHnOHH495BZNOyqZSisJ63doyjzO1P1myxDJ-dVi2ScaLzA7isO4WmLn-eTrgaX3D6AJVE7wO54o676AHCBb6h4AF4DUhMG__yHUuwt-F5SbgalxPV4od4l7coJZgyPiFVa6DppF-4HYs0ciZTWBr-9qYxJ1j0WXV0XJ1F_mSx-8xPtVI0fgH82zxWlY6hKATPHThKCEG3eMAJvLYLJIk9w-zcPtJeNBIRt2cwpFxs2DFX5s-i9fwLsW0Zt9VnLLjua"/>
+</div>
+</div>
+</header>
+<!-- Gallery Content Canvas -->
+<div class="flex-1 p-6 space-y-6">
+<!-- Header Section -->
+<div class="flex items-end justify-between">
+<div class="space-y-1">
+<h2 class="font-heading text-2xl text-slate-900 tracking-tight">Institutional Gallery</h2>
+<p class="font-body text-slate-500">Manage and organize visual assets for events, campus facilities, and student activities.</p>
+</div>
+<button class="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg shadow-sm shadow-indigo-200 transition-all active:scale-95">
+<span class="material-symbols-outlined text-[20px]" data-icon="upload">upload</span>
+<span class="font-label text-sm">Upload Image</span>
+</button>
+</div>
+<!-- Filters & Views -->
+<div class="flex items-center justify-between bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 bg-indigo-50 text-indigo-600 text-sm font-semibold rounded-md transition-colors">All Images</button>
+<button class="px-4 py-2 text-slate-500 hover:bg-slate-50 text-sm font-medium rounded-md transition-colors">Events</button>
+<button class="px-4 py-2 text-slate-500 hover:bg-slate-50 text-sm font-medium rounded-md transition-colors">Campus</button>
+<button class="px-4 py-2 text-slate-500 hover:bg-slate-50 text-sm font-medium rounded-md transition-colors">Academics</button>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center bg-slate-100 p-1 rounded-lg">
+<button class="p-1.5 bg-white text-indigo-600 rounded shadow-sm">
+<span class="material-symbols-outlined text-[20px]" data-icon="grid_view">grid_view</span>
+</button>
+<button class="p-1.5 text-slate-400 hover:text-slate-600">
+<span class="material-symbols-outlined text-[20px]" data-icon="list">list</span>
+</button>
+</div>
+<select class="bg-slate-50 border-slate-200 text-slate-600 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 border py-2 pl-3 pr-10">
+<option>Newest First</option>
+<option>Oldest First</option>
+<option>Name A-Z</option>
+</select>
+</div>
+</div>
+<!-- Gallery Bento/Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Gallery Item 1 -->
+<div class="group relative bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img alt="Graduation Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="high-angle wide shot of graduating students tossing blue caps in the air in front of a colonial-style university building" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaZWdgot27Oygq8O5hrDWHBlEmp0lz77oqAC7NfPVaMJGgcHZ_dghDIc6vdL84uHHFVao2Zm3m8xYx4AfX2qTPxTNlmNiTXRahUJKvOkN2pv22lJrF2PMeAviSE1LZwtHC6W60wn3riVY5Nq8OzI_WZ2bBBDemGyI1W_EGTQT0CGgAtxTLHDGac5ziN0uTACywYMfbSwlpaxkDSvCH5IZ3vqAQvGgziGYaG7GvfKOci0-Qg6C-untIkvbEJxN3_yiu9wMKm5hOPNN_"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white/95 text-slate-900 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 bg-white/95 text-error rounded-full flex items-center justify-center hover:bg-error hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-heading text-sm text-slate-900 line-clamp-1">Annual Graduation 2023</h3>
+<span class="px-2 py-0.5 bg-green-50 text-green-700 text-[10px] font-bold uppercase rounded">Events</span>
+</div>
+<p class="font-body text-xs text-slate-400">Added: Oct 24, 2023 • 2.4 MB</p>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="group relative bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img alt="University Campus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="low-angle architectural shot of a modern glass university building reflected in a pond with blue sky background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoYKsN7mf_CmORuRtlmu9J7jePMNvFtkpjKWcczWFI5wXC94dSIQkUsDKyR-iIiIlYTzQxhEhbI4jKd8QvclIgcnBMD6eILIVcBAL1423PT0GSpoHEtwNwrd_vWBrvE1AQLTWVd06bH7h6NOWVFg63E4oQm0SpmxTnbMUMJmFbBzfLsPtKcfpfwwEw4b2-Ra3DlBDTNEjAur88RgSZJCf2e18UMXDlWtN10W7vWt6U-BfMBTE6yWyqtS5uwc16Q0UexKgmHxpT77oy"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white/95 text-slate-900 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 bg-white/95 text-error rounded-full flex items-center justify-center hover:bg-error hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-heading text-sm text-slate-900 line-clamp-1">West Wing Expansion</h3>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase rounded">Campus</span>
+</div>
+<p class="font-body text-xs text-slate-400">Added: Sep 12, 2023 • 4.1 MB</p>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="group relative bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img alt="Science Laboratory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="close-up of colorful liquid in glass beakers in a clean brightly lit science laboratory environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCNJqfUiPm3fG2llcookSB3K7cAcp-lLk6Wo-33-I8tduXjrW5AexusBMyRTqcAacgfHf3_xxs7LfVQiyxPXoRwGDbulfeSkV9qdlkA8yvZQeLHEhoxCfVbHMoVufqejEgGa0Q-JSjfnkVUZHPS_L2echXzlaO3Pr-Rp1dFMrOcY1HaFBOsaCeAVdA1Hv3SQ25OsVTNVT2GW4aRoPc18AvyHKR9tWE6x1_De2UCwKdCIDUphmNddyiEyzxv4UtZgFVNS5ys1dHDN-m"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white/95 text-slate-900 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 bg-white/95 text-error rounded-full flex items-center justify-center hover:bg-error hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-heading text-sm text-slate-900 line-clamp-1">Advanced Chemistry Lab</h3>
+<span class="px-2 py-0.5 bg-purple-50 text-purple-700 text-[10px] font-bold uppercase rounded">Academics</span>
+</div>
+<p class="font-body text-xs text-slate-400">Added: Aug 05, 2023 • 1.8 MB</p>
+</div>
+</div>
+<!-- Gallery Item 4 -->
+<div class="group relative bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img alt="Sports Day" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="action shot of high school students racing on a red running track with sun flares and motion blur" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCI-rt4hDPhOW_u-6rcNStQCRCtavnqRdu8D_af8twqBf-yFowIIOhBMa9wiFy8h1YIEXjPmI7vPUGjuqMIyNTAk6r3NA0VawUK1xXI1C3znvejIjO96i85ffD_jAU6ZXde3Wk1PG-wQdinZCn4rwdfwTWpMahJruNwbxuM1vnY_bX_PPon6FNGNMDQ1bQ1TrxeroBVr1aE_hE8yaeI0mXbL6YQy7lydb1Caorhm3DWn3za9o_qyHJP1v5S9GBLO_5K-SAjTYcOO1NY"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white/95 text-slate-900 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 bg-white/95 text-error rounded-full flex items-center justify-center hover:bg-error hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-heading text-sm text-slate-900 line-clamp-1">Inter-School Sports Day</h3>
+<span class="px-2 py-0.5 bg-green-50 text-green-700 text-[10px] font-bold uppercase rounded">Events</span>
+</div>
+<p class="font-body text-xs text-slate-400">Added: July 28, 2023 • 3.5 MB</p>
+</div>
+</div>
+<!-- Gallery Item 5 -->
+<div class="group relative bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img alt="Library" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="interior view of a grand classical library with wooden bookshelves reaching to a high ornate ceiling and soft warm lamp lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpJ4svuP7ALxIxtS8Uj9R6S51kNI7ofqQ8WHPpkxRMuTQo5x1CBiCgCfTOPyNl4DTM3QMA5BMcVIwYvgrLxaYQRZkqRr9DiaSfIK6hmmXROLxwmz1BGESvqtPfRdXRernLygySfGKzkL3_Bqd_P8GbP9LUhuzu1UDmYKly069Nf8fH_aS6M207xAlJ2FEoDq5bhicHNDSEoyam5F5NFQOAC4vZ2gfHUiQad-nv_5ID6IfhPtysM-7e5ZsNoYV8-A-GqrHZf-0E1VJ5"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white/95 text-slate-900 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 bg-white/95 text-error rounded-full flex items-center justify-center hover:bg-error hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-heading text-sm text-slate-900 line-clamp-1">Central Library Archive</h3>
+<span class="px-2 py-0.5 bg-blue-50 text-blue-700 text-[10px] font-bold uppercase rounded">Campus</span>
+</div>
+<p class="font-body text-xs text-slate-400">Added: July 15, 2023 • 5.2 MB</p>
+</div>
+</div>
+<!-- Gallery Item 6 -->
+<div class="group relative bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img alt="Classroom Discussion" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="candid shot of diverse college students laughing and talking in a sun-drenched modern classroom during a break" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAjIZyfbPIbRT2M2rJ4cGOPW15lOkkQhY_NX7vIU3Hh0Na29Y6Fq98ozhFH_3Od-3NBZW4FkatyjSXDhZ_mwk7ShBA5xeoroLsweBFQr16AARD2TRxOdbLm_b6D4G0jq_KSrRzvo7eu36x2Ks314nxziBYjLdEx7nTmfmyyaXAkan0zwEeRsyHs3906wtZVlK5aBO-9mFFO9H4IQrYbsXi7rVgt29ZuLfxEODwUpmVHlZxQnIz7S0VTBbJXAv0DsOtm13SBFZizAl7"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white/95 text-slate-900 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 bg-white/95 text-error rounded-full flex items-center justify-center hover:bg-error hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-heading text-sm text-slate-900 line-clamp-1">Student Seminar 2023</h3>
+<span class="px-2 py-0.5 bg-purple-50 text-purple-700 text-[10px] font-bold uppercase rounded">Academics</span>
+</div>
+<p class="font-body text-xs text-slate-400">Added: June 30, 2023 • 2.9 MB</p>
+</div>
+</div>
+<!-- Gallery Item 7 -->
+<div class="group relative bg-white rounded-xl overflow-hidden shadow-sm border border-slate-200 hover:shadow-xl hover:shadow-indigo-500/5 transition-all duration-300 transform hover:-translate-y-1">
+<div class="aspect-[4/3] overflow-hidden relative">
+<img alt="Art Exhibition" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="clean minimal gallery wall with framed abstract paintings and track lighting in a professional art space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1JVDQOdiPw1iEnhPumGU4geWrwyUMMlQo4zjIZf7oMRWZPq_6LXr83_68otj1ZW73nqWWAqDSAelJzI4LRhXNZwpZCr7IoPsYtUJeb-zFCAsaIcsM9QWmY7Krq1VzHnsndWR5ZBqeNfcekm1WWsQ6AJuJocYuvGIiumWSfYQzP1dRdc0_IeRIExgN1_5QaeZH5VhjE3COkzQl38iPDcTr8ZVgBO751Hyu3SaVITeC9yiRkEHthcu1TkMgPaMHmtrnddf5j2RZgqDp"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3">
+<button class="w-10 h-10 bg-white/95 text-slate-900 rounded-full flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</button>
+<button class="w-10 h-10 bg-white/95 text-error rounded-full flex items-center justify-center hover:bg-error hover:text-white transition-colors">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="p-4 flex flex-col">
+<div class="flex justify-between items-start mb-1">
+<h3 class="font-heading text-sm text-slate-900 line-clamp-1">Spring Art Showcase</h3>
+<span class="px-2 py-0.5 bg-green-50 text-green-700 text-[10px] font-bold uppercase rounded">Events</span>
+</div>
+<p class="font-body text-xs text-slate-400">Added: May 21, 2023 • 3.7 MB</p>
+</div>
+</div>
+<!-- Empty State / Add Placeholder -->
+<div class="group relative bg-slate-100 rounded-xl overflow-hidden border-2 border-dashed border-slate-300 hover:border-indigo-400 hover:bg-slate-50 transition-all cursor-pointer flex flex-col items-center justify-center p-8 gap-4 min-h-[300px]">
+<div class="w-12 h-12 bg-white rounded-full shadow-sm flex items-center justify-center text-slate-400 group-hover:text-indigo-600 transition-colors">
+<span class="material-symbols-outlined text-[32px]" data-icon="add_photo_alternate">add_photo_alternate</span>
+</div>
+<div class="text-center">
+<p class="font-heading text-sm text-slate-600 group-hover:text-indigo-600 transition-colors">Add More Photos</p>
+<p class="font-body text-xs text-slate-400 mt-1">Drag and drop or click to browse files</p>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-between border-t border-slate-200 pt-6 mt-8">
+<p class="text-xs text-slate-500 font-medium">Showing <span class="text-slate-900">1</span> to <span class="text-slate-900">7</span> of <span class="text-slate-900">124</span> images</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 border border-slate-200 rounded-md text-xs font-medium text-slate-400 cursor-not-allowed">Previous</button>
+<button class="px-3 py-1.5 bg-indigo-600 text-white border border-indigo-600 rounded-md text-xs font-medium">1</button>
+<button class="px-3 py-1.5 border border-slate-200 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50">2</button>
+<button class="px-3 py-1.5 border border-slate-200 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50">3</button>
+<span class="text-slate-400 px-1">...</span>
+<button class="px-3 py-1.5 border border-slate-200 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50">18</button>
+<button class="px-3 py-1.5 border border-slate-200 rounded-md text-xs font-medium text-slate-600 hover:bg-slate-50">Next</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

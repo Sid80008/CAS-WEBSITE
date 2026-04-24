@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAS Anta — Complete Website Execution Plan</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue: #1B4F8A; --blue-l: #E6F1FB; --blue-d: #0C447C;
+    --teal: #0F6E56; --teal-l: #E1F5EE; --teal-d: #085041;
+    --amber: #BA7517; --amber-l: #FAEEDA; --amber-d: #633806;
+    --coral: #993C1D; --coral-l: #FAECE7; --coral-d: #712B13;
+    --purple: #534AB7; --purple-l: #EEEDFE; --purple-d: #3C3489;
+    --green: #3B6D11; --green-l: #EAF3DE; --green-d: #27500A;
+    --gray: #5F5E5A; --gray-l: #F1EFE8; --gray-d: #444441;
+    --text: #1a1a1a; --text-2: #555; --text-3: #888;
+    --border: #e2e0db; --bg: #fff; --bg2: #f8f7f5; --bg3: #f1efe8;
+    --radius: 10px; --radius-sm: 6px;
+    --font: 'Georgia', serif;
+    --mono: 'Courier New', monospace;
+    --sans: system-ui, -apple-system, sans-serif;
+  }
+
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+
+  .cover {
+    background: linear-gradient(135deg, #0a2847 0%, #1B4F8A 50%, #2E75B6 100%);
+    color: #fff; padding: 56px 48px 48px; position: relative; overflow: hidden;
+  }
+  .cover::before {
+    content: ''; position: absolute; top: -60px; right: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover::after {
+    content: ''; position: absolute; bottom: -80px; left: 120px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: rgba(255,255,255,0.03);
+  }
+  .cover-badge { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .7; margin-bottom: 12px; }
+  .cover h1 { font-size: 32px; font-weight: 700; line-height: 1.2; margin-bottom: 10px; font-family: var(--sans); }
+  .cover-sub { font-size: 15px; opacity: .75; margin-bottom: 28px; }
+  .cover-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .cover-pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); padding: 4px 12px; border-radius: 20px; font-size: 12px; }
+
+  .toc { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 24px 48px; display: flex; flex-wrap: wrap; gap: 6px 20px; }
+  .toc a { font-size: 13px; color: var(--blue); text-decoration: none; display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+  .toc a:hover { text-decoration: underline; }
+  .toc-num { font-size: 11px; background: var(--blue-l); color: var(--blue-d); padding: 1px 6px; border-radius: 10px; font-weight: 600; }
+
+  .content { max-width: 900px; margin: 0 auto; padding: 0 48px 80px; }
+
+  .section { margin-top: 52px; }
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 2px solid var(--border); }
+  .section-num { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; flex-shrink: 0; }
+  .section-header h2 { font-size: 22px; font-weight: 700; }
+
+  .info-box { background: var(--bg2); border-left: 3px solid var(--blue); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; margin: 16px 0; font-size: 14px; line-height: 1.7; }
+  .warn-box { background: var(--amber-l); border-left: 3px solid var(--amber); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; margin: 16px 0; font-size: 14px; line-height: 1.7; color: var(--amber-d); }
+  .success-box { background: var(--teal-l); border-left: 3px solid var(--teal); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px; margin: 16px 0; font-size: 14px; line-height: 1.7; color: var(--teal-d); }
+
+  .stack-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .stack-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; }
+  .stack-card .sc-label { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 4px; }
+  .stack-card .sc-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+  .stack-card .sc-why { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+
+  .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 16px 0; }
+  .tool-card { border-radius: var(--radius); padding: 14px 16px; }
+  .tool-card .tc-name { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .tool-card .tc-role { font-size: 12px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; margin-bottom: 8px; }
+  .tool-card .tc-tasks { font-size: 13px; line-height: 1.7; }
+
+  .phase { border: 1px solid var(--border); border-radius: var(--radius); margin: 16px 0; overflow: hidden; }
+  .phase-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; }
+  .phase-num { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .phase-title { flex: 1; }
+  .phase-title h3 { font-size: 16px; font-weight: 700; margin-bottom: 2px; }
+  .phase-title p { font-size: 13px; color: var(--text-2); }
+  .phase-dur { font-size: 12px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .phase-body { padding: 0 18px 18px; border-top: 1px solid var(--border); }
+
+  .steps { list-style: none; margin: 12px 0; }
+  .steps li { display: flex; gap: 10px; margin-bottom: 10px; font-size: 14px; line-height: 1.6; }
+  .steps li::before { content: attr(data-n); min-width: 22px; height: 22px; background: var(--blue-l); color: var(--blue-d); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  .prompt-block { background: #0a2847; color: #c8e0f7; border-radius: var(--radius-sm); padding: 12px 14px; margin: 10px 0; font-family: var(--mono); font-size: 13px; line-height: 1.6; position: relative; }
+  .prompt-block::before { content: 'PROMPT'; position: absolute; top: 8px; right: 10px; font-size: 9px; letter-spacing: .1em; opacity: .45; font-family: var(--sans); }
+  .prompt-block .ph { color: #f5c175; }
+
+  .tool-tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-right: 4px; vertical-align: middle; }
+  .t-cursor { background: var(--purple-l); color: var(--purple-d); }
+  .t-stitch { background: var(--teal-l); color: var(--teal-d); }
+  .t-claude { background: var(--blue-l); color: var(--blue-d); }
+  .t-vscode { background: var(--gray-l); color: var(--gray-d); }
+  .t-terminal { background: #0a2847; color: #7dd3fc; }
+
+  .sub-section { margin: 20px 0 10px; }
+  .sub-section h4 { font-size: 14px; font-weight: 700; color: var(--text-2); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 8px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 14px 0; }
+  th { background: var(--bg2); font-weight: 600; text-align: left; padding: 8px 12px; border: 1px solid var(--border); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--text-2); }
+  td { padding: 8px 12px; border: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+  tr:hover td { background: var(--bg2); }
+
+  .folder-tree { background: #0a2847; color: #c8e0f7; border-radius: var(--radius); padding: 20px 22px; font-family: var(--mono); font-size: 13px; line-height: 1.9; margin: 14px 0; }
+  .ft-dir { color: #7dd3fc; font-weight: 600; }
+  .ft-file { color: #a3e635; }
+  .ft-comment { color: #6b8eab; font-style: italic; }
+
+  .mistake-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 0; }
+  .mistake { background: #fff5f5; border: 1px solid #fecaca; border-radius: var(--radius-sm); padding: 12px 14px; }
+  .mistake .m-bad { font-size: 12px; font-weight: 700; color: #991b1b; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; }
+  .mistake .m-good { font-size: 12px; font-weight: 700; color: var(--teal-d); text-transform: uppercase; letter-spacing: .05em; margin-bottom: 4px; margin-top: 8px; }
+  .mistake p { font-size: 13px; line-height: 1.5; color: var(--text-2); }
+
+  .checklist { list-style: none; margin: 10px 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 7px; font-size: 14px; line-height: 1.5; }
+  .checklist li::before { content: '□'; font-size: 16px; color: var(--blue); flex-shrink: 0; margin-top: -1px; }
+
+  .ai-table tbody tr td:first-child { font-weight: 600; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  .tag-inline { display: inline-block; font-size: 11px; padding: 1px 7px; border-radius: 10px; font-weight: 600; vertical-align: middle; }
+
+  @media (max-width: 640px) {
+    .cover, .content { padding-left: 20px; padding-right: 20px; }
+    .toc { padding: 16px 20px; }
+    .mistake-grid { grid-template-columns: 1fr; }
+    .cover h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Complete Execution Plan · April 2026</div>
+  <h1>Central Academy Anta<br>Website — Build Playbook</h1>
+  <div class="cover-sub">Step-by-step from blank folder to live production site · Solo dev · AI-assisted workflow</div>
+  <div class="cover-pills">
+    <span class="cover-pill">Next.js 15</span>
+    <span class="cover-pill">Node.js + Express</span>
+    <span class="cover-pill">PostgreSQL + Prisma</span>
+    <span class="cover-pill">Vercel + Railway</span>
+    <span class="cover-pill">8 Phases · ~20 Weeks</span>
+    <span class="cover-pill">Cursor + Stitch + Claude</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <a href="#s1"><span class="toc-num">1</span> Project Scope</a>
+  <a href="#s2"><span class="toc-num">2</span> Tech Stack</a>
+  <a href="#s3"><span class="toc-num">3</span> Tool Workflow</a>
+  <a href="#s4"><span class="toc-num">4</span> Phase-wise Plan</a>
+  <a href="#s5"><span class="toc-num">5</span> AI Usage Strategy</a>
+  <a href="#s6"><span class="toc-num">6</span> File Structure</a>
+  <a href="#s7"><span class="toc-num">7</span> Mistakes to Avoid</a>
+  <a href="#s8"><span class="toc-num">8</span> Optimization</a>
+</nav>
+
+<div class="content">
+
+<!-- ═══════════════════════════════════════ SECTION 1 ═══ -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--blue-l);color:var(--blue-d)">1</div>
+    <h2>Project Scope — What Exactly Will Be Built</h2>
+  </div>
+
+  <p style="margin-bottom:14px">You are rebuilding <strong>centralacademyanta.com</strong> from scratch — replacing a weak PHP site with a production-grade, full-stack school platform. The scope has three distinct tiers:</p>
+
+  <div class="stack-grid">
+    <div class="stack-card" style="border-color:var(--blue);border-top:3px solid var(--blue)">
+      <div class="sc-label" style="color:var(--blue)">Tier 1 — Public Website</div>
+      <div class="sc-name">27 Public Pages</div>
+      <div class="sc-why">Homepage, About, Academics, 10 Facility pages, Gallery, Notice Board, Toppers, TC Verification, Admission, Contact, Downloads, Events, Calendar</div>
+    </div>
+    <div class="stack-card" style="border-color:var(--amber);border-top:3px solid var(--amber)">
+      <div class="sc-label" style="color:var(--amber)">Tier 2 — Admin CMS</div>
+      <div class="sc-name">12 Admin Modules</div>
+      <div class="sc-why">Notice manager, Gallery manager, Staff manager, Toppers, Downloads, Sliders, Events, TC Records, Admission enquiries, Page editor, User roles</div>
+    </div>
+    <div class="stack-card" style="border-color:var(--coral);border-top:3px solid var(--coral)">
+      <div class="sc-label" style="color:var(--coral)">Tier 3 — Portals</div>
+      <div class="sc-name">4 Role Portals</div>
+      <div class="sc-why">Parent portal (attendance, fees, results, documents), Staff portal (attendance marking, circulars), Office portal (TC, admissions), Student document locker</div>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>What the current site lacks that you will add:</strong> proper SEO, SSR/SSG rendering, CMS without developer access, WhatsApp notifications, online fee payment (Razorpay), PWA (add to home screen), Hindi/English bilingual toggle, AI FAQ chatbot, real image optimization pipeline, secure role-based auth.
+  </div>
+
+  <div class="sub-section">
+    <h4>Hard Constraints (non-negotiable)</h4>
+  </div>
+  <ul class="checklist">
+    <li>Must be bilingual — Hindi + English throughout (notices, UI labels, content)</li>
+    <li>Must be mobile-first — majority of parents in Anta are on Android + mobile data</li>
+    <li>Must have sub-2.5s LCP — slow sites = bad Google ranking = fewer admissions</li>
+    <li>Must NOT require a developer for daily operations — office staff must manage content</li>
+    <li>Must be deployable for under ₹2,000/month total infra cost</li>
+  </ul>
+</div>
+
+<!-- ═══════════════════════════════════════ SECTION 2 ═══ -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--teal-l);color:var(--teal-d)">2</div>
+    <h2>Tech Stack Finalization</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>Layer</th><th>Technology</th><th>Why This — Not the Alternative</th><th>Free Tier?</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Frontend</strong></td>
+        <td>Next.js 15 (App Router) + TypeScript</td>
+        <td>SSG for public pages (SEO), SSR for portals (auth), ISR for dynamic content (notices). MERN lacks SSR by default — kills Google ranking.</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><strong>Styling</strong></td>
+        <td>Tailwind CSS v4 + shadcn/ui</td>
+        <td>Fastest UI build speed. shadcn/ui gives production-quality accessible components free. No CSS-in-JS overhead.</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><strong>Backend</strong></td>
+        <td>Next.js API Routes + Node.js/Express (for heavy jobs)</td>
+        <td>API routes handle 90% of needs inside same repo. Express microservice only for file processing, email jobs, WhatsApp queue.</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><strong>Database</strong></td>
+        <td>PostgreSQL (Railway) + Prisma ORM</td>
+        <td>Relational = correct for school data (students, fees, attendance, TC records). Prisma gives type-safe queries + migrations. Railway free tier sufficient for start.</td>
+        <td>500 MB free</td>
+      </tr>
+      <tr>
+        <td><strong>Auth</strong></td>
+        <td>NextAuth.js v5 (Auth.js)</td>
+        <td>Battle-tested, supports roles out of box, sessions + JWT both work, integrates directly with Next.js middleware for route protection.</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><strong>Images</strong></td>
+        <td>Cloudinary (free tier)</td>
+        <td>Auto-WebP conversion, smart crop, CDN delivery, upload widget. Free tier = 25 GB storage, 25 GB bandwidth/month — enough for gallery + staff photos.</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><strong>PDFs/Docs</strong></td>
+        <td>Cloudinary (PDFs) or Backblaze B2</td>
+        <td>Results PDFs, TC documents, brochures. Backblaze B2 = 10 GB free, then $0.006/GB — cheapest S3-compatible storage.</td>
+        <td>10 GB free</td>
+      </tr>
+      <tr>
+        <td><strong>Email</strong></td>
+        <td>Resend (transactional) + React Email</td>
+        <td>100 emails/day free. Beautiful email templates with React. Replaces Nodemailer + SendGrid complexity.</td>
+        <td>100/day free</td>
+      </tr>
+      <tr>
+        <td><strong>Hosting</strong></td>
+        <td>Vercel (frontend) + Railway (backend DB)</td>
+        <td>Vercel: zero-config Next.js deploy, edge CDN, preview deployments per PR, free for hobby. Railway: managed PostgreSQL with backups, $5/month after free tier.</td>
+        <td>Both have free tiers</td>
+      </tr>
+      <tr>
+        <td><strong>Payments</strong></td>
+        <td>Razorpay</td>
+        <td>India-specific, UPI + cards + net banking, easiest integration for school fee collection. 2% transaction fee, no monthly charges.</td>
+        <td>No monthly cost</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="warn-box">
+    <strong>DO NOT use:</strong> WordPress/WooCommerce (terrible performance, plugin hell), Firebase (not relational, expensive at scale), Supabase alone as backend (good DB but you need Next.js API layer), plain PHP (existing site is PHP — you've seen its limitations firsthand).
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SECTION 3 ═══ -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--purple-l);color:var(--purple-d)">3</div>
+    <h2>Tool Workflow Integration</h2>
+  </div>
+
+  <div class="tool-grid">
+    <div class="tool-card" style="background:var(--teal-l);border:1px solid #9FE1CB">
+      <div class="tc-role" style="color:var(--teal-d)">UI Generation</div>
+      <div class="tc-name" style="color:var(--teal-d)">Stitch AI</div>
+      <div class="tc-tasks" style="color:var(--teal-d)">Generate initial screen layouts from text prompts. Get React/HTML structure fast. Export and hand off to Cursor. Use only for visual scaffolding — not final code.</div>
+    </div>
+    <div class="tool-card" style="background:var(--purple-l);border:1px solid #AFA9EC">
+      <div class="tc-role" style="color:var(--purple-d)">Primary Dev Environment</div>
+      <div class="tc-name" style="color:var(--purple-d)">Cursor</div>
+      <div class="tc-tasks" style="color:var(--purple-d)">Where you write, edit, run, and test all code. Reads your entire codebase. Multi-file edits. Tab autocomplete. Inline AI. This is your main work surface — 80% of build time happens here.</div>
+    </div>
+    <div class="tool-card" style="background:var(--blue-l);border:1px solid #85B7EB">
+      <div class="tc-role" style="color:var(--blue-d)">Deep Thinking AI</div>
+      <div class="tc-name" style="color:var(--blue-d)">Claude (browser)</div>
+      <div class="tc-tasks" style="color:var(--blue-d)">Architecture, complex debugging, full feature planning, backend logic, security decisions. Paste only the relevant snippet — never the whole project.</div>
+    </div>
+    <div class="tool-card" style="background:var(--gray-l);border:1px solid #B4B2A9">
+      <div class="tc-role" style="color:var(--gray-d)">Fallback Editor</div>
+      <div class="tc-name" style="color:var(--gray-d)">VS Code</div>
+      <div class="tc-tasks" style="color:var(--gray-d)">Git UI, terminal sessions, large file diffs, extensions (Prisma, ESLint, Tailwind). Use when Cursor is slow or you need extension that Cursor lacks.</div>
+    </div>
+  </div>
+
+  <div class="sub-section">
+    <h4>The Exact Loop (memorize this)</h4>
+  </div>
+
+  <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;margin:12px 0;font-size:14px;line-height:1.9">
+    <strong>Step 1 → Stitch:</strong> Describe the page/component in plain English. Get a rough React layout.<br>
+    <strong>Step 2 → Cursor:</strong> Paste Stitch output. Prompt Cursor to refactor, add TypeScript, connect to data, split into components.<br>
+    <strong>Step 3 → Hit a wall?</strong> Copy ONLY the problematic function/component (not the whole file) → paste into Claude browser AI.<br>
+    <strong>Step 4 → Claude fixes it:</strong> Copy the solution back → paste into Cursor → apply.<br>
+    <strong>Step 5 → Test:</strong> <code>npm run dev</code> in Cursor terminal → verify → commit to git.<br>
+    <strong>Step 6 → Repeat</strong> for next feature.
+  </div>
+
+  <div class="info-box">
+    <strong>Rule:</strong> Never paste more than 100 lines into browser AI. Context beyond that degrades output quality. Extract the exact problem, not the whole file. "Here's my API route, it returns 401 on the third login attempt — here's the code" beats "here's my entire codebase."
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SECTION 4 ═══ -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--amber-l);color:var(--amber-d)">4</div>
+    <h2>Phase-wise Execution Plan</h2>
+  </div>
+
+  <!-- PHASE 0 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--gray-l);color:var(--gray-d)">0</div>
+      <div class="phase-title">
+        <h3>Environment Setup</h3>
+        <p>Accounts, tools, project init — do this FIRST, never skip</p>
+      </div>
+      <div class="phase-dur" style="background:var(--gray-l);color:var(--gray-d)">Day 1 only</div>
+    </div>
+    <div class="phase-body">
+      <ol class="steps">
+        <li data-n="1">Install: Node.js 22 LTS, Git, Cursor, VS Code. Create GitHub account if not already.</li>
+        <li data-n="2">Create accounts (all free): Vercel, Railway, Cloudinary, Resend, Stitch AI.</li>
+        <li data-n="3">Run in terminal: <code>npx create-next-app@latest cas-website --typescript --tailwind --app --src-dir --import-alias "@/*"</code></li>
+        <li data-n="4">Open the <code>cas-website</code> folder in Cursor. Run <code>npm run dev</code> — confirm it loads on localhost:3000.</li>
+        <li data-n="5">Initialize git: <code>git init → git add . → git commit -m "init"</code>. Push to a new GitHub repo.</li>
+        <li data-n="6">Connect GitHub repo to Vercel. Every push to <code>main</code> auto-deploys. Test with a dummy change.</li>
+        <li data-n="7">Install shadcn/ui: <code>npx shadcn@latest init</code>. Select default style, CSS variables: yes.</li>
+        <li data-n="8">Create Railway project → add PostgreSQL. Copy the DATABASE_URL. Add to <code>.env.local</code>.</li>
+        <li data-n="9">Install Prisma: <code>npm install prisma @prisma/client → npx prisma init</code>. Paste DATABASE_URL into <code>.env</code>.</li>
+      </ol>
+      <span class="tool-tag t-terminal">Terminal</span> <span class="tool-tag t-vscode">VS Code / Cursor</span>
+    </div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--blue-l);color:var(--blue-d)">1</div>
+      <div class="phase-title">
+        <h3>Architecture & Database Schema</h3>
+        <p>Plan before you build — fixing schema later is 10x the effort</p>
+      </div>
+      <div class="phase-dur" style="background:var(--blue-l);color:var(--blue-d)">Week 1–2</div>
+    </div>
+    <div class="phase-body">
+      <div class="sub-section"><h4>1A — Sitemap (use Claude)</h4></div>
+      <div class="prompt-block">You are planning a school website for Central Academy Senior Secondary School, Anta, Rajasthan. Define the complete URL structure for:
+- All public pages (homepage, about, academics, facilities, gallery, notices, toppers, TC verification, admission, contact, downloads, events, calendar)
+- Admin CMS routes under /admin/*
+- Portal routes: /portal/parent, /portal/staff, /portal/office
+Output as a clean URL tree with page purpose in one line each.</div>
+      <span class="tool-tag t-claude">Claude browser</span>
+
+      <div class="sub-section" style="margin-top:16px"><h4>1B — Prisma Schema (use Claude)</h4></div>
+      <div class="prompt-block">Write a complete Prisma schema (schema.prisma) for a school management system with these models: User (with roles: ADMIN, OFFICE, TEACHER, PARENT), Student, Staff, Notice (Hindi + English fields), Gallery, GalleryImage, Topper, Download, Event, TcRecord, AdmissionEnquiry, Slider, FeeRecord, Attendance. Include all relations, required fields, and sensible defaults. Use PostgreSQL provider.</div>
+      <span class="tool-tag t-claude">Claude browser</span>
+
+      <ol class="steps" style="margin-top:12px">
+        <li data-n="1">Paste Claude's Prisma schema into <code>prisma/schema.prisma</code> in Cursor.</li>
+        <li data-n="2">Run <code>npx prisma migrate dev --name init</code> — creates tables in Railway PostgreSQL.</li>
+        <li data-n="3">Run <code>npx prisma studio</code> — opens visual DB browser at localhost:5555. Confirm all tables exist.</li>
+        <li data-n="4">Create <code>prisma/seed.ts</code> — add sample data for all 37 staff members, 1 sample notice (Hindi + English), 1 gallery album.</li>
+        <li data-n="5">Run <code>npx prisma db seed</code> to populate. Verify in Prisma Studio.</li>
+      </ol>
+      <span class="tool-tag t-cursor">Cursor</span> <span class="tool-tag t-terminal">Terminal</span>
+
+      <div class="sub-section" style="margin-top:16px"><h4>Output expected after Phase 1</h4></div>
+      <ul style="font-size:14px;line-height:2;padding-left:20px">
+        <li>Complete URL sitemap document</li>
+        <li>Working Prisma schema with 15+ models</li>
+        <li>All database tables created in Railway</li>
+        <li>Seed data inserted and verified</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--teal-l);color:var(--teal-d)">2</div>
+      <div class="phase-title">
+        <h3>UI Design — Components & Pages</h3>
+        <p>Build the visual skeleton before writing any logic</p>
+      </div>
+      <div class="phase-dur" style="background:var(--teal-l);color:var(--teal-d)">Week 2–4</div>
+    </div>
+    <div class="phase-body">
+      <div class="sub-section"><h4>2A — Design Tokens (in Cursor)</h4></div>
+      <ol class="steps">
+        <li data-n="1">Open <code>app/globals.css</code>. Define school brand CSS variables: primary blue (#1B4F8A), accent amber (#BA7517), font stack (use Google Font Noto Sans for Hindi + English support).</li>
+        <li data-n="2">Add to <code>tailwind.config.ts</code>: extend colors with <code>school-blue</code>, <code>school-amber</code>, <code>school-teal</code> mapped to your CSS vars.</li>
+      </ol>
+
+      <div class="sub-section"><h4>2B — Core UI Components (Stitch → Cursor)</h4></div>
+      <p style="font-size:14px;margin-bottom:10px">For each component below: generate in Stitch, paste into Cursor, refactor to TypeScript + Tailwind, place in <code>components/</code>.</p>
+
+      <table style="margin:10px 0">
+        <thead><tr><th>Component</th><th>Stitch Prompt</th><th>File Location</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Navbar</td>
+            <td>"School website header with logo left, nav links center (Home, About, Academics, Facilities, Gallery, Notice, Contact), bilingual Hindi/English toggle right, mobile hamburger menu"</td>
+            <td><code>components/layout/Navbar.tsx</code></td>
+          </tr>
+          <tr>
+            <td>Hero Slider</td>
+            <td>"Full-width school homepage hero slider with 3 slides, headline, subtext, CTA button, auto-play, dot navigation"</td>
+            <td><code>components/home/HeroSlider.tsx</code></td>
+          </tr>
+          <tr>
+            <td>Notice Card</td>
+            <td>"School notice board card with date badge, title, Hindi subtitle, pinned indicator, read more link"</td>
+            <td><code>components/notices/NoticeCard.tsx</code></td>
+          </tr>
+          <tr>
+            <td>Staff Card</td>
+            <td>"Teacher profile card with circular photo, name, subject/designation, subtle hover effect"</td>
+            <td><code>components/staff/StaffCard.tsx</code></td>
+          </tr>
+          <tr>
+            <td>Gallery Grid</td>
+            <td>"Photo gallery grid with album covers, hover overlay with album name and photo count, lightbox trigger"</td>
+            <td><code>components/gallery/GalleryGrid.tsx</code></td>
+          </tr>
+          <tr>
+            <td>Footer</td>
+            <td>"School website footer: 4 columns — About (logo + tagline), Quick Links, Contact Info (address, phone, email), Social Links. Bottom bar with copyright"</td>
+            <td><code>components/layout/Footer.tsx</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="sub-section"><h4>2C — After Stitch export, clean up in Cursor with this prompt</h4></div>
+      <div class="prompt-block">Refactor this React component:
+1. Convert all inline styles to Tailwind CSS classes
+2. Add TypeScript interface for props
+3. Remove any hardcoded colors — use CSS variables or Tailwind config values
+4. Ensure it works on mobile (responsive with sm: md: breakpoints)
+5. Add proper semantic HTML (nav, main, section, article as appropriate)
+<span class="ph">[paste Stitch output here]</span></div>
+      <span class="tool-tag t-cursor">Cursor</span>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--purple-l);color:var(--purple-d)">3</div>
+      <div class="phase-title">
+        <h3>Public Website Pages</h3>
+        <p>All 27 public-facing pages with SSG/ISR — start with homepage</p>
+      </div>
+      <div class="phase-dur" style="background:var(--purple-l);color:var(--purple-d)">Week 3–8</div>
+    </div>
+    <div class="phase-body">
+      <div class="sub-section"><h4>Build order (do in this sequence — easiest to hardest)</h4></div>
+      <ol class="steps">
+        <li data-n="1"><strong>Static pages first:</strong> About (Director, Principal), Vision &amp; Mission, Academics, Admission Rules, Admission Process, all Facility pages (Library, Computer Lab, Classrooms, Art Room, Sports, Seminar Hall, Auditorium, Canteen, Laboratories). These are pure SSG — no database needed yet.</li>
+        <li data-n="2"><strong>Homepage:</strong> Wire up HeroSlider, latest 3 notices (ISR, revalidate 60s), gallery thumbnails, topper highlight, quick stats bar, map section.</li>
+        <li data-n="3"><strong>Notice Board:</strong> <code>app/notices/page.tsx</code> — fetch notices from DB via API route, paginate 10/page, pin important ones, Hindi/English toggle.</li>
+        <li data-n="4"><strong>Gallery:</strong> Album list page → dynamic album route <code>[albumId]</code> → lightbox viewer. Connect to Cloudinary for image URLs.</li>
+        <li data-n="5"><strong>TC Verification:</strong> Server-side form — search by student name + roll + year → returns TC record from DB. This replicates the existing Tc_search_report.php.</li>
+        <li data-n="6"><strong>Toppers:</strong> Fetch topper records by session/year, display cards with marks, link to PDF download from Cloudinary.</li>
+        <li data-n="7"><strong>Contact page:</strong> Static info + Leaflet.js map with school pin (25.153025°N, 76.284592°E) + contact form that calls <code>/api/contact</code> to email via Resend.</li>
+        <li data-n="8"><strong>Online Admission Form:</strong> Multi-step form component — save to AdmissionEnquiry table on submit, trigger auto-reply email via Resend.</li>
+      </ol>
+
+      <div class="sub-section"><h4>Cursor prompts for page building</h4></div>
+      <div class="prompt-block">Create a Next.js 15 App Router page at app/facilities/library/page.tsx.
+- Use SSG (no dynamic data, just static content)
+- Import and use the existing PageLayout component
+- Content: [paste library content from school profile]
+- Add proper Next.js metadata export with title and description for SEO
+- School colors: primary #1B4F8A, accent #BA7517
+- Include a LibraryRules section with the 10 rules formatted as a styled list</div>
+      <span class="tool-tag t-cursor">Cursor</span>
+
+      <div class="sub-section"><h4>API routes to build (in <code>app/api/</code>)</h4></div>
+      <table>
+        <thead><tr><th>Route</th><th>Method</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>/api/notices</code></td><td>GET</td><td>Paginated public notices, sort by pinned first then date</td></tr>
+          <tr><td><code>/api/gallery</code></td><td>GET</td><td>Album list with cover image + count</td></tr>
+          <tr><td><code>/api/gallery/[id]</code></td><td>GET</td><td>Images in specific album</td></tr>
+          <tr><td><code>/api/staff</code></td><td>GET</td><td>All 37 staff members ordered by display_order</td></tr>
+          <tr><td><code>/api/toppers</code></td><td>GET</td><td>Toppers filtered by session/class query params</td></tr>
+          <tr><td><code>/api/tc-verify</code></td><td>POST</td><td>Search TC records by name + roll + year</td></tr>
+          <tr><td><code>/api/contact</code></td><td>POST</td><td>Contact form → email via Resend</td></tr>
+          <tr><td><code>/api/admission-enquiry</code></td><td>POST</td><td>Save enquiry to DB + send auto-reply email</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--amber-l);color:var(--amber-d)">4</div>
+      <div class="phase-title">
+        <h3>Admin CMS Panel</h3>
+        <p>Full content management — office staff must use this without your help</p>
+      </div>
+      <div class="phase-dur" style="background:var(--amber-l);color:var(--amber-d)">Week 6–9</div>
+    </div>
+    <div class="phase-body">
+      <ol class="steps">
+        <li data-n="1"><strong>Install NextAuth v5:</strong> <code>npm install next-auth@beta</code>. Create <code>auth.ts</code> config with Credentials provider (email + hashed password). Add middleware to protect <code>/admin/*</code> routes.</li>
+        <li data-n="2"><strong>Admin shell layout:</strong> <code>app/admin/layout.tsx</code> — sidebar with all CMS modules, top bar with logged-in user + logout, mobile-responsive drawer.</li>
+        <li data-n="3"><strong>Dashboard page:</strong> <code>app/admin/page.tsx</code> — stat cards (total enquiries, today's enquiries, total notices, upcoming events), recent activity feed.</li>
+        <li data-n="4"><strong>Notice Manager:</strong> List page (all notices, paginated) + Create/Edit form (TipTap rich text editor for both Hindi + English fields, pin toggle, schedule date picker).</li>
+        <li data-n="5"><strong>Gallery Manager:</strong> Create album form, drag-and-drop image upload to Cloudinary (use Cloudinary Upload Widget JS), reorder images within album.</li>
+        <li data-n="6"><strong>Staff Manager:</strong> Data table of all 37 staff, add/edit form (name, subject, designation, Cloudinary photo upload), display_order drag-and-drop.</li>
+        <li data-n="7"><strong>TC Records:</strong> Upload TC issuance records (CSV import or manual entry form). Links to public TC Verification page.</li>
+        <li data-n="8"><strong>Admission Enquiries:</strong> Table view of all enquiries, filter by class/date, mark-as-contacted toggle, export to CSV button.</li>
+      </ol>
+
+      <div class="sub-section"><h4>Admin API routes (all protected, require ADMIN role)</h4></div>
+      <div class="prompt-block">Create a Next.js App Router API route at app/api/admin/notices/route.ts.
+- GET: return all notices paginated (page, limit query params), newest first
+- POST: create new notice — body: { titleEn, titleHi, contentEn, contentHi, isPinned, scheduledAt }
+- Validate request body with Zod schema
+- Check auth session — return 401 if not ADMIN role
+- Use Prisma client to interact with Notice table
+- Return proper HTTP status codes (201 for create, 400 for validation fail)</div>
+      <span class="tool-tag t-cursor">Cursor</span> <span class="tool-tag t-claude">Claude for complex logic</span>
+    </div>
+  </div>
+
+  <!-- PHASE 5 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--coral-l);color:var(--coral-d)">5</div>
+      <div class="phase-title">
+        <h3>Parent & Staff Portals</h3>
+        <p>Role-based dashboards — build parent portal first (highest value)</p>
+      </div>
+      <div class="phase-dur" style="background:var(--coral-l);color:var(--coral-d)">Week 8–12</div>
+    </div>
+    <div class="phase-body">
+      <ol class="steps">
+        <li data-n="1"><strong>Login page:</strong> <code>app/login/page.tsx</code> — single login form that redirects to correct portal based on role after auth.</li>
+        <li data-n="2"><strong>Parent portal:</strong> <code>app/portal/parent/</code> — dashboard (ward's info, attendance summary, fee status), attendance detail page, fee history + receipt download, notices filtered to student's class, document locker (TC, result PDF download).</li>
+        <li data-n="3"><strong>Staff portal:</strong> <code>app/portal/staff/</code> — daily attendance marking (class-wise checklist), class circular board (post to specific class), leave request form, downloads section.</li>
+        <li data-n="4"><strong>Office portal:</strong> <code>app/portal/office/</code> — TC issuance form (add new TC record), admission enquiries view, fee collection records.</li>
+        <li data-n="5"><strong>Razorpay integration:</strong> On fee payment page, create Razorpay order via API → render Razorpay checkout widget → on success, update FeeRecord in DB + send receipt email via Resend.</li>
+      </ol>
+
+      <div class="sub-section"><h4>Use Claude for Razorpay integration</h4></div>
+      <div class="prompt-block">I need to integrate Razorpay for school fee payment in Next.js 15 App Router.
+Backend: create a /api/payment/create-order route that creates a Razorpay order using the Razorpay Node SDK and returns the order_id.
+Frontend: on the parent portal fee page, load the Razorpay checkout script, call the API to get order_id, open the Razorpay modal, handle success callback by calling /api/payment/verify to verify signature using crypto.createHmac, then update the FeeRecord in the database.
+Show me the complete implementation for both routes and the frontend component.</div>
+      <span class="tool-tag t-claude">Claude browser</span>
+    </div>
+  </div>
+
+  <!-- PHASE 6 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--green-l);color:var(--green-d)">6</div>
+      <div class="phase-title">
+        <h3>Advanced Features</h3>
+        <p>WhatsApp alerts, PWA, AI chatbot, Google Analytics</p>
+      </div>
+      <div class="phase-dur" style="background:var(--green-l);color:var(--green-d)">Week 11–15</div>
+    </div>
+    <div class="phase-body">
+      <ol class="steps">
+        <li data-n="1"><strong>WhatsApp notifications:</strong> Use WATI or Twilio WhatsApp API. Create a background job that triggers when a new notice is published — sends WhatsApp message to all parent phone numbers in the DB. Run as a Next.js background task or Railway cron job.</li>
+        <li data-n="2"><strong>PWA setup:</strong> Install <code>next-pwa</code>. Add <code>manifest.json</code> with school name, icons, theme color #1B4F8A. Configure offline cache for homepage and notices. Test "Add to Home Screen" on Android.</li>
+        <li data-n="3"><strong>AI FAQ chatbot:</strong> Use Claude API (claude-haiku-4-5 — cheapest model). Create a floating chat widget. System prompt: "You are a helpful assistant for Central Academy Senior Secondary School, Anta. Answer questions about admission, fees, school timings, facilities, and academic calendar. School info: [paste key details from school profile]." Stream responses for speed.</li>
+        <li data-n="4"><strong>Google Analytics 4:</strong> Create GA4 property. Add GA4 ID to env vars. Add <code>@next/third-parties/google</code> for GA — one line integration. Set up custom event for admission form submissions.</li>
+        <li data-n="5"><strong>Interactive school calendar:</strong> Use <code>@fullcalendar/react</code>. Fetch events from DB. Color-code by type (exams, holidays, sports, cultural). Add iCal export link.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PHASE 7 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--blue-l);color:var(--blue-d)">7</div>
+      <div class="phase-title">
+        <h3>Testing & QA</h3>
+        <p>Don't skip this — one broken form can cost an admission</p>
+      </div>
+      <div class="phase-dur" style="background:var(--blue-l);color:var(--blue-d)">Week 14–17</div>
+    </div>
+    <div class="phase-body">
+      <ol class="steps">
+        <li data-n="1"><strong>Critical path testing (manual first):</strong> (1) Submit admission enquiry → check email received + DB record saved. (2) TC verification — search an existing student → result shows. (3) Admin login → create notice → appears on public site. (4) Parent login → see correct child's data. (5) Razorpay payment flow (use test mode).</li>
+        <li data-n="2"><strong>Mobile testing:</strong> Open on real Android phone. Check gallery lightbox touch gestures, notice board scroll, admission form keyboard behavior, nav hamburger menu.</li>
+        <li data-n="3"><strong>Performance audit:</strong> Run Lighthouse in Chrome DevTools. Target: Performance 90+, SEO 100, Accessibility 90+. Fix any red/orange items before launch.</li>
+        <li data-n="4"><strong>SEO check:</strong> Verify all pages have unique title tags and meta descriptions. Confirm sitemap.xml generates at /sitemap.xml. Submit to Google Search Console.</li>
+        <li data-n="5"><strong>Security basics:</strong> Confirm all /admin/* routes return 401 when logged out. Test SQL injection in TC search form (Prisma parameterizes queries — should be safe). Verify HTTPS is enforced on Vercel.</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- PHASE 8 -->
+  <div class="phase">
+    <div class="phase-head">
+      <div class="phase-num" style="background:var(--gray-l);color:var(--gray-d)">8</div>
+      <div class="phase-title">
+        <h3>Data Migration & Launch</h3>
+        <p>Move existing school data, DNS cutover, staff training</p>
+      </div>
+      <div class="phase-dur" style="background:var(--gray-l);color:var(--gray-d)">Week 18–20</div>
+    </div>
+    <div class="phase-body">
+      <ol class="steps">
+        <li data-n="1"><strong>Migrate existing data:</strong> Write a Node.js script that scrapes the old PHP site pages and extracts staff list (37 names), all notice text (Hindi), gallery image URLs. Insert into PostgreSQL via Prisma. Upload gallery images to Cloudinary from their existing URLs.</li>
+        <li data-n="2"><strong>Add env vars to Vercel:</strong> DATABASE_URL, NEXTAUTH_SECRET, CLOUDINARY_API_KEY, RESEND_API_KEY, RAZORPAY_KEY_ID, RAZORPAY_KEY_SECRET, WATI_API_KEY. Never commit these to git.</li>
+        <li data-n="3"><strong>Test production deploy:</strong> Run all critical path tests on the Vercel deployment URL (not localhost). Confirm DB connections work from Vercel's servers.</li>
+        <li data-n="4"><strong>DNS cutover:</strong> In your domain registrar (whoever manages centralacademyanta.com), update nameservers or CNAME to point to Vercel. SSL auto-provisions. Old PHP site goes on a subdomain (old.centralacademyanta.com) for 30 days.</li>
+        <li data-n="5"><strong>Staff training:</strong> Record a screen-capture video (use OBS, free) of: logging into admin, creating a notice, uploading a gallery album. Upload to YouTube (unlisted). Share link with office staff. In-person session if possible.</li>
+        <li data-n="6"><strong>Post-launch monitoring:</strong> Add Sentry.io (free tier) for error tracking. Add Uptime Robot (free) to ping homepage every 5 minutes — alerts to your phone if site goes down.</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SECTION 5 ═══ -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--teal-l);color:var(--teal-d)">5</div>
+    <h2>AI Usage Strategy</h2>
+  </div>
+
+  <table class="ai-table">
+    <thead>
+      <tr><th>Task Type</th><th>Use This</th><th>Prompt Pattern</th><th>What NOT to do</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Architecture decisions</td>
+        <td><span class="tag-inline" style="background:var(--blue-l);color:var(--blue-d)">Claude</span></td>
+        <td>"I'm building X with Y constraints. What's the best approach for Z? Give me 2–3 options with tradeoffs."</td>
+        <td>Don't ask Cursor autocomplete for architecture — it completes patterns, not decisions</td>
+      </tr>
+      <tr>
+        <td>Generating a new UI component</td>
+        <td><span class="tag-inline" style="background:var(--teal-l);color:var(--teal-d)">Stitch</span> → <span class="tag-inline" style="background:var(--purple-l);color:var(--purple-d)">Cursor</span></td>
+        <td>Stitch: describe visually. Cursor: "Refactor to TypeScript, Tailwind, add props interface"</td>
+        <td>Don't use Claude browser for UI generation — Stitch is faster and purpose-built</td>
+      </tr>
+      <tr>
+        <td>Debugging a specific error</td>
+        <td><span class="tag-inline" style="background:var(--purple-l);color:var(--purple-d)">Cursor</span> inline first, then <span class="tag-inline" style="background:var(--blue-l);color:var(--blue-d)">Claude</span></td>
+        <td>"Here's the error: [error message]. Here's the code: [50 lines max]. What's wrong and how do I fix it?"</td>
+        <td>Don't paste the full file. Don't describe the error without pasting the code.</td>
+      </tr>
+      <tr>
+        <td>Writing API routes</td>
+        <td><span class="tag-inline" style="background:var(--purple-l);color:var(--purple-d)">Cursor</span> with context</td>
+        <td>In Cursor: "Write a Next.js API route for [purpose]. Use Prisma. Validate with Zod. Return proper HTTP codes."</td>
+        <td>Don't write API routes from scratch — let Cursor scaffold, then review.</td>
+      </tr>
+      <tr>
+        <td>Complex backend logic (auth, payments)</td>
+        <td><span class="tag-inline" style="background:var(--blue-l);color:var(--blue-d)">Claude</span></td>
+        <td>Explain full context + constraints. Ask for complete implementation. Paste back into Cursor.</td>
+        <td>Don't try to iterate on security-sensitive code with just autocomplete.</td>
+      </tr>
+      <tr>
+        <td>Database schema design</td>
+        <td><span class="tag-inline" style="background:var(--blue-l);color:var(--blue-d)">Claude</span></td>
+        <td>"Write a Prisma schema for [exact models with relationships]. Include indexes for fields I'll query often."</td>
+        <td>Don't design schema incrementally in a chat — ask for the full schema upfront.</td>
+      </tr>
+      <tr>
+        <td>Writing website copy</td>
+        <td><span class="tag-inline" style="background:var(--blue-l);color:var(--blue-d)">Claude</span></td>
+        <td>"Write SEO-optimized content for the [page name] page of Central Academy Senior Secondary School, Anta, Rajasthan. Tone: professional, welcoming. Include relevant keywords."</td>
+        <td>Don't use this for Hindi translation — use DeepL for quality Hindi.</td>
+      </tr>
+      <tr>
+        <td>Hindi translations</td>
+        <td>DeepL API</td>
+        <td>Paste English notice text, target language: Hindi (HI). Review output — DeepL is better than Google for formal Hindi.</td>
+        <td>Don't use ChatGPT/Claude for bulk Hindi translation — DeepL is more accurate for Indian languages.</td>
+      </tr>
+      <tr>
+        <td>Refactoring messy code</td>
+        <td><span class="tag-inline" style="background:var(--purple-l);color:var(--purple-d)">Cursor</span></td>
+        <td>"Refactor this component to: 1) Extract sub-components, 2) Add TypeScript types, 3) Move hardcoded strings to constants, 4) Improve readability"</td>
+        <td>Don't refactor and add features at the same time — do one thing per prompt.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════════════ SECTION 6 ═══ -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--purple-l);color:var(--purple-d)">6</div>
+    <h2>File Structure & Project Organization</h2>
+  </div>
+
+  <div class="folder-tree">
+<span class="ft-dir">cas-website/</span>
+├── <span class="ft-dir">app/</span>                         <span class="ft-comment"># Next.js App Router</span>
+│   ├── <span class="ft-dir">(public)/</span>                <span class="ft-comment"># Route group — public pages</span>
+│   │   ├── <span class="ft-file">page.tsx</span>             <span class="ft-comment"># Homepage</span>
+│   │   ├── <span class="ft-dir">about/</span>
+│   │   │   ├── <span class="ft-file">director/page.tsx</span>
+│   │   │   ├── <span class="ft-file">principal/page.tsx</span>
+│   │   │   └── <span class="ft-file">vision/page.tsx</span>
+│   │   ├── <span class="ft-dir">academics/</span>
+│   │   ├── <span class="ft-dir">admission/</span>
+│   │   ├── <span class="ft-dir">facilities/</span>
+│   │   │   ├── <span class="ft-file">library/page.tsx</span>
+│   │   │   ├── <span class="ft-file">computer-lab/page.tsx</span>
+│   │   │   └── <span class="ft-comment">... (all 10 facility pages)</span>
+│   │   ├── <span class="ft-dir">gallery/</span>
+│   │   │   ├── <span class="ft-file">page.tsx</span>          <span class="ft-comment"># Albums list</span>
+│   │   │   └── <span class="ft-dir">[albumId]/</span>
+│   │   │       └── <span class="ft-file">page.tsx</span>      <span class="ft-comment"># Album images</span>
+│   │   ├── <span class="ft-dir">notices/page.tsx</span>
+│   │   ├── <span class="ft-dir">toppers/page.tsx</span>
+│   │   ├── <span class="ft-dir">tc-verify/page.tsx</span>
+│   │   ├── <span class="ft-dir">contact/page.tsx</span>
+│   │   └── <span class="ft-dir">events/page.tsx</span>
+│   │
+│   ├── <span class="ft-dir">admin/</span>                   <span class="ft-comment"># CMS — protected by middleware</span>
+│   │   ├── <span class="ft-file">layout.tsx</span>           <span class="ft-comment"># Admin sidebar shell</span>
+│   │   ├── <span class="ft-file">page.tsx</span>             <span class="ft-comment"># Dashboard</span>
+│   │   ├── <span class="ft-dir">notices/</span>
+│   │   ├── <span class="ft-dir">gallery/</span>
+│   │   ├── <span class="ft-dir">staff/</span>
+│   │   ├── <span class="ft-dir">toppers/</span>
+│   │   ├── <span class="ft-dir">tc-records/</span>
+│   │   └── <span class="ft-dir">enquiries/</span>
+│   │
+│   ├── <span class="ft-dir">portal/</span>                  <span class="ft-comment"># Role portals — protected</span>
+│   │   ├── <span class="ft-dir">parent/</span>
+│   │   ├── <span class="ft-dir">staff/</span>
+│   │   └── <span class="ft-dir">office/</span>
+│   │
+│   ├── <span class="ft-dir">api/</span>                     <span class="ft-comment"># API routes</span>
+│   │   ├── <span class="ft-dir">auth/[...nextauth]/</span>
+│   │   ├── <span class="ft-dir">notices/route.ts</span>
+│   │   ├── <span class="ft-dir">gallery/route.ts</span>
+│   │   ├── <span class="ft-dir">staff/route.ts</span>
+│   │   ├── <span class="ft-dir">tc-verify/route.ts</span>
+│   │   ├── <span class="ft-dir">contact/route.ts</span>
+│   │   ├── <span class="ft-dir">admission-enquiry/route.ts</span>
+│   │   ├── <span class="ft-dir">admin/</span>               <span class="ft-comment"># Protected CRUD routes</span>
+│   │   └── <span class="ft-dir">payment/</span>             <span class="ft-comment"># Razorpay</span>
+│   │
+│   ├── <span class="ft-file">layout.tsx</span>               <span class="ft-comment"># Root layout (fonts, providers)</span>
+│   ├── <span class="ft-file">globals.css</span>              <span class="ft-comment"># CSS variables, base styles</span>
+│   └── <span class="ft-file">sitemap.ts</span>              <span class="ft-comment"># Auto-generates /sitemap.xml</span>
+│
+├── <span class="ft-dir">components/</span>
+│   ├── <span class="ft-dir">layout/</span>               <span class="ft-comment"># Navbar, Footer, PageLayout</span>
+│   ├── <span class="ft-dir">home/</span>                 <span class="ft-comment"># HeroSlider, StatBar, QuickLinks</span>
+│   ├── <span class="ft-dir">notices/</span>              <span class="ft-comment"># NoticeCard, NoticeList, BilingualToggle</span>
+│   ├── <span class="ft-dir">gallery/</span>              <span class="ft-comment"># GalleryGrid, AlbumCard, Lightbox</span>
+│   ├── <span class="ft-dir">staff/</span>                <span class="ft-comment"># StaffCard, StaffGrid</span>
+│   ├── <span class="ft-dir">forms/</span>                <span class="ft-comment"># AdmissionForm, ContactForm, TCSearchForm</span>
+│   ├── <span class="ft-dir">admin/</span>                <span class="ft-comment"># DataTable, AdminForm, ImageUploader</span>
+│   └── <span class="ft-dir">ui/</span>                   <span class="ft-comment"># shadcn/ui components (auto-generated)</span>
+│
+├── <span class="ft-dir">lib/</span>
+│   ├── <span class="ft-file">prisma.ts</span>             <span class="ft-comment"># Prisma client singleton</span>
+│   ├── <span class="ft-file">auth.ts</span>               <span class="ft-comment"># NextAuth config</span>
+│   ├── <span class="ft-file">cloudinary.ts</span>         <span class="ft-comment"># Cloudinary SDK setup</span>
+│   ├── <span class="ft-file">resend.ts</span>             <span class="ft-comment"># Email client</span>
+│   └── <span class="ft-file">utils.ts</span>              <span class="ft-comment"># cn(), formatDate(), etc</span>
+│
+├── <span class="ft-dir">prisma/</span>
+│   ├── <span class="ft-file">schema.prisma</span>
+│   ├── <span class="ft-file">seed.ts</span>
+│   └── <span class="ft-dir">migrations/</span>
+│
+├── <span class="ft-dir">public/</span>
+│   ├── <span class="ft-file">logo.png</span>
+│   ├── <span class="ft-file">manifest.json</span>         <span class="ft-comment"># PWA manifest</span>
+│   └── <span class="ft-dir">icons/</span>
+│
+├── <span class="ft-file">.env.local</span>               <span class="ft-comment"># NEVER commit this</span>
+├── <span class="ft-file">.env.example</span>             <span class="ft-comment"># Commit this (with dummy values)</span>
+├── <span class="ft-file">middleware.ts</span>            <span class="ft-comment"># Protect /admin and /portal routes</span>
+├── <span class="ft-file">next.config.ts</span>
+├── <span class="ft-file">tailwind.config.ts</span>
+└── <span class="ft-file">package.json</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SECTION 7 ═══ -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--coral-l);color:var(--coral-d)">7</div>
+    <h2>Common Mistakes to Avoid</h2>
+  </div>
+
+  <div class="mistake-grid">
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Building all 27 pages before the database is set up. You'll have to redo data fetching in every page.</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Schema and API routes first. Static content pages are fine early, but dynamic pages need the data layer ready.</p>
+    </div>
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Dumping your entire project folder into Claude or ChatGPT and asking "what's wrong?"</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Identify the exact file and function with the bug. Paste only those 30–80 lines. Give the exact error message.</p>
+    </div>
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Committing .env.local to git. Your Railway DB URL and API keys get exposed instantly.</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Add .env.local to .gitignore immediately (create-next-app does this, but verify). Use .env.example with placeholder values.</p>
+    </div>
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Using client-side fetching (useEffect + fetch) for public pages. Google can't index content that renders after JS loads.</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Use async Server Components for all public pages. Data is fetched at build time (SSG) or request time (SSR) — HTML arrives pre-rendered.</p>
+    </div>
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Creating a new Prisma client instance in every API route. This exhausts database connections at scale.</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Create a singleton in lib/prisma.ts using the global pattern. Every API route imports this one instance.</p>
+    </div>
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Building portals (Phase 5) before the public site (Phase 3). Portals depend on auth + DB being solid.</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Public site first. It's the highest-value deliverable — parents and Google see it. Portals are internal tools, add them after.</p>
+    </div>
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Skipping TypeScript because it slows you down initially. Type errors will hunt you in production.</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Use TypeScript from day 1. Ask Cursor to "add TypeScript interfaces" to any component pasted from Stitch. Catches bugs before runtime.</p>
+    </div>
+    <div class="mistake">
+      <div class="m-bad">✕ Don't do this</div>
+      <p>Using &lt;img&gt; tags directly in Next.js. You lose automatic WebP conversion, lazy loading, and responsive sizing.</p>
+      <div class="m-good">✓ Do this instead</div>
+      <p>Always use Next.js &lt;Image&gt; component from "next/image". Add Cloudinary domain to next.config.ts remotePatterns.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ SECTION 8 ═══ -->
+<div class="section" id="s8">
+  <div class="section-header">
+    <div class="section-num" style="background:var(--green-l);color:var(--green-d)">8</div>
+    <h2>Optimization & Scaling</h2>
+  </div>
+
+  <div class="sub-section"><h4>SEO — what matters for "best school in Anta Baran" ranking</h4></div>
+  <ol class="steps">
+    <li data-n="1">Every page must export a <code>generateMetadata()</code> function with unique title and description. Format: "Library - Central Academy Senior Secondary School, Anta, Baran | RBSE Affiliated"</li>
+    <li data-n="2">Add JSON-LD structured data on homepage: <code>SchoolType</code> schema with address, phone, geo coordinates. Google uses this for Knowledge Panel and Maps integration.</li>
+    <li data-n="3">Create <code>app/sitemap.ts</code> — returns all public URLs dynamically (including each gallery album and notice). Auto-submits as /sitemap.xml.</li>
+    <li data-n="4">Register on Google Search Console within 24 hours of launch. Submit sitemap. Monitor for crawl errors.</li>
+    <li data-n="5">Add school to Google Maps Business Profile (free) — mention website URL centralacademyanta.com. This is the #1 driver of local search visibility.</li>
+  </ol>
+
+  <div class="sub-section"><h4>Performance — hitting 90+ Lighthouse score</h4></div>
+  <ol class="steps">
+    <li data-n="1"><strong>Fonts:</strong> Add <code>display: 'swap'</code> and <code>preload: true</code> to next/font config. Use Noto Sans for Hindi support — it covers both Devanagari and Latin scripts.</li>
+    <li data-n="2"><strong>Images:</strong> All gallery images through Cloudinary with auto WebP + quality 80 + progressive. Use Next.js <code>&lt;Image&gt;</code> everywhere with <code>sizes</code> prop for responsive sizing.</li>
+    <li data-n="3"><strong>ISR (Incremental Static Regeneration):</strong> Notices and gallery pages use <code>revalidate: 60</code> — cached HTML served from CDN, refreshed every 60 seconds in background. Zero DB load for public traffic.</li>
+    <li data-n="4"><strong>API caching:</strong> Add <code>Cache-Control: public, max-age=60, stale-while-revalidate=300</code> headers to public API routes (notices, gallery, staff).</li>
+    <li data-n="5"><strong>Bundle size:</strong> Use dynamic imports for heavy components: <code>const Lightbox = dynamic(() => import('../components/gallery/Lightbox'))</code>. Lightbox code only loads when user clicks a photo.</li>
+  </ol>
+
+  <div class="sub-section"><h4>Infrastructure cost at scale (rough estimate)</h4></div>
+  <table>
+    <thead><tr><th>Service</th><th>Free Tier</th><th>Paid (when needed)</th></tr></thead>
+    <tbody>
+      <tr><td>Vercel (hosting)</td><td>Hobby: unlimited deploys, 100 GB bandwidth</td><td>Pro: $20/month (only if you hit limits)</td></tr>
+      <tr><td>Railway (PostgreSQL)</td><td>$5 free credit/month</td><td>~$5–15/month based on DB size</td></tr>
+      <tr><td>Cloudinary (images)</td><td>25 GB storage, 25 GB bandwidth</td><td>$89/month if you outgrow (unlikely for 1 school)</td></tr>
+      <tr><td>Resend (email)</td><td>100 emails/day free</td><td>$20/month for 50k emails</td></tr>
+      <tr><td>WATI (WhatsApp)</td><td>No free tier</td><td>~$49/month (add in Phase 6, after launch)</td></tr>
+      <tr><td><strong>Total at launch</strong></td><td colspan="2"><strong>~₹500–800/month (well under your ₹2,000 constraint)</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="success-box" style="margin-top:20px">
+    <strong>You are in good shape.</strong> This stack, followed in order, builds a website that will outrank every school in Baran district on Google within 3–6 months. The 20-week timeline is conservative — with Cursor + Stitch + Claude working together, many phases can overlap and complete faster. Start with Phase 0 setup today, get the DB schema done in Week 1, and the rest falls into place.
+  </div>
+</div>
+
+<hr class="divider">
+<p style="text-align:center;font-size:13px;color:var(--text-3);padding-bottom:20px">Central Academy Anta — Website Execution Plan · Compiled April 2026 · For internal use only</p>
+
+</div>
+</body>
+</html>

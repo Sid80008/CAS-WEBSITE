@@ -1,0 +1,274 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1rem 0.25rem 1.5rem;font-family:var(--font-sans,"Anthropic Sans",sans-serif)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:10px}
+.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:14px 16px}
+.card-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px}
+.avatar{width:38px;height:38px;border-radius:var(--border-radius-md);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.card-top-text{}
+.role{font-size:11px;font-weight:500;letter-spacing:.03em;margin-bottom:3px}
+.name{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.use{font-size:12px;color:var(--color-text-secondary);line-height:1.5;margin-bottom:8px}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font-size:10px;padding:2px 8px;border-radius:10px;font-weight:500}
+.note{font-size:11px;color:var(--color-text-secondary);margin-top:6px;padding-top:6px;border-top:0.5px solid var(--color-border-tertiary)}
+.section-label{font-size:11px;font-weight:500;color:var(--color-text-secondary);letter-spacing:.05em;margin:1.2rem 0 8px;text-transform:uppercase}
+</style>
+<div class="wrap">
+  <h2 class="sr-only">AI tools recommended by specialty for the school website project</h2>
+
+  <div class="section-label">Code & Development</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#E6F1FB">&#9670;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#185FA5">Primary Coding AI</div>
+          <div class="name">Claude (Sonnet / Opus)</div>
+        </div>
+      </div>
+      <div class="use">Architecture decisions, full component builds, complex logic, backend API, debugging, code reviews, long-context understanding across files</div>
+      <div class="tags">
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">Full-stack</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">Architecture</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">Debugging</span>
+      </div>
+      <div class="note">Best for: this entire project. Use me for anything that needs thinking + code together.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#EAF3DE">&#9632;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#3B6D11">Agentic Coding</div>
+          <div class="name">Claude Code (CLI)</div>
+        </div>
+      </div>
+      <div class="use">Runs directly in your terminal. Reads your actual codebase, edits multiple files, runs commands, sets up the whole Next.js project autonomously</div>
+      <div class="tags">
+        <span class="tag" style="background:#EAF3DE;color:#27500A">Terminal</span>
+        <span class="tag" style="background:#EAF3DE;color:#27500A">Multi-file</span>
+        <span class="tag" style="background:#EAF3DE;color:#27500A">Autonomous</span>
+      </div>
+      <div class="note">Best for: Phase 2–5 heavy lifting. It can scaffold the entire project in one session.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#EEEDFE">&#9670;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#534AB7">Fast Autocomplete</div>
+          <div class="name">GitHub Copilot</div>
+        </div>
+      </div>
+      <div class="use">Real-time line-by-line code suggestions inside VS Code as you type. Fills boilerplate instantly — Tailwind classes, Prisma queries, repetitive JSX</div>
+      <div class="tags">
+        <span class="tag" style="background:#EEEDFE;color:#3C3489">VS Code</span>
+        <span class="tag" style="background:#EEEDFE;color:#3C3489">Autocomplete</span>
+      </div>
+      <div class="note">Best for: day-to-day coding speed. Pair with Claude for the hard thinking.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#FAEEDA">&#9679;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#854F0B">Code + Search</div>
+          <div class="name">Cursor AI</div>
+        </div>
+      </div>
+      <div class="use">VS Code fork with AI built-in. Can read your entire repo, answer questions about your own code, and make edits across multiple files with one prompt</div>
+      <div class="tags">
+        <span class="tag" style="background:#FAEEDA;color:#633806">Repo-aware</span>
+        <span class="tag" style="background:#FAEEDA;color:#633806">IDE</span>
+      </div>
+      <div class="note">Best for: when the project grows large and you need AI that understands the full codebase.</div>
+    </div>
+
+  </div>
+
+  <div class="section-label">UI Design & Prototyping</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#FBEAF0">&#9632;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#993556">UI from prompt</div>
+          <div class="name">v0 by Vercel</div>
+        </div>
+      </div>
+      <div class="use">Type "design a school homepage hero section with nav and CTA" → get production-ready React + Tailwind code instantly. Best AI for UI generation</div>
+      <div class="tags">
+        <span class="tag" style="background:#FBEAF0;color:#72243E">React</span>
+        <span class="tag" style="background:#FBEAF0;color:#72243E">Tailwind</span>
+        <span class="tag" style="background:#FBEAF0;color:#72243E">shadcn/ui</span>
+      </div>
+      <div class="note">Best for: Phase 3 — generating all the public page UI components fast.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#FAECE7">&#9670;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#993C1D">Wireframe to code</div>
+          <div class="name">Galileo AI / Locofy</div>
+        </div>
+      </div>
+      <div class="use">Draw wireframes in Figma → AI converts them to clean React/Next.js code. Locofy is particularly strong for Figma-to-Next.js export</div>
+      <div class="tags">
+        <span class="tag" style="background:#FAECE7;color:#712B13">Figma</span>
+        <span class="tag" style="background:#FAECE7;color:#712B13">Design-to-code</span>
+      </div>
+      <div class="note">Best for: Phase 1 wireframes → Phase 3 code conversion.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#EAF3DE">&#9679;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#3B6D11">Design system</div>
+          <div class="name">Figma AI</div>
+        </div>
+      </div>
+      <div class="use">AI-assisted UI design. Auto-layout suggestions, component generation, design token management. Use for the school's brand design system and mockups</div>
+      <div class="tags">
+        <span class="tag" style="background:#EAF3DE;color:#27500A">Mockups</span>
+        <span class="tag" style="background:#EAF3DE;color:#27500A">Brand</span>
+      </div>
+      <div class="note">Best for: Phase 1 — designing before building.</div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Content, Copy & Translation</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#E6F1FB">&#9632;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#185FA5">Content writing</div>
+          <div class="name">Claude (me)</div>
+        </div>
+      </div>
+      <div class="use">All website copy — About page rewrites, SEO meta descriptions, admission content, notice drafts, email templates, Hindi/English bilingual content</div>
+      <div class="tags">
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">SEO copy</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">Hindi</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">Bilingual</span>
+      </div>
+      <div class="note">Best for: all text content on the website. I already have all school data.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#EEEDFE">&#9679;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#534AB7">Hindi translation</div>
+          <div class="name">DeepL / Google Translate API</div>
+        </div>
+      </div>
+      <div class="use">For bulk Hindi ↔ English translation of notices and content. DeepL has better contextual accuracy than Google for formal Indian language content</div>
+      <div class="tags">
+        <span class="tag" style="background:#EEEDFE;color:#3C3489">Hindi</span>
+        <span class="tag" style="background:#EEEDFE;color:#3C3489">Bulk translate</span>
+      </div>
+      <div class="note">Best for: the notice board Hindi notices and bilingual toggle feature.</div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Images & Media</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#FAEEDA">&#9632;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#854F0B">Image generation</div>
+          <div class="name">Midjourney / DALL-E 3</div>
+        </div>
+      </div>
+      <div class="use">Generate school-themed hero images, illustrations for facility pages, background graphics — for pages where real photos aren't available yet</div>
+      <div class="tags">
+        <span class="tag" style="background:#FAEEDA;color:#633806">Hero images</span>
+        <span class="tag" style="background:#FAEEDA;color:#633806">Illustrations</span>
+      </div>
+      <div class="note">Midjourney = highest quality. DALL-E 3 = faster and integrated with ChatGPT.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#E1F5EE">&#9670;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#0F6E56">Image optimization</div>
+          <div class="name">Cloudinary AI</div>
+        </div>
+      </div>
+      <div class="use">Auto-compress, auto-crop, smart focal point detection, WebP conversion, responsive sizing — all the school gallery photos optimized on upload</div>
+      <div class="tags">
+        <span class="tag" style="background:#E1F5EE;color:#085041">Auto-compress</span>
+        <span class="tag" style="background:#E1F5EE;color:#085041">Smart crop</span>
+      </div>
+      <div class="note">Built into the media pipeline — not a separate step.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#FAECE7">&#9679;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#993C1D">Background removal</div>
+          <div class="name">Remove.bg / Adobe Firefly</div>
+        </div>
+      </div>
+      <div class="use">Clean up staff profile photos — remove or replace backgrounds for a consistent look across all 37+ staff cards on the CAS Team page</div>
+      <div class="tags">
+        <span class="tag" style="background:#FAECE7;color:#712B13">Staff photos</span>
+        <span class="tag" style="background:#FAECE7;color:#712B13">Cleanup</span>
+      </div>
+      <div class="note">One-click background removal. Remove.bg is free for low volume.</div>
+    </div>
+
+  </div>
+
+  <div class="section-label">Testing & DevOps</div>
+  <div class="grid">
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#EAF3DE">&#9632;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#3B6D11">Test generation</div>
+          <div class="name">CodiumAI / Copilot Tests</div>
+        </div>
+      </div>
+      <div class="use">Auto-generates unit and integration tests for your components and API routes. Massively speeds up Phase 7 QA without writing tests from scratch</div>
+      <div class="tags">
+        <span class="tag" style="background:#EAF3DE;color:#27500A">Unit tests</span>
+        <span class="tag" style="background:#EAF3DE;color:#27500A">Auto-generate</span>
+      </div>
+      <div class="note">Best for: Phase 7 — saves days of test writing.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar" style="background:#E6F1FB">&#9679;</div>
+        <div class="card-top-text">
+          <div class="role" style="color:#185FA5">SEO audit</div>
+          <div class="name">Semrush AI / Ahrefs</div>
+        </div>
+      </div>
+      <div class="use">Keyword research for "best school in Anta Baran", competitor analysis, on-page SEO scoring, local SEO optimization for Google Maps ranking</div>
+      <div class="tags">
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">Keywords</span>
+        <span class="tag" style="background:#E6F1FB;color:#0C447C">Local SEO</span>
+      </div>
+      <div class="note">Best for: Phase 3 SEO layer — find what parents actually search for.</div>
+    </div>
+
+  </div>
+
+</div>

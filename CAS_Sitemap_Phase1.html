@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAS Anta — Complete URL Sitemap · Phase 1</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#1B4F8A;--blue-l:#E6F1FB;--blue-d:#0C447C;--blue-xl:#042C53;
+  --teal:#0F6E56;--teal-l:#E1F5EE;--teal-d:#085041;
+  --amber:#BA7517;--amber-l:#FAEEDA;--amber-d:#633806;
+  --coral:#993C1D;--coral-l:#FAECE7;--coral-d:#712B13;
+  --purple:#534AB7;--purple-l:#EEEDFE;--purple-d:#3C3489;
+  --green:#3B6D11;--green-l:#EAF3DE;--green-d:#27500A;
+  --gray:#5F5E5A;--gray-l:#F1EFE8;--gray-d:#444441;
+  --text:#1a1a1a;--text2:#555;--text3:#888;
+  --border:#e2e0db;--bg:#fff;--bg2:#f8f7f5;
+  --r:8px;--r-lg:12px;--sans:system-ui,-apple-system,sans-serif;--mono:'Courier New',monospace;
+}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+
+/* COVER */
+.cover{background:linear-gradient(135deg,#041d38 0%,#0a2847 40%,#1B4F8A 80%,#2E75B6 100%);
+  color:#fff;padding:44px 48px 36px;position:relative;overflow:hidden}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:320px;height:320px;
+  border-radius:50%;background:rgba(255,255,255,0.04)}
+.cover::after{content:'';position:absolute;bottom:-60px;left:80px;width:200px;height:200px;
+  border-radius:50%;background:rgba(255,255,255,0.03)}
+.cover-badge{font-size:10px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin-bottom:10px}
+.cover h1{font-size:28px;font-weight:700;line-height:1.15;margin-bottom:8px}
+.cover-sub{font-size:13px;opacity:.65;margin-bottom:24px}
+.cover-stats{display:flex;flex-wrap:wrap;gap:20px}
+.cstat{background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.12);
+  padding:10px 16px;border-radius:var(--r)}
+.cstat .n{font-size:22px;font-weight:700;line-height:1}
+.cstat .l{font-size:11px;opacity:.65;margin-top:3px}
+
+/* LEGEND */
+.legend{background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:14px 48px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text2)}
+.leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.leg-sep{color:var(--border);font-size:18px;line-height:1}
+
+/* LAYOUT */
+.body{max-width:1040px;margin:0 auto;padding:28px 48px 80px}
+
+/* TIER SECTION */
+.tier{margin-bottom:36px}
+.tier-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;
+  border-bottom:1.5px solid var(--border)}
+.tier-badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.04em}
+.tier-head h2{font-size:18px;font-weight:700}
+.tier-head .tier-count{font-size:12px;color:var(--text3);margin-left:auto}
+
+/* GROUP */
+.group{margin-bottom:20px}
+.group-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  color:var(--text3);margin-bottom:8px;padding-left:4px}
+
+/* ROUTE GRID */
+.route-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:8px}
+.route-card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r);
+  padding:10px 12px;display:flex;align-items:flex-start;gap:10px;
+  transition:border-color .15s,background .15s;cursor:default}
+.route-card:hover{border-color:#b4b2a9;background:var(--bg2)}
+.route-left{flex:1;min-width:0}
+.route-path{font-family:var(--mono);font-size:12px;color:var(--blue-d);font-weight:600;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+.route-desc{font-size:12px;color:var(--text2);line-height:1.4}
+.route-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
+.badge{font-size:10px;font-weight:600;padding:1px 7px;border-radius:10px;white-space:nowrap}
+.b-ssg{background:#EAF3DE;color:#27500A}
+.b-ssr{background:#EEEDFE;color:#3C3489}
+.b-isr{background:#FAEEDA;color:#633806}
+.b-api{background:#E6F1FB;color:#0C447C}
+.b-auth{background:#FAECE7;color:#712B13}
+.b-dyn{background:#E1F5EE;color:#085041}
+.b-cms{background:#FAEEDA;color:#854F0B}
+.route-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;flex-shrink:0}
+
+/* API TABLE */
+.api-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.api-table th{background:var(--bg2);font-weight:600;text-align:left;padding:7px 12px;
+  border:0.5px solid var(--border);color:var(--text2);font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+.api-table td{padding:7px 12px;border:0.5px solid var(--border);vertical-align:top;line-height:1.5}
+.api-table tr:hover td{background:var(--bg2)}
+.method{font-family:var(--mono);font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px}
+.m-get{background:#EAF3DE;color:#27500A}
+.m-post{background:#E6F1FB;color:#0C447C}
+.m-put{background:#FAEEDA;color:#633806}
+.m-del{background:#FAECE7;color:#712B13}
+.protected{font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px;
+  background:#FAECE7;color:#712B13}
+
+/* FILE TREE */
+.tree-box{background:#041d38;color:#c8e0f7;border-radius:var(--r-lg);padding:20px 22px;
+  font-family:var(--mono);font-size:12px;line-height:2;margin-top:8px}
+.td{color:#7dd3fc;font-weight:600}
+.tf{color:#a3e635}
+.tc{color:#4a6d8c;font-style:italic}
+
+/* CHECKLIST */
+.checklist-box{background:var(--bg2);border:0.5px solid var(--border);border-radius:var(--r-lg);
+  padding:16px 20px;margin-top:8px}
+.checklist-box h4{font-size:13px;font-weight:700;margin-bottom:10px;color:var(--text)}
+.check-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:7px;font-size:13px;line-height:1.5}
+.check-item::before{content:'□';font-size:15px;color:var(--blue);flex-shrink:0;margin-top:-1px}
+
+/* NOTE BOX */
+.note-box{border-left:3px solid var(--amber);background:var(--amber-l);border-radius:0 var(--r) var(--r) 0;
+  padding:12px 16px;font-size:13px;color:var(--amber-d);line-height:1.6;margin-top:12px}
+.info-box{border-left:3px solid var(--blue);background:var(--blue-l);border-radius:0 var(--r) var(--r) 0;
+  padding:12px 16px;font-size:13px;color:var(--blue-d);line-height:1.6;margin-top:12px}
+
+.divider{border:none;border-top:0.5px solid var(--border);margin:28px 0}
+
+@media(max-width:640px){
+  .cover,.body,.legend{padding-left:20px;padding-right:20px}
+  .cover h1{font-size:22px}
+  .cover-stats{gap:12px}
+}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-badge">Phase 1 · Step 1 · URL Sitemap &amp; Architecture</div>
+  <h1>Central Academy Anta<br>Complete URL Sitemap</h1>
+  <div class="cover-sub">Every route in the Next.js App Router · Source of truth before any code is written</div>
+  <div class="cover-stats">
+    <div class="cstat"><div class="n">27</div><div class="l">Public pages</div></div>
+    <div class="cstat"><div class="n">12</div><div class="l">Admin CMS routes</div></div>
+    <div class="cstat"><div class="n">11</div><div class="l">Portal routes</div></div>
+    <div class="cstat"><div class="n">16</div><div class="l">API endpoints</div></div>
+    <div class="cstat"><div class="n">66</div><div class="l">Total routes</div></div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:#3B6D11"></div>SSG — Static generation (fastest, best SEO)</div>
+  <div class="leg-sep">·</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#BA7517"></div>ISR — Incremental static regen (dynamic, cached)</div>
+  <div class="leg-sep">·</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#534AB7"></div>SSR — Server-side render (user-specific)</div>
+  <div class="leg-sep">·</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#993C1D"></div>Auth — Protected route (middleware guard)</div>
+</div>
+
+<div class="body">
+
+<!-- ═══ TIER 1: PUBLIC SITE ═══ -->
+<div class="tier">
+  <div class="tier-head">
+    <div class="tier-badge" style="background:var(--blue-l);color:var(--blue-d)">Tier 1</div>
+    <h2>Public Website — 27 Pages</h2>
+    <span class="tier-count">app/(public)/</span>
+  </div>
+
+  <div class="info-box">
+    All public pages use SSG or ISR — HTML pre-rendered at build time. Google gets real HTML, not a React shell. Zero server cost for every public page visit.
+  </div>
+
+  <br>
+
+  <!-- HOME -->
+  <div class="group">
+    <div class="group-label">Home</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#E6F1FB">🏠</div>
+        <div class="route-left">
+          <div class="route-path">/</div>
+          <div class="route-desc">Homepage — Hero slider, latest notices, gallery preview, toppers banner, stats, map</div>
+          <div class="route-badges">
+            <span class="badge b-isr">ISR 60s</span>
+            <span class="badge b-dyn">Dynamic sections</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="group">
+    <div class="group-label">About</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#E6F1FB">👤</div>
+        <div class="route-left">
+          <div class="route-path">/about/director</div>
+          <div class="route-desc">Director's message — full content, photo, key themes</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#E6F1FB">👩‍💼</div>
+        <div class="route-left">
+          <div class="route-path">/about/principal</div>
+          <div class="route-desc">Radha Meena's message — philosophy, approach, constructivist teaching</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#E6F1FB">🎯</div>
+        <div class="route-left">
+          <div class="route-path">/about/vision-mission</div>
+          <div class="route-desc">Vision statement, mission, motto, school ethos</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ACADEMICS -->
+  <div class="group">
+    <div class="group-label">Academics &amp; Admission</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#E1F5EE">📚</div>
+        <div class="route-left">
+          <div class="route-path">/academics</div>
+          <div class="route-desc">Academic calendar, rules, leave policy, assembly, discipline policy</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#E1F5EE">📋</div>
+        <div class="route-left">
+          <div class="route-path">/admission/process</div>
+          <div class="route-desc">3-step process — Registration, Assessment, Enrollment</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#E1F5EE">📜</div>
+        <div class="route-left">
+          <div class="route-path">/admission/rules</div>
+          <div class="route-desc">Documents required, age criteria, fee rules, re-admission policy</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#E1F5EE">📝</div>
+        <div class="route-left">
+          <div class="route-path">/admission/apply</div>
+          <div class="route-desc">Multi-step online admission form — student details, document upload, submission</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-dyn">Form</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACILITIES -->
+  <div class="group">
+    <div class="group-label">Facilities — 10 Pages</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">📖</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/library</div>
+          <div class="route-desc">Library description + 10 library rules, borrowing policy</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">💻</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/computer-lab</div>
+          <div class="route-desc">Computer lab description, available technology, student access</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">🪑</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/classrooms</div>
+          <div class="route-desc">Classroom description — spacious, AV aids, modern software</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">🎨</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/art-room</div>
+          <div class="route-desc">Art room — drawing, painting, clay modeling, craft work</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">⚽</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/sports</div>
+          <div class="route-desc">Playground, sports club, cricket/football/kabaddi, state-level achievements</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">🎤</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/seminar-hall</div>
+          <div class="route-desc">Seminar hall — capacity, AV equipment, booking (new content page)</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span><span class="badge b-cms">New content</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">🎭</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/auditorium</div>
+          <div class="route-desc">Auditorium — events, annual function, stage, capacity</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span><span class="badge b-cms">New content</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">🍱</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/canteen</div>
+          <div class="route-desc">Canteen — timings, menu, hygiene standards, eating area rules</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span><span class="badge b-cms">New content</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">🔬</div>
+        <div class="route-left">
+          <div class="route-path">/facilities/laboratories</div>
+          <div class="route-desc">Science labs — Physics, Chemistry, Biology, equipment, safety rules</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span><span class="badge b-cms">New content</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EEEDFE">🌟</div>
+        <div class="route-left">
+          <div class="route-path">/traditions</div>
+          <div class="route-desc">School traditions, cultural practices, annual events heritage</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span><span class="badge b-cms">New content</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DYNAMIC PUBLIC PAGES -->
+  <div class="group">
+    <div class="group-label">Dynamic Public Pages</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">🗒️</div>
+        <div class="route-left">
+          <div class="route-path">/notices</div>
+          <div class="route-desc">Paginated notice board — pinned first, Hindi/English toggle, category filter</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 60s</span><span class="badge b-dyn">Bilingual</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">🖼️</div>
+        <div class="route-left">
+          <div class="route-path">/gallery</div>
+          <div class="route-desc">Albums list — cover image, photo count, category filter (Sports/Events/Academics)</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 60s</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">📸</div>
+        <div class="route-left">
+          <div class="route-path">/gallery/[albumId]</div>
+          <div class="route-desc">Individual album — lightbox viewer, lazy loading, captions</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 60s</span><span class="badge b-dyn">Dynamic route</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">🏆</div>
+        <div class="route-left">
+          <div class="route-path">/toppers</div>
+          <div class="route-desc">Topper cards by session/year, subject-wise marks, PDF download link</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 300s</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">👥</div>
+        <div class="route-left">
+          <div class="route-path">/team</div>
+          <div class="route-desc">CAS Team — all 37 staff cards, photo, designation, subject</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 3600s</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">📅</div>
+        <div class="route-left">
+          <div class="route-path">/events</div>
+          <div class="route-desc">Upcoming and past events list with date, description, photo</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 300s</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">🗓️</div>
+        <div class="route-left">
+          <div class="route-path">/calendar</div>
+          <div class="route-desc">Interactive school calendar — exams, holidays, sports days, iCal export</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 3600s</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAEEDA">⬇️</div>
+        <div class="route-left">
+          <div class="route-path">/downloads</div>
+          <div class="route-desc">Downloadable files — result PDFs, calendar, brochures, forms (public/parent split)</div>
+          <div class="route-badges"><span class="badge b-isr">ISR 3600s</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">🔍</div>
+        <div class="route-left">
+          <div class="route-path">/tc-verify</div>
+          <div class="route-desc">TC verification search — name + roll + year → TC record display. CRITICAL: in active use today.</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-dyn">Search</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">📞</div>
+        <div class="route-left">
+          <div class="route-path">/contact</div>
+          <div class="route-desc">Contact info, Leaflet map (25.153025°N 76.284592°E), contact form</div>
+          <div class="route-badges"><span class="badge b-ssg">SSG</span><span class="badge b-dyn">Form</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ TIER 2: ADMIN CMS ═══ -->
+<div class="tier">
+  <div class="tier-head">
+    <div class="tier-badge" style="background:var(--amber-l);color:var(--amber-d)">Tier 2</div>
+    <h2>Admin CMS Panel — 12 Modules</h2>
+    <span class="tier-count">app/admin/ · ADMIN role required</span>
+  </div>
+
+  <div class="note-box">
+    All /admin/* routes protected by NextAuth middleware. Only users with role=ADMIN or role=OFFICE (scoped) can access. Office staff see notices + gallery only. Full ADMIN sees everything.
+  </div>
+
+  <br>
+
+  <div class="route-grid">
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">📊</div>
+      <div class="route-left">
+        <div class="route-path">/admin</div>
+        <div class="route-desc">Dashboard — total enquiries, notices posted, upcoming events, recent activity</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">🗒️</div>
+      <div class="route-left">
+        <div class="route-path">/admin/notices</div>
+        <div class="route-desc">Create/edit/delete notices. Pin toggle. Schedule. Hindi + English rich text fields.</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">🖼️</div>
+      <div class="route-left">
+        <div class="route-path">/admin/gallery</div>
+        <div class="route-desc">Create albums, bulk Cloudinary upload, reorder images, publish/unpublish</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">👥</div>
+      <div class="route-left">
+        <div class="route-path">/admin/staff</div>
+        <div class="route-desc">Add/edit/remove 37 staff. Upload photos to Cloudinary. Set display order.</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">🏆</div>
+      <div class="route-left">
+        <div class="route-path">/admin/toppers</div>
+        <div class="route-desc">Add toppers by session + class. Upload result PDF. Mark as featured.</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">🖥️</div>
+      <div class="route-left">
+        <div class="route-path">/admin/sliders</div>
+        <div class="route-desc">Homepage hero slider — upload images, set caption + CTA link, reorder</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">📅</div>
+      <div class="route-left">
+        <div class="route-path">/admin/events</div>
+        <div class="route-desc">Create events with date, description, photo. Auto-appears in calendar.</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">⬇️</div>
+      <div class="route-left">
+        <div class="route-path">/admin/downloads</div>
+        <div class="route-desc">Upload PDFs, set public/parent-only visibility, label, description</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">📄</div>
+      <div class="route-left">
+        <div class="route-path">/admin/tc-records</div>
+        <div class="route-desc">Add TC issuance records (CSV import or manual). Powers TC Verification page.</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN · OFFICE</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">📬</div>
+      <div class="route-left">
+        <div class="route-path">/admin/enquiries</div>
+        <div class="route-desc">All admission enquiries — filter by class/date, mark-as-contacted, export CSV</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN · OFFICE</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">✍️</div>
+      <div class="route-left">
+        <div class="route-path">/admin/pages</div>
+        <div class="route-desc">Rich-text editor (TipTap) for About, Vision, Facilities content — no developer needed</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN</span></div>
+      </div>
+    </div>
+    <div class="route-card">
+      <div class="route-icon" style="background:#FAEEDA">👤</div>
+      <div class="route-left">
+        <div class="route-path">/admin/users</div>
+        <div class="route-desc">Create sub-admin accounts, assign roles (ADMIN/OFFICE/TEACHER/PARENT), reset passwords</div>
+        <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">ADMIN only</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ TIER 3: PORTALS ═══ -->
+<div class="tier">
+  <div class="tier-head">
+    <div class="tier-badge" style="background:var(--coral-l);color:var(--coral-d)">Tier 3</div>
+    <h2>Role Portals — 11 Routes</h2>
+    <span class="tier-count">app/portal/ · Role-scoped SSR</span>
+  </div>
+
+  <!-- Login -->
+  <div class="group">
+    <div class="group-label">Authentication</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">🔐</div>
+        <div class="route-left">
+          <div class="route-path">/login</div>
+          <div class="route-desc">Single login form — NextAuth session → redirect to correct portal based on role</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Parent Portal -->
+  <div class="group">
+    <div class="group-label">Parent Portal</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">🏠</div>
+        <div class="route-left">
+          <div class="route-path">/portal/parent</div>
+          <div class="route-desc">Parent dashboard — ward info, attendance summary, fee status, upcoming exams</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">PARENT role</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">✅</div>
+        <div class="route-left">
+          <div class="route-path">/portal/parent/attendance</div>
+          <div class="route-desc">Monthly attendance detail, subject-wise, low-attendance alerts</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">PARENT role</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">💰</div>
+        <div class="route-left">
+          <div class="route-path">/portal/parent/fees</div>
+          <div class="route-desc">Fee dues, payment history, receipt download, Razorpay online payment</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">PARENT role</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">📊</div>
+        <div class="route-left">
+          <div class="route-path">/portal/parent/results</div>
+          <div class="route-desc">Child's result card by exam/session, downloadable PDF mark sheet</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">PARENT role</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#FAECE7">📁</div>
+        <div class="route-left">
+          <div class="route-path">/portal/parent/documents</div>
+          <div class="route-desc">Document locker — download admit card, result, TC, character certificate</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">PARENT role</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Staff Portal -->
+  <div class="group">
+    <div class="group-label">Staff Portal</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#E6F1FB">👩‍🏫</div>
+        <div class="route-left">
+          <div class="route-path">/portal/staff</div>
+          <div class="route-desc">Teacher dashboard — today's classes, attendance status, quick links</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">TEACHER role</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#E6F1FB">📋</div>
+        <div class="route-left">
+          <div class="route-path">/portal/staff/attendance</div>
+          <div class="route-desc">Class-wise daily attendance marking — student checklist, submit, history</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">TEACHER role</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#E6F1FB">📢</div>
+        <div class="route-left">
+          <div class="route-path">/portal/staff/circulars</div>
+          <div class="route-desc">Post class-specific circulars/homework. Parents see only their child's class.</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">TEACHER role</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Office Portal -->
+  <div class="group">
+    <div class="group-label">Office Portal</div>
+    <div class="route-grid">
+      <div class="route-card">
+        <div class="route-icon" style="background:#EAF3DE">🏢</div>
+        <div class="route-left">
+          <div class="route-path">/portal/office</div>
+          <div class="route-desc">Office dashboard — TC issuance, fee collection, enquiries (no full admin access)</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">OFFICE role</span></div>
+        </div>
+      </div>
+      <div class="route-card">
+        <div class="route-icon" style="background:#EAF3DE">📄</div>
+        <div class="route-left">
+          <div class="route-path">/portal/office/tc</div>
+          <div class="route-desc">Issue new TC records — add to database (links to public TC verification)</div>
+          <div class="route-badges"><span class="badge b-ssr">SSR</span><span class="badge b-auth">OFFICE role</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ API ROUTES ═══ -->
+<div class="tier">
+  <div class="tier-head">
+    <div class="tier-badge" style="background:var(--purple-l);color:var(--purple-d)">API</div>
+    <h2>REST API Endpoints — 16 Routes</h2>
+    <span class="tier-count">app/api/</span>
+  </div>
+
+  <table class="api-table">
+    <thead>
+      <tr>
+        <th>Endpoint</th>
+        <th>Methods</th>
+        <th>Purpose</th>
+        <th>Auth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>/api/auth/[...nextauth]</code></td>
+        <td><span class="method m-get">GET</span> <span class="method m-post">POST</span></td>
+        <td>NextAuth.js session handler — login, logout, session refresh</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td><code>/api/notices</code></td>
+        <td><span class="method m-get">GET</span></td>
+        <td>Paginated public notices, pinned first, then by date. Query: page, limit, lang</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/gallery</code></td>
+        <td><span class="method m-get">GET</span></td>
+        <td>Album list with cover image URL + photo count. Query: category</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/gallery/[id]</code></td>
+        <td><span class="method m-get">GET</span></td>
+        <td>All images in specific album with Cloudinary URLs + captions</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/staff</code></td>
+        <td><span class="method m-get">GET</span></td>
+        <td>All 37 staff members ordered by display_order</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/toppers</code></td>
+        <td><span class="method m-get">GET</span></td>
+        <td>Toppers filtered by session + class query params</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/tc-verify</code></td>
+        <td><span class="method m-post">POST</span></td>
+        <td>Search TC records by name + roll + year. Returns TC record or not-found.</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/contact</code></td>
+        <td><span class="method m-post">POST</span></td>
+        <td>Contact form submission → sends email via Resend to school email</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/admission-enquiry</code></td>
+        <td><span class="method m-post">POST</span></td>
+        <td>Save enquiry to AdmissionEnquiry table + send auto-reply email via Resend</td>
+        <td>Public</td>
+      </tr>
+      <tr>
+        <td><code>/api/admin/notices</code></td>
+        <td><span class="method m-get">GET</span> <span class="method m-post">POST</span> <span class="method m-put">PUT</span> <span class="method m-del">DEL</span></td>
+        <td>Full CRUD for notices. POST triggers revalidatePath('/notices') for instant ISR refresh.</td>
+        <td><span class="protected">ADMIN</span></td>
+      </tr>
+      <tr>
+        <td><code>/api/admin/gallery</code></td>
+        <td><span class="method m-get">GET</span> <span class="method m-post">POST</span> <span class="method m-put">PUT</span> <span class="method m-del">DEL</span></td>
+        <td>Album + image CRUD. Handles Cloudinary upload confirmation and reordering.</td>
+        <td><span class="protected">ADMIN</span></td>
+      </tr>
+      <tr>
+        <td><code>/api/admin/staff</code></td>
+        <td><span class="method m-get">GET</span> <span class="method m-post">POST</span> <span class="method m-put">PUT</span> <span class="method m-del">DEL</span></td>
+        <td>Staff CRUD — create, update photo/designation/order, delete</td>
+        <td><span class="protected">ADMIN</span></td>
+      </tr>
+      <tr>
+        <td><code>/api/admin/upload</code></td>
+        <td><span class="method m-post">POST</span></td>
+        <td>Generates signed Cloudinary upload URL for direct browser-to-CDN uploads</td>
+        <td><span class="protected">ADMIN</span></td>
+      </tr>
+      <tr>
+        <td><code>/api/payment/create-order</code></td>
+        <td><span class="method m-post">POST</span></td>
+        <td>Creates Razorpay order via SDK. Returns order_id for checkout widget.</td>
+        <td><span class="protected">PARENT</span></td>
+      </tr>
+      <tr>
+        <td><code>/api/payment/verify</code></td>
+        <td><span class="method m-post">POST</span></td>
+        <td>Verifies Razorpay signature with crypto.createHmac. Updates FeeRecord on success.</td>
+        <td><span class="protected">PARENT</span></td>
+      </tr>
+      <tr>
+        <td><code>/api/revalidate</code></td>
+        <td><span class="method m-post">POST</span></td>
+        <td>On-demand ISR revalidation for any path. Called internally by admin mutations.</td>
+        <td><span class="protected">ADMIN</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="divider">
+
+<!-- FILE STRUCTURE -->
+<div class="tier">
+  <div class="tier-head">
+    <h2>Next.js App Router File Structure</h2>
+    <span class="tier-count">Exact folder layout for your project</span>
+  </div>
+  <div class="tree-box">
+<span class="td">cas-website/</span>
+├── <span class="td">app/</span>
+│   ├── <span class="td">(public)/</span>               <span class="tc"># Route group — no layout impact</span>
+│   │   ├── <span class="tf">page.tsx</span>            <span class="tc"># /</span>
+│   │   ├── <span class="td">about/</span>
+│   │   │   ├── <span class="tf">director/page.tsx</span>   <span class="tc"># /about/director</span>
+│   │   │   ├── <span class="tf">principal/page.tsx</span>  <span class="tc"># /about/principal</span>
+│   │   │   └── <span class="tf">vision-mission/page.tsx</span>
+│   │   ├── <span class="td">academics/page.tsx</span>
+│   │   ├── <span class="td">admission/</span>
+│   │   │   ├── <span class="tf">process/page.tsx</span>
+│   │   │   ├── <span class="tf">rules/page.tsx</span>
+│   │   │   └── <span class="tf">apply/page.tsx</span>
+│   │   ├── <span class="td">traditions/page.tsx</span>
+│   │   ├── <span class="td">facilities/</span>
+│   │   │   ├── <span class="tf">library/page.tsx</span>
+│   │   │   ├── <span class="tf">computer-lab/page.tsx</span>
+│   │   │   ├── <span class="tf">classrooms/page.tsx</span>
+│   │   │   ├── <span class="tf">art-room/page.tsx</span>
+│   │   │   ├── <span class="tf">sports/page.tsx</span>
+│   │   │   ├── <span class="tf">seminar-hall/page.tsx</span>
+│   │   │   ├── <span class="tf">auditorium/page.tsx</span>
+│   │   │   ├── <span class="tf">canteen/page.tsx</span>
+│   │   │   └── <span class="tf">laboratories/page.tsx</span>
+│   │   ├── <span class="td">gallery/</span>
+│   │   │   ├── <span class="tf">page.tsx</span>           <span class="tc"># /gallery</span>
+│   │   │   └── <span class="td">[albumId]/page.tsx</span> <span class="tc"># /gallery/[albumId]</span>
+│   │   ├── <span class="tf">notices/page.tsx</span>
+│   │   ├── <span class="tf">toppers/page.tsx</span>
+│   │   ├── <span class="tf">team/page.tsx</span>
+│   │   ├── <span class="tf">events/page.tsx</span>
+│   │   ├── <span class="tf">calendar/page.tsx</span>
+│   │   ├── <span class="tf">downloads/page.tsx</span>
+│   │   ├── <span class="tf">tc-verify/page.tsx</span>
+│   │   └── <span class="tf">contact/page.tsx</span>
+│   │
+│   ├── <span class="td">admin/</span>                  <span class="tc"># Protected by middleware</span>
+│   │   ├── <span class="tf">layout.tsx</span>          <span class="tc"># Sidebar shell + auth check</span>
+│   │   ├── <span class="tf">page.tsx</span>            <span class="tc"># /admin dashboard</span>
+│   │   ├── <span class="td">notices/page.tsx</span>
+│   │   ├── <span class="td">gallery/page.tsx</span>
+│   │   ├── <span class="td">staff/page.tsx</span>
+│   │   ├── <span class="td">toppers/page.tsx</span>
+│   │   ├── <span class="td">sliders/page.tsx</span>
+│   │   ├── <span class="td">events/page.tsx</span>
+│   │   ├── <span class="td">downloads/page.tsx</span>
+│   │   ├── <span class="td">tc-records/page.tsx</span>
+│   │   ├── <span class="td">enquiries/page.tsx</span>
+│   │   ├── <span class="td">pages/page.tsx</span>
+│   │   └── <span class="td">users/page.tsx</span>
+│   │
+│   ├── <span class="td">portal/</span>
+│   │   ├── <span class="td">parent/</span>
+│   │   │   ├── <span class="tf">layout.tsx</span>
+│   │   │   ├── <span class="tf">page.tsx</span>           <span class="tc"># Dashboard</span>
+│   │   │   ├── <span class="tf">attendance/page.tsx</span>
+│   │   │   ├── <span class="tf">fees/page.tsx</span>
+│   │   │   ├── <span class="tf">results/page.tsx</span>
+│   │   │   └── <span class="tf">documents/page.tsx</span>
+│   │   ├── <span class="td">staff/</span>
+│   │   │   ├── <span class="tf">page.tsx</span>
+│   │   │   ├── <span class="tf">attendance/page.tsx</span>
+│   │   │   └── <span class="tf">circulars/page.tsx</span>
+│   │   └── <span class="td">office/</span>
+│   │       ├── <span class="tf">page.tsx</span>
+│   │       └── <span class="tf">tc/page.tsx</span>
+│   │
+│   ├── <span class="tf">login/page.tsx</span>
+│   │
+│   ├── <span class="td">api/</span>
+│   │   ├── <span class="td">auth/[...nextauth]/route.ts</span>
+│   │   ├── <span class="tf">notices/route.ts</span>
+│   │   ├── <span class="tf">gallery/route.ts</span>
+│   │   ├── <span class="td">gallery/[id]/route.ts</span>
+│   │   ├── <span class="tf">staff/route.ts</span>
+│   │   ├── <span class="tf">toppers/route.ts</span>
+│   │   ├── <span class="tf">tc-verify/route.ts</span>
+│   │   ├── <span class="tf">contact/route.ts</span>
+│   │   ├── <span class="tf">admission-enquiry/route.ts</span>
+│   │   ├── <span class="td">admin/</span>
+│   │   │   ├── <span class="tf">notices/route.ts</span>
+│   │   │   ├── <span class="tf">gallery/route.ts</span>
+│   │   │   ├── <span class="tf">staff/route.ts</span>
+│   │   │   └── <span class="tf">upload/route.ts</span>
+│   │   ├── <span class="td">payment/</span>
+│   │   │   ├── <span class="tf">create-order/route.ts</span>
+│   │   │   └── <span class="tf">verify/route.ts</span>
+│   │   └── <span class="tf">revalidate/route.ts</span>
+│   │
+│   ├── <span class="tf">layout.tsx</span>              <span class="tc"># Root — fonts, providers, analytics</span>
+│   ├── <span class="tf">globals.css</span>
+│   └── <span class="tf">sitemap.ts</span>             <span class="tc"># Auto-generates /sitemap.xml</span>
+│
+├── <span class="td">components/</span>
+│   ├── <span class="td">layout/</span>              <span class="tc"># Navbar, Footer, PageLayout</span>
+│   ├── <span class="td">home/</span>                <span class="tc"># HeroSlider, StatBar, QuickLinks</span>
+│   ├── <span class="td">notices/</span>             <span class="tc"># NoticeCard, NoticeList, BilingualToggle</span>
+│   ├── <span class="td">gallery/</span>             <span class="tc"># GalleryGrid, AlbumCard, Lightbox</span>
+│   ├── <span class="td">staff/</span>               <span class="tc"># StaffCard, StaffGrid</span>
+│   ├── <span class="td">forms/</span>               <span class="tc"># AdmissionForm, ContactForm, TCSearchForm</span>
+│   ├── <span class="td">admin/</span>               <span class="tc"># DataTable, AdminForm, ImageUploader</span>
+│   └── <span class="td">ui/</span>                  <span class="tc"># shadcn/ui (auto-generated)</span>
+│
+├── <span class="td">lib/</span>
+│   ├── <span class="tf">prisma.ts</span>            <span class="tc"># Singleton client — NEVER re-instantiate</span>
+│   ├── <span class="tf">auth.ts</span>              <span class="tc"># NextAuth config + role types</span>
+│   ├── <span class="tf">cloudinary.ts</span>
+│   ├── <span class="tf">resend.ts</span>
+│   └── <span class="tf">utils.ts</span>             <span class="tc"># cn(), formatDate(), slugify()</span>
+│
+├── <span class="td">prisma/</span>
+│   ├── <span class="tf">schema.prisma</span>        <span class="tc"># ← Phase 1 Step 2</span>
+│   ├── <span class="tf">seed.ts</span>
+│   └── <span class="td">migrations/</span>
+│
+├── <span class="tf">middleware.ts</span>           <span class="tc"># Guards /admin/* and /portal/*</span>
+├── <span class="tf">.env.local</span>              <span class="tc"># NEVER commit</span>
+├── <span class="tf">.env.example</span>            <span class="tc"># Commit with dummy values</span>
+└── <span class="tf">package.json</span>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- PHASE 1 CHECKLIST -->
+<div class="checklist-box">
+  <h4>Phase 1 · Step 1 — Completion Checklist</h4>
+  <div class="check-item">All 27 public page URLs defined with render strategy (SSG/ISR/SSR)</div>
+  <div class="check-item">All 12 admin CMS routes defined with role requirements</div>
+  <div class="check-item">All 11 portal routes defined with role scoping</div>
+  <div class="check-item">All 16 API endpoints defined with HTTP methods + auth level</div>
+  <div class="check-item">Complete Next.js App Router folder structure mapped out</div>
+  <div class="check-item">5 "new content" facility pages flagged (Seminar Hall, Auditorium, Canteen, Labs, Traditions)</div>
+  <div class="check-item">TC Verify page flagged as CRITICAL — must be first dynamic page live</div>
+  <div class="check-item">Bilingual strategy noted — Hindi/English as DB fields, not runtime translation</div>
+</div>
+
+<div class="note-box" style="margin-top:16px">
+  <strong>Next step → Phase 1 Step 2:</strong> Prisma database schema. Every model referenced in this sitemap (Notice, Gallery, Staff, Topper, TcRecord, AdmissionEnquiry, User, Event, Download, Slider, FeeRecord, Attendance) needs a complete schema with relations, indexes, and seeding. Say "start Phase 1 Step 2 — Prisma schema" to proceed.
+</div>
+
+<p style="text-align:center;font-size:12px;color:var(--text3);margin-top:32px">
+  CAS Anta · Website Sitemap · Phase 1 Step 1 · Compiled April 2026
+</p>
+
+</div>
+</body>
+</html>

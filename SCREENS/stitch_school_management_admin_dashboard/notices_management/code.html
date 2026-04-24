@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notices Module - EduAdmin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "surface-card": "#FFFFFF",
+                    "error": "#ba1a1a",
+                    "secondary": "#575e70",
+                    "background-main": "#F9FAFB",
+                    "background": "#fcf8ff",
+                    "on-primary-container": "#dad7ff",
+                    "inverse-primary": "#c3c0ff",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "sidebar-active": "#1F2937",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "surface-tint": "#4d44e3",
+                    "surface-dim": "#dcd8e5",
+                    "sidebar-bg": "#111827",
+                    "on-tertiary-fixed": "#351000",
+                    "on-primary": "#ffffff",
+                    "surface": "#fcf8ff",
+                    "surface-container": "#f0ecf9",
+                    "primary-container": "#4f46e5",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#777587",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d9dff5",
+                    "inverse-surface": "#302f39",
+                    "on-secondary-container": "#5c6274",
+                    "text-primary": "#111827",
+                    "surface-container-highest": "#e4e1ee",
+                    "tertiary": "#7e3000",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-background": "#1b1b24",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "tertiary-container": "#a44100",
+                    "status-warning": "#F59E0B",
+                    "on-secondary-fixed-variant": "#404758",
+                    "on-surface-variant": "#464555",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "surface-container-high": "#eae6f4",
+                    "surface-bright": "#fcf8ff",
+                    "secondary-fixed": "#dce2f7",
+                    "border-subtle": "#E5E7EB",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#ffd2be",
+                    "status-danger": "#EF4444",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "primary": "#3525cd",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-container-low": "#f5f2ff",
+                    "primary-fixed": "#e2dfff",
+                    "on-surface": "#1b1b24",
+                    "inverse-on-surface": "#f3effc",
+                    "text-secondary": "#6B7280",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1ee",
+                    "outline-variant": "#c7c4d8",
+                    "status-success": "#22C55E"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-gap": "1.5rem",
+                    "section-gap": "1rem",
+                    "card-padding": "1rem",
+                    "topbar-height": "64px",
+                    "container-max": "80rem",
+                    "page-padding": "1.5rem",
+                    "sidebar-width": "260px"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; background-color: #F9FAFB; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="text-text-primary antialiased">
+<!-- SideNavBar -->
+<aside class="fixed left-0 h-screen w-64 border-r border-slate-800 bg-slate-900 flex flex-col p-4 z-50">
+<div class="mb-8 px-2 py-4">
+<h1 class="text-white font-black text-xl tracking-tighter">EduAdmin</h1>
+<p class="text-slate-400 text-xs font-medium mt-1 uppercase tracking-widest">Institutional Portal</p>
+</div>
+<nav class="flex flex-col gap-1 flex-grow">
+<!-- Nav Item: Students -->
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="school">school</span>
+<span class="font-medium text-sm">Students</span>
+</a>
+<!-- Nav Item: Staff -->
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="groups">groups</span>
+<span class="font-medium text-sm">Staff</span>
+</a>
+<!-- Nav Item: Notices (Active) -->
+<a class="flex items-center gap-3 px-3 py-2 bg-slate-800 text-white rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px] text-indigo-400" data-icon="campaign">campaign</span>
+<span class="font-medium text-sm">Notices</span>
+</a>
+<!-- Nav Item: Gallery -->
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="image">image</span>
+<span class="font-medium text-sm">Gallery</span>
+</a>
+<!-- Nav Item: Events -->
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="calendar_today">calendar_today</span>
+<span class="font-medium text-sm">Events</span>
+</a>
+<!-- Nav Item: Downloads -->
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+<span class="font-medium text-sm">Downloads</span>
+</a>
+<!-- Nav Item: Admissions -->
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="description">description</span>
+<span class="font-medium text-sm">Admissions</span>
+</a>
+</nav>
+<div class="mt-auto pt-4 border-t border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+<span class="font-medium text-sm">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-6 py-3 shadow-sm">
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</span>
+<input class="bg-slate-50 border-none rounded-full py-1.5 pl-10 pr-4 text-sm w-64 focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all" placeholder="Search notices..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-px bg-slate-200 mx-1"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-xs font-bold text-slate-900">Admin User</p>
+<p class="text-[10px] text-slate-500">System Manager</p>
+</div>
+<img alt="Admin User Profile" class="h-8 w-8 rounded-full border border-slate-200" data-alt="professional portrait of a school administrator in a clean office setting, medium shot, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb0bpNFHC3-_0D8UTDp3Wcexpjn2ZZ8Zdu1Rhrx0MIGL9ffhHG_LuNUPGuHRuu9JnH9emMKPRyAjsZIUgNavTixiMCPmBvTstwOhn_XgKEkOu8JKG-uaqKfkLzgKU7nMeE8Pv46RSETdndAgN575gZFytbceb6ORGoLnF-6sTG4G_Y7KTZDLRfOMOi8fq7GlTcxHaEZkF7yooQACyhKgkV0H2lEtFo65CIOrCBsXHDD6M7zA43-cFI8p2a3lZ_rUDmZVCApuSkdCTU"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<div class="p-6 max-w-container-max mx-auto w-full flex-grow">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4">
+<div>
+<h2 class="font-heading text-heading text-text-primary">Notices &amp; Announcements</h2>
+<p class="font-body text-text-secondary">Manage institutional communications and public bulletins.</p>
+</div>
+<button class="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-all shadow-sm shadow-indigo-200 active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="add">add</span>
+                    Create Notice
+                </button>
+</div>
+<!-- Dashboard Stats Bento -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
+<div class="bg-indigo-50 p-3 rounded-lg text-indigo-600">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+</div>
+<div>
+<p class="text-xs text-text-secondary font-medium">Total Notices</p>
+<p class="text-xl font-bold">128</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
+<div class="bg-green-50 p-3 rounded-lg text-green-600">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</div>
+<div>
+<p class="text-xs text-text-secondary font-medium">Published</p>
+<p class="text-xl font-bold">84</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
+<div class="bg-amber-50 p-3 rounded-lg text-amber-600">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</div>
+<div>
+<p class="text-xs text-text-secondary font-medium">Drafts</p>
+<p class="text-xl font-bold">44</p>
+</div>
+</div>
+<div class="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex items-center gap-4">
+<div class="bg-slate-50 p-3 rounded-lg text-slate-600">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+</div>
+<div>
+<p class="text-xs text-text-secondary font-medium">Avg. Views</p>
+<p class="text-xl font-bold">1.2k</p>
+</div>
+</div>
+</div>
+<!-- Table View Section -->
+<div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+<div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+<div class="flex items-center gap-4">
+<span class="text-sm font-semibold text-slate-700">All Notices</span>
+<div class="flex gap-1">
+<button class="text-xs px-2 py-1 bg-white border border-slate-200 rounded text-slate-600 hover:bg-slate-100">Filter</button>
+<button class="text-xs px-2 py-1 bg-white border border-slate-200 rounded text-slate-600 hover:bg-slate-100">Sort</button>
+</div>
+</div>
+<p class="text-xs text-slate-500">Showing 1-10 of 128 results</p>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50">
+<th class="px-6 py-4 font-subheading text-subheading text-slate-500 uppercase tracking-wider border-b border-slate-100">Title</th>
+<th class="px-6 py-4 font-subheading text-subheading text-slate-500 uppercase tracking-wider border-b border-slate-100">Date</th>
+<th class="px-6 py-4 font-subheading text-subheading text-slate-500 uppercase tracking-wider border-b border-slate-100 text-center">Published</th>
+<th class="px-6 py-4 font-subheading text-subheading text-slate-500 uppercase tracking-wider border-b border-slate-100 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-lg" data-icon="article">article</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Annual Sports Meet 2024 Schedule</p>
+<p class="text-xs text-slate-500">Academic / Sports</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600">Oct 24, 2023</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+</label>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error hover:bg-error-container/20 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded bg-slate-100 text-slate-500 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-lg" data-icon="info">info</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Maintenance Notice: Server Upgrade</p>
+<p class="text-xs text-slate-500">General / IT</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600">Oct 22, 2023</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+</label>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error hover:bg-error-container/20 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded bg-amber-50 text-amber-600 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-lg" data-icon="warning">warning</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Mid-term Examination Guidelines</p>
+<p class="text-xs text-slate-500">Academic / Exams</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600">Oct 20, 2023</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+</label>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error hover:bg-error-container/20 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded bg-green-50 text-green-600 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-lg" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Health &amp; Safety Policy Update</p>
+<p class="text-xs text-slate-500">Administration / Safety</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600">Oct 18, 2023</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+</label>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error hover:bg-error-container/20 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded bg-pink-50 text-pink-600 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-lg" data-icon="volunteer_activism">volunteer_activism</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Charity Drive: Donation Request</p>
+<p class="text-xs text-slate-500">Student Affairs / Outreach</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 text-sm text-slate-600">Oct 15, 2023</td>
+<td class="px-6 py-4">
+<div class="flex justify-center">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-9 h-5 bg-slate-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600"></div>
+</label>
+</div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-error hover:bg-error-container/20 rounded transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-white border-t border-slate-100 flex items-center justify-between">
+<button class="text-sm font-medium text-slate-600 hover:text-indigo-600 flex items-center gap-1 transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-lg" data-icon="chevron_left">chevron_left</span>
+                        Previous
+                    </button>
+<div class="flex items-center gap-1">
+<button class="h-8 w-8 flex items-center justify-center rounded-md bg-indigo-600 text-white text-sm font-medium">1</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-slate-100 text-slate-600 text-sm font-medium transition-colors">2</button>
+<button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-slate-100 text-slate-600 text-sm font-medium transition-colors">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="h-8 w-8 flex items-center justify-center rounded-md hover:bg-slate-100 text-slate-600 text-sm font-medium transition-colors">13</button>
+</div>
+<button class="text-sm font-medium text-slate-600 hover:text-indigo-600 flex items-center gap-1 transition-colors">
+                        Next
+                        <span class="material-symbols-outlined text-lg" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Promotion / Tip Card -->
+<div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-indigo-600 rounded-xl p-6 text-white relative overflow-hidden">
+<div class="relative z-10">
+<h4 class="font-heading text-lg mb-2">Automate Your Notices</h4>
+<p class="text-indigo-100 text-sm mb-4">Schedule your announcements in advance to maintain consistent communication with students and parents.</p>
+<button class="bg-white text-indigo-600 px-4 py-2 rounded-lg text-sm font-bold shadow-lg shadow-indigo-900/20 active:scale-95 transition-transform">Get Started</button>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-20">
+<span class="material-symbols-outlined text-[120px]" data-icon="auto_awesome">auto_awesome</span>
+</div>
+</div>
+<div class="bg-surface-container rounded-xl p-6 flex flex-col justify-center border border-slate-200">
+<div class="flex items-center gap-2 mb-2 text-indigo-600">
+<span class="material-symbols-outlined text-[20px]" data-icon="help_outline">help_outline</span>
+<span class="text-xs font-bold uppercase tracking-wider">Quick Help</span>
+</div>
+<h4 class="font-heading text-slate-900 text-lg mb-1">Notice Visibility</h4>
+<p class="text-slate-600 text-sm italic">"Only published notices will be visible on the public student portal. Drafts are kept private for administrative review."</p>
+</div>
+</div>
+</div>
+<!-- Sticky Footer -->
+<footer class="mt-auto bg-white border-t border-slate-200 py-6 px-10">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-slate-500 text-xs">
+<p>© 2023 EduAdmin Management Systems. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-indigo-600 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-indigo-600 transition-colors" href="#">Help Center</a>
+<a class="hover:text-indigo-600 transition-colors" href="#">v2.4.1</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

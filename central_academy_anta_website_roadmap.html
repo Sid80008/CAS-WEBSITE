@@ -1,0 +1,403 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1B4F8A;--blue-light:#E6F1FB;--blue-mid:#2E75B6;--teal:#0F6E56;--teal-light:#E1F5EE;--amber:#BA7517;--amber-light:#FAEEDA;--purple:#534AB7;--purple-light:#EEEDFE;--coral:#993C1D;--coral-light:#FAECE7;--green:#3B6D11;--green-light:#EAF3DE;--gray-light:#F4F6F9}
+body{font-family:var(--font-sans,"Anthropic Sans",sans-serif)}
+.wrap{padding:1.5rem 0.5rem 2rem}
+.hero{text-align:center;margin-bottom:2rem}
+.hero h1{font-size:22px;font-weight:500;color:var(--color-text-primary);margin-bottom:6px}
+.hero p{font-size:14px;color:var(--color-text-secondary)}
+.badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:20px;margin:2px}
+.stack-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:2rem}
+.stack-card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:12px 10px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+.stack-card:hover{border-color:var(--color-border-secondary);background:var(--color-background-secondary)}
+.stack-card.primary{border:1.5px solid #1B4F8A;background:var(--blue-light)}
+.stack-card .icon{font-size:22px;margin-bottom:6px}
+.stack-card .name{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.stack-card .role{font-size:11px;color:var(--color-text-secondary);margin-top:2px}
+.stack-card .why{font-size:11px;color:#1B4F8A;margin-top:4px;display:none}
+.stack-card.primary .why{display:block}
+.section-head{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.section-head h2{font-size:18px;font-weight:500;color:var(--color-text-primary)}
+.section-head .pill{background:var(--blue-light);color:var(--blue);font-size:11px;padding:3px 9px;border-radius:20px;font-weight:500}
+.phase{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:12px;overflow:hidden;cursor:pointer}
+.phase-header{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.phase-num{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500;flex-shrink:0}
+.phase-title{flex:1}
+.phase-title h3{font-size:15px;font-weight:500;color:var(--color-text-primary)}
+.phase-title p{font-size:12px;color:var(--color-text-secondary);margin-top:2px}
+.phase-meta{text-align:right;flex-shrink:0}
+.phase-meta .dur{font-size:12px;font-weight:500;color:var(--color-text-primary)}
+.phase-meta .status{font-size:11px;color:var(--color-text-secondary)}
+.chevron{font-size:12px;color:var(--color-text-secondary);transition:transform .2s;margin-left:8px}
+.phase.open .chevron{transform:rotate(180deg)}
+.phase-body{display:none;padding:0 16px 16px;border-top:0.5px solid var(--color-border-tertiary)}
+.phase.open .phase-body{display:block}
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;margin-top:12px}
+.feat{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:10px 12px}
+.feat .f-title{font-size:13px;font-weight:500;color:var(--color-text-primary)}
+.feat .f-desc{font-size:12px;color:var(--color-text-secondary);margin-top:3px;line-height:1.5}
+.feat .f-tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:10px;margin-top:5px;font-weight:500}
+.timeline{margin:2rem 0}
+.tl-row{display:flex;align-items:flex-start;gap:12px;margin-bottom:6px}
+.tl-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;margin-top:4px}
+.tl-line{width:2px;height:24px;margin:0 5px;background:var(--color-border-tertiary)}
+.tl-text{font-size:13px;color:var(--color-text-primary);line-height:1.5}
+.tl-text span{font-size:12px;color:var(--color-text-secondary);display:block;margin-top:2px}
+.arch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.arch-box{padding:12px;border-radius:var(--border-radius-md);text-align:center}
+.arch-box .ab-title{font-size:13px;font-weight:500;margin-bottom:4px}
+.arch-box .ab-items{font-size:11px;line-height:1.8}
+.divider{border:none;border-top:0.5px solid var(--color-border-tertiary);margin:1.5rem 0}
+.page-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin-top:10px}
+.page-item{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px;font-size:12px;display:flex;align-items:center;gap:8px;color:var(--color-text-primary)}
+.page-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.warn-box{background:var(--amber-light);border:0.5px solid #BA7517;border-radius:var(--border-radius-md);padding:12px 14px;margin-top:1rem;font-size:13px;color:#7B5B00;line-height:1.6}
+.cta{text-align:center;margin-top:2rem}
+.cta button{background:var(--blue);color:#fff;border:none;padding:10px 28px;border-radius:var(--border-radius-md);font-size:14px;font-weight:500;cursor:pointer}
+.cta button:hover{opacity:.9}
+</style>
+<div class="wrap">
+  <h2 class="sr-only">Central Academy Anta — Full Website Development Roadmap</h2>
+
+  <div class="hero">
+    <h1>Central Academy Anta — Website Roadmap</h1>
+    <p>Full-stack professional school website · Next.js + Node.js + PostgreSQL · CMS-driven · SEO-first</p>
+  </div>
+
+  <!-- TECH STACK -->
+  <div class="section-head"><h2>Recommended Tech Stack</h2><span class="pill">Next.js Stack</span></div>
+  <div class="stack-row">
+    <div class="stack-card primary">
+      <div class="icon">⬡</div>
+      <div class="name">Next.js 15</div>
+      <div class="role">Frontend + SSR</div>
+      <div class="why">SEO, speed &amp; ISR</div>
+    </div>
+    <div class="stack-card primary">
+      <div class="icon">◈</div>
+      <div class="name">Node.js + Express</div>
+      <div class="role">Backend API</div>
+      <div class="why">REST API layer</div>
+    </div>
+    <div class="stack-card primary">
+      <div class="icon">▣</div>
+      <div class="name">PostgreSQL</div>
+      <div class="role">Primary Database</div>
+      <div class="why">Structured data</div>
+    </div>
+    <div class="stack-card primary">
+      <div class="icon">◎</div>
+      <div class="name">Prisma ORM</div>
+      <div class="role">DB Layer</div>
+      <div class="why">Type-safe queries</div>
+    </div>
+    <div class="stack-card primary">
+      <div class="icon">▦</div>
+      <div class="name">Tailwind CSS</div>
+      <div class="role">Styling</div>
+      <div class="why">Rapid, consistent UI</div>
+    </div>
+    <div class="stack-card primary">
+      <div class="icon">◉</div>
+      <div class="name">NextAuth.js</div>
+      <div class="role">Auth System</div>
+      <div class="why">Portals &amp; roles</div>
+    </div>
+    <div class="stack-card primary">
+      <div class="icon">◈</div>
+      <div class="name">Cloudinary / S3</div>
+      <div class="role">Media Storage</div>
+      <div class="why">Images, docs, PDFs</div>
+    </div>
+    <div class="stack-card primary">
+      <div class="icon">▲</div>
+      <div class="name">Vercel + Railway</div>
+      <div class="role">Hosting</div>
+      <div class="why">Auto deploys, scale</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PHASES -->
+  <div class="section-head"><h2>Development Phases</h2><span class="pill">8 Phases · ~20 Weeks</span></div>
+
+  <!-- Phase 1 -->
+  <div class="phase open" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#E6F1FB;color:#1B4F8A">1</div>
+      <div class="phase-title">
+        <h3>Discovery, Planning &amp; Architecture</h3>
+        <p>Requirements, sitemaps, wireframes, DB schema, design system</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 1–2</div><div class="status">Foundation</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div class="feat-grid">
+        <div class="feat"><div class="f-title">Content Audit</div><div class="f-desc">Map all existing website pages, text, images, staff data, notices, gallery assets</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Planning</span></div>
+        <div class="feat"><div class="f-title">Sitemap Design</div><div class="f-desc">Define all public pages, admin pages, portals — full URL structure planned before any code</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Architecture</span></div>
+        <div class="feat"><div class="f-title">Database Schema</div><div class="f-desc">Design tables: students, staff, notices, gallery, downloads, events, TC records, admissions</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Architecture</span></div>
+        <div class="feat"><div class="f-title">UI Design System</div><div class="f-desc">Brand colors, typography, spacing tokens, component library — based on school identity</div><span class="f-tag" style="background:#E1F5EE;color:#0F6E56">Design</span></div>
+        <div class="feat"><div class="f-title">Wireframes</div><div class="f-desc">Low-fi wireframes for all major pages — Homepage, About, Academics, Gallery, Portals, Admin</div><span class="f-tag" style="background:#E1F5EE;color:#0F6E56">Design</span></div>
+        <div class="feat"><div class="f-title">API Contract</div><div class="f-desc">Define all REST endpoints, request/response shapes, auth flows for frontend-backend handshake</div><span class="f-tag" style="background:#EEEDFE;color:#534AB7">Backend</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2 -->
+  <div class="phase" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#E1F5EE;color:#0F6E56">2</div>
+      <div class="phase-title">
+        <h3>Backend API + Database Setup</h3>
+        <p>Node.js + Express REST API, PostgreSQL + Prisma, auth system</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 3–5</div><div class="status">Core Backend</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div class="feat-grid">
+        <div class="feat"><div class="f-title">PostgreSQL Setup</div><div class="f-desc">Hosted on Railway. Tables: users, roles, students, staff, notices, gallery, events, admissions, tc_records, downloads</div><span class="f-tag" style="background:#EEEDFE;color:#534AB7">DB</span></div>
+        <div class="feat"><div class="f-title">Prisma ORM</div><div class="f-desc">Schema-first models, migrations, seeding with existing school data, type-safe DB queries throughout</div><span class="f-tag" style="background:#EEEDFE;color:#534AB7">DB</span></div>
+        <div class="feat"><div class="f-title">Authentication</div><div class="f-desc">Role-based auth via NextAuth: Admin, Office Staff, Teacher, Parent — each role gets scoped access</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Auth</span></div>
+        <div class="feat"><div class="f-title">REST API — Public</div><div class="f-desc">Endpoints: /notices, /gallery, /staff, /toppers, /events, /downloads, /admission-enquiry</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">API</span></div>
+        <div class="feat"><div class="f-title">REST API — Admin</div><div class="f-desc">Protected CRUD: create/update/delete notices, staff, gallery albums, events, downloads</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">API</span></div>
+        <div class="feat"><div class="f-title">TC Verification API</div><div class="f-desc">Replicate and enhance current TC search — search by student name, roll, year with full record display</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">File Upload Service</div><div class="f-desc">Cloudinary integration for images + S3/Backblaze for PDFs (result sheets, downloads, brochures)</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">Media</span></div>
+        <div class="feat"><div class="f-title">Email Service</div><div class="f-desc">Nodemailer + SendGrid: admission enquiry auto-reply, contact form routing, notice alerts to parents</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">Comms</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3 -->
+  <div class="phase" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#EEEDFE;color:#534AB7">3</div>
+      <div class="phase-title">
+        <h3>Public Website — Frontend</h3>
+        <p>All public-facing pages built in Next.js with SSR/SSG for maximum SEO</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 4–8</div><div class="status">Public Site</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div style="margin-bottom:10px;font-size:13px;color:var(--color-text-secondary)">All pages below — SSG where static, ISR where semi-dynamic (revalidate every 60s), SSR where user-specific</div>
+      <div class="page-list">
+        <div class="page-item"><span class="page-dot" style="background:#1B4F8A"></span>Homepage</div>
+        <div class="page-item"><span class="page-dot" style="background:#1B4F8A"></span>About — Director</div>
+        <div class="page-item"><span class="page-dot" style="background:#1B4F8A"></span>About — Principal</div>
+        <div class="page-item"><span class="page-dot" style="background:#1B4F8A"></span>Vision &amp; Mission</div>
+        <div class="page-item"><span class="page-dot" style="background:#0F6E56"></span>Academics</div>
+        <div class="page-item"><span class="page-dot" style="background:#0F6E56"></span>Admission Rules</div>
+        <div class="page-item"><span class="page-dot" style="background:#0F6E56"></span>Admission Process</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Traditions</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Library</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Computer Lab</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Classrooms</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Art Room</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Seminar Hall</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Auditorium</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Canteen</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Laboratories</div>
+        <div class="page-item"><span class="page-dot" style="background:#534AB7"></span>Sports Playground</div>
+        <div class="page-item"><span class="page-dot" style="background:#BA7517"></span>Gallery (Albums)</div>
+        <div class="page-item"><span class="page-dot" style="background:#BA7517"></span>CAS Team</div>
+        <div class="page-item"><span class="page-dot" style="background:#BA7517"></span>Toppers</div>
+        <div class="page-item"><span class="page-dot" style="background:#BA7517"></span>Notice Board</div>
+        <div class="page-item"><span class="page-dot" style="background:#BA7517"></span>Downloads</div>
+        <div class="page-item"><span class="page-dot" style="background:#BA7517"></span>School Calendar</div>
+        <div class="page-item"><span class="page-dot" style="background:#993C1D"></span>Events</div>
+        <div class="page-item"><span class="page-dot" style="background:#993C1D"></span>TC Verification</div>
+        <div class="page-item"><span class="page-dot" style="background:#993C1D"></span>Contact Us</div>
+        <div class="page-item"><span class="page-dot" style="background:#993C1D"></span>Online Admission Form</div>
+      </div>
+      <div class="feat-grid" style="margin-top:14px">
+        <div class="feat"><div class="f-title">Hero Slider</div><div class="f-desc">Auto-play slider with optimized images, parallax effect, CTA buttons — admin uploadable</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">UI</span></div>
+        <div class="feat"><div class="f-title">Gallery System</div><div class="f-desc">Album-based gallery, lightbox viewer, lazy loading, category filters (Sports, Events, Academics)</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">UI</span></div>
+        <div class="feat"><div class="f-title">Toppers Showcase</div><div class="f-desc">Dynamic topper cards by session/year, subject-wise rank display, animated result reveal</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">Notice Board</div><div class="f-desc">Paginated, filterable notices. Important notices pinned. Hindi/English toggle support</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">Interactive Map</div><div class="f-desc">Embedded Google Maps with exact school pin, directions link, nearby landmark callouts</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">UI</span></div>
+        <div class="feat"><div class="f-title">SEO Layer</div><div class="f-desc">Next.js metadata API, Open Graph tags, sitemap.xml, robots.txt, schema.org School markup, local SEO</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">SEO</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4 -->
+  <div class="phase" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#FAEEDA;color:#BA7517">4</div>
+      <div class="phase-title">
+        <h3>Admin CMS Panel</h3>
+        <p>Full content management — no coding needed for staff to update the site</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 6–9</div><div class="status">Admin Panel</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div class="feat-grid">
+        <div class="feat"><div class="f-title">Dashboard</div><div class="f-desc">Overview: total students, enquiries today, notices posted, events upcoming — live stats</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">Notice Manager</div><div class="f-desc">Create/edit/delete notices. Pin important ones. Schedule future notices. Hindi keyboard support</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">Gallery Manager</div><div class="f-desc">Drag-and-drop album upload. Bulk image upload. Rearrange, caption, publish/unpublish albums</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">Staff Manager</div><div class="f-desc">Add/remove/edit staff profiles. Upload photos. Set subject, designation, order of display</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">Topper Manager</div><div class="f-desc">Add toppers by session, class, subject-wise marks. Upload result PDF. Mark as featured</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">Downloads Manager</div><div class="f-desc">Upload PDFs: results, calendar, brochures, forms. Set visibility (public/parent-only)</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">Slider Manager</div><div class="f-desc">Upload homepage slider images, set caption, link, order. Live preview before publish</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">Events Manager</div><div class="f-desc">Create school events with date, description, photo. Auto-appears in calendar and homepage</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">TC Records</div><div class="f-desc">Add TC issuance records. Auto-populates TC verification lookup for parents/schools</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">Admission Enquiries</div><div class="f-desc">View all online enquiry submissions. Filter by class/date. Export to Excel. Mark as contacted</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">Page Content Editor</div><div class="f-desc">Rich-text editor (TipTap/ProseMirror) for About, Vision, Facilities pages — edit without developer</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">CMS</span></div>
+        <div class="feat"><div class="f-title">User Management</div><div class="f-desc">Create sub-admin accounts, assign roles (office staff, teacher, principal), reset passwords</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Auth</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 5 -->
+  <div class="phase" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#FAECE7;color:#993C1D">5</div>
+      <div class="phase-title">
+        <h3>Parent, Staff &amp; Student Portals</h3>
+        <p>Role-based login portals with personalised dashboards and features</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 8–12</div><div class="status">Portals</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div class="feat-grid">
+        <div class="feat"><div class="f-title">Parent Portal</div><div class="f-desc">Login → see ward's attendance, fee status, upcoming exams, notices, school calendar, TC request</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Portal</span></div>
+        <div class="feat"><div class="f-title">Fee Payment Tracker</div><div class="f-desc">Show fee dues, payment history, receipt download. Integration-ready for Razorpay online payment</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Portal</span></div>
+        <div class="feat"><div class="f-title">Attendance Module</div><div class="f-desc">Class-wise attendance tracking by teachers. Parents see monthly summary and alerts for low attendance</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Portal</span></div>
+        <div class="feat"><div class="f-title">Staff Portal</div><div class="f-desc">Teachers: mark attendance, view class schedule, access downloads, notice board, submit leave requests</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Portal</span></div>
+        <div class="feat"><div class="f-title">Office Portal</div><div class="f-desc">Office staff: access TC issuance, admission enquiries, fee records — without full admin privileges</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Portal</span></div>
+        <div class="feat"><div class="f-title">Homework/Circular Board</div><div class="f-desc">Teachers post class-specific circulars. Parents see only their child's class. Push notification ready</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">Result Module</div><div class="f-desc">Enter exam marks per student. Parent views child's result card. Downloadable PDF mark sheet</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">Document Locker</div><div class="f-desc">Student-specific: download admit card, result, TC, character certificate from portal securely</div><span class="f-tag" style="background:#EEEDFE;color:#534AB7">Feature</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 6 -->
+  <div class="phase" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#EAF3DE;color:#3B6D11">6</div>
+      <div class="phase-title">
+        <h3>Advanced Features &amp; Integrations</h3>
+        <p>WhatsApp alerts, PWA, online admission, analytics, Razorpay</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 11–15</div><div class="status">Advanced</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div class="feat-grid">
+        <div class="feat"><div class="f-title">WhatsApp Notifications</div><div class="f-desc">Twilio/WATI API: auto-send notice alerts, fee reminders, event announcements to parent WhatsApp</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Integration</span></div>
+        <div class="feat"><div class="f-title">PWA (App-like)</div><div class="f-desc">Progressive Web App: parents add site to home screen, offline notice cache, push notification support</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">PWA</span></div>
+        <div class="feat"><div class="f-title">Online Admission Form</div><div class="f-desc">Multi-step form: student details → documents upload → submission → auto acknowledgement email</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Feature</span></div>
+        <div class="feat"><div class="f-title">Razorpay Integration</div><div class="f-desc">Online fee collection. Parent pays from portal. Receipt auto-generated. Records synced to DB</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">Payments</span></div>
+        <div class="feat"><div class="f-title">Google Analytics 4</div><div class="f-desc">Track page views, admission enquiry conversions, popular pages — privacy-compliant analytics</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Analytics</span></div>
+        <div class="feat"><div class="f-title">AI-Powered Chatbot</div><div class="f-desc">FAQ bot for admission queries, school timings, fee structure — using OpenAI or custom Gemini API</div><span class="f-tag" style="background:#EEEDFE;color:#534AB7">AI</span></div>
+        <div class="feat"><div class="f-title">School Calendar</div><div class="f-desc">Full interactive calendar: holidays, exams, events, sports days — iCal export for parent phones</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Feature</span></div>
+        <div class="feat"><div class="f-title">Performance Reports</div><div class="f-desc">Admin sees: site speed (Core Web Vitals), top search queries, admission form drop-off rates</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Analytics</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 7 -->
+  <div class="phase" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#E6F1FB;color:#1B4F8A">7</div>
+      <div class="phase-title">
+        <h3>Testing, QA &amp; Performance</h3>
+        <p>Unit tests, E2E tests, security audit, Core Web Vitals, mobile testing</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 14–17</div><div class="status">QA</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div class="feat-grid">
+        <div class="feat"><div class="f-title">Unit Testing</div><div class="f-desc">Vitest + React Testing Library for all components, API route handlers, and utility functions</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">QA</span></div>
+        <div class="feat"><div class="f-title">E2E Testing</div><div class="f-desc">Playwright: automated tests for admission form, portal login flows, TC verification, notice creation</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">QA</span></div>
+        <div class="feat"><div class="f-title">Security Audit</div><div class="f-desc">OWASP checks: SQL injection, XSS, CSRF protection, rate limiting on all APIs, HTTPS enforced</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Security</span></div>
+        <div class="feat"><div class="f-title">Performance (LCP/CLS/FID)</div><div class="f-desc">Target: LCP &lt;2.5s, CLS &lt;0.1, FID &lt;100ms. Image optimization (WebP, next/image), lazy loading</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Perf</span></div>
+        <div class="feat"><div class="f-title">Mobile Testing</div><div class="f-desc">Real device testing on Android Chrome + Safari iOS. Responsive down to 360px. Touch UX tested</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">QA</span></div>
+        <div class="feat"><div class="f-title">Accessibility (a11y)</div><div class="f-desc">WCAG 2.1 AA compliance, keyboard navigation, screen reader test (NVDA), color contrast audit</div><span class="f-tag" style="background:#EEEDFE;color:#534AB7">a11y</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 8 -->
+  <div class="phase" onclick="toggle(this)">
+    <div class="phase-header">
+      <div class="phase-num" style="background:#F4F6F9;color:#444">8</div>
+      <div class="phase-title">
+        <h3>Deployment, Migration &amp; Launch</h3>
+        <p>Data migration from old site, go-live, DNS cutover, staff training</p>
+      </div>
+      <div class="phase-meta"><div class="dur">Weeks 18–20</div><div class="status">Launch</div></div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="phase-body">
+      <div class="feat-grid">
+        <div class="feat"><div class="f-title">Data Migration</div><div class="f-desc">Scrape + import all existing content: staff, notices, gallery images, TC records into new PostgreSQL DB</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">Launch</span></div>
+        <div class="feat"><div class="f-title">CI/CD Pipeline</div><div class="f-desc">GitHub Actions → Vercel auto-deploy on push to main. Preview deployments for every PR. Zero downtime</div><span class="f-tag" style="background:#E6F1FB;color:#1B4F8A">DevOps</span></div>
+        <div class="feat"><div class="f-title">Domain + DNS</div><div class="f-desc">Point centralacademyanta.com to new Vercel deployment. SSL auto-provisioned. Old site on subdomain during transition</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Infra</span></div>
+        <div class="feat"><div class="f-title">Backup Strategy</div><div class="f-desc">Daily automated PostgreSQL backups to S3. 30-day retention. One-click restore tested before go-live</div><span class="f-tag" style="background:#EAF3DE;color:#3B6D11">Infra</span></div>
+        <div class="feat"><div class="f-title">Staff Training</div><div class="f-desc">Screen-recorded video walkthroughs for Admin CMS. Live session with office staff. Hindi UI tooltips</div><span class="f-tag" style="background:#FAEEDA;color:#BA7517">Training</span></div>
+        <div class="feat"><div class="f-title">Post-Launch Monitoring</div><div class="f-desc">Sentry for error tracking, Uptime Robot for availability alerts, Vercel analytics for real-user monitoring</div><span class="f-tag" style="background:#FAECE7;color:#993C1D">Ops</span></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ARCHITECTURE OVERVIEW -->
+  <div class="section-head" style="margin-top:1.5rem"><h2>System Architecture Overview</h2></div>
+  <div class="arch-grid">
+    <div class="arch-box" style="background:#E6F1FB">
+      <div class="ab-title" style="color:#1B4F8A">Frontend Layer</div>
+      <div class="ab-items" style="color:#2E75B6">Next.js 15 (App Router)<br>React 19 + TypeScript<br>Tailwind CSS<br>SWR / React Query<br>Framer Motion</div>
+    </div>
+    <div class="arch-box" style="background:#E1F5EE">
+      <div class="ab-title" style="color:#0F6E56">Backend Layer</div>
+      <div class="ab-items" style="color:#0F6E56">Node.js + Express<br>REST API + Next API Routes<br>Prisma ORM<br>NextAuth.js<br>Zod validation</div>
+    </div>
+    <div class="arch-box" style="background:#EEEDFE">
+      <div class="ab-title" style="color:#534AB7">Data &amp; Media</div>
+      <div class="ab-items" style="color:#534AB7">PostgreSQL (Railway)<br>Redis (cache, sessions)<br>Cloudinary (images)<br>S3 (PDFs, docs)<br>Vercel Edge CDN</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TIMELINE -->
+  <div class="section-head" style="margin-top:1.5rem"><h2>Master Timeline</h2><span class="pill">~20 Weeks Total</span></div>
+  <div style="margin-top:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px">
+    <div>
+      <div class="tl-row"><div class="tl-dot" style="background:#1B4F8A"></div><div class="tl-text">Weeks 1–2 — Discovery &amp; Architecture<span>Sitemaps, wireframes, DB schema, design system</span></div></div>
+      <div class="tl-row"><div class="tl-dot" style="background:#0F6E56"></div><div class="tl-text">Weeks 3–5 — Backend + API + Auth<span>PostgreSQL, Prisma, REST API, uploads, email</span></div></div>
+      <div class="tl-row"><div class="tl-dot" style="background:#534AB7"></div><div class="tl-text">Weeks 4–8 — Public Website<span>All 27 public-facing pages, SEO, gallery, notices</span></div></div>
+      <div class="tl-row"><div class="tl-dot" style="background:#BA7517"></div><div class="tl-text">Weeks 6–9 — Admin CMS<span>Full content management, user roles</span></div></div>
+    </div>
+    <div>
+      <div class="tl-row"><div class="tl-dot" style="background:#993C1D"></div><div class="tl-text">Weeks 8–12 — Portals<span>Parent, Staff, Office role-based dashboards</span></div></div>
+      <div class="tl-row"><div class="tl-dot" style="background:#3B6D11"></div><div class="tl-text">Weeks 11–15 — Advanced Features<span>WhatsApp, PWA, Razorpay, AI chatbot, calendar</span></div></div>
+      <div class="tl-row"><div class="tl-dot" style="background:#185FA5"></div><div class="tl-text">Weeks 14–17 — QA &amp; Testing<span>Unit, E2E, security, performance, accessibility</span></div></div>
+      <div class="tl-row"><div class="tl-dot" style="background:#444"></div><div class="tl-text">Weeks 18–20 — Launch<span>Data migration, CI/CD, DNS, staff training, go-live</span></div></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="warn-box">
+    <strong style="color:#7B5B00">Why Next.js stack over the others?</strong><br>
+    MERN uses React but lacks SSR by default — bad for SEO. LAMP (PHP/MySQL) is outdated and slow to develop. JAMstack is great for speed but hard to build portals and CMS with. Django is powerful but overkill and slower for UI. Spring Boot is enterprise Java — heavy. <strong>Next.js gives you server-side rendering for Google SEO + React for the portal UIs + PostgreSQL for structured school data + Vercel for zero-config deployment.</strong> It's the exact right tool for a school that needs both a fast public site AND private portals.
+  </div>
+
+  <div class="cta">
+    <button onclick="sendPrompt('Start Phase 1 — begin with sitemap design and DB schema for Central Academy Anta website')">Begin Phase 1 — Sitemap &amp; Schema ↗</button>
+  </div>
+</div>
+<script>
+function toggle(el){el.classList.toggle('open')}
+</script>

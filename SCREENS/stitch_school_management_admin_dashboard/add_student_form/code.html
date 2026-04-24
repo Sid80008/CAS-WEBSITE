@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduAdmin - Students Module</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error-container": "#ffdad6",
+                    "surface-card": "#FFFFFF",
+                    "error": "#ba1a1a",
+                    "secondary": "#575e70",
+                    "background-main": "#F9FAFB",
+                    "background": "#fcf8ff",
+                    "on-primary-container": "#dad7ff",
+                    "inverse-primary": "#c3c0ff",
+                    "tertiary-fixed-dim": "#ffb695",
+                    "sidebar-active": "#1F2937",
+                    "on-tertiary-fixed-variant": "#7b2f00",
+                    "surface-tint": "#4d44e3",
+                    "surface-dim": "#dcd8e5",
+                    "sidebar-bg": "#111827",
+                    "on-tertiary-fixed": "#351000",
+                    "on-primary": "#ffffff",
+                    "surface": "#fcf8ff",
+                    "surface-container": "#f0ecf9",
+                    "primary-container": "#4f46e5",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#777587",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#d9dff5",
+                    "inverse-surface": "#302f39",
+                    "on-secondary-container": "#5c6274",
+                    "text-primary": "#111827",
+                    "surface-container-highest": "#e4e1ee",
+                    "tertiary": "#7e3000",
+                    "on-secondary-fixed": "#141b2b",
+                    "on-background": "#1b1b24",
+                    "on-secondary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcc",
+                    "tertiary-container": "#a44100",
+                    "status-warning": "#F59E0B",
+                    "on-secondary-fixed-variant": "#404758",
+                    "on-surface-variant": "#464555",
+                    "primary-fixed-dim": "#c3c0ff",
+                    "secondary-fixed-dim": "#c0c6db",
+                    "surface-container-high": "#eae6f4",
+                    "surface-bright": "#fcf8ff",
+                    "secondary-fixed": "#dce2f7",
+                    "border-subtle": "#E5E7EB",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-container": "#ffd2be",
+                    "status-danger": "#EF4444",
+                    "on-primary-fixed-variant": "#3323cc",
+                    "primary": "#3525cd",
+                    "on-primary-fixed": "#0f0069",
+                    "surface-container-low": "#f5f2ff",
+                    "primary-fixed": "#e2dfff",
+                    "on-surface": "#1b1b24",
+                    "inverse-on-surface": "#f3effc",
+                    "text-secondary": "#6B7280",
+                    "on-error-container": "#93000a",
+                    "surface-variant": "#e4e1ee",
+                    "outline-variant": "#c7c4d8",
+                    "status-success": "#22C55E"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "grid-gap": "1.5rem",
+                    "section-gap": "1rem",
+                    "card-padding": "1rem",
+                    "topbar-height": "64px",
+                    "container-max": "80rem",
+                    "page-padding": "1.5rem",
+                    "sidebar-width": "260px"
+            },
+            "fontFamily": {
+                    "subheading": ["Inter"],
+                    "label": ["Inter"],
+                    "heading": ["Inter"],
+                    "body": ["Inter"]
+            },
+            "fontSize": {
+                    "subheading": ["0.875rem", {"lineHeight": "1.25rem", "fontWeight": "500"}],
+                    "label": ["0.75rem", {"lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "500"}],
+                    "heading": ["1.125rem", {"lineHeight": "1.75rem", "fontWeight": "600"}],
+                    "body": ["0.875rem", {"lineHeight": "1.25rem", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background-main text-text-primary antialiased">
+<!-- TopAppBar Shell -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md font-['Inter'] antialiased text-sm tracking-tight docked full-width top-0 sticky z-40 border-b border-slate-200 dark:border-slate-800 shadow-sm flex items-center justify-between px-6 py-3 w-full">
+<div class="flex items-center gap-8">
+<span class="text-xl font-bold text-slate-900 dark:text-white tracking-tighter">EduAdmin</span>
+<div class="hidden md:flex items-center gap-6">
+<nav class="flex items-center gap-6">
+<a class="text-indigo-600 dark:text-indigo-400 font-semibold cursor-pointer active:scale-95 transition-transform" href="#">Dashboard</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer active:scale-95 transition-transform" href="#">Reports</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100 cursor-pointer active:scale-95 transition-transform" href="#">Schedule</a>
+</nav>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center text-white overflow-hidden border border-border-subtle">
+<img alt="Admin User Profile" class="h-full w-full object-cover" data-alt="professional portrait of a school administrator in business casual attire with a soft blurred office background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd4gwvn5-0UBt-_k_XF2yVCi3x6IXX3Nj5gLZ35gWMXwxlBJk1TdZh24XBbWCzrmuigSzUMK9d0F6LPOvUJyjKBlGX2AemujewW2l0O-HAYo-3tYAB0p0IqnW0eauzi9XulN2ajT5VShZvfuuxkagIT28-fCJbzn-sebo48AW6H9AIaHDWCF5t3QVJSq5xsMcNl2ct8mpZihFiSoc8nVS2sY9XinjN46qg1UgDb64yX8x8NRB5OVzKeoL_-lX2SvsBv4mo03nV7I2E"/>
+</div>
+</div>
+</header>
+<div class="flex">
+<!-- SideNavBar Shell -->
+<aside class="bg-slate-900 dark:bg-black font-['Inter'] text-sm font-medium fixed left-0 h-screen w-64 border-r border-slate-800 hidden md:flex flex-col gap-1 p-4 shadow-none">
+<div class="px-2 py-4 mb-6">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 bg-indigo-600 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="school">school</span>
+</div>
+<div>
+<h2 class="text-white font-black text-xl leading-none">EduAdmin</h2>
+<p class="text-slate-400 text-xs mt-1">Institutional Portal</p>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 bg-slate-800 text-white rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined text-indigo-500" data-icon="school">school</span>
+<span>Students</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span>Staff</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span>Notices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+<span>Gallery</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span>Events</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+<span>Downloads</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Admissions</span>
+</a>
+</div>
+<div class="mt-auto border-t border-slate-800 pt-4 pb-2">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span>Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 min-h-screen p-6">
+<div class="max-w-[80rem] mx-auto">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h1 class="font-heading text-heading text-text-primary">Students Directory</h1>
+<p class="font-body text-body text-text-secondary">Manage and organize student information.</p>
+</div>
+<button class="bg-primary-container text-white px-4 py-2 rounded-lg font-subheading text-subheading shadow-sm hover:bg-indigo-700 transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                        Add New Student
+                    </button>
+</div>
+<!-- Backdrop Overlay for Modal (Mockup state: Open) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+<!-- Modal Container -->
+<div class="bg-surface-card w-full max-w-lg rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+<!-- Modal Header -->
+<div class="px-6 py-4 border-b border-border-subtle flex items-center justify-between">
+<div>
+<h2 class="font-heading text-heading text-text-primary">Add New Student</h2>
+<p class="text-xs text-text-secondary mt-0.5">Enter the student's personal and academic details.</p>
+</div>
+<button class="text-text-secondary hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- Modal Body -->
+<div class="p-6 max-h-[716px] overflow-y-auto">
+<form class="space-y-5">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary" for="first_name">First Name</label>
+<input class="w-full px-3 py-2 rounded-lg border border-outline-variant bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body font-body" id="first_name" name="first_name" placeholder="e.g. John" type="text"/>
+</div>
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary" for="last_name">Last Name</label>
+<input class="w-full px-3 py-2 rounded-lg border border-outline-variant bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body font-body" id="last_name" name="last_name" placeholder="e.g. Doe" type="text"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary" for="admission_no">Admission No</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="badge">badge</span>
+</span>
+<input class="w-full pl-10 pr-3 py-2 rounded-lg border border-outline-variant bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body font-body" id="admission_no" name="admission_no" placeholder="STU-2024-001" type="text"/>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary" for="dob">Date of Birth</label>
+<input class="w-full px-3 py-2 rounded-lg border border-outline-variant bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body font-body" id="dob" name="dob" type="date"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary" for="gender">Gender</label>
+<select class="w-full px-3 py-2 rounded-lg border border-outline-variant bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body font-body appearance-none" id="gender" name="gender">
+<option value="">Select Gender</option>
+<option value="male">Male</option>
+<option value="female">Female</option>
+<option value="other">Other</option>
+</select>
+</div>
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary" for="class">Class</label>
+<select class="w-full px-3 py-2 rounded-lg border border-outline-variant bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body font-body" id="class" name="class">
+<option value="">Select Class</option>
+<option value="10-a">Grade 10 - A</option>
+<option value="10-b">Grade 10 - B</option>
+<option value="11-a">Grade 11 - A</option>
+<option value="12-c">Grade 12 - C</option>
+</select>
+</div>
+</div>
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary" for="parent">Parent / Guardian</label>
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary">
+<span class="material-symbols-outlined text-[18px]" data-icon="family_history">family_history</span>
+</span>
+<select class="w-full pl-10 pr-3 py-2 rounded-lg border border-outline-variant bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all text-body font-body" id="parent" name="parent">
+<option value="">Select Parent</option>
+<option value="1">Robert Wilson</option>
+<option value="2">Sarah Jenkins</option>
+<option value="3">Michael Thompson</option>
+</select>
+</div>
+<p class="text-[11px] text-text-secondary flex items-center gap-1">
+<span class="material-symbols-outlined text-[12px]" data-icon="info">info</span>
+                                        Parent must be registered before adding a student.
+                                    </p>
+</div>
+<div class="space-y-1.5">
+<label class="font-label text-label text-text-secondary">Status</label>
+<div class="flex gap-4">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input checked="" class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="status" type="radio" value="active"/>
+<span class="text-body font-body text-text-primary group-hover:text-primary transition-colors">Active</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="status" type="radio" value="inactive"/>
+<span class="text-body font-body text-text-primary group-hover:text-primary transition-colors">Inactive</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="w-4 h-4 text-primary border-outline-variant focus:ring-primary" name="status" type="radio" value="suspended"/>
+<span class="text-body font-body text-text-primary group-hover:text-primary transition-colors">Suspended</span>
+</label>
+</div>
+</div>
+</form>
+</div>
+<!-- Modal Footer -->
+<div class="px-6 py-4 bg-background-main border-t border-border-subtle flex items-center justify-end gap-3">
+<button class="px-4 py-2 rounded-lg border border-outline-variant text-text-primary font-subheading text-subheading hover:bg-white transition-colors">
+                                Cancel
+                            </button>
+<button class="px-6 py-2 rounded-lg bg-primary-container text-white font-subheading text-subheading shadow-sm hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                                Save Student
+                                <span class="material-symbols-outlined text-[18px]" data-icon="check">check</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Background Content (Mock Table) -->
+<div class="bg-surface-card border border-border-subtle rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-border-subtle">
+<tr>
+<th class="px-6 py-4 font-label text-label text-text-secondary">Student Name</th>
+<th class="px-6 py-4 font-label text-label text-text-secondary">Admission No</th>
+<th class="px-6 py-4 font-label text-label text-text-secondary">Class</th>
+<th class="px-6 py-4 font-label text-label text-text-secondary">Status</th>
+<th class="px-6 py-4 font-label text-label text-text-secondary text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-subtle">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200"></div>
+<span class="font-body text-body font-medium">Alice Henderson</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body text-body">ADM-2023-142</td>
+<td class="px-6 py-4 font-body text-body">Grade 10 - A</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-status-success/10 text-status-success uppercase tracking-wider">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="h-8 w-8 rounded-full bg-slate-200"></div>
+<span class="font-body text-body font-medium">David Miller</span>
+</div>
+</td>
+<td class="px-6 py-4 font-body text-body">ADM-2023-189</td>
+<td class="px-6 py-4 font-body text-body">Grade 11 - B</td>
+<td class="px-6 py-4">
+<span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-status-success/10 text-status-success uppercase tracking-wider">Active</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-text-secondary hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

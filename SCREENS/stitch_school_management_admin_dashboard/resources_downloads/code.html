@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Downloads Module - EduAdmin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error-container": "#ffdad6",
+                        "surface-card": "#FFFFFF",
+                        "error": "#ba1a1a",
+                        "secondary": "#575e70",
+                        "background-main": "#F9FAFB",
+                        "background": "#fcf8ff",
+                        "on-primary-container": "#dad7ff",
+                        "inverse-primary": "#c3c0ff",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "sidebar-active": "#1F2937",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "surface-tint": "#4d44e3",
+                        "surface-dim": "#dcd8e5",
+                        "sidebar-bg": "#111827",
+                        "on-tertiary-fixed": "#351000",
+                        "on-primary": "#ffffff",
+                        "surface": "#fcf8ff",
+                        "surface-container": "#f0ecf9",
+                        "primary-container": "#4f46e5",
+                        "on-tertiary": "#ffffff",
+                        "outline": "#777587",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#d9dff5",
+                        "inverse-surface": "#302f39",
+                        "on-secondary-container": "#5c6274",
+                        "text-primary": "#111827",
+                        "surface-container-highest": "#e4e1ee",
+                        "tertiary": "#7e3000",
+                        "on-secondary-fixed": "#141b2b",
+                        "on-background": "#1b1b24",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "tertiary-container": "#a44100",
+                        "status-warning": "#F59E0B",
+                        "on-secondary-fixed-variant": "#404758",
+                        "on-surface-variant": "#464555",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "secondary-fixed-dim": "#c0c6db",
+                        "surface-container-high": "#eae6f4",
+                        "surface-bright": "#fcf8ff",
+                        "secondary-fixed": "#dce2f7",
+                        "border-subtle": "#E5E7EB",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#ffd2be",
+                        "status-danger": "#EF4444",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "primary": "#3525cd",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container-low": "#f5f2ff",
+                        "primary-fixed": "#e2dfff",
+                        "on-surface": "#1b1b24",
+                        "inverse-on-surface": "#f3effc",
+                        "text-secondary": "#6B7280",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e4e1ee",
+                        "outline-variant": "#c7c4d8",
+                        "status-success": "#22C55E"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "grid-gap": "1.5rem",
+                        "section-gap": "1rem",
+                        "card-padding": "1rem",
+                        "topbar-height": "64px",
+                        "container-max": "80rem",
+                        "page-padding": "1.5rem",
+                        "sidebar-width": "260px"
+                    },
+                    "fontFamily": {
+                        "subheading": ["Inter"],
+                        "label": ["Inter"],
+                        "heading": ["Inter"],
+                        "body": ["Inter"]
+                    },
+                    "fontSize": {
+                        "subheading": ["0.875rem", {"lineHeight": "1.25rem", "fontWeight": "500"}],
+                        "label": ["0.75rem", {"lineHeight": "1rem", "letterSpacing": "0.025em", "fontWeight": "500"}],
+                        "heading": ["1.125rem", {"lineHeight": "1.75rem", "fontWeight": "600"}],
+                        "body": ["0.875rem", {"lineHeight": "1.25rem", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body {
+            background-color: #F9FAFB;
+        }
+    </style>
+</head>
+<body class="font-body text-body text-text-primary">
+<!-- SideNavBar -->
+<aside class="fixed left-0 h-screen w-64 border-r bg-slate-900 border-slate-800 z-50 flex flex-col gap-1 p-4">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="school">school</span>
+</div>
+<div>
+<h1 class="text-white font-black text-xl tracking-tighter">EduAdmin</h1>
+<p class="text-slate-400 text-[10px] uppercase tracking-widest font-bold">Institutional Portal</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-subheading text-subheading">Students</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-subheading text-subheading">Staff</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+<span class="font-subheading text-subheading">Notices</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="image">image</span>
+<span class="font-subheading text-subheading">Gallery</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+<span class="font-subheading text-subheading">Events</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 bg-slate-800 text-white rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+<span class="font-subheading text-subheading">Downloads</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-subheading text-subheading">Admissions</span>
+</a>
+</nav>
+<div class="mt-auto border-t border-slate-800 pt-4">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-400 hover:text-slate-100 hover:bg-slate-800/50 rounded-md transition-all duration-200 ease-in-out hover:translate-x-1" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-subheading text-subheading">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="ml-64 min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm flex items-center justify-between px-6 py-3">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-symbols-outlined text-lg" data-icon="search">search</span>
+</span>
+<input class="pl-10 pr-4 py-1.5 bg-slate-50 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 w-64 transition-all" placeholder="Search resources..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 mx-1"></div>
+<div class="flex items-center gap-3 pl-2">
+<img alt="Admin User Profile" class="w-8 h-8 rounded-full border border-slate-200" data-alt="headshot of a professional male administrator in a light blue shirt with a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXchUZThvLnYIM-PU8nNroKArsuUJvtXJReuCDDkQohRJnUmXrKbF2XyO2pXko1t8Xx7P-jgzaI8DkJFbgwbn7ozBYnGCY_UaOjynf_FoDTwXPpfrY_RO2iDIcB12PQIE8nc4c4RmdBK-d-YWZ77YGHb79hGPOmmDfWLvTwHnCdjWItKVaCfwOVl1jwB5bSN6mXdwILFuSj0Hgjd1nAVHjDtyDRYyuK4vQoNAz16lzxNibeO30VLKjKD-RFFWtwEwVFXK-mVaQ9P4_"/>
+<div class="hidden lg:block text-left">
+<p class="text-xs font-bold text-slate-900 leading-tight">Admin User</p>
+<p class="text-[10px] text-slate-500 font-medium">System Manager</p>
+</div>
+</div>
+</div>
+</header>
+<!-- Canvas Content -->
+<div class="p-6 max-w-container-max mx-auto">
+<!-- Page Header & Action Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="font-heading text-2xl text-slate-900 tracking-tight">Downloads</h2>
+<p class="text-text-secondary font-body mt-1">Manage institutional documents, forms, and resources for students and staff.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors shadow-sm">
+<span class="material-symbols-outlined text-lg" data-icon="filter_list">filter_list</span>
+                        Filter
+                    </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg text-sm font-semibold hover:bg-primary-container transition-all shadow-sm active:scale-95">
+<span class="material-symbols-outlined text-lg" data-icon="upload">upload</span>
+                        Upload File
+                    </button>
+</div>
+</div>
+<!-- Dashboard Quick Stats (Bento Grid Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 font-label uppercase text-[10px] tracking-wider">Total Files</span>
+<span class="material-symbols-outlined text-indigo-500 bg-indigo-50 p-1.5 rounded-lg text-lg" data-icon="description">description</span>
+</div>
+<p class="text-2xl font-bold text-slate-900">1,284</p>
+<p class="text-xs text-status-success font-medium mt-1 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+                        12% from last month
+                    </p>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 font-label uppercase text-[10px] tracking-wider">Storage Used</span>
+<span class="material-symbols-outlined text-amber-500 bg-amber-50 p-1.5 rounded-lg text-lg" data-icon="cloud">cloud</span>
+</div>
+<p class="text-2xl font-bold text-slate-900">4.2 GB</p>
+<div class="w-full bg-slate-100 h-1.5 rounded-full mt-2 overflow-hidden">
+<div class="bg-amber-500 h-full w-[42%]"></div>
+</div>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 font-label uppercase text-[10px] tracking-wider">Downloads</span>
+<span class="material-symbols-outlined text-emerald-500 bg-emerald-50 p-1.5 rounded-lg text-lg" data-icon="download">download</span>
+</div>
+<p class="text-2xl font-bold text-slate-900">8.9k</p>
+<p class="text-xs text-slate-500 font-medium mt-1">Total lifetime downloads</p>
+</div>
+<div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="text-slate-500 font-label uppercase text-[10px] tracking-wider">Categories</span>
+<span class="material-symbols-outlined text-purple-500 bg-purple-50 p-1.5 rounded-lg text-lg" data-icon="folder">folder</span>
+</div>
+<p class="text-2xl font-bold text-slate-900">14</p>
+<p class="text-xs text-slate-500 font-medium mt-1">Active file groups</p>
+</div>
+</div>
+<!-- Main Table Container -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 border-b border-slate-200">
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+<div class="flex items-center gap-2">
+                                        Title
+                                        <span class="material-symbols-outlined text-sm" data-icon="unfold_more">unfold_more</span>
+</div>
+</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">File Name</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+<div class="flex items-center gap-2">
+                                        Date
+                                        <span class="material-symbols-outlined text-sm" data-icon="unfold_more">unfold_more</span>
+</div>
+</th>
+<th class="px-6 py-4 text-xs font-semibold text-slate-500 uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-red-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600 text-lg" data-icon="picture_as_pdf">picture_as_pdf</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Spring Semester Syllabus 2024</p>
+<p class="text-xs text-slate-500">Academic Affairs</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded">spring_syllabus_v2.pdf</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-slate-600">Oct 24, 2023</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-blue-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-blue-600 text-lg" data-icon="description">description</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Student Enrollment Form</p>
+<p class="text-xs text-slate-500">Admissions</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded">enroll_form_2024.docx</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-slate-600">Oct 22, 2023</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-green-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-green-600 text-lg" data-icon="table_chart">table_chart</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Annual Budget Report</p>
+<p class="text-xs text-slate-500">Finance</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded">budget_FY2023.xlsx</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-slate-600">Oct 19, 2023</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-orange-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-orange-600 text-lg" data-icon="image">image</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Campus Master Map (HD)</p>
+<p class="text-xs text-slate-500">Facilities</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded">campus_map_2024.jpg</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-slate-600">Oct 15, 2023</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded bg-purple-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-purple-600 text-lg" data-icon="inventory_2">inventory_2</span>
+</div>
+<div>
+<p class="text-sm font-semibold text-slate-900">Staff Handbooks Archive</p>
+<p class="text-xs text-slate-500">Human Resources</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-sm font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded">handbooks_legacy.zip</span>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm text-slate-600">Oct 10, 2023</p>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex items-center justify-end gap-1">
+<button class="p-2 text-slate-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-all" title="Download">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error hover:bg-error-container/20 rounded-lg transition-all" title="Delete">
+<span class="material-symbols-outlined" data-icon="delete">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="px-6 py-4 border-t border-slate-200 flex items-center justify-between bg-slate-50/30">
+<p class="text-xs text-slate-500 font-medium">Showing <span class="text-slate-900">1 to 5</span> of <span class="text-slate-900">1,284</span> entries</p>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1 text-xs font-semibold text-slate-600 border border-slate-200 rounded hover:bg-white transition-colors disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1 text-xs font-semibold text-white bg-indigo-600 rounded shadow-sm">1</button>
+<button class="px-3 py-1 text-xs font-semibold text-slate-600 border border-slate-200 rounded hover:bg-white transition-colors">2</button>
+<button class="px-3 py-1 text-xs font-semibold text-slate-600 border border-slate-200 rounded hover:bg-white transition-colors">3</button>
+<button class="px-3 py-1 text-xs font-semibold text-slate-600 border border-slate-200 rounded hover:bg-white transition-colors">Next</button>
+</div>
+</div>
+</div>
+<!-- Upload Zone Preview (Functional UI) -->
+<div class="mt-8">
+<div class="bg-white border-2 border-dashed border-slate-200 rounded-xl p-8 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-3xl text-slate-400" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h3 class="text-sm font-semibold text-slate-900">Quick Upload</h3>
+<p class="text-xs text-slate-500 mt-1 mb-4">Drag and drop files here or click to browse</p>
+<div class="flex items-center gap-2">
+<span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider">PDF</span>
+<span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider">DOCX</span>
+<span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider">XLSX</span>
+<span class="text-[10px] bg-slate-100 text-slate-600 px-2 py-1 rounded font-bold uppercase tracking-wider">MAX 50MB</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>
