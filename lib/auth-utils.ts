@@ -45,9 +45,9 @@ export async function verifyAuth(req: NextRequest) {
     return {
       id: user.id,
       email: user.email,
-      roles: user.roles.map(r => r.role.name),
-      permissions: user.roles.flatMap(r =>
-        r.role.permissions.map(p => p.permission.name)
+      roles: user.roles.map((r: any) => r.role.name),
+      permissions: user.roles.flatMap((r: any) =>
+        r.role.permissions.map((p: any) => p.permission.name)
       )
     }
   } catch (err) {

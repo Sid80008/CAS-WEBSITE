@@ -61,6 +61,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "3.3.5",
     "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "22.19.0",
     "@types/pg": "8.20.0",
     "@types/react": "19.1.8",
