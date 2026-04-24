@@ -22,10 +22,13 @@ enum FeeStatus {
 }
 
 enum AdmissionStatus {
+  PENDING
+  CALLED
+  ENROLLED
+  REJECTED
   NEW
   CONTACTED
   CONVERTED
-  REJECTED
 }
 
 /* ================= AUTH ================= */
@@ -46,7 +49,8 @@ model User {
   // CMS relations
   notices   Notice[]
   events    Event[]
-  downloads Download[]
+  resources Resource[]
+  galleries Gallery[]
   tcRecords TCRecord[] @relation("Approver")
 
   createdAt DateTime @default(now())
@@ -330,27 +334,35 @@ model Event {
   @@index([date])
 }
 
-model GalleryAlbum {
-  id        String   @id @default(cuid())
-  title     String
+model Gallery {
+  id          String   @id @default(cuid())
+  titleEn     String
+  titleHi     String?
+  description String?
+  published   Boolean  @default(false)
+  
+  createdBy   String
+  author      User     @relation(fields: [createdBy], references: [id])
 
-  media     Media[]
+  media       Media[]
 
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Media {
   id        String   @id @default(cuid())
   url       String
-  albumId   String
+  galleryId String
 
-  album     GalleryAlbum @relation(fields: [albumId], references: [id])
+  gallery   Gallery @relation(fields: [galleryId], references: [id])
 }
 
-model Download {
+model Resource {
   id        String   @id @default(cuid())
   title     String
   fileUrl   String
+  type      String?
   slug      String   @unique
   published Boolean  @default(false)
 
@@ -386,6 +398,19 @@ model Topper {
 }
 
 /* ================= ADMISSIONS ================= */
+
+model Admission {
+  id          String   @id @default(cuid())
+  studentName String
+  parentName  String
+  email       String
+  phone       String
+  grade       String
+  status      AdmissionStatus @default(PENDING)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
 
 model AdmissionEnquiry {
   id        String   @id @default(cuid())

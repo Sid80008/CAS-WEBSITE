@@ -1,40 +1,71 @@
-import * as service from '../services/notice.service.js'
+import prisma from '../prisma/client.js'
+import { HttpError } from '../lib/http-error.js'
+import { slugify } from '../lib/utils.js'
 
-const slugify = (value) =>
-  value
-    .toLowerCase()
-    .trim()
-    .replace(/[^a-z0-9\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-
-export const create = async (req, res, next) => {
+export const getAll = async (req, res, next) => {
   try {
-    const data = {
-      ...req.body,
-      slug: req.body.slug || slugify(req.body.titleEn),
+    const { page = 1, limit = 10, search = '', publishedOnly = 'false' } = req.query
+    const skip = (page - 1) * limit
+
+    const where = {
+      ...(search ? {
+        OR: [
+          { titleEn: { contains: search, mode: 'insensitive' } },
+          { contentEn: { contains: search, mode: 'insensitive' } },
+        ]
+      } : {}),
+      ...(publishedOnly === 'true' ? { published: true } : {})
     }
-    const notice = await service.createNotice(data, req.user.id)
+
+    const [notices, total] = await Promise.all([
+      prisma.notice.findMany({
+        where,
+        skip: parseInt(skip),
+        take: parseInt(limit),
+        orderBy: [{ isPinned: 'desc' }, { createdAt: 'desc' }],
+        include: { author: { select: { email: true } } }
+      }),
+      prisma.notice.count({ where })
+    ])
+
+    res.json({
+      data: notices,
+      meta: {
+        total,
+        page: parseInt(page),
+        lastPage: Math.ceil(total / limit)
+      }
+    })
+  } catch (e) {
+    next(e)
+  }
+}
+
+export const getOne = async (req, res, next) => {
+  try {
+    const notice = await prisma.notice.findUnique({
+      where: { id: req.params.id },
+      include: { author: { select: { email: true } } }
+    })
+
+    if (!notice) throw new HttpError(404, 'Notice not found')
     res.json(notice)
   } catch (e) {
     next(e)
   }
 }
 
-export const getPublic = async (req, res, next) => {
+export const create = async (req, res, next) => {
   try {
-    const data = await service.getPublic()
-    res.set('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=300')
-    res.json(data)
-  } catch (e) {
-    next(e)
-  }
-}
-
-export const getAll = async (req, res, next) => {
-  try {
-    const data = await service.getAll()
-    res.json(data)
+    const slug = slugify(req.body.titleEn)
+    const notice = await prisma.notice.create({
+      data: {
+        ...req.body,
+        slug: `${slug}-${Date.now()}`, // Append timestamp for uniqueness
+        createdBy: req.user.id
+      }
+    })
+    res.status(201).json(notice)
   } catch (e) {
     next(e)
   }
@@ -42,8 +73,16 @@ export const getAll = async (req, res, next) => {
 
 export const update = async (req, res, next) => {
   try {
-    const data = await service.updateNotice(req.params.id, req.body)
-    res.json(data)
+    const data = { ...req.body }
+    if (data.titleEn) {
+      data.slug = `${slugify(data.titleEn)}-${Date.now()}`
+    }
+
+    const notice = await prisma.notice.update({
+      where: { id: req.params.id },
+      data
+    })
+    res.json(notice)
   } catch (e) {
     next(e)
   }
@@ -51,8 +90,8 @@ export const update = async (req, res, next) => {
 
 export const remove = async (req, res, next) => {
   try {
-    await service.deleteNotice(req.params.id)
-    res.json({ success: true })
+    await prisma.notice.delete({ where: { id: req.params.id } })
+    res.status(204).end()
   } catch (e) {
     next(e)
   }

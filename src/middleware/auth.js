@@ -31,6 +31,7 @@ export const authenticate = async (req, res, next) => {
     req.user = {
       id: user.id,
       email: user.email,
+      roles: user.roles.map(r => r.role.name),
       permissions: user.roles.flatMap(r =>
         r.role.permissions.map(p => p.permission.name)
       )
@@ -48,8 +49,11 @@ export const authenticate = async (req, res, next) => {
 }
 
 export const requirePermission = (perm) => (req, res, next) => {
-  if (!req.user || !req.user.permissions.includes(perm)) {
-    return res.status(403).json({ error: 'Forbidden' })
+  if (!req.user) return res.status(401).json({ error: 'Unauthorized' })
+  
+  if (req.user.roles?.includes('ADMIN') || req.user.permissions.includes(perm)) {
+    return next()
   }
-  next()
+  
+  return res.status(403).json({ error: 'Forbidden' })
 }

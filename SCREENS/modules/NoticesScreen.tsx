@@ -10,14 +10,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  useCreateNotice,
-  useDeleteNotice,
-  useNotices,
-  useUpdateNotice,
-} from "@/hooks/api/use-notices";
-import { Notice } from "@/services/notice.service";
-import type { NoticeInput } from "@/lib/api/types";
+import { Plus, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { DataTable } from "../components/DataTable";
+import { SearchBar } from "../components/SearchBar";
+import { FormModal } from "../components/FormModal";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Switch } from "@/components/ui/switch";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useNotices } from "../hooks/useNotices";
+import { Notice } from "@/lib/api/notices";
 
 interface NoticeFormState {
   titleEn: string;
@@ -38,16 +41,16 @@ const defaultForm: NoticeFormState = {
 };
 
 export function NoticesScreen() {
-  const { data: response, isLoading: loading, error: listError } = useNotices();
-  const notices = response?.data || [];
+  const [searchQuery, setSearchQuery] = React.useState("");
+  const { data, isLoading: loading, createNotice, updateNotice, deleteNotice, isMutating } = useNotices({
+    search: searchQuery,
+    page: 1,
+    limit: 50
+  });
+  const notices = data?.data || [];
   
-  const createMutation = useCreateNotice();
-  const updateMutation = useUpdateNotice();
-  const deleteMutation = useDeleteNotice();
-
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [editingNoticeId, setEditingNoticeId] = React.useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = React.useState("");
   const [formData, setFormData] = React.useState<NoticeFormState>(defaultForm);
 
   const editingNotice = React.useMemo(
@@ -63,7 +66,7 @@ export function NoticesScreen() {
 
     setFormData({
       titleEn: editingNotice.titleEn,
-      titleHi: editingNotice.titleHi,
+      titleHi: editingNotice.titleHi || "",
       contentEn: editingNotice.contentEn ?? "",
       contentHi: editingNotice.contentHi ?? "",
       published: editingNotice.published,
@@ -71,25 +74,15 @@ export function NoticesScreen() {
     });
   }, [editingNotice]);
 
-  const filteredNotices = React.useMemo(() => {
-    if (!searchQuery.trim()) {
-      return notices;
-    }
-    const query = searchQuery.toLowerCase();
-    return notices.filter((notice) =>
-      [notice.titleEn, notice.titleHi, notice.contentEn, notice.contentHi]
-        .join(" ")
-        .toLowerCase()
-        .includes(query),
-    );
-  }, [notices, searchQuery]);
-
   const columns = [
     { header: "Notice Title (EN)", accessor: "titleEn" as const },
-    { header: "Date", accessor: "date" as const },
+    { 
+      header: "Date", 
+      accessor: (n: Notice) => new Date(n.createdAt).toLocaleDateString()
+    },
     { 
       header: "Status", 
-      accessor: (n: (typeof filteredNotices)[number]) => (
+      accessor: (n: Notice) => (
         <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-xs font-medium ${
           n.published ? "bg-indigo-100 text-indigo-700" : "bg-gray-100 text-gray-700"
         }`}>
@@ -107,22 +100,16 @@ export function NoticesScreen() {
   }, []);
 
   const handleSaveNotice = React.useCallback(async () => {
-    const payload: NoticeInput = {
-      ...formData,
-      date: new Date().toISOString().slice(0, 10),
-    };
-    if (!payload.titleEn.trim() || !payload.titleHi.trim()) {
-      return;
-    }
+    if (!formData.titleEn.trim()) return;
 
     if (editingNotice) {
-      await updateMutation.mutateAsync({ id: editingNotice.id, payload });
+      await updateNotice({ id: editingNotice.id, data: formData });
     } else {
-      await createMutation.mutateAsync(payload);
+      await createNotice(formData);
     }
 
     handleModalClose();
-  }, [createMutation, editingNotice, formData, handleModalClose, updateMutation]);
+  }, [editingNotice, formData, handleModalClose, updateNotice, createNotice]);
 
   const actions = [
     {
@@ -136,12 +123,14 @@ export function NoticesScreen() {
       label: "Delete",
       variant: "destructive" as const,
       onClick: async (n: Notice) => {
-        await deleteMutation.mutateAsync(n.id);
+        if (confirm("Delete this notice?")) {
+          await deleteNotice(n.id);
+        }
       },
     },
   ];
 
-  const isSubmitting = createMutation.isPending || updateMutation.isPending;
+  const isSubmitting = isMutating;
 
   return (
     <div className="space-y-6">
@@ -169,10 +158,10 @@ export function NoticesScreen() {
 
 
       <DataTable
-        data={filteredNotices}
+        data={notices}
         columns={columns}
         actions={actions}
-        isLoading={loading || deleteMutation.isPending}
+        isLoading={loading}
       />
 
       <FormModal

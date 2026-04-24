@@ -2,11 +2,12 @@ import axios, { AxiosError } from "axios";
 import { clearAccessToken, getAccessToken } from "@/lib/api/tokenStorage";
 import type { ApiErrorResponse } from "@/lib/api/types";
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4001/api";
+// Unified internal API URL
+const baseURL = "/api";
 
 export const apiClient = axios.create({
   baseURL,
-  timeout: 15000,
+  timeout: 30000,
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -15,9 +16,10 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.request.use((config) => {
   const token = getAccessToken();
-  const isInternalRequest = config.url?.startsWith("/") || config.url?.startsWith(baseURL);
-
-  if (token && isInternalRequest) {
+  
+  // Only add Auth header if we have a token (for legacy JWT support)
+  // NextAuth uses cookies automatically via withCredentials: true
+  if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
@@ -26,6 +28,7 @@ apiClient.interceptors.request.use((config) => {
 apiClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError<ApiErrorResponse>) => {
+    // If we get a 401, it might be an expired legacy token
     if (error.response?.status === 401) {
       clearAccessToken();
     }

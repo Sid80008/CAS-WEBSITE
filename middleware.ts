@@ -1,43 +1,46 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import NextAuth from "next-auth"
+import authConfig from "./auth.config"
+import {
+  DEFAULT_LOGIN_REDIRECT,
+  apiAuthPrefix,
+  authRoutes,
+  publicRoutes,
+} from "@/routes"
 
-// Shim localStorage for Edge/Middleware runtime
-try {
-  const mock = { getItem: () => null, setItem: () => {}, removeItem: () => {} };
-  if (typeof globalThis !== "undefined") {
-    if (!(globalThis as any).localStorage || typeof (globalThis as any).localStorage.getItem !== 'function') {
-      (globalThis as any).localStorage = mock;
+const { auth } = NextAuth(authConfig)
+
+export default auth((req) => {
+  const { nextUrl } = req
+  const isLoggedIn = !!req.auth
+
+  const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix)
+  const isPublicRoute = publicRoutes.includes(nextUrl.pathname)
+  const isAuthRoute = authRoutes.includes(nextUrl.pathname)
+
+  if (isApiAuthRoute) {
+    return
+  }
+
+  if (isAuthRoute) {
+    if (isLoggedIn) {
+      return Response.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
     }
-  }
-} catch (e) {}
-
-const PUBLIC_ROUTES = ["/login", "/public"];
-const TOKEN_COOKIE = "admin_access_token";
-
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const token = request.cookies.get(TOKEN_COOKIE)?.value;
-  const loggedIn = Boolean(token);
-  
-  const isPublicRoute = PUBLIC_ROUTES.some((route) => 
-    pathname === route || pathname.startsWith(`${route}/`)
-  );
-
-  // 1. Redirect unauthenticated users away from admin routes
-  if (!loggedIn && pathname.startsWith("/admin")) {
-    const loginUrl = new URL("/login", request.url);
-    loginUrl.searchParams.set("next", pathname);
-    return NextResponse.redirect(loginUrl);
+    return
   }
 
-  // 2. Redirect authenticated users away from login
-  if (loggedIn && pathname === "/login") {
-    return NextResponse.redirect(new URL("/admin", request.url));
+  if (!isLoggedIn && !isPublicRoute) {
+    if (nextUrl.pathname.startsWith("/api")) {
+      return new Response(JSON.stringify({ error: "Unauthorized" }), { 
+        status: 401,
+        headers: { "Content-Type": "application/json" }
+      })
+    }
+    return Response.redirect(new URL("/login", nextUrl))
   }
 
-  return NextResponse.next();
-}
+  return
+})
 
 export const config = {
-  matcher: ["/admin/:path*", "/login"],
-};
+  matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
+}

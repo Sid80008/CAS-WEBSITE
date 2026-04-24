@@ -6,11 +6,14 @@ import { noticeSchema, updateNoticeSchema } from '../validators/notice.js'
 
 const router = express.Router()
 
-router.get('/public', controller.getPublic)
+// Public route to get published notices for website
+router.get('/public', controller.getAll)
 
-router.get('/', authenticate, requirePermission('VIEW_NOTICE'), controller.getAll)
-router.post('/', authenticate, requirePermission('CREATE_NOTICE'), validateBody(noticeSchema), controller.create)
-router.put('/:id', authenticate, requirePermission('UPDATE_NOTICE'), validateBody(updateNoticeSchema), controller.update)
-router.delete('/:id', authenticate, requirePermission('DELETE_NOTICE'), controller.remove)
+// Protected routes
+router.get('/', authenticate, requirePermission('VIEW_NOTICES'), controller.getAll)
+router.get('/:id', authenticate, requirePermission('VIEW_NOTICES'), controller.getOne)
+router.post('/', authenticate, requirePermission('CREATE_NOTICES'), validateBody(noticeSchema), controller.create)
+router.put('/:id', authenticate, requirePermission('UPDATE_NOTICES'), validateBody(updateNoticeSchema), controller.update)
+router.delete('/:id', authenticate, requirePermission('DELETE_NOTICES'), controller.remove)
 
 export default router
