@@ -3,12 +3,14 @@ import prisma from '@/lib/prisma'
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { updateAdmissionSchema } from '@/lib/validators/admission'
 
+export const runtime = "nodejs";
+
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params
+    const { id } = await params;
     const admission = await prisma.admission.findUnique({
       where: { id }
     })
@@ -25,7 +27,7 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params
@@ -49,7 +51,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params
