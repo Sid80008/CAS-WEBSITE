@@ -5,8 +5,8 @@ const COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 7;
  * Safely get localStorage without colliding with Node 25's global localStorage
  */
 function getStorage() {
-  if (typeof window !== "undefined" && window.localStorage && typeof window.localStorage.getItem === 'function') {
-    return window.localStorage;
+  if (typeof window !== "undefined" && window.sessionStorage && typeof window.sessionStorage.getItem === 'function') {
+    return window.sessionStorage;
   }
   return null;
 }
@@ -17,7 +17,7 @@ export function getAccessToken(): string | null {
     try {
       const token = storage.getItem(TOKEN_KEY);
       if (token) return token;
-    } catch (e) {}
+    } catch {}
   }
 
   // Cookie fallback (Safe for both SSR and Client)
@@ -25,7 +25,7 @@ export function getAccessToken(): string | null {
     try {
       const match = document.cookie.match(new RegExp('(^| )' + TOKEN_KEY + '=([^;]+)'));
       if (match) return decodeURIComponent(match[2]);
-    } catch (e) {}
+    } catch {}
   }
   
   return null;
@@ -36,11 +36,7 @@ export function setAccessToken(token: string): void {
   if (storage) {
     try {
       storage.setItem(TOKEN_KEY, token);
-    } catch (e) {}
-  }
-
-  if (typeof document !== "undefined") {
-    document.cookie = `${TOKEN_KEY}=${encodeURIComponent(token)}; path=/; max-age=${COOKIE_MAX_AGE_SECONDS}; samesite=lax`;
+    } catch {}
   }
 }
 
@@ -49,11 +45,7 @@ export function clearAccessToken(): void {
   if (storage) {
     try {
       storage.removeItem(TOKEN_KEY);
-    } catch (e) {}
-  }
-
-  if (typeof document !== "undefined") {
-    document.cookie = `${TOKEN_KEY}=; path=/; max-age=0; samesite=lax`;
+    } catch {}
   }
 }
 

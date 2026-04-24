@@ -17,6 +17,7 @@ import {
   useUpdateNotice,
 } from "@/hooks/api/use-notices";
 import { Notice } from "@/services/notice.service";
+import type { NoticeInput } from "@/lib/api/types";
 
 interface NoticeFormState {
   titleEn: string;
@@ -108,7 +109,7 @@ export function NoticesScreen() {
   const handleSaveNotice = React.useCallback(async () => {
     const payload: NoticeInput = {
       ...formData,
-      date: editingNotice?.date ?? new Date().toISOString().slice(0, 10),
+      date: new Date().toISOString().slice(0, 10),
     };
     if (!payload.titleEn.trim() || !payload.titleHi.trim()) {
       return;
@@ -121,7 +122,7 @@ export function NoticesScreen() {
     }
 
     handleModalClose();
-  }, [createNotice, editingNotice, formData, handleModalClose, updateNotice]);
+  }, [createMutation, editingNotice, formData, handleModalClose, updateMutation]);
 
   const actions = [
     {
@@ -167,7 +168,12 @@ export function NoticesScreen() {
       </div>
 
 
-      <DataTable data={filteredNotices} columns={columns} actions={actions} isLoading={loading || isDeleting} />
+      <DataTable
+        data={filteredNotices}
+        columns={columns}
+        actions={actions}
+        isLoading={loading || deleteMutation.isPending}
+      />
 
       <FormModal
         isOpen={isModalOpen}

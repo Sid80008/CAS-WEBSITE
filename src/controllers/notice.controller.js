@@ -1,9 +1,19 @@
 import * as service from '../services/notice.service.js'
-import { noticeSchema } from '../validators/notice.js'
+
+const slugify = (value) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
 
 export const create = async (req, res, next) => {
   try {
-    const data = noticeSchema.parse(req.body)
+    const data = {
+      ...req.body,
+      slug: req.body.slug || slugify(req.body.titleEn),
+    }
     const notice = await service.createNotice(data, req.user.id)
     res.json(notice)
   } catch (e) {
@@ -14,6 +24,7 @@ export const create = async (req, res, next) => {
 export const getPublic = async (req, res, next) => {
   try {
     const data = await service.getPublic()
+    res.set('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=300')
     res.json(data)
   } catch (e) {
     next(e)

@@ -15,6 +15,9 @@ export async function getMe(): Promise<User> {
 }
 
 export function logout(): void {
+  void apiClient.post("/auth/logout").catch(() => {
+    // Ignore network failures during logout; local cleanup still proceeds.
+  });
   clearAccessToken();
 }
 

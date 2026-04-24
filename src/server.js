@@ -1,12 +1,27 @@
 import app from './app.js'
 import 'dotenv/config'
+import { env } from './config/env.js'
+import { logger } from './lib/logger.js'
+import prisma from './prisma/client.js'
 
-const PORT = process.env.PORT || 4001
+const { PORT } = env
 
-if (!process.env.JWT_SECRET) {
-  console.warn('WARNING: JWT_SECRET is not set in environment variables. Auth will fail.')
+const server = app.listen(PORT, '0.0.0.0', () => {
+  logger.info(`API server started`, { port: PORT, env: env.NODE_ENV })
+})
+
+const gracefulShutdown = async (signal) => {
+  logger.warn(`Received ${signal}, shutting down gracefully`)
+  server.close(async () => {
+    await prisma.$disconnect()
+    process.exit(0)
+  })
 }
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
+process.on('SIGINT', () => {
+  void gracefulShutdown('SIGINT')
+})
+
+process.on('SIGTERM', () => {
+  void gracefulShutdown('SIGTERM')
 })

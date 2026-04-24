@@ -7,6 +7,7 @@ const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:4001/a
 export const apiClient = axios.create({
   baseURL,
   timeout: 15000,
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
   },
@@ -31,7 +32,7 @@ apiClient.interceptors.response.use(
 
     const message =
       error.response?.data?.message ??
-      error.response?.data?.error ??
+      (typeof error.response?.data?.error === "string" ? error.response?.data?.error : undefined) ??
       error.message ??
       "Unexpected API error";
 

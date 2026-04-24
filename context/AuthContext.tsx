@@ -38,8 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         const userData = await getMe();
         setUser(userData);
-      } catch (err) {
-        console.error("Failed to restore session:", err);
+      } catch {
         clearSession();
         setToken(null);
         setUser(null);

@@ -51,8 +51,8 @@ export function StudentsScreen() {
 
   const actions = [
     { label: "Edit Details", onClick: (s: Student) => { setEditingStudent(s); setIsModalOpen(true); } },
-    { label: "View Profile", onClick: (s: Student) => console.log("View", s) },
-    { label: "Delete", variant: "destructive" as const, onClick: (s: Student) => console.log("Delete", s) },
+    { label: "View Profile", onClick: () => {} },
+    { label: "Delete", variant: "destructive" as const, onClick: () => {} },
   ];
 
   const filters = [
@@ -82,12 +82,12 @@ export function StudentsScreen() {
 
       {/* ActionBar Area */}
       <div className="bg-white p-4 rounded-xl border shadow-sm flex flex-col md:flex-row gap-4">
-        <SearchBar onSearch={(v) => console.log(v)} placeholder="Search students by name or admission no..." />
+        <SearchBar onSearch={() => {}} placeholder="Search students by name or admission no..." />
         <FilterBar 
           filters={filters} 
           activeFilters={{}} 
-          onChange={(id, val) => console.log(id, val)}
-          onReset={() => console.log("Reset")}
+          onChange={() => {}}
+          onReset={() => {}}
         />
       </div>
 
