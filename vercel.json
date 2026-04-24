@@ -3,8 +3,13 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "regions": ["cle1"],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "/api/main"
+    }
+  ],
   "env": {
-    "NEXT_PUBLIC_API_BASE_URL": "@next_public_api_base_url"
+    "NEXT_PUBLIC_API_BASE_URL": "/api"
   }
 }
