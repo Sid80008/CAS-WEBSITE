@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { userSchema } from '@/lib/validators/user'
-import bcrypt from 'bcrypt'
+import bcrypt from 'bcryptjs'
 
 export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
