@@ -1,15 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { Plus, Eye, EyeOff } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { DataTable } from "../components/DataTable";
-import { SearchBar } from "../components/SearchBar";
-import { FormModal } from "../components/FormModal";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Eye, EyeOff, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "../components/DataTable";
