@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { verifyAuth } from '@/lib/auth-utils'
+
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   try {

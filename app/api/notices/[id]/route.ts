@@ -1,15 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { slugify } from '@/lib/utils'
 import { noticeSchema, updateNoticeSchema } from '@/lib/validators/notice'
 
+export const runtime = "nodejs";
+
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params
+    const { id } = await params;
     const notice = await prisma.notice.findUnique({
       where: { id },
       include: { author: { select: { email: true } } }
@@ -27,7 +29,7 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params
@@ -37,7 +39,7 @@ export async function PUT(
     }
 
     const body = await req.json()
-    const data = { ...body }
+    const data: any = { ...body }
     
     if (data.titleEn) {
       data.slug = `${slugify(data.titleEn)}-${Date.now()}`
@@ -56,7 +58,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params

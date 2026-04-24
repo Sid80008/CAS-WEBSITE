@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { slugify } from '@/lib/utils'
 import { noticeSchema, updateNoticeSchema } from '@/lib/validators/notice'
+
+export const runtime = "nodejs";
 
 export async function GET(req: NextRequest) {
   try {

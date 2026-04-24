@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
-import prisma from '@/lib/prisma'
+import { prisma } from '@/lib/prisma'
 import { admissionSchema } from '@/lib/validators/admission'
+
+export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
   try {
