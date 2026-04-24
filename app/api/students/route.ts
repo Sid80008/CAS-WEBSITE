@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+// Lazy prisma import added inside handlers
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { studentSchema, updateStudentSchema } from '@/lib/validators/student'
 
@@ -7,6 +7,7 @@ export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+    const { prisma } = await import('@/lib/prisma');
   try {
     const searchParams = req.nextUrl.searchParams
     const page = parseInt(searchParams.get('page') || '1')
@@ -55,6 +56,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+    const { prisma } = await import('@/lib/prisma');
   try {
     const user = await verifyAuth(req)
     if (!hasPermission(user, 'CREATE_STUDENTS')) {

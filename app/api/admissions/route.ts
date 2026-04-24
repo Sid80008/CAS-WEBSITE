@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+// Lazy prisma import added inside handlers
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { admissionSchema } from '@/lib/validators/admission'
 
@@ -7,6 +7,7 @@ export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
+    const { prisma } = await import('@/lib/prisma');
   try {
     const searchParams = req.nextUrl.searchParams
     const page = parseInt(searchParams.get('page') || '1')
@@ -52,6 +53,7 @@ export async function GET(req: NextRequest) {
 // Public apply route mirrored here as POST /api/admissions/apply
 // But base POST /api/admissions is for admin
 export async function POST(req: NextRequest) {
+    const { prisma } = await import('@/lib/prisma');
   try {
     const body = await req.json()
     const validated = admissionSchema.parse(body)

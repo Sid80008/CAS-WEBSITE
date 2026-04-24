@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { prisma } from '@/lib/prisma'
+// Lazy prisma import added inside handlers
 import { verifyAuth, hasPermission } from '@/lib/auth-utils'
 import { updateGallerySchema } from '@/lib/validators/gallery'
 
@@ -10,6 +10,7 @@ export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+    const { prisma } = await import('@/lib/prisma');
   try {
     const { id } = await params;
     const gallery = await prisma.gallery.findUnique({
@@ -30,6 +31,7 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+    const { prisma } = await import('@/lib/prisma');
   try {
     const { id } = await params
     const user = await verifyAuth(req)
@@ -54,6 +56,7 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
+    const { prisma } = await import('@/lib/prisma');
   try {
     const { id } = await params
     const user = await verifyAuth(req)
