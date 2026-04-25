@@ -1,7 +1,6 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import authConfig from "./auth.config"
-// removed static prisma import
 import bcrypt from "bcryptjs"
 import { userSchema } from "@/lib/validators/user"
 
@@ -56,24 +55,5 @@ export const {
       },
     }),
   ],
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id
-        token.roles = (user as any).roles
-        token.permissions = (user as any).permissions
-      }
-      return token
-    },
-    async session({ session, token }) {
-      if (token.id) {
-        session.user.id = token.id as string
-        ;(session.user as any).roles = token.roles as any
-        ;(session.user as any).permissions = token.permissions as any
-      }
-      return session
-    },
-  },
-  session: { strategy: "jwt" },
   secret: process.env.AUTH_SECRET || process.env.JWT_SECRET,
 })

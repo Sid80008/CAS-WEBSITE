@@ -3,15 +3,15 @@
 import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { 
-  History, 
-  Users, 
-  UserRound, 
-  Bell, 
-  Image as ImageIcon, 
-  Calendar, 
-  Download, 
-  FileCheck, 
+import {
+  History,
+  Users,
+  UserRound,
+  Bell,
+  Image as ImageIcon,
+  Calendar,
+  Download,
+  FileCheck,
   LayoutDashboard,
   LogOut,
   Settings
@@ -40,7 +40,7 @@ export function Sidebar() {
           <div className="h-8 w-8 bg-indigo-600 rounded-lg flex items-center justify-center">
             <span className="font-bold text-white">C</span>
           </div>
-          <span className="font-bold text-lg tracking-tight uppercase">CA Anta</span>
+          <span className="font-bold text-lg tracking-tight uppercase">CAS Anta</span>
         </Link>
       </div>
 
@@ -54,8 +54,8 @@ export function Sidebar() {
               href={item.href}
               className={cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all group",
-                isActive 
-                  ? "bg-indigo-600/10 text-indigo-400 border-l-4 border-indigo-600 rounded-l-none" 
+                isActive
+                  ? "bg-indigo-600/10 text-indigo-400 border-l-4 border-indigo-600 rounded-l-none"
                   : "text-gray-400 hover:bg-gray-800 hover:text-white"
               )}
             >
@@ -80,14 +80,14 @@ export function Sidebar() {
             <p className="text-xs text-gray-400 truncate">admin@casanta.com</p>
           </div>
         </div>
-        
+
         <div className="flex gap-2">
-           <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-800 flex-1">
-             <Settings className="h-5 w-5" />
-           </Button>
-           <Button variant="ghost" size="icon" className="text-gray-400 hover:text-red-400 hover:bg-red-400/10 flex-1">
-             <LogOut className="h-5 w-5" />
-           </Button>
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-white hover:bg-gray-800 flex-1">
+            <Settings className="h-5 w-5" />
+          </Button>
+          <Button variant="ghost" size="icon" className="text-gray-400 hover:text-red-400 hover:bg-red-400/10 flex-1">
+            <LogOut className="h-5 w-5" />
+          </Button>
         </div>
       </div>
     </aside>
@@ -97,7 +97,7 @@ export function Sidebar() {
 // Minimal Button shim since I might not have imported Button from components/ui
 function Button({ children, variant, size, className, ...props }: any) {
   return (
-    <button 
+    <button
       className={cn(
         "flex items-center justify-center rounded-lg transition-colors",
         variant === "ghost" ? "bg-transparent" : "bg-gray-800",

@@ -7,7 +7,10 @@ import {
   publicRoutes,
 } from "@/routes"
 
-const { auth } = NextAuth(authConfig)
+const { auth } = NextAuth({
+  ...authConfig,
+  secret: process.env.AUTH_SECRET || process.env.JWT_SECRET,
+})
 
 export default auth((req) => {
   const { nextUrl } = req
@@ -29,13 +32,21 @@ export default auth((req) => {
   }
 
   if (!isLoggedIn && !isPublicRoute) {
+    let callbackUrl = nextUrl.pathname
+    if (nextUrl.search) {
+      callbackUrl += nextUrl.search
+    }
+
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl)
+
     if (nextUrl.pathname.startsWith("/api")) {
       return new Response(JSON.stringify({ error: "Unauthorized" }), { 
         status: 401,
         headers: { "Content-Type": "application/json" }
       })
     }
-    return Response.redirect(new URL("/login", nextUrl))
+    
+    return Response.redirect(new URL(`/login?callbackUrl=${encodedCallbackUrl}`, nextUrl))
   }
 
   return
