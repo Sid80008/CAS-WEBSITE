@@ -12,6 +12,22 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				/* Core brand colors mapped to HEX variables */
+				"school-blue": "var(--school-blue)",
+				"school-blue-light": "var(--school-blue-light)",
+				"school-blue-dark": "var(--school-blue-dark)",
+				"school-amber": "var(--school-amber)",
+				"school-teal": "var(--school-teal)",
+				"school-coral": "var(--school-coral)",
+				"school-purple": "var(--school-purple)",
+				"school-green": "var(--school-green)",
+				
+				/* Semantic UI colors */
+				"text-primary": "var(--text-primary)",
+				"text-secondary": "var(--text-secondary)",
+				"text-tertiary": "var(--text-tertiary)",
+				
+				/* shadcn/ui defaults */
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
 				ring: "hsl(var(--ring))",
@@ -46,10 +62,34 @@ export default {
 					foreground: "hsl(var(--card-foreground))",
 				},
 			},
+			fontFamily: {
+				sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+			},
+			fontSize: {
+				xs: ["var(--spacing-3)", "1.5"], /* 12px */
+				sm: ["14px", "1.5"],
+				base: ["16px", "1.6"],
+				lg: ["18px", "1.6"],
+				xl: ["20px", "1.4"],
+				"2xl": ["24px", "1.2"],
+				"3xl": ["30px", "1.2"],
+			},
 			borderRadius: {
-				lg: "var(--radius)",
-				md: "calc(var(--radius) - 2px)",
-				sm: "calc(var(--radius) - 4px)",
+				sm: "var(--radius-sm)",
+				DEFAULT: "var(--radius-default)",
+				lg: "var(--radius-lg)",
+				xl: "var(--radius-xl)",
+				full: "9999px",
+			},
+			spacing: {
+				"1": "var(--spacing-1)",
+				"2": "var(--spacing-2)",
+				"3": "var(--spacing-3)",
+				"4": "var(--spacing-4)",
+				"6": "var(--spacing-6)",
+				"8": "var(--spacing-8)",
+				"12": "var(--spacing-12)",
+				"16": "var(--spacing-16)",
 			},
 			keyframes: {
 				"accordion-down": {
@@ -69,3 +109,5 @@ export default {
 	},
 	plugins: [tailwindAnimate],
 } satisfies Config;
+
+

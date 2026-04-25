@@ -1,7 +1,6 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import authConfig from "./auth.config"
-import bcrypt from "bcryptjs"
 import { userSchema } from "@/lib/validators/user"
 
 export const { 
@@ -11,6 +10,10 @@ export const {
   signOut 
 } = NextAuth({
   ...authConfig,
+  trustHost: true,
+  pages: {
+    signIn: "/login",
+  },
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -19,6 +22,8 @@ export const {
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data
           const { prisma } = await import("@/lib/prisma")
+          const bcrypt = await import("bcryptjs")
+          
           const user = await prisma.user.findUnique({ 
             where: { email },
             include: {
@@ -57,3 +62,4 @@ export const {
   ],
   secret: process.env.AUTH_SECRET || process.env.JWT_SECRET,
 })
+

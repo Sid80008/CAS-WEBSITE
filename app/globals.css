@@ -4,48 +4,77 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 234 89% 36%; /* Indigo-600 equivalent */
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 234 89% 36%;
-    --radius: 0.75rem;
-  }
+    /* Brand Colors - Primitives (HEX) */
+    --school-blue: #1B4F8A;
+    --school-blue-light: #E6F1FB;
+    --school-blue-dark: #0C447C;
+    
+    --school-amber: #BA7517;
+    --school-teal: #0F6E56;
+    --school-coral: #993C1D;
+    --school-purple: #534AB7;
+    --school-green: #3B6D11;
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    /* Neutrals (HEX) */
+    --text-primary: #1a1a1a;
+    --text-secondary: #555555;
+    --text-tertiary: #888888;
+    --border-neutral: #e2e0db;
+    --background-white: #ffffff;
+    --background-alt: #f8f7f5;
+
+    /* Spacing System (4px Grid) */
+    --spacing-1: 4px;
+    --spacing-2: 8px;
+    --spacing-3: 12px;
+    --spacing-4: 16px;
+    --spacing-6: 24px;
+    --spacing-8: 32px;
+    --spacing-12: 48px;
+    --spacing-16: 64px;
+
+    /* Radius System */
+    --radius-sm: 6px;
+    --radius-default: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+
+    /* shadcn/ui Semantic Overrides (HSL format) */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 10%; /* Matches #1a1a1a approx */
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 10%;
+    
+    /* Primary: #1B4F8A */
+    --primary: 214 67% 32%; 
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary: Brand Blue Light (#E6F1FB) */
+    --secondary: 208 79% 94%; 
+    --secondary-foreground: 210 82% 26%; /* Brand Blue Dark */
+    
+    /* Muted: Background Alt (#f8f7f5) */
+    --muted: 40 20% 97%;
+    --muted-foreground: 0 0% 33%; /* #555555 */
+    
+    /* Accent: Brand Blue Light on hover/active */
+    --accent: 208 79% 94%;
+    --accent-foreground: 214 67% 32%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    /* Border Neutral: #e2e0db */
+    --border: 48 11% 87%; 
+    --input: 48 11% 87%;
+    --ring: 214 67% 32%;
+    
+    /* shadcn internal variable mapping */
+    --radius: 0.5rem;
   }
 }
 
@@ -53,8 +82,33 @@
   * {
     @apply border-border;
   }
+  
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    background-color: var(--background-white);
+    color: var(--text-primary);
+    font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  /* Typography Base Overrides */
+  p {
+    @apply text-base text-text-primary mb-4;
+    line-height: 1.6;
+  }
+
+  /* Hindi Specific Global Styles */
+  [lang="hi"], .font-hindi {
+    line-height: 1.65;
   }
 }
+
+
