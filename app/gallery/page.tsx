@@ -2,6 +2,8 @@ import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
 import { prisma } from "@/lib/prisma";
 import { ImageIcon, Calendar, Layers, MapPin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import Link from 'next/link';
 
 async function getAlbums() {
   const albums = await prisma.gallery.findMany({
@@ -126,4 +128,3 @@ export default async function PublicGallery() {
   );
 }
 
-import Link from 'next/link';

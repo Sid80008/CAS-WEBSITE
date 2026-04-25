@@ -1,17 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { 
-  Campaign, 
-  WorkspacePremium, 
-  HistoryEdu, 
-  Groups, 
-  MilitaryTech,
-  MenuBook,
-  Science,
-  SportsBasketball,
-  CastForEducation,
-  ArrowForward
-} from "@mui/icons-material"; // Note: User design used Material Symbols, I'll use MUI icons for React compatibility if available or Lucide
+
 import { 
   Megaphone,
   Award,
