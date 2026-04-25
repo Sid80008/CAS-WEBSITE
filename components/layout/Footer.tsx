@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Mail, Phone, MapPin, Facebook, Share2 } from "lucide-react";
+import { Mail, Phone, MapPin, Share2 } from "lucide-react";
 
 export function Footer() {
   return (
@@ -75,7 +75,7 @@ export function Footer() {
           </nav>
           <div className="flex gap-4">
             <a href="#" className="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-school-blue transition-colors">
-              <Facebook className="h-4 w-4 text-white" />
+              <Share2 className="h-4 w-4 text-white" />
             </a>
             <a href="#" className="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-school-blue transition-colors">
               <Share2 className="h-4 w-4 text-white" />

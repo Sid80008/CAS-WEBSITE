@@ -10,7 +10,7 @@ import {
   Coffee, 
   Palette,
   Music,
-  Dribbble,
+  Trophy,
   BookOpenCheck,
   Microscope
 } from "lucide-react";
@@ -41,7 +41,7 @@ export default function Facilities() {
     { 
       title: "Sports Complex", 
       desc: "State-of-the-art courts for basketball, volleyball, and a professional-grade cricket ground.", 
-      icon: <Dribbble />, 
+      icon: <Trophy />, 
       img: "/gallery/photo-dump/1741166412_slider-20.jpg",
       color: "amber"
     },
