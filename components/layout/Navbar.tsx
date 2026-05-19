@@ -14,11 +14,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { EASE } from "@/lib/animations";
 import { useLanguage } from "@/context/LanguageContext";
+import { useScrolled } from "@/hooks/useScrolled";
+
 
 const ABOUT_LINKS = [
   { name: "Vision & Mission", href: "/about/vision-mission" },
-  { name: "Director's Message", href: "/about/vision-mission" }, // TODO Phase 4: update to /about/director
-  { name: "Principal's Message", href: "/about/vision-mission" }, // TODO Phase 4: update to /about/principal
+  { name: "Director's Message", href: "/about/director" },
+  { name: "Principal's Message", href: "/about/principal" },
 ];
 
 const NAV_LINKS = [
@@ -35,12 +37,17 @@ export function Navbar() {
   const pathname = usePathname();
   const { language, setLanguage } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const scrolled = useScrolled(16);
 
   const isAboutActive = pathname.startsWith("/about");
 
   return (
     <motion.header
-      className="bg-white/95 backdrop-blur-md text-school-blue font-sans sticky top-0 w-full z-50 border-b border-slate-100 shadow-sm"
+      className={`bg-white/95 backdrop-blur-md text-school-blue font-sans sticky top-0 w-full z-50 border-b transition-all duration-300
+        ${scrolled
+          ? "border-slate-200 shadow-md"
+          : "border-slate-100 shadow-sm"
+        }`}
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.65, ease: EASE }}

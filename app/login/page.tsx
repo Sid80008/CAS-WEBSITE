@@ -1,11 +1,12 @@
-import { Suspense } from 'react'
-import { Loader2 } from 'lucide-react'
-import LoginForm from '@/components/LoginForm'
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import LoginForm from "@/components/LoginForm";
+import { Loader2 } from "lucide-react";
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Portal Login",
-  description: "Login to the Central Academy School staff or admin portal.",
-}
+  description: "Staff and admin portal login for Central Academy Senior Secondary School, Anta.",
+};
 
 function LoginSkeleton() {
   return (
@@ -23,7 +24,7 @@ function LoginSkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function LoginPage() {
@@ -31,5 +32,5 @@ export default function LoginPage() {
     <Suspense fallback={<LoginSkeleton />}>
       <LoginForm />
     </Suspense>
-  )
+  );
 }

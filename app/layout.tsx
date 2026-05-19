@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/providers";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const notoSans = Noto_Sans({
   variable: "--font-sans",
@@ -32,14 +33,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${notoSans.variable} font-sans antialiased`}
-      >
-        <Providers>
-          {children}
-        </Providers>
+      <body className={`${notoSans.variable} font-sans antialiased`}>
+        <LoadingScreen />
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
 }
+
 
