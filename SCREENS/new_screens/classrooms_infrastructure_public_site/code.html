@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Classrooms - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "text-tertiary": "#888888",
+                    "surface-tint": "#305f9b",
+                    "school-blue-dark": "#0C447C",
+                    "surface-container-low": "#f6f3f2",
+                    "amber-dark": "#633806",
+                    "school-blue-extra-light": "#F0F6FC",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "background": "#fcf9f8",
+                    "primary-fixed": "#d4e3ff",
+                    "on-surface": "#1c1b1b",
+                    "tertiary-container": "#005a45",
+                    "on-secondary": "#ffffff",
+                    "secondary-fixed": "#ffdcbb",
+                    "on-tertiary-fixed": "#002117",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "teal-dark": "#085041",
+                    "bg-secondary": "#F8F7F5",
+                    "school-blue-light": "#E6F1FB",
+                    "on-primary-container": "#9ac2ff",
+                    "green": "#3B6D11",
+                    "primary": "#00386b",
+                    "on-primary-fixed": "#001c3a",
+                    "surface-bright": "#fcf9f8",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-variant": "#e5e2e1",
+                    "secondary-fixed-dim": "#ffb869",
+                    "tertiary-fixed": "#a0f3d4",
+                    "teal-light": "#E1F5EE",
+                    "outline": "#737781",
+                    "on-error-container": "#93000a",
+                    "error-container": "#ffdad6",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#eae7e7",
+                    "surface": "#fcf9f8",
+                    "on-tertiary-fixed-variant": "#00513e",
+                    "inverse-surface": "#313030",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dcd9d9",
+                    "secondary-container": "#fdad4e",
+                    "border-hover": "#B4B2A9",
+                    "on-secondary-fixed": "#2b1700",
+                    "primary-container": "#1b4f8a",
+                    "surface-container": "#f0eded",
+                    "coral-light": "#FAECE7",
+                    "on-surface-variant": "#424750",
+                    "outline-variant": "#c2c6d1",
+                    "border-default": "#E2E0DB",
+                    "on-background": "#1c1b1b",
+                    "purple": "#534AB7",
+                    "on-secondary-fixed-variant": "#673d00",
+                    "secondary": "#885200",
+                    "on-primary-fixed-variant": "#0e4782",
+                    "on-secondary-container": "#704200",
+                    "text-secondary": "#555555",
+                    "tertiary-fixed-dim": "#84d6b9",
+                    "on-tertiary-container": "#7ed0b3",
+                    "amber-light": "#FAEEDA",
+                    "inverse-primary": "#a6c8ff",
+                    "coral": "#993C1D",
+                    "tertiary": "#004031",
+                    "surface-container-highest": "#e5e2e1",
+                    "inverse-on-surface": "#f3f0ef",
+                    "bg-tertiary": "#F1EFE8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "sm": "8px",
+                    "base": "4px",
+                    "xl": "32px",
+                    "page-mobile": "24px",
+                    "page-desktop": "64px",
+                    "md": "16px",
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "section": "48px"
+            },
+            "fontFamily": {
+                    "overline": [
+                            "Inter"
+                    ],
+                    "label": [
+                            "Inter"
+                    ],
+                    "body": [
+                            "Inter"
+                    ],
+                    "h3": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "h1": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-large": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "h2": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "caption": [
+                            "Inter"
+                    ],
+                    "body-small": [
+                            "Inter"
+                    ],
+                    "h4": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "overline": [
+                            "11px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h3": [
+                            "22px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "h1": [
+                            "36px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-large": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "h2": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "caption": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body-small": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h4": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body text-body antialiased selection:bg-school-blue-light selection:text-school-blue-dark flex flex-col min-h-screen">
+<!-- TopAppBar (Web) -->
+<header class="hidden md:flex bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center w-full max-w-[1280px] mx-auto px-4 md:px-16 h-20">
+<div class="text-xl font-extrabold text-[#1B4F8A] dark:text-white uppercase tracking-tighter">Central Academy Anta</div>
+<nav class="flex items-center gap-6">
+<a class="font-plus-jakarta text-sm font-semibold tracking-wide uppercase text-slate-600 dark:text-slate-400 hover:text-[#1B4F8A] dark:hover:text-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200 p-2 rounded-md active:scale-95 transition-transform" href="#">Home</a>
+<a class="font-plus-jakarta text-sm font-semibold tracking-wide uppercase text-[#1B4F8A] dark:text-blue-400 border-b-2 border-[#1B4F8A] dark:border-blue-400 pb-1 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200 p-2 rounded-md active:scale-95 transition-transform" href="#">Facilities</a>
+<a class="font-plus-jakarta text-sm font-semibold tracking-wide uppercase text-slate-600 dark:text-slate-400 hover:text-[#1B4F8A] dark:hover:text-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200 p-2 rounded-md active:scale-95 transition-transform" href="#">Team</a>
+<a class="font-plus-jakarta text-sm font-semibold tracking-wide uppercase text-slate-600 dark:text-slate-400 hover:text-[#1B4F8A] dark:hover:text-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200 p-2 rounded-md active:scale-95 transition-transform" href="#">Admissions</a>
+<a class="font-plus-jakarta text-sm font-semibold tracking-wide uppercase text-slate-600 dark:text-slate-400 hover:text-[#1B4F8A] dark:hover:text-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200 p-2 rounded-md active:scale-95 transition-transform" href="#">Events</a>
+<a class="font-plus-jakarta text-sm font-semibold tracking-wide uppercase text-slate-600 dark:text-slate-400 hover:text-[#1B4F8A] dark:hover:text-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors duration-200 p-2 rounded-md active:scale-95 transition-transform" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button aria-label="Search" class="text-slate-600 hover:text-[#1B4F8A] transition-colors p-2">
+<span class="material-symbols-outlined text-xl">search</span>
+</button>
+<button class="bg-primary-container text-on-primary text-label font-label px-4 py-2 rounded-DEFAULT hover:bg-school-blue-dark transition-colors duration-200 shadow-sm hover:shadow-md transform hover:-translate-y-[1px]">Apply Now</button>
+</div>
+</div>
+</header>
+<!-- SideNavBar (Mobile) -->
+<aside class="md:hidden fixed inset-y-0 left-0 z-[60] flex flex-col p-6 bg-white dark:bg-slate-900 border-r border-slate-100 dark:border-slate-800 shadow-xl dark:shadow-none h-full w-72 rounded-r-lg transform -translate-x-full transition-transform duration-300" id="mobile-menu">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-school-blue-light flex items-center justify-center overflow-hidden border border-border-default">
+<img alt="School Crest" class="w-full h-full object-cover" data-alt="professional school crest logo placeholder with blue and gold elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCthV4yMWKbtGrGkSQnY4Bjd11aQPlThgDGghkMy3POXfCwFg3DcIM2bBpTcq35VRfeMz0LYSQS_N0goQPbYXiD9RKens670sVHRgi035_JooGnhIXLj5kgfDnDJXyuiXQOTpiCgipMwOvncoNGA-EPDrUGh-gLGTVWvsRymzAFtNLcdSmLDNWqbRn38bJ-b_JTh5SrqsxgGiWenNKNf-XzsPvCkjhtzZIrXAre8ALp9Vqb6HLorRAOfU9_f2nJ1UUZyMWoKjkJw2Qh"/>
+</div>
+<div>
+<h2 class="text-lg font-bold text-[#1B4F8A] dark:text-white font-h4">Central Academy</h2>
+<p class="text-caption font-caption text-text-secondary">Excellence Since 1994</p>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-r-lg font-plus-jakarta text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 active:bg-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">home</span> Home
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 bg-blue-50 dark:bg-blue-900/30 text-[#1B4F8A] dark:text-blue-300 font-bold border-l-4 border-[#1B4F8A] rounded-r-lg font-plus-jakarta text-sm hover:translate-x-1 transition-transform duration-200 active:bg-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">domain</span> Facilities
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-r-lg font-plus-jakarta text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 active:bg-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">groups</span> Faculty
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-r-lg font-plus-jakarta text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 active:bg-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">app_registration</span> Admissions
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-r-lg font-plus-jakarta text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 active:bg-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">photo_library</span> Gallery
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-r-lg font-plus-jakarta text-sm font-medium text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:translate-x-1 transition-transform duration-200 active:bg-slate-100 transition-all" href="#">
+<span class="material-symbols-outlined">contact_support</span> Contact
+            </a>
+</nav>
+<div class="mt-auto pt-6 border-t border-border-default">
+<button class="w-full bg-primary-container text-on-primary text-label font-label px-4 py-3 rounded-DEFAULT hover:bg-school-blue-dark transition-colors duration-200 shadow-sm text-center">Online Inquiry</button>
+</div>
+</aside>
+<!-- Mobile Header (trigger for side nav) -->
+<div class="md:hidden flex justify-between items-center bg-white border-b border-border-default p-4 sticky top-0 z-40">
+<div class="text-lg font-extrabold text-primary-container uppercase tracking-tighter">CA Anta</div>
+<button aria-label="Open menu" class="p-2 text-on-surface-variant focus:outline-none" onclick="document.getElementById('mobile-menu').classList.remove('-translate-x-full')">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col w-full">
+<!-- Hero Section -->
+<section class="relative w-full h-[512px] min-h-[400px] flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Modern bright classroom" class="w-full h-full object-cover object-center" data-alt="bright modern school classroom with large windows, wooden desks arranged in groups, and natural sunlight streaming in creating a warm academic atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcV5z9fdAy8Siz87FhGa9XhsNvODn37bLsvpHkUmUTm9Hef_Kkk7_RBwvo2WEY3kEafFXmkvITCc3O0No_AfXGtycQdDZn7kztUollND0CnF7btWG0wIZ-qKmnKMnKPwrV-cix9X_btKat4MVekr0mVrsYRmV1n0sgFVj5bjt7aoLyGmEcQ6_sxOyTFeuo-6TrBI5LOlHYhJtGpD_Bd2fUQ_Xa2XVW2_7t1YfEzMft36wgWiTyGDFLwVRqD-xmpIRtu3_8Jtr7c4ov"/>
+<div class="absolute inset-0 bg-school-blue-dark/60 mix-blend-multiply"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent"></div>
+</div>
+<div class="relative z-10 text-center px-4 md:px-page-desktop w-full max-w-container-max mx-auto mt-16">
+<span class="inline-block py-1 px-3 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white text-caption font-overline uppercase tracking-wider mb-4 shadow-sm">Facilities</span>
+<h1 class="text-display font-display text-white mb-4 drop-shadow-md">Classrooms</h1>
+<p class="text-h3 font-h3 text-school-blue-light max-w-2xl mx-auto drop-shadow">Spacious, Modern Learning Spaces</p>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="w-full max-w-container-max mx-auto px-4 md:px-page-desktop py-section">
+<div class="mb-12 text-center md:text-left">
+<h2 class="text-h2 font-h2 text-primary-container mb-2">Designed for Focus</h2>
+<p class="text-body font-body text-text-secondary max-w-3xl">Our classrooms are meticulously designed to foster concentration, collaboration, and comfort, ensuring every student has the optimal environment for academic success.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
+<!-- Feature 1: Large/Featured -->
+<div class="md:col-span-2 bg-white rounded-lg border border-border-default p-8 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between group overflow-hidden relative">
+<div class="absolute top-0 right-0 w-32 h-32 bg-school-blue-light/50 rounded-bl-full -mr-16 -mt-16 transition-transform duration-500 group-hover:scale-110"></div>
+<div class="relative z-10">
+<div class="w-12 h-12 bg-primary-container text-white rounded-full flex items-center justify-center mb-6 shadow-sm">
+<span class="material-symbols-outlined">space_dashboard</span>
+</div>
+<h3 class="text-h3 font-h3 text-on-surface mb-3">Airy &amp; Spacious</h3>
+<p class="text-body font-body text-text-secondary">With a generous square footage per student, our rooms avoid overcrowding. High ceilings and large windows ensure abundant natural light and excellent cross-ventilation.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-low rounded-lg border border-border-default p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-white text-surface-tint rounded-full flex items-center justify-center mb-4 border border-border-default shadow-sm">
+<span class="material-symbols-outlined">smart_display</span>
+</div>
+<h4 class="text-h4 font-h4 text-on-surface mb-2">Audio-Visual Aids</h4>
+<p class="text-body-small font-body-small text-text-secondary">Equipped with smart boards and high-fidelity sound systems to support multimedia learning experiences.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-low rounded-lg border border-border-default p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col justify-between">
+<div>
+<div class="w-10 h-10 bg-white text-tertiary-container rounded-full flex items-center justify-center mb-4 border border-border-default shadow-sm">
+<span class="material-symbols-outlined">computer</span>
+</div>
+<h4 class="text-h4 font-h4 text-on-surface mb-2">Modern Software</h4>
+<p class="text-body-small font-body-small text-text-secondary">Integrated digital learning platforms that connect students with global resources instantly from their desks.</p>
+</div>
+</div>
+<!-- Feature 4: Wide -->
+<div class="md:col-span-2 bg-white border-2 border-primary-fixed-dim bg-school-blue-extra-light rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col md:flex-row items-start md:items-center gap-6">
+<div class="w-12 h-12 bg-white text-green rounded-full flex items-center justify-center border border-border-default shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined">park</span>
+</div>
+<div>
+<h3 class="text-h3 font-h3 text-primary-container mb-2">Green Surroundings</h3>
+<p class="text-body font-body text-text-secondary">Positioned to overlook our expansive campus gardens, providing a calming, nature-filled backdrop that reduces stress and improves cognitive function during long study sessions.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Gallery Section (Glassmorphism inspired) -->
+<section class="w-full bg-bg-secondary py-section border-t border-border-default">
+<div class="max-w-container-max mx-auto px-4 md:px-page-desktop">
+<div class="mb-10 text-center">
+<h2 class="text-h2 font-h2 text-on-surface mb-2">Inside the Classroom</h2>
+<p class="text-body font-body text-text-secondary">A glimpse into our daily academic life.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Gallery Item 1 -->
+<div class="group relative rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 aspect-video bg-surface-container-high border border-border-default">
+<img alt="Students engaged in class" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="high school students sitting at modern wooden desks raising hands in a bright sunlit classroom with a white board in background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChLKEkVXMTv7VqGwXqQbgb685HoI1BqZCDc0FG5BuqX4AaiEaJ_ft9AM0rDOCjxiyx0-SdvqIOWOc4Afb7TAj8UmduFa8b_vsXeAni1JmvP_8io5sqnKzchEGFi9h63GHd2gyVbRxpX7jvhRDIwXAJKcWx0P8ba56uOh-CDzo-QqxSUHqP9TRTsj8yN_8PdqpUTfMTxKSjy7RGkeqJofSgmZd4RXx0CI1C_shp5miUKIXSCFj14zryFW2B9FLIfQ02YVtr-RxNE7HB"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+<div class="p-4 w-full backdrop-blur-sm bg-black/20">
+<p class="text-white font-label text-label">Interactive Sessions</p>
+</div>
+</div>
+</div>
+<!-- Gallery Item 2 -->
+<div class="group relative rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 aspect-video bg-surface-container-high border border-border-default">
+<img alt="Empty classroom setup" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="clean empty classroom interior with rows of sturdy wooden desks and chairs, large windows letting in bright natural daylight, neat and organized academic setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxaNJaBuccxuDnaHyAi24vBUGULDPPjNHhkBmPuoL9BZzEYFrv-3dQ0INejDJvRzL8RaTbyp2eU6I8qyML-_PdglnlHqbYzJJfO-1xAgrpRRGbeksHRI9oGmky329KqdkjwBuvYsFXzRrhHsYmegSwsGDU9GMF62AaxCa41Vol6cjcF013tY6b-GT-wk6AP4WZM54O8l0KK79BONPeDiWdSzLhz9as30dWv0fYg_oN17MP8UROlMyoPi0RaOg4Mr08aimfQvr2Nvoc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+<div class="p-4 w-full backdrop-blur-sm bg-black/20">
+<p class="text-white font-label text-label">Ergonomic Seating</p>
+</div>
+</div>
+</div>
+<!-- Gallery Item 3 -->
+<div class="group relative rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 aspect-video bg-surface-container-high border border-border-default">
+<img alt="Smart board teaching" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="teacher standing in front of a modern digital smart board explaining a lesson to attentive students in a well-lit contemporary classroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtsz-jFc9aNo9FU5UiC5toBmx4e7fgU77j0wNRXfcmHIofhVwIvRkJ7tNYK-KAHncNF62wAucDcXIrIGKM1oOYZHpmcJeKEBKGga5lntU1Q_ARHU8a2OPyqn4jWtAJG5W900mUNomYwrklyN55iCgCAEFtzR2J0rJLNE7lj-QYB41URpPP_YSzI3Bs1d0pwP312wED6Eo2McDwzrdskkKXMi9f08NwvVqdpfWzlEMHeiwvXm_kbQ8cc1NQKKUUpG0zbTWNaxClImEr"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+<div class="p-4 w-full backdrop-blur-sm bg-black/20">
+<p class="text-white font-label text-label">Tech-Enabled Learning</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 w-full rounded-t-lg mt-auto">
+<div class="w-full max-w-[1280px] mx-auto px-4 md:px-16 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<span class="text-lg font-bold text-slate-900 dark:text-white">Central Academy Anta</span>
+<p class="font-plus-jakarta text-sm text-slate-600 dark:text-slate-400">© 2024 Central Academy Anta. Academic Excellence for 30 Years.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+<a class="font-plus-jakarta text-sm text-slate-600 dark:text-slate-400 text-slate-500 hover:text-[#1B4F8A] hover:underline transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="font-plus-jakarta text-sm text-slate-600 dark:text-slate-400 text-slate-500 hover:text-[#1B4F8A] hover:underline transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="font-plus-jakarta text-sm text-slate-600 dark:text-slate-400 text-slate-500 hover:text-[#1B4F8A] hover:underline transition-all opacity-80 hover:opacity-100" href="#">Mandatory Disclosure</a>
+<a class="font-plus-jakarta text-sm text-slate-600 dark:text-slate-400 text-slate-500 hover:text-[#1B4F8A] hover:underline transition-all opacity-80 hover:opacity-100" href="#">Sitemap</a>
+</nav>
+</div>
+</footer>
+</body></html>

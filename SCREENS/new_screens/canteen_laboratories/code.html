@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Canteen &amp; Laboratories | Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "green": "#3B6D11",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-container": "#005a45",
+                        "background": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "bg-tertiary": "#F1EFE8",
+                        "on-surface-variant": "#424750",
+                        "on-tertiary-fixed-variant": "#00513e",
+                        "on-primary-container": "#9ac2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#7ed0b3",
+                        "teal-light": "#E1F5EE",
+                        "primary-container": "#1b4f8a",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-container-high": "#eae7e7",
+                        "surface-bright": "#fcf9f8",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-fixed-dim": "#ffb869",
+                        "school-blue-light": "#E6F1FB",
+                        "on-secondary-container": "#704200",
+                        "on-error": "#ffffff",
+                        "text-secondary": "#555555",
+                        "school-blue-dark": "#0C447C",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-container": "#f0eded",
+                        "primary": "#00386b",
+                        "bg-secondary": "#F8F7F5",
+                        "primary-fixed": "#d4e3ff",
+                        "on-tertiary-fixed": "#002117",
+                        "amber-light": "#FAEEDA",
+                        "secondary-fixed": "#ffdcbb",
+                        "text-tertiary": "#888888",
+                        "inverse-surface": "#313030",
+                        "border-default": "#E2E0DB",
+                        "school-blue-extra-light": "#F0F6FC",
+                        "secondary": "#885200",
+                        "on-primary-fixed-variant": "#0e4782",
+                        "on-tertiary": "#ffffff",
+                        "amber-dark": "#633806",
+                        "secondary-container": "#fdad4e",
+                        "tertiary-fixed-dim": "#84d6b9",
+                        "teal-dark": "#085041",
+                        "tertiary-fixed": "#a0f3d4",
+                        "outline-variant": "#c2c6d1",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "border-hover": "#B4B2A9",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "coral-light": "#FAECE7",
+                        "surface-tint": "#305f9b",
+                        "on-surface": "#1c1b1b",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "coral": "#993C1D",
+                        "purple": "#534AB7",
+                        "on-secondary-fixed": "#2b1700",
+                        "tertiary": "#004031",
+                        "outline": "#737781",
+                        "surface-container-low": "#f6f3f2",
+                        "surface": "#fcf9f8",
+                        "inverse-primary": "#a6c8ff",
+                        "on-background": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "page-desktop": "64px",
+                        "base": "4px",
+                        "section": "48px",
+                        "container-max": "1280px",
+                        "page-mobile": "24px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "h4": ["Plus Jakarta Sans"],
+                        "label": ["Inter"],
+                        "caption": ["Inter"],
+                        "display": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "body-large": ["Inter"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "overline": ["Inter"],
+                        "body-small": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body font-body text-body min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 shadow-sm font-['Plus_Jakarta_Sans'] antialiased">
+<div class="flex justify-between items-center h-20 px-6 lg:px-16 max-w-[1280px] mx-auto">
+<div class="text-xl font-extrabold tracking-tight text-[#1B4F8A] dark:text-blue-50">Central Academy Anta</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Home</a>
+<a class="text-[#1B4F8A] dark:text-blue-400 font-bold border-b-2 border-[#1B4F8A] pb-1 hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Facilities</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Events</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Gallery</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Admissions</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block text-[#1B4F8A] dark:text-blue-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200 scale-95 active:scale-100">Portal</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label text-label hover:bg-school-blue-dark transition-colors duration-200 scale-95 active:scale-100 shadow-sm hover:shadow-md">हिन्दी</button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined text-2xl">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-20">
+<!-- Hero Section -->
+<section class="bg-school-blue-light py-16 px-6 lg:px-page-desktop">
+<div class="max-w-container-max mx-auto text-center">
+<nav aria-label="Breadcrumb" class="flex justify-center mb-6 text-sm text-text-secondary">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="inline-flex items-center hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm mr-1">home</span>
+                                Home
+                            </a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Facilities</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-sm mx-1">chevron_right</span>
+<span class="text-primary font-medium">Canteen &amp; Labs</span>
+</div>
+</li>
+</ol>
+</nav>
+<h1 class="font-display text-display text-primary mb-4">Student Welfare &amp; Practical Learning</h1>
+<p class="font-body-large text-body-large text-on-surface-variant max-w-2xl mx-auto">Providing a hygienic environment for nutrition and state-of-the-art facilities for hands-on scientific exploration.</p>
+</div>
+</section>
+<!-- Safety Badge Banner -->
+<div class="bg-teal-light border-b border-border-default py-3 px-6 text-center flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-teal-dark" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span class="font-label text-label text-teal-dark">Safety First: All facilities adhere to strict institutional health and safety guidelines.</span>
+</div>
+<div class="max-w-container-max mx-auto px-6 lg:px-page-desktop py-section space-y-section">
+<!-- Canteen Section -->
+<section id="canteen">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-3xl text-primary p-2 bg-school-blue-light rounded-lg">restaurant</span>
+<h2 class="font-h2 text-h2 text-on-surface">School Canteen</h2>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+<!-- Features -->
+<div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="bg-surface-container-lowest border border-border-default rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-green bg-teal-light p-2 rounded-full">sanitizer</span>
+<h3 class="font-h3 text-h3 text-on-surface">Hygienic Kitchen</h3>
+</div>
+<p class="font-body text-body text-text-secondary">Our food preparation areas are maintained to the highest hygiene standards, with regular inspections and strict sanitation protocols.</p>
+</div>
+<div class="bg-surface-container-lowest border border-border-default rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-amber-dark bg-amber-light p-2 rounded-full">nutrition</span>
+<h3 class="font-h3 text-h3 text-on-surface">Nutritious Menu</h3>
+</div>
+<p class="font-body text-body text-text-secondary">We offer a balanced menu designed by nutritionists to ensure students receive the energy they need for a productive school day.</p>
+</div>
+<div class="md:col-span-2 rounded-xl overflow-hidden h-64 relative">
+<img alt="Students enjoying meal in clean, modern school cafeteria with ample natural light" class="w-full h-full object-cover" data-alt="clean modern school cafeteria with students eating at wooden tables, bright natural lighting, modern aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaJwNiIWGv0sK-sWUFbOv5bjpPqrotVzdsGdFF7rgKaOzLiXCrr_kWtvJZ9NCr3gngbElwkVSeVBPA0JBTKRg1N95USqV_uyCkWCwTJp_WEFvuMz2Hs_IY3-g1IM2RJMfIW8KUysMPwpEIquAvcJEg5DJ7flALfx9rB0YboQQy738q0RlBrdRECUeL3RyqwaiRVWgviJjwbmXiQpIwmRFwR2SbfP6-Jn7AikMpOo9pGPbAY7-psRi0bUyBabCzSl588z-zc-3ENfiq"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+<p class="text-white font-label text-label">A clean, welcoming environment for student meals.</p>
+</div>
+</div>
+</div>
+<!-- Sample Menu Card -->
+<div class="lg:col-span-4 bg-school-blue-extra-light border border-school-blue-light rounded-xl p-6 shadow-sm">
+<div class="flex items-center justify-between mb-6 pb-4 border-b border-school-blue-light">
+<h3 class="font-h3 text-h3 text-primary">Sample Menu</h3>
+<span class="material-symbols-outlined text-primary">restaurant_menu</span>
+</div>
+<ul class="space-y-4">
+<li class="flex justify-between items-center">
+<div>
+<p class="font-label text-label text-on-surface">Vegetable Poha</p>
+<p class="font-caption text-caption text-text-tertiary">Healthy Breakfast</p>
+</div>
+<span class="font-label text-label text-primary">₹30</span>
+</li>
+<li class="flex justify-between items-center">
+<div>
+<p class="font-label text-label text-on-surface">Rajma Chawal</p>
+<p class="font-caption text-caption text-text-tertiary">Nutritious Lunch</p>
+</div>
+<span class="font-label text-label text-primary">₹50</span>
+</li>
+<li class="flex justify-between items-center">
+<div>
+<p class="font-label text-label text-on-surface">Fresh Fruit Bowl</p>
+<p class="font-caption text-caption text-text-tertiary">Seasonal Fruits</p>
+</div>
+<span class="font-label text-label text-primary">₹40</span>
+</li>
+<li class="flex justify-between items-center">
+<div>
+<p class="font-label text-label text-on-surface">Masala Dosa</p>
+<p class="font-caption text-caption text-text-tertiary">South Indian Special</p>
+</div>
+<span class="font-label text-label text-primary">₹45</span>
+</li>
+</ul>
+<div class="mt-6 pt-4 border-t border-school-blue-light text-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-teal-light text-teal-dark font-caption text-caption">
+<span class="material-symbols-outlined text-sm mr-1" style="font-variation-settings: 'FILL' 1;">eco</span>
+                                100% Vegetarian
+                            </span>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<hr class="border-t border-border-default"/>
+<!-- Science Laboratories Section -->
+<section id="laboratories">
+<div class="flex items-center gap-3 mb-8">
+<span class="material-symbols-outlined text-3xl text-primary p-2 bg-school-blue-light rounded-lg">science</span>
+<h2 class="font-h2 text-h2 text-on-surface">Science Laboratories</h2>
+</div>
+<p class="font-body text-body text-text-secondary mb-8 max-w-3xl">Our well-equipped laboratories provide an ideal environment for students to transition from theoretical knowledge to practical application.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Physics Lab -->
+<div class="bg-surface-container-lowest border border-border-default rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+<div class="h-48 relative">
+<img alt="Physics laboratory equipment with prisms and lenses" class="w-full h-full object-cover" data-alt="close up of physics laboratory equipment, prisms, lenses, precise lighting, scientific atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9Ts0IvRnF00PAYagooqsiXZZtWVOi1cZg1tqwEyKoCHt2ddJaMnXKofznPGORDNhncy0eX9Tm87VDVmdS_wV2YkvHPLbNGIheMXwSXDcAWerZkr7WnsvAdWfJrJzsaQPF7drm3NjkKLuOk82W8dwUPVBio3efnsJH5tgpfMPmTGLVqHLZMzyNSaUGDFXa8mEhZ41PXrn8ZXUTgQjmXHQVAy7VSbY-f4Zr0rLcw9sjVjyIEZiA19im76ZEk1pdKqUkeH4y5BDTfMqO"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+</div>
+</div>
+<div class="p-6 border-l-4 border-l-primary">
+<h3 class="font-h3 text-h3 text-on-surface mb-2">Physics Lab</h3>
+<p class="font-body-small text-body-small text-text-secondary mb-4">Designed for experiments in mechanics, optics, and electricity.</p>
+<h4 class="font-label text-label text-on-surface mb-2 border-b border-surface-variant pb-1">Key Equipment</h4>
+<ul class="space-y-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-primary mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Optical Benches</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-primary mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Spectrometers</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-primary mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Digital Multimeters</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Chemistry Lab -->
+<div class="bg-surface-container-lowest border border-border-default rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+<div class="h-48 relative">
+<img alt="Chemistry lab with beakers and colorful solutions" class="w-full h-full object-cover" data-alt="chemistry lab setup with glass beakers containing colorful solutions, clean workspace, well lit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAANTmrBWucBspfZ_RUSBmlt4PjWUY0AuSyHpWPzYuna-bIOIkmi2dPbhZVkyUVvNAUS7AZoU_uR7HL7lJgS2ggJvdIF8iRG6tazi-AYLf5aqUMtB2H2ohW4-qp5QD73-VaXcQpaPkS9FKyuxUX6JfjUbgF8I-FCs5CsfA8hPWjDXDVOg3RD_A7dPx3_IrG9Bx8orGw2KaoNfZrZ8FSwl-ebvKCQcbOH2mZ0hH9YRVE-lkemDEWhb3dhNPeATYOs88wB0XxS12TuuEK"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-secondary-container">experiment</span>
+</div>
+</div>
+<div class="p-6 border-l-4 border-l-secondary-container">
+<h3 class="font-h3 text-h3 text-on-surface mb-2">Chemistry Lab</h3>
+<p class="font-body-small text-body-small text-text-secondary mb-4">Equipped for safe chemical analysis and compound synthesis.</p>
+<h4 class="font-label text-label text-on-surface mb-2 border-b border-surface-variant pb-1">Key Equipment</h4>
+<ul class="space-y-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-secondary-container mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Fume Hoods</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-secondary-container mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Analytical Balances</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-secondary-container mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Centrifuges</span>
+</li>
+</ul>
+</div>
+</div>
+<!-- Biology Lab -->
+<div class="bg-surface-container-lowest border border-border-default rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1">
+<div class="h-48 relative">
+<img alt="Biology lab microscopes on a clean counter" class="w-full h-full object-cover" data-alt="professional microscopes in a bright biology laboratory setting, shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGM4A4SAH4dWr9jsWfflUKcpA3so5lFFlIlpnDoalslNWFOeZ26LS6oWocff1_Zvp2zQDGpbV75hvr90e93rx5swRHDBgRv79xmI5QthseH4cjjBSunhcFjWVVKISXIp0jeDMTYlEQtk5H-OR-wfvcQs-7nBRGronhljkL7adJOuuHejK9bmig5UCaj2hN1axUlI-hgE7hxWuWt8frKnm3BKPJI0t-fiR6xwAdsp-pa8QPpKnxMeSbwpzZUqcwq9xRaeFLZgosvI_h"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur p-2 rounded-lg shadow-sm">
+<span class="material-symbols-outlined text-green">biotech</span>
+</div>
+</div>
+<div class="p-6 border-l-4 border-l-green">
+<h3 class="font-h3 text-h3 text-on-surface mb-2">Biology Lab</h3>
+<p class="font-body-small text-body-small text-text-secondary mb-4">Facilitating the study of life sciences and microscopic organisms.</p>
+<h4 class="font-label text-label text-on-surface mb-2 border-b border-surface-variant pb-1">Key Equipment</h4>
+<ul class="space-y-2">
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-green mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Compound Microscopes</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-green mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Human Anatomy Models</span>
+</li>
+<li class="flex items-start gap-2">
+<span class="material-symbols-outlined text-sm text-green mt-0.5">check_circle</span>
+<span class="font-caption text-caption text-text-secondary">Prepared Slide Sets</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed w-full py-12 border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 lg:px-16 max-w-[1280px] mx-auto">
+<div>
+<div class="text-lg font-bold text-[#1B4F8A] dark:text-blue-100 mb-4">Central Academy Anta</div>
+<p class="text-slate-500 dark:text-slate-400 opacity-80 hover:opacity-100 transition-opacity">© 2024 Central Academy Anta. 30 Years of Academic Excellence. Institutional Trust &amp; Academic Warmth.</p>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300 opacity-80 hover:opacity-100 transition-opacity" href="#">About Us</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300 opacity-80 hover:opacity-100 transition-opacity" href="#">Mandatory Disclosure</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300 opacity-80 hover:opacity-100 transition-opacity" href="#">Staff Directory</a>
+</div>
+<div class="flex flex-col gap-2">
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300 opacity-80 hover:opacity-100 transition-opacity" href="#">Careers</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300 opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300 opacity-80 hover:opacity-100 transition-opacity" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

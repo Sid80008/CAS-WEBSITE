@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Staff Management - Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "school-blue-extra-light": "#F0F6FC",
+                      "surface-dim": "#dcd9d9",
+                      "on-error": "#ffffff",
+                      "error": "#ba1a1a",
+                      "on-tertiary-fixed": "#002117",
+                      "amber-light": "#FAEEDA",
+                      "on-tertiary-container": "#7ed0b3",
+                      "coral-light": "#FAECE7",
+                      "on-primary-container": "#9ac2ff",
+                      "secondary": "#885200",
+                      "inverse-primary": "#a6c8ff",
+                      "secondary-container": "#fdad4e",
+                      "bg-tertiary": "#F1EFE8",
+                      "school-blue-dark": "#0C447C",
+                      "on-background": "#1c1b1b",
+                      "on-tertiary-fixed-variant": "#00513e",
+                      "on-error-container": "#93000a",
+                      "surface-bright": "#fcf9f8",
+                      "error-container": "#ffdad6",
+                      "text-secondary": "#555555",
+                      "surface-container-low": "#f6f3f2",
+                      "outline": "#737781",
+                      "tertiary-fixed-dim": "#84d6b9",
+                      "purple": "#534AB7",
+                      "primary": "#00386b",
+                      "on-surface": "#1c1b1b",
+                      "inverse-surface": "#313030",
+                      "surface-variant": "#e5e2e1",
+                      "tertiary-container": "#005a45",
+                      "amber-dark": "#633806",
+                      "tertiary": "#004031",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#f0eded",
+                      "surface-container-highest": "#e5e2e1",
+                      "teal-light": "#E1F5EE",
+                      "on-secondary": "#ffffff",
+                      "border-hover": "#B4B2A9",
+                      "primary-container": "#1b4f8a",
+                      "tertiary-fixed": "#a0f3d4",
+                      "on-secondary-container": "#704200",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#673d00",
+                      "surface-container-high": "#eae7e7",
+                      "primary-fixed-dim": "#a6c8ff",
+                      "school-blue-light": "#E6F1FB",
+                      "green": "#3B6D11",
+                      "surface-tint": "#305f9b",
+                      "on-primary-fixed-variant": "#0e4782",
+                      "coral": "#993C1D",
+                      "bg-secondary": "#F8F7F5",
+                      "teal-dark": "#085041",
+                      "secondary-fixed": "#ffdcbb",
+                      "on-surface-variant": "#424750",
+                      "secondary-fixed-dim": "#ffb869",
+                      "on-primary-fixed": "#001c3a",
+                      "surface-container-lowest": "#ffffff",
+                      "outline-variant": "#c2c6d1",
+                      "inverse-on-surface": "#f3f0ef",
+                      "background": "#fcf9f8",
+                      "on-secondary-fixed": "#2b1700",
+                      "border-default": "#E2E0DB",
+                      "surface": "#fcf9f8",
+                      "text-tertiary": "#888888",
+                      "primary-fixed": "#d4e3ff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "8px",
+                      "page-mobile": "24px",
+                      "container-max": "1280px",
+                      "base": "4px",
+                      "section": "48px",
+                      "page-desktop": "64px",
+                      "md": "16px",
+                      "xs": "4px",
+                      "xl": "32px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "caption": ["Inter"],
+                      "body-large": ["Inter"],
+                      "h1": ["Plus Jakarta Sans"],
+                      "label": ["Inter"],
+                      "overline": ["Inter"],
+                      "body-small": ["Inter"],
+                      "display": ["Plus Jakarta Sans"],
+                      "h4": ["Plus Jakarta Sans"],
+                      "h3": ["Plus Jakarta Sans"],
+                      "body": ["Inter"],
+                      "h2": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                      "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                      "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-[#F8F9FB] text-on-surface font-body flex min-h-screen">
+<!-- SideNavBar (Standardized Admin) -->
+<nav class="hidden md:flex flex-col h-full docked fixed left-0 w-64 bg-blue-950 border-r border-blue-900 z-40 shadow-xl font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<div class="p-6 flex items-center gap-3">
+<img alt="School Crest" class="w-10 h-10 object-contain rounded-full bg-white p-0.5" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<div>
+<h1 class="text-white font-bold text-lg leading-tight">Central Academy</h1>
+<p class="text-blue-200/70 text-[10px] uppercase tracking-widest font-semibold">Anta Campus</p>
+</div>
+</div>
+<div class="px-4 mb-6">
+<button class="w-full bg-blue-800 text-white font-semibold py-3 rounded-lg flex justify-center items-center gap-2 hover:bg-blue-700 transition-all shadow-md active:scale-95">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                New Admission
+            </button>
+</div>
+<div class="flex-1 px-4 space-y-1 overflow-y-auto">
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">school</span>
+                Students
+            </a>
+<a class="bg-blue-800 text-white px-4 py-3 flex items-center gap-3 rounded-lg transition-all shadow-sm" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">groups</span>
+                Staff
+            </a>
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">campaign</span>
+                Notices
+            </a>
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">image</span>
+                Gallery
+            </a>
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">event</span>
+                Events
+            </a>
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">download</span>
+                Downloads
+            </a>
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">how_to_reg</span>
+                Admissions
+            </a>
+</div>
+<div class="mt-auto p-4 space-y-1 border-t border-blue-900">
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+                Account Settings
+            </a>
+<a class="text-blue-200/70 hover:text-white hover:bg-blue-900 px-4 py-3 flex items-center gap-3 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined text-coral">logout</span>
+                Logout
+            </a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<div class="flex-1 flex flex-col md:ml-64 w-full">
+<!-- TopAppBar (Standardized Admin Small) -->
+<header class="flex justify-between items-center px-6 h-16 w-full sticky top-0 z-40 border-b border-slate-200 bg-white shadow-sm font-['Plus_Jakarta_Sans'] text-sm">
+<div class="flex items-center gap-4">
+<button class="md:hidden text-slate-500 hover:bg-slate-50 rounded-full p-2 transition-all active:scale-95">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-3">
+<img alt="School Crest" class="w-8 h-8 object-contain md:hidden" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<span class="text-lg font-bold text-blue-900 tracking-tight">Admin Portal</span>
+</div>
+</div>
+<div class="flex-1 flex justify-end items-center gap-4">
+<div class="hidden md:flex relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-900 focus:ring-1 focus:ring-blue-900 rounded-full text-sm text-on-surface placeholder:text-slate-400 transition-all" placeholder="Search staff records, subjects..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button class="text-slate-500 hover:bg-slate-50 rounded-full p-2 transition-all active:scale-95 relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-coral rounded-full border-2 border-white"></span>
+</button>
+<button class="text-slate-500 hover:bg-slate-50 rounded-full p-2 transition-all active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="flex items-center gap-3 ml-2 pl-4 border-l border-slate-100">
+<div class="text-right hidden lg:block">
+<p class="text-xs font-bold text-blue-900">Admin User</p>
+<p class="text-[10px] text-slate-500 uppercase tracking-tight">Super Administrator</p>
+</div>
+<div class="w-9 h-9 rounded-full overflow-hidden border-2 border-blue-900/10 cursor-pointer hover:ring-2 hover:ring-blue-900/20 transition-all active:scale-95">
+<img alt="Administrator Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc9ShYDx1vv3pqduy6eSfNF5ju4vawNijEWc0rR2cNqQNqCXAxKgTfkXQvxc6LjJOsZHeVr8WDJdXGgKn3SlR4CBdAlSS28GFziAglV-jQRtBq10ujYvDhXVnvRhQmoAi3Gwnwpme2JulgMFZHoF0vgN-b1oWqWsbBbZkM00oDlUL_9DMmveE64zTtweZH32dQLSMRn8YJDUdpqJ3jLuLtBGUxogFXgxruucAWlVtqkr8fGbr0OXOV1FxN634s2uJ3RYEHwBUppYg-"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Page Content -->
+<main class="flex-1 p-page-mobile md:p-page-desktop bg-[#F8F9FB] max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-10">
+<div>
+<h2 class="font-h2 text-h2 text-primary tracking-tight">Staff Directory</h2>
+<p class="font-body-small text-body-small text-text-secondary mt-1">Manage institutional human resources and faculty assignments.</p>
+</div>
+<button class="bg-[#1B4F8A] hover:bg-school-blue-dark text-white font-label text-label px-6 py-3 rounded-lg flex items-center gap-2 transition-all shadow-md hover:-translate-y-px active:translate-y-0">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                    Add New Staff
+                </button>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2.5 bg-blue-50 text-[#1B4F8A] rounded-lg">
+<span class="material-symbols-outlined">groups</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Total Staff</p>
+<h3 class="text-2xl font-bold text-on-surface">124</h3>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2.5 bg-teal-50 text-teal-600 rounded-lg">
+<span class="material-symbols-outlined">local_library</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Faculty</p>
+<h3 class="text-2xl font-bold text-on-surface">88</h3>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2.5 bg-amber-50 text-amber-600 rounded-lg">
+<span class="material-symbols-outlined">event_busy</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">On Leave</p>
+<h3 class="text-2xl font-bold text-on-surface">5</h3>
+</div>
+</div>
+<div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm flex flex-col justify-between hover:shadow-md transition-all duration-300">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2.5 bg-rose-50 text-rose-600 rounded-lg">
+<span class="material-symbols-outlined">person_search</span>
+</div>
+</div>
+<div>
+<p class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-1">Vacancies</p>
+<h3 class="text-2xl font-bold text-on-surface">12</h3>
+</div>
+</div>
+</div>
+<!-- Data Table Section (Production Spec) -->
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+<!-- Filter Bar -->
+<div class="p-6 border-b border-slate-100 bg-white flex flex-col md:flex-row gap-4 justify-between items-center">
+<div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+<div class="relative w-full sm:w-44">
+<select class="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-600 py-2.5 pl-4 pr-10 rounded-lg font-body-small text-body-small focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 cursor-pointer">
+<option>All Roles</option>
+<option>Senior Faculty</option>
+<option>Head of Department</option>
+<option>Asst. Professor</option>
+<option>Admin Staff</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+<div class="relative w-full sm:w-44">
+<select class="w-full appearance-none bg-slate-50 border border-slate-200 text-slate-600 py-2.5 pl-4 pr-10 rounded-lg font-body-small text-body-small focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 cursor-pointer">
+<option>All Subjects</option>
+<option>Mathematics</option>
+<option>Physics</option>
+<option>English</option>
+<option>Chemistry</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="relative w-full md:w-80">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 focus:bg-white focus:border-blue-900 focus:ring-2 focus:ring-blue-900/20 rounded-lg font-body-small text-body-small text-on-surface placeholder:text-slate-400" placeholder="Search by name or ID..." type="text"/>
+</div>
+</div>
+<!-- DataTable -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50/50 border-b border-slate-100">
+<th class="text-[11px] text-slate-500 uppercase px-6 py-4 font-bold tracking-widest">Name &amp; Details</th>
+<th class="text-[11px] text-slate-500 uppercase px-6 py-4 font-bold tracking-widest">Designation</th>
+<th class="text-[11px] text-slate-500 uppercase px-6 py-4 font-bold tracking-widest">Department</th>
+<th class="text-[11px] text-slate-500 uppercase px-6 py-4 font-bold tracking-widest">Contact No.</th>
+<th class="text-[11px] text-slate-500 uppercase px-6 py-4 font-bold tracking-widest">Status</th>
+<th class="text-[11px] text-slate-500 uppercase px-6 py-4 font-bold tracking-widest text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50 font-body-small text-body-small">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200 shadow-sm">
+<img alt="Sarah Johnson" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDevIufaQwNgQ7vPBLGgmFS-73RCYUHqksBdv8eempjXkGi03dunVe5Uhdt_4s-cISHFHcpKiRkzmF5maSrmUIt9QHYbDwk2uLF-iyUU7W31AIyGjM4aLuUTKTC8psCH16JECqLGJvMCgtQJqbBhUaNMyyd173rODqwRSYuO38Nj98aM3BIZ_wi2LUmEwhO9feVIzsBjTF2Qa7184mkdC-xJPxcxJBhQG6FOVtT2vNoZOL3bDd9-Fpod7hCd0EVtobOushYiCXvaVBF"/>
+</div>
+<div>
+<p class="font-bold text-slate-800">Sarah Johnson</p>
+<p class="text-slate-400 text-[11px] tracking-wide">ID: EMP-042</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600 font-medium">Senior Faculty</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600">Mathematics</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600">+91 98765 43210</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button aria-label="Edit" class="text-slate-400 hover:text-blue-900 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="text-slate-400 hover:text-rose-500 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button aria-label="More" class="text-slate-400 hover:text-blue-900 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200 shadow-sm">
+<img alt="Michael Chen" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKnPy3Ht9GlRKcaaaNVhrpFPRBysNr7ZJ-yMuFY1QMZ-oZetfiP1FZ0pDSJOOYtjiEmrpWEsjcAw_qywwhhm4mfbCeI4_utlNO-xD1_CltMDG3HZhnVBN5vOCuhVzzzAu0PrNPugfHpSAlsjeknPRWZWcljRnQwFDuhOY5dQSBS8i0k-yv9ACIF3EUVAo67RZFoMAqf4kOvVA4dkvERMC7PDBPAg5gExIDpB-zJBweCETDAj5gUJg48z5xFpSajAhdc3pXkbCu1a4F"/>
+</div>
+<div>
+<p class="font-bold text-slate-800">Michael Chen</p>
+<p class="text-slate-400 text-[11px] tracking-wide">ID: EMP-018</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600 font-medium">Head of Department</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600">Physics</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600">+91 98765 43211</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                        Active
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button aria-label="Edit" class="text-slate-400 hover:text-blue-900 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="text-slate-400 hover:text-rose-500 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button aria-label="More" class="text-slate-400 hover:text-blue-900 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50/30 transition-colors group">
+<td class="px-6 py-4 whitespace-nowrap">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-slate-200 shadow-sm">
+<img alt="Eleanor Kinsley" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDeSWrFKk_rk9FiWgSPCmydzaAtVP9QEo3FDgqKhajm9WVgf2yASVvaZgRgsJTFR7L2MGF_3Sg4oaG9sTUql7y2skLsO-_N1qumW1D5Jf0-NZVYoLBQb2ziZf5lalA1Cmeqj7hOS2kCzPCOCU6XnlljsyE8iHt1vZ6kZLACKJtLy9uKxq-kCNzv2LK2U6qnL2J5f3-N8-iUMN8L6dBD5J98MApEm5MnQNasLocr6HCbbJnH6a2KPAz2IRiPhcAGAmZLswyHAlz6nwhJ"/>
+</div>
+<div>
+<p class="font-bold text-slate-800">Eleanor Kinsley</p>
+<p class="text-slate-400 text-[11px] tracking-wide">ID: EMP-089</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600 font-medium">Asst. Professor</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600">English</td>
+<td class="px-6 py-4 whitespace-nowrap text-slate-600">+91 98765 43212</td>
+<td class="px-6 py-4 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-50 text-amber-600 border border-amber-100">
+                                        On Leave
+                                    </span>
+</td>
+<td class="px-6 py-4 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button aria-label="Edit" class="text-slate-400 hover:text-blue-900 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="Delete" class="text-slate-400 hover:text-rose-500 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+<button aria-label="More" class="text-slate-400 hover:text-blue-900 p-1.5 hover:bg-slate-100 rounded-md transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 border-t border-slate-100 flex items-center justify-between bg-slate-50/30">
+<span class="text-[11px] text-slate-500 font-medium uppercase tracking-wider">Showing 1-3 of 124 staff records</span>
+<div class="flex items-center gap-1.5">
+<button class="p-1.5 border border-slate-200 rounded-md text-slate-400 hover:bg-white disabled:opacity-30 transition-colors" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center bg-blue-900 text-white font-bold text-xs rounded-md shadow-sm">1</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 text-slate-600 font-bold text-xs rounded-md transition-colors">2</button>
+<button class="w-8 h-8 flex items-center justify-center hover:bg-slate-200 text-slate-600 font-bold text-xs rounded-md transition-colors">3</button>
+<span class="text-slate-300 mx-1">...</span>
+<button class="p-1.5 border border-slate-200 rounded-md text-slate-400 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

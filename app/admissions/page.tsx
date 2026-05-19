@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { SCHOOL, getCurrentSession } from "@/lib/constants";
 import PublicLayout from "@/components/layout/PublicLayout";
 import { 
   User, 
@@ -94,7 +95,7 @@ export default function AdmissionForm() {
            <span className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-white text-xs font-bold uppercase tracking-[0.3em] mb-4">Phase 1: Enquiry</span>
            <h1 className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">Registration for Admission</h1>
            <p className="text-school-blue-light/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
-             Begin your journey towards academic brilliance. Secure a seat for the 2024-25 session today.
+             Begin your journey towards academic brilliance. Secure a seat for the {getCurrentSession()} session today.
            </p>
         </div>
       </section>
@@ -129,7 +130,7 @@ export default function AdmissionForm() {
 
                      <div className="pt-10 border-t border-white/10 relative z-10">
                         <p className="text-[10px] font-bold text-white/50 uppercase tracking-widest mb-2">Need Assistance?</p>
-                        <p className="text-sm font-bold flex items-center gap-2"><Phone className="h-4 w-4 text-school-amber" /> +91 7457 244555</p>
+                        <p className="text-sm font-bold flex items-center gap-2"><Phone className="h-4 w-4 text-school-amber" /> {SCHOOL.phone1}</p>
                      </div>
                   </div>
 

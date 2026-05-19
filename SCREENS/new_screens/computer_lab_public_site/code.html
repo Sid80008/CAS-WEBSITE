@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Computer Lab - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "border-hover": "#B4B2A9",
+                        "on-background": "#1c1b1b",
+                        "surface-container-highest": "#e5e2e1",
+                        "purple": "#534AB7",
+                        "surface-dim": "#dcd9d9",
+                        "school-blue-light": "#E6F1FB",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#a6c8ff",
+                        "background": "#fcf9f8",
+                        "tertiary-fixed-dim": "#84d6b9",
+                        "outline": "#737781",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#2b1700",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "secondary-fixed-dim": "#ffb869",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed": "#002117",
+                        "bg-secondary": "#F8F7F5",
+                        "primary": "#00386b",
+                        "surface-container-high": "#eae7e7",
+                        "teal-dark": "#085041",
+                        "teal-light": "#E1F5EE",
+                        "secondary-container": "#fdad4e",
+                        "on-tertiary-fixed-variant": "#00513e",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#424750",
+                        "surface": "#fcf9f8",
+                        "school-blue-extra-light": "#F0F6FC",
+                        "outline-variant": "#c2c6d1",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#005a45",
+                        "on-secondary-container": "#704200",
+                        "amber-light": "#FAEEDA",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-container": "#1b4f8a",
+                        "on-tertiary-container": "#7ed0b3",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary-fixed": "#ffdcbb",
+                        "text-secondary": "#555555",
+                        "tertiary-fixed": "#a0f3d4",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "inverse-surface": "#313030",
+                        "on-primary-container": "#9ac2ff",
+                        "tertiary": "#004031",
+                        "on-primary-fixed-variant": "#0e4782",
+                        "bg-tertiary": "#F1EFE8",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-tint": "#305f9b",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "school-blue-dark": "#0C447C",
+                        "green": "#3B6D11",
+                        "text-tertiary": "#888888",
+                        "coral-light": "#FAECE7",
+                        "on-surface": "#1c1b1b",
+                        "coral": "#993C1D",
+                        "primary-fixed": "#d4e3ff",
+                        "border-default": "#E2E0DB",
+                        "secondary": "#885200",
+                        "surface-container": "#f0eded",
+                        "error-container": "#ffdad6",
+                        "amber-dark": "#633806"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "page-desktop": "64px",
+                        "md": "16px",
+                        "page-mobile": "24px",
+                        "base": "4px",
+                        "section": "48px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "body-large": ["Inter"],
+                        "h4": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "caption": ["Inter"],
+                        "body": ["Inter"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "body-small": ["Inter"],
+                        "overline": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-large": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h4": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "display": ["48px", { "lineHeight": "1.1", "fontWeight": "700" }],
+                        "h3": ["22px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "h1": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h2": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-small": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "overline": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "label": ["14px", { "lineHeight": "1.5", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body text-body antialiased">
+<!-- TopAppBar -->
+<header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50 w-full">
+<div class="flex justify-between items-center w-full max-w-[1280px] mx-auto px-6 h-20">
+<div class="flex items-center gap-4 text-xl font-bold text-primary">
+<img alt="Central Academy Anta Logo" class="h-10 w-auto" data-alt="Central Academy Anta School Logo featuring an open book and torch in blue and gold on a white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGB35facyv6vXvnChytU0AIV9WeaOdIBPIwtHJeOsTwgPkT9uOHAJ9Fg7OLYMSLHQTZvj1VALfwT3n5IY05nxJGeFQEPldX_Vz6pNB9eBOKgFaR_fFfhx7FuzyByJcRZPP_Qli6h_5-a3-zq7YYi82oC-fzHGRW3pV4honqDM0TlZp9HphjdT0aGTLbb7g2RMbMLwoug18s8Yr5AZAt0T2wemGi0f-uaYVxAspwE_Cf12oLQ1FNHgHM2dNEXpkWBXK3kxRGAF7csb-"/>
+<span>Central Academy Anta</span>
+</div>
+<nav class="hidden md:flex items-center gap-8 font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight">
+<a class="text-slate-600 hover:text-blue-800 transition-colors duration-200" href="#">Home</a>
+<a class="text-slate-600 hover:text-blue-800 transition-colors duration-200" href="#">About Us</a>
+<a class="text-slate-600 hover:text-blue-800 transition-colors duration-200" href="#">Academics</a>
+<a class="text-slate-600 hover:text-blue-800 transition-colors duration-200" href="#">Admissions</a>
+<a class="text-primary border-b-2 border-amber-600 pb-1" href="#">Campus Life</a>
+<a class="text-slate-600 hover:text-blue-800 transition-colors duration-200" href="#">Contact</a>
+</nav>
+<div class="hidden md:flex items-center gap-4">
+<button class="text-slate-600 hover:bg-slate-50 p-2 rounded-full transition-colors duration-200">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label text-label hover:bg-school-blue-dark transition-colors duration-200 shadow-sm hover:shadow-md">
+                    Enquire Now
+                </button>
+</div>
+<button class="md:hidden text-slate-600 p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative bg-school-blue-extra-light border-b border-border-default pt-16 pb-24 px-6 md:px-page-desktop overflow-hidden">
+<div class="absolute inset-0 z-0 opacity-20 pointer-events-none" style="background-image: radial-gradient(#00386b 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="max-w-[1280px] mx-auto relative z-10 grid md:grid-cols-2 gap-12 items-center">
+<div class="space-y-6">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-light border border-secondary-container rounded-full text-secondary font-overline text-overline uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]" data-icon="computer">computer</span>
+                        Campus Facilities
+                    </div>
+<h1 class="font-display text-display text-primary">Advanced Computer Laboratory</h1>
+<p class="font-body-large text-body-large text-text-secondary max-w-lg">
+                        Equipping students with 21st-century digital skills in a state-of-the-art environment designed for coding, research, and interactive learning.
+                    </p>
+<div class="pt-4 flex gap-4">
+<button class="bg-primary text-on-primary px-6 py-3 rounded-lg font-label text-label hover:bg-school-blue-dark transition-colors duration-200 shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+                            View Schedule
+                        </button>
+</div>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-[0_8px_24px_rgba(0,0,0,0.15)] h-[400px]">
+<img alt="Modern Computer Lab" class="absolute inset-0 w-full h-full object-cover" data-alt="Bright, modern school computer lab with rows of sleek desktop computers, students working, natural light pouring in through large windows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEs6dYMD0i_f_DfeR5UVVooW9EL_OFnOzXk46xGbAQN1RHgiX0Z29FycqStTvrLH0cCTIjVCWCrwLWtdvNSgmt08bJVCG4zk3x2lpWQ-NtYkN8Yhs1vCZ2So_1WrHC3ToEhq0OmIbBQKkVshzQ6ovaR_hjXjiDikHeo-OMhTrFQnn5M3yZAYmMzXykbrqGKQ8iRZ1UEYVb_PLCm7L5K3RQk93rZrB2ocNISwtukXe-MRpI1L0a6cHwJZqSH3CwFFVm3shnOfZcSGZQ"/>
+</div>
+</div>
+</section>
+<!-- Intro & Features Bento Grid -->
+<section class="py-section px-6 md:px-page-desktop max-w-[1280px] mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Main Intro Card -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-border-default rounded-xl p-8 shadow-[0_1px_3px_rgba(0,0,0,0.08)] relative overflow-hidden group hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-shadow duration-300">
+<div class="absolute top-0 right-0 w-32 h-32 bg-school-blue-light rounded-bl-full -z-10 transition-transform group-hover:scale-110 duration-500"></div>
+<h2 class="font-h2 text-h2 text-primary mb-4">Technology at the Core of Learning</h2>
+<p class="font-body text-body text-text-secondary mb-6">
+                        Our computer laboratory is not just a room with machines; it is an innovation hub. Designed to support the latest curriculum standards, the lab provides an immersive environment where students can explore programming, graphic design, data analysis, and digital citizenship under expert guidance.
+                    </p>
+<div class="grid grid-cols-2 gap-6 pt-4 border-t border-surface-container-highest">
+<div>
+<div class="font-h3 text-h3 text-primary mb-1">60+</div>
+<div class="font-label text-label text-text-tertiary uppercase tracking-wide">Workstations</div>
+</div>
+<div>
+<div class="font-h3 text-h3 text-primary mb-1">1Gbps</div>
+<div class="font-label text-label text-text-tertiary uppercase tracking-wide">Internet Speed</div>
+</div>
+</div>
+</div>
+<!-- Feature 1 -->
+<div class="md:col-span-4 bg-teal-light border border-teal-dark/20 rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-teal-dark text-4xl mb-4" data-icon="security">security</span>
+<h3 class="font-h4 text-h4 text-on-tertiary-fixed-variant mb-2">Secure Network</h3>
+<p class="font-body-small text-body-small text-on-tertiary-fixed-variant/80">Enterprise-grade firewall and content filtering ensuring a safe browsing environment for all students.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-border-default rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:border-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-primary text-3xl mb-3" data-icon="terminal">terminal</span>
+<h3 class="font-h4 text-h4 text-primary mb-2">Coding Environment</h3>
+<p class="font-body-small text-body-small text-text-secondary">Pre-installed IDEs and tools for Python, Java, and web development to support the CS curriculum.</p>
+</div>
+<!-- Feature 3 -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-border-default rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:border-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-primary text-3xl mb-3" data-icon="interactive_space">interactive_space</span>
+<h3 class="font-h4 text-h4 text-primary mb-2">Interactive Displays</h3>
+<p class="font-body-small text-body-small text-text-secondary">Connected smart boards allow instructors to mirror screens and demonstrate complex concepts easily.</p>
+</div>
+<!-- Feature 4 -->
+<div class="md:col-span-4 bg-surface-container-lowest border border-border-default rounded-xl p-6 shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:border-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-primary text-3xl mb-3" data-icon="support_agent">support_agent</span>
+<h3 class="font-h4 text-h4 text-primary mb-2">Dedicated Support</h3>
+<p class="font-body-small text-body-small text-text-secondary">Full-time IT staff available during school hours to assist students and maintain equipment.</p>
+</div>
+</div>
+</section>
+<!-- Gallery Section -->
+<section class="py-section px-6 md:px-page-desktop bg-bg-secondary border-t border-surface-container-highest">
+<div class="max-w-[1280px] mx-auto">
+<div class="mb-10 text-center">
+<h2 class="font-h2 text-h2 text-primary mb-2">Inside the Lab</h2>
+<p class="font-body text-body text-text-secondary">A glimpse into our modern digital learning spaces.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="relative h-[300px] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.08)] group">
+<img alt="Students coding" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Two high school students collaborating on a coding project at a dual-monitor workstation, focused expressions, well-lit lab environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAISlxk07GJE1ssCRAPjKF_TbenB1VYed9DAdq5GQPP9RulXS-G-2F6DkiLaODBCo8vadDjPhsW8VYt9wu_6EDO69wNB3OzkDKkMiqS3c4g9xznsJMMa8-R7pg7iBHGP-rSpCpHClNfuCEB-K9AufCfg0GgCZNYHysVww_T8PXnX86ClXLO5SvUxacsQmff78sR-Z0F4HHJHx7O72Cl57LhIjBQcR5nTnawIhVaA-xaiCTy9ktNZMbWOiTbS8aPilqqBiiyJq75lkS4"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+<h4 class="font-h4 text-h4 text-white">Collaborative Learning</h4>
+</div>
+</div>
+<div class="relative h-[300px] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.08)] group">
+<img alt="Hardware setup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close up of a glowing mechanical keyboard and modern mouse on a clean desk surface, shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACrRRPDON862zU_yCVr6TezTHPdc8WPell03RuS7i0YPQ7Fr4l3l5wzNek9FLjP1Kklxei5vv2Iq6Xm0p0uZTQMjpxGZu_nrJztZ_y-9J7IoWBmxRUNfH5H4U5VPU3rJNZ5T--V0k4bbvSXo0ZxoCgJri2ettbgNLvM8gzWy4BFWs8r0v2X4DTlrGYq5aeP4-yV-JYRp8FHzD-Qh0tXF82yl9u8z04x8KH7dQbqhQD_DZJGLHqRYKUCqrWlJ3q8zJ_hg0RTkJfzauj"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+<h4 class="font-h4 text-h4 text-white">Premium Equipment</h4>
+</div>
+</div>
+<div class="relative h-[300px] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.08)] group">
+<img alt="Instructor helping student" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A teacher standing beside a seated student, pointing at the computer screen explaining a concept, bright classroom setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCygxGvQ3zFvzndeFvR6tS4Qstdmze1-Ew2M1_1I5NADqp__JqwNzgWfY5-G3WAVOgwnjaWnR4yABX6BwDoigB-OctZ9V28wjTtOjY9gKMic3mLnMnUn_Q9-Ov_pBahyh4hyKTb0iP880E2Jm9_Ak0B6Ebbv-WMKkuiGJvCV5MFhbVNCU-FTbhjIElCVFCM9kf5rvVjnBxkzGhbG82mzy94_LXXNSowNlWSfeMlqL5IqSdJt59blaBpWnO9MleEEzS0HioK36q2uXpW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+<h4 class="font-h4 text-h4 text-white">Expert Guidance</h4>
+</div>
+</div>
+<div class="relative h-[300px] rounded-xl overflow-hidden shadow-[0_1px_3px_rgba(0,0,0,0.08)] group">
+<img alt="Server rack" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Neat, organized server rack with blinking blue and green lights, cables neatly managed, representing strong network infrastructure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAXRbPhNOS_x31f9LDdGuoDCWUXnwqoWG-SpI23H7uedBnIvsIJCYs4NVeoQg6Kt8I-rWOZGkQfH9GWhyk0DRe6WMwSEoCIaACZ05EI2d7Z7mmC6A9ZMLezA9U2KYuBT7g2yDJACIezXkTegVq9SFPjM7WynxmUX5K185hz5_XIE3acPkNoMaRglcWrc9V3Qb5gSa8wYGRm5fe_kE_i_WKSZBnjx3nyHIci2n3YwsJnrkLErnDQm2LrPyQtq4ItfdJPstyiZ9qQ9mH"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-0 left-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+<h4 class="font-h4 text-h4 text-white">Robust Infrastructure</h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 border-t border-slate-200">
+<div class="w-full py-12 px-8 max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-lg font-black text-primary">
+                Central Academy Anta
+            </div>
+<nav class="flex flex-wrap justify-center gap-6 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed">
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Alumni Portal</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Sitemap</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Mandatory Disclosure</a>
+</nav>
+<div class="font-['Plus_Jakarta_Sans'] text-sm leading-relaxed text-slate-500">
+                © 2024 Central Academy Anta. 30 Years of Academic Excellence.
+            </div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard - Students Directory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "school-blue-extra-light": "#F0F6FC",
+                    "surface-dim": "#dcd9d9",
+                    "on-error": "#ffffff",
+                    "error": "#ba1a1a",
+                    "on-tertiary-fixed": "#002117",
+                    "amber-light": "#FAEEDA",
+                    "on-tertiary-container": "#7ed0b3",
+                    "coral-light": "#FAECE7",
+                    "on-primary-container": "#9ac2ff",
+                    "secondary": "#885200",
+                    "inverse-primary": "#a6c8ff",
+                    "secondary-container": "#BA7517",
+                    "bg-tertiary": "#F1EFE8",
+                    "school-blue-dark": "#0C447C",
+                    "on-background": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#00513e",
+                    "on-error-container": "#93000a",
+                    "surface-bright": "#fcf9f8",
+                    "error-container": "#ffdad6",
+                    "text-secondary": "#555555",
+                    "surface-container-low": "#f6f3f2",
+                    "outline": "#737781",
+                    "tertiary-fixed-dim": "#84d6b9",
+                    "purple": "#534AB7",
+                    "primary": "#1B4F8A",
+                    "on-surface": "#1c1b1b",
+                    "inverse-surface": "#313030",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary-container": "#005a45",
+                    "amber-dark": "#633806",
+                    "tertiary": "#004031",
+                    "on-primary": "#ffffff",
+                    "surface-container": "#f0eded",
+                    "surface-container-highest": "#e5e2e1",
+                    "teal-light": "#E1F5EE",
+                    "on-secondary": "#ffffff",
+                    "border-hover": "#B4B2A9",
+                    "primary-container": "#1B4F8A",
+                    "tertiary-fixed": "#a0f3d4",
+                    "on-secondary-container": "#704200",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary-fixed-variant": "#673d00",
+                    "surface-container-high": "#eae7e7",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "school-blue-light": "#E6F1FB",
+                    "green": "#3B6D11",
+                    "surface-tint": "#305f9b",
+                    "on-primary-fixed-variant": "#0e4782",
+                    "coral": "#993C1D",
+                    "bg-secondary": "#F8F7F5",
+                    "teal-dark": "#085041",
+                    "secondary-fixed": "#ffdcbb",
+                    "on-surface-variant": "#424750",
+                    "secondary-fixed-dim": "#ffb869",
+                    "on-primary-fixed": "#001c3a",
+                    "surface-container-lowest": "#ffffff",
+                    "outline-variant": "#c2c6d1",
+                    "inverse-on-surface": "#f3f0ef",
+                    "background": "#fcf9f8",
+                    "on-secondary-fixed": "#2b1700",
+                    "border-default": "#E2E0DB",
+                    "surface": "#fcf9f8",
+                    "text-tertiary": "#888888",
+                    "primary-fixed": "#d4e3ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "sm": "8px",
+                    "page-mobile": "24px",
+                    "container-max": "1280px",
+                    "base": "4px",
+                    "section": "48px",
+                    "page-desktop": "64px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "xl": "32px",
+                    "lg": "24px"
+            },
+            "fontFamily": {
+                    "caption": ["Inter"],
+                    "body-large": ["Inter"],
+                    "h1": ["Plus Jakarta Sans"],
+                    "label": ["Inter"],
+                    "overline": ["Inter"],
+                    "body-small": ["Inter"],
+                    "display": ["Plus Jakarta Sans"],
+                    "h4": ["Plus Jakarta Sans"],
+                    "h3": ["Plus Jakarta Sans"],
+                    "body": ["Inter"],
+                    "h2": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body text-body antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar (Standardized) -->
+<aside class="bg-blue-950 dark:bg-black docked vertical left-0 h-full w-64 border-r border-blue-900 dark:border-slate-800 shadow-xl flex flex-col p-4 space-y-2 z-50 shrink-0 relative transition-all duration-300">
+<div class="px-2 mb-8 flex items-center gap-3">
+<img alt="School Crest" class="h-10 w-10 object-contain rounded-full bg-white p-1" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<div>
+<h1 class="text-white font-bold text-lg font-['Plus_Jakarta_Sans'] leading-tight">Central Academy</h1>
+<p class="text-blue-200/70 text-xs font-['Plus_Jakarta_Sans']">Anta Campus</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto space-y-1 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<a class="bg-blue-800 dark:bg-slate-800 text-white rounded-lg px-4 py-3 flex items-center gap-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">school</span>
+            Students
+        </a>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">groups</span>
+            Staff
+        </a>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">campaign</span>
+            Notices
+        </a>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">image</span>
+            Gallery
+        </a>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">event</span>
+            Events
+        </a>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">download</span>
+            Downloads
+        </a>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">how_to_reg</span>
+            Admissions
+        </a>
+</nav>
+<div class="mt-auto pt-4 border-t border-blue-900/50 space-y-1 font-['Plus_Jakarta_Sans'] text-sm font-medium">
+<button class="w-full bg-white text-blue-950 py-2 px-4 rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:bg-blue-50 transition-colors duration-200 mb-4 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+            New Admission
+        </button>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">manage_accounts</span>
+            Account Settings
+        </a>
+<a class="text-blue-200/70 hover:text-white px-4 py-3 flex items-center gap-3 hover:bg-blue-900 dark:hover:bg-slate-900 rounded-lg transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+            Logout
+        </a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col min-w-0">
+<!-- TopAppBar (Standardized) -->
+<header class="bg-white dark:bg-slate-900 docked full-width top-0 z-40 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-colors duration-200 flex justify-between items-center px-6 h-16 w-full shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-bold text-blue-900 dark:text-blue-400 font-['Plus_Jakarta_Sans']">Admin Portal</h2>
+<nav class="hidden md:flex items-center gap-4 ml-6">
+<a class="text-blue-900 font-bold font-['Plus_Jakarta_Sans'] text-sm" href="#">Dashboard</a>
+<a class="text-slate-500 hover:text-blue-900 transition-colors font-['Plus_Jakarta_Sans'] text-sm" href="#">Notices</a>
+<a class="text-slate-500 hover:text-blue-900 transition-colors font-['Plus_Jakarta_Sans'] text-sm" href="#">Reports</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center gap-2 text-slate-500 bg-slate-50 dark:bg-slate-800 px-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 transition-all focus-within:ring-2 focus-within:ring-blue-900/20">
+<span class="material-symbols-outlined text-[20px]">search</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-sm w-48 placeholder:text-slate-400" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-2">
+<button aria-label="Notifications" class="p-2 rounded-full text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors relative active:scale-95">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 h-2 w-2 bg-amber-600 rounded-full border border-white"></span>
+</button>
+<button aria-label="Settings" class="p-2 rounded-full text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden border border-slate-200 cursor-pointer active:scale-95 transition-transform">
+<img alt="Administrator Avatar" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcI_VtLhCM1I3arjGCv1u2CwBLrWhoSuffw1-mMY4TEv0lB53_cuEuqm7mTR6aaPmN1K6mfmNpnP0CV7Nm4_3yGTK2atDfrN40GkUndyTWpK5BxtCtnOc2hV8-mmd9eKx9LuDCVKeeyurH_ETnz81_USI7UOgl4MjkyXlFCef4j3sKKGVQwtFedD1mpg9_l6LlSe6sRtqsjrBXEeNj5Av8RuVpdaGdYcvdfRuV6dgp23iviJLc9vbwl5UoXQz3TK3fqLu5dX-asiJy"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="flex-1 overflow-y-auto p-4 md:p-8 bg-background">
+<div class="max-w-container-max mx-auto space-y-8">
+<!-- Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+<div>
+<h1 class="font-h2 text-h2 text-on-background">Students Directory</h1>
+<p class="font-body-small text-body-small text-text-secondary mt-1">Manage enrollments, profiles, and academic status.</p>
+</div>
+<button class="bg-blue-900 text-white hover:bg-school-blue-dark transition-colors duration-200 py-[10px] px-6 rounded-lg font-label text-label flex items-center justify-center gap-2 shadow-sm hover:-translate-y-px hover:shadow-md active:scale-95">
+<span class="material-symbols-outlined text-[20px]">person_add</span>
+                    Add Student
+                </button>
+</div>
+<!-- Stats Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stat Card 1 -->
+<div class="bg-white p-6 rounded-xl border border-border-default shadow-sm flex items-center gap-4">
+<div class="h-12 w-12 rounded-full bg-school-blue-extra-light flex items-center justify-center text-blue-900 shrink-0">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">groups</span>
+</div>
+<div>
+<p class="font-body-small text-body-small text-text-secondary mb-1">Total Students</p>
+<p class="font-h3 text-h3 text-on-background">1,248</p>
+</div>
+</div>
+<!-- Stat Card 2 -->
+<div class="bg-white p-6 rounded-xl border border-border-default shadow-sm flex items-center gap-4">
+<div class="h-12 w-12 rounded-full bg-teal-light flex items-center justify-center text-tertiary-container shrink-0">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+</div>
+<div>
+<p class="font-body-small text-body-small text-text-secondary mb-1">Active Enrollment</p>
+<p class="font-h3 text-h3 text-on-background">1,180</p>
+</div>
+</div>
+<!-- Stat Card 3 -->
+<div class="bg-white p-6 rounded-xl border border-border-default shadow-sm flex items-center gap-4">
+<div class="h-12 w-12 rounded-full bg-amber-light flex items-center justify-center text-[#BA7517] shrink-0">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">pending_actions</span>
+</div>
+<div>
+<p class="font-body-small text-body-small text-text-secondary mb-1">Pending Reviews</p>
+<p class="font-h3 text-h3 text-on-background">68</p>
+</div>
+</div>
+</div>
+<!-- Directory Section -->
+<div class="bg-white border border-border-default rounded-xl shadow-sm overflow-hidden flex flex-col">
+<!-- Filter Bar -->
+<div class="p-4 border-b border-border-default bg-surface-bright flex flex-col sm:flex-row gap-4 justify-between items-center">
+<div class="flex flex-wrap items-center gap-3 w-full sm:w-auto">
+<select class="form-select bg-white border border-border-default text-body-small font-body-small text-on-surface rounded-lg py-2 pl-3 pr-10 focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 shadow-sm cursor-pointer hover:bg-surface-container-low transition-colors">
+<option>All Classes</option>
+<option>Grade 10</option>
+<option>Grade 11</option>
+<option>Grade 12</option>
+</select>
+<select class="form-select bg-white border border-border-default text-body-small font-body-small text-on-surface rounded-lg py-2 pl-3 pr-10 focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 shadow-sm cursor-pointer hover:bg-surface-container-low transition-colors">
+<option>All Status</option>
+<option>Active</option>
+<option>On Leave</option>
+<option>Inactive</option>
+</select>
+</div>
+<div class="relative w-full sm:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full bg-white border border-border-default rounded-lg py-2 pl-10 pr-4 text-body-small font-body-small focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 shadow-sm placeholder:text-outline transition-all" placeholder="Search students..." type="text"/>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-border-default">
+<th class="py-4 px-6 font-overline text-overline text-text-secondary uppercase tracking-wider">Student Name</th>
+<th class="py-4 px-6 font-overline text-overline text-text-secondary uppercase tracking-wider">Admission No</th>
+<th class="py-4 px-6 font-overline text-overline text-text-secondary uppercase tracking-wider">Class</th>
+<th class="py-4 px-6 font-overline text-overline text-text-secondary uppercase tracking-wider">Primary Parent</th>
+<th class="py-4 px-6 font-overline text-overline text-text-secondary uppercase tracking-wider">Status</th>
+<th class="py-4 px-6 font-overline text-overline text-text-secondary uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-default bg-white">
+<!-- Row 1 -->
+<tr class="hover:bg-school-blue-extra-light/50 transition-colors group">
+<td class="py-5 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 overflow-hidden border border-border-default shrink-0">
+<img alt="Marcus Holloway" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHqSswY1Pq_RCbz7IzPx1YdvzP0VTQabYv2qogE8Ema_fJ7w4RaXwK0nQmfC-tZBTFBO6r_0w5XPimtWhjjgcDaybdvz9ECctB0ZGpi7BVDND9R2w0cT6OIZ9d15qzwA98gDHcRhccWeh0iN5KoBgQvYS1kL8UcXhSHVRglHPzdl23pazZlB25OzpktcCFzF3wHzUek5LzalBYPwjIiu3ysCSUppMtyDcw0U2kXLKJ3GOhaOxeil5NYQ2XFLqGNiCCyhml-cUS67Zk"/>
+</div>
+<div>
+<p class="font-label text-label text-on-background font-semibold group-hover:text-blue-900 transition-colors">Marcus Holloway</p>
+<p class="font-caption text-caption text-text-secondary">DOB: 12 May 2008</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-6 whitespace-nowrap font-body-small text-body-small text-on-surface">#AD-2024-0412</td>
+<td class="py-5 px-6 whitespace-nowrap font-body-small text-body-small text-on-surface">Grade 10-A</td>
+<td class="py-5 px-6 whitespace-nowrap">
+<p class="font-body-small text-body-small text-on-surface">James Holloway</p>
+<p class="font-caption text-caption text-text-secondary">+1 (555) 019-2834</p>
+</td>
+<td class="py-5 px-6 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-caption text-caption font-medium bg-teal-light text-tertiary-container border border-tertiary-fixed-dim/30">
+                                        Active
+                                    </span>
+</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Edit Marcus Holloway" class="p-2 rounded-md text-text-secondary hover:text-blue-900 hover:bg-school-blue-light transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="View Marcus Holloway details" class="p-2 rounded-md text-text-secondary hover:text-blue-900 hover:bg-school-blue-light transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-school-blue-extra-light/50 transition-colors group">
+<td class="py-5 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-200 overflow-hidden border border-border-default shrink-0">
+<img alt="Sarah Chen" class="h-full w-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg3D3tvEQhScTIMhqseWOAGUv5lDUlVeMz4Z-gj1ak4UB7Mn6CRhDNVAarJEh8c4hKDVHOoOpeXR_vgMp6uNKU5DTU65ikAwhwDVyCc013zoOykavyyI3NpAmdzYBTweFmvMbSLOnoJ0fr-sYZJvqKQ3IxqflxIXUkuGbG9jwB4evlg5Dt963sZilCIIqXUORmmlcZ0lirggdRn05ZMMYPTsA99YimqZkgfX36wERYxrOi9mkri8iYcTIRUhoArdcfPTL8odUAGPbq"/>
+</div>
+<div>
+<p class="font-label text-label text-on-background font-semibold group-hover:text-blue-900 transition-colors">Sarah Chen</p>
+<p class="font-caption text-caption text-text-secondary">DOB: 04 Sep 2007</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-6 whitespace-nowrap font-body-small text-body-small text-on-surface">#AD-2024-0413</td>
+<td class="py-5 px-6 whitespace-nowrap font-body-small text-body-small text-on-surface">Grade 11-B</td>
+<td class="py-5 px-6 whitespace-nowrap">
+<p class="font-body-small text-body-small text-on-surface">Michael Chen</p>
+<p class="font-caption text-caption text-text-secondary">+1 (555) 018-9921</p>
+</td>
+<td class="py-5 px-6 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-caption text-caption font-medium bg-teal-light text-tertiary-container border border-tertiary-fixed-dim/30">
+                                        Active
+                                    </span>
+</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Edit Sarah Chen" class="p-2 rounded-md text-text-secondary hover:text-blue-900 hover:bg-school-blue-light transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="View Sarah Chen details" class="p-2 rounded-md text-text-secondary hover:text-blue-900 hover:bg-school-blue-light transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-school-blue-extra-light/50 transition-colors group">
+<td class="py-5 px-6 whitespace-nowrap">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-slate-100 overflow-hidden border border-border-default shrink-0 flex items-center justify-center text-text-secondary">
+<span class="material-symbols-outlined">person</span>
+</div>
+<div>
+<p class="font-label text-label text-on-background font-semibold group-hover:text-blue-900 transition-colors">Julian Thorne</p>
+<p class="font-caption text-caption text-text-secondary">DOB: 22 Nov 2006</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-6 whitespace-nowrap font-body-small text-body-small text-on-surface">#AD-2023-1102</td>
+<td class="py-5 px-6 whitespace-nowrap font-body-small text-body-small text-on-surface">Grade 12-Science</td>
+<td class="py-5 px-6 whitespace-nowrap">
+<p class="font-body-small text-body-small text-on-surface">Eleanor Thorne</p>
+<p class="font-caption text-caption text-text-secondary">+1 (555) 014-7742</p>
+</td>
+<td class="py-5 px-6 whitespace-nowrap">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-caption text-caption font-medium bg-amber-light text-[#BA7517] border border-[#BA7517]/30">
+                                        On Leave
+                                    </span>
+</td>
+<td class="py-5 px-6 whitespace-nowrap text-right">
+<div class="flex items-center justify-end gap-1">
+<button aria-label="Edit Julian Thorne" class="p-2 rounded-md text-text-secondary hover:text-blue-900 hover:bg-school-blue-light transition-colors">
+<span class="material-symbols-outlined text-[20px]">edit</span>
+</button>
+<button aria-label="View Julian Thorne details" class="p-2 rounded-md text-text-secondary hover:text-blue-900 hover:bg-school-blue-light transition-colors">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="p-4 border-t border-border-default bg-surface-bright flex items-center justify-between">
+<p class="font-body-small text-body-small text-text-secondary">Showing <span class="font-medium text-on-surface">1</span> to <span class="font-medium text-on-surface">10</span> of <span class="font-medium text-on-surface">1,248</span> students</p>
+<nav aria-label="Pagination" class="flex items-center gap-1">
+<button class="p-2 rounded-md border border-border-default bg-white text-text-secondary hover:bg-surface-container-low transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-md bg-blue-900 text-white font-label text-label flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-md border border-border-default bg-white text-on-surface hover:bg-surface-container-low transition-colors font-label text-label flex items-center justify-center">2</button>
+<button class="w-8 h-8 rounded-md border border-border-default bg-white text-on-surface hover:bg-surface-container-low transition-colors font-label text-label flex items-center justify-center">3</button>
+<span class="px-2 text-text-secondary">...</span>
+<button class="w-8 h-8 rounded-md border border-border-default bg-white text-on-surface hover:bg-surface-container-low transition-colors font-label text-label flex items-center justify-center">125</button>
+<button class="p-2 rounded-md border border-border-default bg-white text-text-secondary hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</nav>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import Link from "next/link";
 
 import { 
@@ -112,7 +112,7 @@ export default async function Home() {
                 <Megaphone className="h-6 w-6 text-school-amber" />
                 Latest Notices
               </h2>
-              <Link href="/events" className="text-sm font-semibold text-school-blue hover:underline">View All</Link>
+              <Link href="/notices" className="text-sm font-semibold text-school-blue hover:underline">View All</Link>
             </div>
             <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-2 flex flex-col gap-2">
               {data.notices.length > 0 ? data.notices.map((notice, idx) => (
@@ -142,7 +142,7 @@ export default async function Home() {
                   <div className="h-32 bg-school-blue relative overflow-hidden">
                     <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
                     <span className="absolute top-4 right-4 bg-school-amber text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1">
-                      ★ {topper.percentage}%
+                      â˜… {topper.percentage}%
                     </span>
                   </div>
                   <div className="px-6 pb-6 relative">
@@ -180,7 +180,7 @@ export default async function Home() {
               title="Digital Library" 
               desc="10,000+ volumes and digital resources." 
               icon={<BookOpen />} 
-              img="https://lh3.googleusercontent.com/aida-public/AB6AXuC0JrXs97OWyKJeLXUWkUV6AimFeediC7GWtiOfOF-q3PyF26PpAac-9ayPEsHwgsToc8QGs53XOVsVrc0lgW_pjVcLD6mDK81os9q-GgHo_vXF6mo_JkzvSYEwLUn2yFjUwKOrG_U4-RCFtYfv4C5mcMFHdF0oXfPJYiCZZsBbhZmqyK-hT38uQoJhERc-c26D1laev8QdYiNQCtVRGo5y8DqA8uG7cihNBhZE7Ev2NpKyonauapoHo1q2w-awG8lVdRCFuqrBO0vO" 
+              img="/gallery/photo-dump/1741166776-5.jpeg" 
             />
             <FacilityCard 
               title="Advanced Labs" 
@@ -222,3 +222,4 @@ function FacilityCard({ title, desc, icon, img }: { title: string, desc: string,
     </div>
   );
 }
+

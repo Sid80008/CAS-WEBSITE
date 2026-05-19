@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Notices | Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-surface": "#313030",
+                      "secondary-fixed-dim": "#ffb869",
+                      "surface-container": "#f0eded",
+                      "bg-secondary": "#F8F7F5",
+                      "on-error-container": "#93000a",
+                      "on-primary-container": "#9ac2ff",
+                      "surface": "#fcf9f8",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "on-tertiary-container": "#7ed0b3",
+                      "secondary": "#885200",
+                      "border-hover": "#B4B2A9",
+                      "primary-fixed": "#d4e3ff",
+                      "on-secondary": "#ffffff",
+                      "outline-variant": "#c2c6d1",
+                      "primary-container": "#00386b",
+                      "text-secondary": "#555555",
+                      "secondary-container": "#fdad4e",
+                      "surface-variant": "#e5e2e1",
+                      "surface-container-low": "#f6f3f2",
+                      "on-surface": "#1c1b1b",
+                      "school-blue-light": "#E6F1FB",
+                      "on-tertiary-fixed-variant": "#00513e",
+                      "on-primary": "#ffffff",
+                      "bg-tertiary": "#F1EFE8",
+                      "teal-light": "#E1F5EE",
+                      "school-blue-dark": "#0C447C",
+                      "tertiary-fixed": "#a0f3d4",
+                      "outline": "#737781",
+                      "tertiary-container": "#005a45",
+                      "error": "#ba1a1a",
+                      "school-blue-extra-light": "#F0F6FC",
+                      "on-secondary-fixed": "#2b1700",
+                      "on-background": "#1c1b1b",
+                      "on-primary-fixed": "#001c3a",
+                      "tertiary-fixed-dim": "#84d6b9",
+                      "coral-light": "#FAECE7",
+                      "teal-dark": "#085041",
+                      "surface-dim": "#dcd9d9",
+                      "on-tertiary-fixed": "#002117",
+                      "on-secondary-container": "#704200",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#a6c8ff",
+                      "background": "#fcf9f8",
+                      "tertiary": "#004031",
+                      "surface-container-high": "#eae7e7",
+                      "on-primary-fixed-variant": "#0e4782",
+                      "surface-container-highest": "#e5e2e1",
+                      "on-surface-variant": "#424750",
+                      "green": "#3B6D11",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#673d00",
+                      "amber-dark": "#633806",
+                      "text-tertiary": "#888888",
+                      "surface-bright": "#fcf9f8",
+                      "border-default": "#E2E0DB",
+                      "purple": "#534AB7",
+                      "inverse-primary": "#a6c8ff",
+                      "secondary-fixed": "#ffdcbb",
+                      "primary": "#00386b",
+                      "surface-tint": "#305f9b",
+                      "coral": "#993C1D",
+                      "amber-light": "#FAEEDA"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "section": "48px",
+                      "page-desktop": "64px",
+                      "container-max": "1280px",
+                      "lg": "24px",
+                      "xs": "4px",
+                      "xl": "32px",
+                      "md": "16px",
+                      "page-mobile": "24px",
+                      "sm": "8px",
+                      "base": "4px"
+              },
+              "fontFamily": {
+                      "overline": ["Inter"],
+                      "h4": ["Plus Jakarta Sans"],
+                      "caption": ["Inter"],
+                      "body-small": ["Inter"],
+                      "h1": ["Plus Jakarta Sans"],
+                      "display": ["Plus Jakarta Sans"],
+                      "body": ["Inter"],
+                      "h3": ["Plus Jakarta Sans"],
+                      "h2": ["Plus Jakarta Sans"],
+                      "body-large": ["Inter"],
+                      "label": ["Inter"]
+              },
+              "fontSize": {
+                      "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                      "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                      "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                      "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body text-body antialiased selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<nav class="bg-white dark:bg-slate-900 sticky top-0 w-full z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-center w-full max-w-7xl mx-auto px-16 h-20">
+<a class="flex items-center gap-3" href="#">
+<img alt="Central Academy Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<span class="text-xl font-extrabold text-blue-900 dark:text-blue-400 tracking-tighter font-['Plus_Jakarta_Sans']">Central Academy Anta</span>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Facilities</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Events</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Gallery</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Admissions</a>
+<a class="text-slate-600 dark:text-slate-400 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
+<span class="material-symbols-outlined">language</span>
+</button>
+<button class="bg-blue-900 text-white px-6 py-2.5 rounded-lg font-['Plus_Jakarta_Sans'] font-bold text-sm hover:opacity-80 transition-all shadow-sm">Apply Now</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-container-max mx-auto px-page-mobile md:px-page-desktop py-section">
+<!-- Minimal Hero -->
+<header class="mb-xl text-center md:text-left flex flex-col md:flex-row md:items-end justify-between gap-lg border-b border-border-default pb-lg">
+<div>
+<h1 class="font-display text-display text-primary-container mb-sm">Notice Board</h1>
+<p class="font-body-large text-body-large text-text-secondary max-w-2xl">Important announcements, academic updates, and circulars for the current session.</p>
+</div>
+<div class="flex items-center gap-md">
+<!-- Language Toggle -->
+<div class="flex items-center bg-surface-container rounded-lg p-1 border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+<button class="px-4 py-1.5 rounded-DEFAULT bg-white text-primary-container font-label text-label font-bold shadow-sm">English</button>
+<button class="px-4 py-1.5 rounded-DEFAULT text-text-secondary font-label text-label hover:text-primary-container transition-colors">हिंदी</button>
+</div>
+</div>
+</header>
+<div class="flex flex-col lg:flex-row gap-xl">
+<!-- Sidebar / Filter -->
+<aside class="lg:w-1/4 flex-shrink-0 space-y-lg">
+<!-- Search -->
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-border-default rounded-lg focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all font-body text-body shadow-[0_1px_3px_rgba(0,0,0,0.08)] bg-white text-on-surface" placeholder="Search notices..." type="text"/>
+</div>
+<!-- Categories -->
+<div class="bg-white border border-border-default rounded-lg p-md shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+<h3 class="font-h4 text-h4 text-on-surface mb-md">Categories</h3>
+<div class="space-y-sm">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5">
+<input checked="" class="appearance-none w-5 h-5 border border-border-default rounded-sm checked:bg-blue-900 checked:border-blue-900 transition-colors cursor-pointer" type="checkbox"/>
+<span class="material-symbols-outlined text-white text-[16px] absolute pointer-events-none opacity-0 peer-checked:opacity-100" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-body text-body text-on-surface group-hover:text-blue-900 transition-colors">All Notices</span>
+<span class="ml-auto bg-surface-container text-text-secondary font-caption text-caption px-2 py-0.5 rounded-full">42</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5">
+<input class="appearance-none w-5 h-5 border border-border-default rounded-sm checked:bg-blue-900 checked:border-blue-900 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+<span class="font-body text-body text-text-secondary group-hover:text-blue-900 transition-colors">Academic</span>
+<span class="ml-auto bg-surface-container text-text-secondary font-caption text-caption px-2 py-0.5 rounded-full">18</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5">
+<input class="appearance-none w-5 h-5 border border-border-default rounded-sm checked:bg-blue-900 checked:border-blue-900 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+<span class="font-body text-body text-text-secondary group-hover:text-blue-900 transition-colors">Examination</span>
+<span class="ml-auto bg-surface-container text-text-secondary font-caption text-caption px-2 py-0.5 rounded-full">7</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5">
+<input class="appearance-none w-5 h-5 border border-border-default rounded-sm checked:bg-blue-900 checked:border-blue-900 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+<span class="font-body text-body text-text-secondary group-hover:text-blue-900 transition-colors">Holidays</span>
+<span class="ml-auto bg-surface-container text-text-secondary font-caption text-caption px-2 py-0.5 rounded-full">5</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center w-5 h-5">
+<input class="appearance-none w-5 h-5 border border-border-default rounded-sm checked:bg-blue-900 checked:border-blue-900 transition-colors cursor-pointer" type="checkbox"/>
+</div>
+<span class="font-body text-body text-text-secondary group-hover:text-blue-900 transition-colors">Events</span>
+<span class="ml-auto bg-surface-container text-text-secondary font-caption text-caption px-2 py-0.5 rounded-full">12</span>
+</label>
+</div>
+</div>
+<!-- Academic Year -->
+<div class="bg-white border border-border-default rounded-lg p-md shadow-[0_1px_3px_rgba(0,0,0,0.08)]">
+<h3 class="font-h4 text-h4 text-on-surface mb-md">Session</h3>
+<select class="w-full px-4 py-2 border border-border-default rounded-lg focus:ring-2 focus:ring-blue-900/20 focus:border-blue-900 outline-none transition-all font-body text-body bg-white text-on-surface appearance-none cursor-pointer">
+<option>2024 - 2025</option>
+<option>2023 - 2024</option>
+<option>2022 - 2023</option>
+</select>
+</div>
+</aside>
+<!-- Notices List -->
+<div class="flex-1 space-y-md">
+<!-- Pinned Notice -->
+<article class="bg-school-blue-extra-light border border-blue-900/30 rounded-lg p-md relative shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.15)] transition-all group overflow-hidden pl-xl">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-blue-900"></div>
+<div class="absolute top-md right-md text-blue-900" title="Pinned Notice">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">push_pin</span>
+</div>
+<div class="flex flex-col md:flex-row gap-md items-start">
+<!-- Date Badge -->
+<div class="flex flex-col items-center justify-center bg-white border border-blue-900/20 rounded-lg min-w-[72px] py-2 px-3 shrink-0">
+<span class="font-caption text-caption text-text-secondary uppercase tracking-wider">Oct</span>
+<span class="font-h3 text-h3 text-blue-900 leading-none">15</span>
+<span class="font-caption text-caption text-text-secondary">2024</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-blue-900/10 text-blue-900 font-overline text-overline px-2 py-0.5 rounded-full">Academic</span>
+<span class="bg-amber-light text-secondary font-overline text-overline px-2 py-0.5 rounded-full flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">new_releases</span>New</span>
+</div>
+<h2 class="font-h3 text-h3 text-on-surface mb-2 group-hover:text-blue-900 transition-colors">Revised Schedule for Half-Yearly Examinations</h2>
+<p class="font-body text-body text-text-secondary mb-4 line-clamp-2">Please be informed that the Half-Yearly Examinations for classes VI to XII have been rescheduled. The exams will now commence on October 25th, 2024. Download the attached PDF for the detailed time table.</p>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-blue-900 font-label text-label hover:text-blue-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">download</span>
+                                Time_Table_Revised.pdf
+                            </button>
+<span class="text-text-tertiary font-caption text-caption">1.2 MB</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Regular Notice 1 -->
+<article class="bg-white border border-border-default rounded-lg p-md relative shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:border-border-hover transition-all group overflow-hidden pl-xl">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-coral"></div>
+<div class="flex flex-col md:flex-row gap-md items-start">
+<div class="flex flex-col items-center justify-center bg-surface-container rounded-lg min-w-[72px] py-2 px-3 shrink-0">
+<span class="font-caption text-caption text-text-secondary uppercase tracking-wider">Oct</span>
+<span class="font-h3 text-h3 text-on-surface leading-none">12</span>
+<span class="font-caption text-caption text-text-secondary">2024</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-coral-light text-coral font-overline text-overline px-2 py-0.5 rounded-full">Holidays</span>
+</div>
+<h2 class="font-h3 text-h3 text-on-surface mb-2 group-hover:text-blue-900 transition-colors">Dussehra Holiday Announcement</h2>
+<p class="font-body text-body text-text-secondary mb-4 line-clamp-2">The school will remain closed from October 20th to October 24th on account of Dussehra. Regular classes will resume from Wednesday, October 25th.</p>
+</div>
+</div>
+</article>
+<!-- Regular Notice 2 -->
+<article class="bg-white border border-border-default rounded-lg p-md relative shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:border-border-hover transition-all group overflow-hidden pl-xl">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-purple"></div>
+<div class="flex flex-col md:flex-row gap-md items-start">
+<div class="flex flex-col items-center justify-center bg-surface-container rounded-lg min-w-[72px] py-2 px-3 shrink-0">
+<span class="font-caption text-caption text-text-secondary uppercase tracking-wider">Oct</span>
+<span class="font-h3 text-h3 text-on-surface leading-none">08</span>
+<span class="font-caption text-caption text-text-secondary">2024</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-purple/10 text-purple font-overline text-overline px-2 py-0.5 rounded-full">Events</span>
+</div>
+<h2 class="font-h3 text-h3 text-on-surface mb-2 group-hover:text-blue-900 transition-colors">Annual Science Exhibition Registration</h2>
+<p class="font-body text-body text-text-secondary mb-4 line-clamp-2">Registrations are now open for the Annual Science Exhibition 'Innovate 2024'. Students from classes VIII to XII are encouraged to submit their project proposals to their respective science teachers by October 18th.</p>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-blue-900 font-label text-label hover:text-blue-700 transition-colors">
+<span class="material-symbols-outlined text-[20px]">link</span>
+                                Registration Form
+                            </button>
+</div>
+</div>
+</div>
+</article>
+<!-- Regular Notice 3 -->
+<article class="bg-white border border-border-default rounded-lg p-md relative shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:border-border-hover transition-all group overflow-hidden pl-xl">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-blue-900"></div>
+<div class="flex flex-col md:flex-row gap-md items-start">
+<div class="flex flex-col items-center justify-center bg-surface-container rounded-lg min-w-[72px] py-2 px-3 shrink-0">
+<span class="font-caption text-caption text-text-secondary uppercase tracking-wider">Oct</span>
+<span class="font-h3 text-h3 text-on-surface leading-none">05</span>
+<span class="font-caption text-caption text-text-secondary">2024</span>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="bg-blue-900/10 text-blue-900 font-overline text-overline px-2 py-0.5 rounded-full">Academic</span>
+</div>
+<h2 class="font-h3 text-h3 text-on-surface mb-2 group-hover:text-blue-900 transition-colors">Parent-Teacher Meeting (PTM) for Classes I-V</h2>
+<p class="font-body text-body text-text-secondary mb-4 line-clamp-2">A Parent-Teacher Meeting has been scheduled for Saturday, October 14th to discuss the progress of students in the primary section. Specific time slots will be shared by class teachers.</p>
+</div>
+</div>
+</article>
+<!-- Pagination -->
+<div class="flex items-center justify-center gap-2 pt-lg mt-lg border-t border-border-default">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-default text-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors disabled:opacity-50 disabled:cursor-not-allowed" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-blue-900 text-white font-label text-label shadow-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-default text-on-surface font-label text-label hover:bg-surface-container transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-default text-on-surface font-label text-label hover:bg-surface-container transition-colors">3</button>
+<span class="text-text-secondary">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-default text-on-surface font-label text-label hover:bg-surface-container transition-colors">8</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border border-border-default text-text-secondary hover:bg-surface-container hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full border-t border-slate-200 dark:border-slate-800">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-7xl mx-auto px-16 py-12">
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<img alt="Central Academy Logo" class="w-10 h-10 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<span class="text-lg font-bold text-blue-900 dark:text-blue-400 font-['Plus_Jakarta_Sans']">Central Academy Anta</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed font-['Plus_Jakarta_Sans']">Empowering students through quality education and character building for over 30 years.</p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<h4 class="font-bold text-blue-900 dark:text-blue-400 text-sm font-['Plus_Jakarta_Sans']">Explore</h4>
+<ul class="space-y-2">
+<li><a class="text-slate-500 dark:text-slate-400 text-sm font-['Plus_Jakarta_Sans'] hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">About</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 text-sm font-['Plus_Jakarta_Sans'] hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Facilities</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 text-sm font-['Plus_Jakarta_Sans'] hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Events</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-blue-900 dark:text-blue-400 text-sm font-['Plus_Jakarta_Sans']">Resources</h4>
+<ul class="space-y-2">
+<li><a class="text-slate-500 dark:text-slate-400 text-sm font-['Plus_Jakarta_Sans'] hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Gallery</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 text-sm font-['Plus_Jakarta_Sans'] hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Admissions</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 text-sm font-['Plus_Jakarta_Sans'] hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Contact</a></li>
+</ul>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-blue-900 dark:text-blue-400 text-sm font-['Plus_Jakarta_Sans']">Contact Us</h4>
+<p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed font-['Plus_Jakarta_Sans']">Anta Campus, Rajasthan, India<br/>Phone: +91 0000 000 000<br/>Email: info@centralacademyanta.com</p>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 py-6">
+<div class="max-w-7xl mx-auto px-16 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 dark:text-slate-400 text-xs font-['Plus_Jakarta_Sans']">© 2024 Central Academy Anta. 30 Years of Academic Excellence.</p>
+<div class="flex gap-6">
+<a class="text-slate-500 dark:text-slate-400 text-xs hover:text-blue-900 transition-colors font-['Plus_Jakarta_Sans']" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 text-xs hover:text-blue-900 transition-colors font-['Plus_Jakarta_Sans']" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 text-xs hover:text-blue-900 transition-colors font-['Plus_Jakarta_Sans']" href="#">Sitemap</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

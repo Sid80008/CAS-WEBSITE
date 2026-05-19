@@ -1,5 +1,6 @@
-import React from "react";
+﻿import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
+import { SCHOOL } from "@/lib/constants";
 import { 
   MapPin, 
   Phone, 
@@ -44,20 +45,20 @@ export default function ContactUs() {
                     <ContactDetail 
                       icon={<MapPin />} 
                       title="Correspondence Address" 
-                      line1="Station Road, Anta" 
-                      line2="District Baran, Rajasthan, 325202" 
+                      line1={SCHOOL.address} 
+                      line2={`${SCHOOL.city}, ${SCHOOL.state}`} 
                     />
                     <ContactDetail 
                       icon={<Phone />} 
                       title="Direct Helpline" 
-                      line1="+91 7457 244555" 
-                      line2="+91 7457 244666" 
+                      line1={SCHOOL.phone1} 
+                      line2={SCHOOL.phone2} 
                     />
                     <ContactDetail 
                       icon={<Mail />} 
                       title="Official Email" 
-                      line1="info@casanta.edu.in" 
-                      line2="admissions@casanta.edu.in" 
+                      line1={SCHOOL.email} 
+                      line2="admissions queries welcome" 
                     />
                     <ContactDetail 
                       icon={<Clock />} 
@@ -166,3 +167,4 @@ function ContactDetail({ icon, title, line1, line2 }: any) {
     </div>
   );
 }
+

@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Library Facility - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;900&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "border-hover": "#B4B2A9",
+                        "on-background": "#1c1b1b",
+                        "surface-container-highest": "#e5e2e1",
+                        "purple": "#534AB7",
+                        "surface-dim": "#dcd9d9",
+                        "school-blue-light": "#E6F1FB",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#a6c8ff",
+                        "background": "#fcf9f8",
+                        "tertiary-fixed-dim": "#84d6b9",
+                        "outline": "#737781",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#2b1700",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "secondary-fixed-dim": "#ffb869",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary-fixed": "#002117",
+                        "bg-secondary": "#F8F7F5",
+                        "primary": "#00386b",
+                        "surface-container-high": "#eae7e7",
+                        "teal-dark": "#085041",
+                        "teal-light": "#E1F5EE",
+                        "secondary-container": "#fdad4e",
+                        "on-tertiary-fixed-variant": "#00513e",
+                        "on-error-container": "#93000a",
+                        "on-surface-variant": "#424750",
+                        "surface": "#fcf9f8",
+                        "school-blue-extra-light": "#F0F6FC",
+                        "outline-variant": "#c2c6d1",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#005a45",
+                        "on-secondary-container": "#704200",
+                        "amber-light": "#FAEEDA",
+                        "surface-container-low": "#f6f3f2",
+                        "primary-container": "#1b4f8a",
+                        "on-tertiary-container": "#7ed0b3",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "secondary-fixed": "#ffdcbb",
+                        "text-secondary": "#555555",
+                        "tertiary-fixed": "#a0f3d4",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "inverse-surface": "#313030",
+                        "on-primary-container": "#9ac2ff",
+                        "tertiary": "#004031",
+                        "on-primary-fixed-variant": "#0e4782",
+                        "bg-tertiary": "#F1EFE8",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-tint": "#305f9b",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "school-blue-dark": "#0C447C",
+                        "green": "#3B6D11",
+                        "text-tertiary": "#888888",
+                        "coral-light": "#FAECE7",
+                        "on-surface": "#1c1b1b",
+                        "coral": "#993C1D",
+                        "primary-fixed": "#d4e3ff",
+                        "border-default": "#E2E0DB",
+                        "secondary": "#885200",
+                        "surface-container": "#f0eded",
+                        "error-container": "#ffdad6",
+                        "amber-dark": "#633806"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "container-max": "1280px",
+                        "page-desktop": "64px",
+                        "md": "16px",
+                        "page-mobile": "24px",
+                        "base": "4px",
+                        "section": "48px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "body-large": ["Inter"],
+                        "h4": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "caption": ["Inter"],
+                        "body": ["Inter"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "body-small": ["Inter"],
+                        "overline": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body text-body antialiased min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm sticky top-0 z-40">
+<div class="flex justify-between items-center w-full max-w-7xl mx-auto px-8 h-20">
+<!-- Brand Logo -->
+<a class="flex items-center gap-3" href="/">
+<img alt="Central Academy Anta Logo" class="h-10 w-auto" data-alt="Official logo of Central Academy Anta, high resolution, professional corporate identity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAa7bheV-IAYQFUMZoGyl70dZQdr-JQ4BQQGym9-5pDHg1ox1v-rHvBceeFWaN-blqEWDR94gq4ybVftu8KheGKol0nAxmfEjp4_3t6K-7XXyYRYiwfWjHYF9cXmfmBskiTwR1gfjKkXOHjWnjEAOVn75lsXpzkOSx1fJGIHOhG0n3SqQvG1LRfNlbSXVbA1qYqVuFkl7pRJv2rUF6atyXwCb5fEEaytrFsrwx3jXnQ97v2l-LJB2rN20zviTSqSiy4StQ6m-mfOuPC"/>
+<span class="text-xl font-bold text-blue-900 dark:text-blue-300 font-display">Central Academy Anta</span>
+</a>
+<!-- Navigation Links (Desktop) -->
+<nav class="hidden md:flex items-center gap-8 font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded-md" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded-md" href="#">About Us</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded-md" href="#">Academics</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded-md" href="#">Admissions</a>
+<a class="text-blue-900 dark:text-amber-500 border-b-2 border-amber-600 pb-1 px-3 py-2" href="#">Campus Life</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200 px-3 py-2 rounded-md" href="#">Contact</a>
+</nav>
+<!-- Trailing Action -->
+<div class="hidden md:block">
+<a class="bg-primary text-on-primary hover:bg-school-blue-dark transition-colors duration-200 transform hover:-translate-y-[1px] shadow-sm hover:shadow-md px-6 py-2.5 rounded-DEFAULT font-label text-label inline-flex items-center justify-center" href="#">
+                    Enquire Now
+                </a>
+</div>
+<!-- Mobile Menu Toggle (Placeholder) -->
+<button class="md:hidden text-slate-600 dark:text-slate-400 p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative w-full h-[400px] md:h-[500px] bg-slate-900 flex items-center">
+<div class="absolute inset-0 z-0">
+<img alt="Library Interior" class="w-full h-full object-cover opacity-40" data-alt="Wide view of a modern school library interior, warm lighting, rows of bookshelves filled with books, student reading areas, peaceful academic atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgRAVc61Hyciz8cFo462XM_UDzQDM8lFGM4uy8nFAn_XtPggRTvkH5FqxKayGDApxZSwHlNPyw6N2pRMVNaSCoovXJlN6rxkaspqxnM83p4hYHBo2uv0QKSkOK-2k_qY8qY3iI_GGsmfd44OIOIQXenWZnQtTb4Pr3hkdF4r37e9VZv8P6BpCEpS2Bq8S8YQWq6egHLMaqRPaQmWSx4rsdHxwDNOdvfLoMv4uCQVnRUfW4XVa4rXHJYvMmLSuT9JRdYiUDLmacBxQc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent"></div>
+</div>
+<div class="relative z-10 w-full max-w-[1280px] mx-auto px-page-mobile md:px-page-desktop">
+<div class="max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 bg-school-blue-light/20 border border-school-blue-light/30 rounded-full mb-6 backdrop-blur-sm">
+<span class="material-symbols-outlined text-school-blue-light text-[16px]" data-icon="local_library">local_library</span>
+<span class="font-overline text-overline text-school-blue-light uppercase tracking-wider">Campus Facilities</span>
+</div>
+<h1 class="font-display text-display text-white mb-6">The Knowledge Hub</h1>
+<p class="font-body-large text-body-large text-slate-200 mb-8 max-w-xl">
+                        Our central library is a sanctuary of learning, housing an extensive collection of physical and digital resources designed to inspire curiosity and academic excellence in every student.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-section bg-surface w-full max-w-[1280px] mx-auto px-page-mobile md:px-page-desktop">
+<div class="mb-12">
+<h2 class="font-h2 text-h2 text-primary mb-4">Library Resources</h2>
+<div class="w-16 h-1 bg-secondary-container rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<!-- Vast Collection -->
+<div class="col-span-1 md:col-span-2 bg-white rounded-xl border border-border-default shadow-sm hover:shadow-md transition-shadow duration-300 p-8 flex flex-col justify-between overflow-hidden relative group">
+<div class="relative z-10">
+<div class="w-12 h-12 bg-school-blue-extra-light rounded-lg flex items-center justify-center mb-6 border border-school-blue-light">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="menu_book">menu_book</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-background mb-3">Vast Collection</h3>
+<p class="font-body text-body text-text-secondary max-w-md">
+                            Over 15,000 carefully curated titles spanning academic subjects, classic literature, contemporary fiction, and specialized reference materials across English and Hindi.
+                        </p>
+</div>
+<div class="absolute right-0 bottom-0 opacity-10 group-hover:opacity-20 transition-opacity duration-500 translate-x-4 translate-y-4">
+<span class="material-symbols-outlined text-[150px] text-primary" data-icon="library_books">library_books</span>
+</div>
+</div>
+<!-- Digital Media -->
+<div class="col-span-1 bg-white rounded-xl border border-border-default shadow-sm hover:shadow-md transition-shadow duration-300 p-8 flex flex-col relative overflow-hidden group">
+<div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mb-6 border border-teal-light/50">
+<span class="material-symbols-outlined text-teal-dark text-2xl" data-icon="devices">devices</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-background mb-3">Digital Media</h3>
+<p class="font-body text-body text-text-secondary">
+                        Access to high-speed internet terminals, digital archives, e-books, and educational software for comprehensive research.
+                    </p>
+</div>
+<!-- Magazines & Periodicals -->
+<div class="col-span-1 bg-white rounded-xl border border-border-default shadow-sm hover:shadow-md transition-shadow duration-300 p-8 flex flex-col relative overflow-hidden group">
+<div class="w-12 h-12 bg-amber-light rounded-lg flex items-center justify-center mb-6 border border-amber-light/50">
+<span class="material-symbols-outlined text-amber-dark text-2xl" data-icon="newsmode">newsmode</span>
+</div>
+<h3 class="font-h3 text-h3 text-on-background mb-3">Magazines &amp; Periodicals</h3>
+<p class="font-body text-body text-text-secondary">
+                        Current subscriptions to leading national and international educational journals, science magazines, and daily newspapers.
+                    </p>
+</div>
+<!-- Quiet Study Zones -->
+<div class="col-span-1 md:col-span-2 bg-school-blue-extra-light rounded-xl border border-school-blue-light shadow-sm hover:shadow-md transition-shadow duration-300 p-8 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-white rounded-full border border-border-default mb-4 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-green"></span>
+<span class="font-caption text-caption text-text-secondary font-medium">Verified Environment</span>
+</div>
+<h3 class="font-h3 text-h3 text-primary mb-3">Dedicated Study Zones</h3>
+<p class="font-body text-body text-text-secondary">
+                            Specifically designed silent areas with ergonomic seating and individual lighting to foster deep concentration and uninterrupted reading sessions.
+                        </p>
+</div>
+<div class="w-full md:w-1/3 h-48 md:h-full rounded-lg overflow-hidden shrink-0 shadow-sm">
+<img alt="Study Desk" class="w-full h-full object-cover" data-alt="Close up of an open book on a wooden study desk in a library, soft natural light streaming through a window, peaceful study environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB23oetxTaiec7lqUs5uXApUJMahc3ixyt_Je6Yvg5Ka05h93r5YWEej7Nehpek82_Q3Mg66l6hG1MbtB4PChXWanB5vj3ElbwuETMI10Q2yX0P-0dwPAhlPrgWebK9PAe51Y1l1gWUSLciWp9MAAo4Du3up817ur6Y6FlW-OrYqFx1ERKu0WLlmHCQCI5VnwN3wlE3DyFp6L8vE-FaLr-BgqRM3a85G9Sq2_exbkI0RizfdWsByHS8_wWN43nuacKeT1B1qa0vJJnS"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Library Rules Section -->
+<section class="py-section bg-bg-secondary border-t border-border-default">
+<div class="w-full max-w-[1280px] mx-auto px-page-mobile md:px-page-desktop">
+<div class="bg-white rounded-xl border border-border-default shadow-sm p-8 md:p-12 max-w-4xl mx-auto">
+<div class="text-center mb-10">
+<span class="material-symbols-outlined text-coral text-4xl mb-4" data-icon="gavel">gavel</span>
+<h2 class="font-h2 text-h2 text-on-background mb-2">Library Guidelines</h2>
+<p class="font-body text-body text-text-secondary">Maintaining a harmonious environment for all scholars.</p>
+</div>
+<div class="space-y-4">
+<!-- Rule 1 -->
+<div class="flex gap-4 p-4 rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-8 h-8 rounded-full bg-school-blue-light text-primary flex items-center justify-center font-h4 text-h4 shrink-0">1</div>
+<div>
+<h4 class="font-h4 text-h4 text-on-background mb-1">Silence is Mandatory</h4>
+<p class="font-body text-body text-text-secondary">Strict silence must be maintained in and around the library premises to ensure an undisturbed study environment.</p>
+</div>
+</div>
+<div class="h-px w-full bg-border-default/50"></div>
+<!-- Rule 2 -->
+<div class="flex gap-4 p-4 rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-8 h-8 rounded-full bg-school-blue-light text-primary flex items-center justify-center font-h4 text-h4 shrink-0">2</div>
+<div>
+<h4 class="font-h4 text-h4 text-on-background mb-1">Card Usage</h4>
+<p class="font-body text-body text-text-secondary">Books are issued solely against the student's personal Library Card. Cards are non-transferable.</p>
+</div>
+</div>
+<div class="h-px w-full bg-border-default/50"></div>
+<!-- Rule 3 -->
+<div class="flex gap-4 p-4 rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-8 h-8 rounded-full bg-school-blue-light text-primary flex items-center justify-center font-h4 text-h4 shrink-0">3</div>
+<div>
+<h4 class="font-h4 text-h4 text-on-background mb-1">Return Policy</h4>
+<p class="font-body text-body text-text-secondary">Issued books must be returned within 14 days. Late returns will incur a nominal fine as per school policy.</p>
+</div>
+</div>
+<div class="h-px w-full bg-border-default/50"></div>
+<!-- Rule 4 -->
+<div class="flex gap-4 p-4 rounded-lg hover:bg-surface-container-low transition-colors duration-200">
+<div class="w-8 h-8 rounded-full bg-school-blue-light text-primary flex items-center justify-center font-h4 text-h4 shrink-0">4</div>
+<div>
+<h4 class="font-h4 text-h4 text-on-background mb-1">Care of Resources</h4>
+<p class="font-body text-body text-text-secondary">Marking, underlining, or defacing books in any manner is strictly prohibited. Damaged books must be replaced by the borrower.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+<div class="w-full py-12 px-8 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Brand -->
+<div class="flex items-center gap-3">
+<img alt="Central Academy Anta Logo" class="h-8 w-auto grayscale opacity-80" data-alt="Official logo of Central Academy Anta, monochrome version for footer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6MYo_U0siMFHjUtizdfZ7LJWYNUdngnnqNNKApRkxSN2K5h3StDbJs6HW61Sxzjy7ueSqiNI6Ewf9qq7Yc_xvmgzRM9Mb-zoiKBBzUO4Sm8y6G9ciSh1I7w1lZdFPM4CrGIHhshQsgLQa5o90TIYoxKHnfCjp8IxO7ivG_CwihD7HoJMVc8GaZuQmQ3msuR9Eix8z0YEC08gHj6dWNKY0MtHAka4-oYOsenIdrmAQdBQItNZ9cmTDzwMUuIoc5KieiGjpFBNZoA5E"/>
+<span class="text-lg font-black text-blue-900 dark:text-blue-300 font-['Plus_Jakarta_Sans']">Central Academy Anta</span>
+</div>
+<!-- Links -->
+<nav class="flex flex-wrap justify-center gap-x-6 gap-y-2 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+<a class="hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 transition-all duration-300" href="#">Privacy Policy</a>
+<a class="hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 transition-all duration-300" href="#">Terms of Service</a>
+<a class="hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 transition-all duration-300" href="#">Alumni Portal</a>
+<a class="hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 transition-all duration-300" href="#">Sitemap</a>
+<a class="hover:text-blue-700 dark:hover:text-blue-300 underline underline-offset-4 transition-all duration-300" href="#">Mandatory Disclosure</a>
+</nav>
+<!-- Copyright -->
+<div class="text-sm font-['Plus_Jakarta_Sans'] text-slate-500 dark:text-slate-400 text-center md:text-right">
+                © 2024 Central Academy Anta. 30 Years of Academic Excellence.
+            </div>
+</div>
+</footer>
+</body></html>

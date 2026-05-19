@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Director's Message - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#313030",
+                        "secondary-fixed-dim": "#ffb869",
+                        "surface-container": "#f0eded",
+                        "bg-secondary": "#F8F7F5",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#9ac2ff",
+                        "surface": "#fcf9f8",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-tertiary-container": "#7ed0b3",
+                        "secondary": "#BA7517",
+                        "border-hover": "#B4B2A9",
+                        "primary-fixed": "#d4e3ff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c2c6d1",
+                        "primary-container": "#1B4F8A",
+                        "text-secondary": "#555555",
+                        "secondary-container": "#BA7517",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-low": "#f6f3f2",
+                        "on-surface": "#1c1b1b",
+                        "school-blue-light": "#E6F1FB",
+                        "on-tertiary-fixed-variant": "#00513e",
+                        "on-primary": "#ffffff",
+                        "bg-tertiary": "#F1EFE8",
+                        "teal-light": "#E1F5EE",
+                        "school-blue-dark": "#0C447C",
+                        "tertiary-fixed": "#a0f3d4",
+                        "outline": "#737781",
+                        "tertiary-container": "#005a45",
+                        "error": "#ba1a1a",
+                        "school-blue-extra-light": "#F0F6FC",
+                        "on-secondary-fixed": "#2b1700",
+                        "on-background": "#1c1b1b",
+                        "on-primary-fixed": "#001c3a",
+                        "tertiary-fixed-dim": "#84d6b9",
+                        "coral-light": "#FAECE7",
+                        "teal-dark": "#085041",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed": "#002117",
+                        "on-secondary-container": "#704200",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "background": "#fcf9f8",
+                        "tertiary": "#004031",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-fixed-variant": "#0e4782",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-surface-variant": "#424750",
+                        "green": "#3B6D11",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "amber-dark": "#633806",
+                        "text-tertiary": "#888888",
+                        "surface-bright": "#fcf9f8",
+                        "border-default": "#E2E0DB",
+                        "purple": "#534AB7",
+                        "inverse-primary": "#a6c8ff",
+                        "secondary-fixed": "#ffdcbb",
+                        "primary": "#1B4F8A",
+                        "surface-tint": "#305f9b",
+                        "coral": "#993C1D",
+                        "amber-light": "#FAEEDA"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section": "48px",
+                        "page-desktop": "64px",
+                        "container-max": "1280px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "page-mobile": "24px",
+                        "sm": "8px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "overline": ["Inter"],
+                        "h4": ["Plus Jakarta Sans"],
+                        "caption": ["Inter"],
+                        "body-small": ["Inter"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "body-large": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "overline": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "h4": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-small": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h1": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "1.1", "fontWeight": "700" }],
+                        "body": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["22px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "h2": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-large": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label": ["14px", { "lineHeight": "1.5", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body antialiased">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 sticky top-0 w-full z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex justify-between items-center w-full max-w-7xl mx-auto px-16 h-20">
+<div class="flex items-center gap-3">
+<img alt="Central Academy Anta Logo" class="h-12 w-12 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<div class="text-xl font-extrabold text-blue-900 dark:text-blue-400 tracking-tighter font-['Plus_Jakarta_Sans']">
+                    Central Academy Anta
+                </div>
+</div>
+<nav class="hidden md:flex space-x-8 items-center font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Facilities</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Events</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Gallery</a>
+<a class="text-blue-900 dark:text-blue-400 font-bold border-b-2 border-blue-900 dark:border-blue-400 pb-1" href="#">Admissions</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-600 dark:text-slate-400 hover:text-blue-700 dark:hover:text-blue-300 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">language</span>
+</button>
+<button class="bg-[#1B4F8A] text-white px-6 py-2 rounded-lg font-bold hover:bg-[#0C447C] transition-all active:opacity-80">Apply Now</button>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- Hero Section -->
+<section class="bg-school-blue-light py-16 md:py-24">
+<div class="max-w-[1280px] mx-auto px-6 md:px-[64px]">
+<div class="flex flex-col md:flex-row gap-12 items-center">
+<div class="w-full md:w-1/2">
+<h1 class="font-display text-display text-primary-container mb-6">Director's Message</h1>
+<p class="font-body-large text-body-large text-on-surface-variant mb-8 max-w-lg">
+                            Welcome to Central Academy Anta. For three decades, we have been committed to nurturing young minds and fostering a culture of academic excellence and character development.
+                        </p>
+<div class="flex items-center gap-4">
+<span class="w-12 h-1 bg-secondary-container"></span>
+<span class="font-label text-label text-secondary uppercase tracking-widest">Vision &amp; Leadership</span>
+</div>
+</div>
+<div class="w-full md:w-1/2 relative">
+<div class="aspect-[4/3] rounded-xl overflow-hidden shadow-lg border-4 border-white">
+<img alt="Portrait of school director standing in bright, modern library with books" class="w-full h-full object-cover" data-alt="Professional portrait of experienced school director in modern library setting with soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5aNfbBpShC1EpMtP36aN1piKOMFBmfI0z3TEZ8WIg56F6eNuhi3UkyGbokV7sC3lHNruIvhA-jW1lCgckDQ1HNPEzSXaLFubbXgegZwWZkXti_km_VDurNJnkAax_8ZhzUV-VIZ9Co3QGxdwVcUfr4zGuKrLv8BU1RXrhQrg3Sw4xhAhzzBmxs2P0XWcSXLCgorT-27rcumri4EfA8TVNcXxmg8otNQBxCW0vMYVsI1VHedqb4btsN_99_TkxTM06ZZY3rTxk-o2D"/>
+</div>
+<div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-lg shadow-md border border-border-default max-w-[240px]">
+<p class="font-h4 text-h4 text-primary-container mb-1">Dr. S. K. Sharma</p>
+<p class="font-body-small text-body-small text-text-secondary">Director, Central Academy Anta</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Message Content -->
+<section class="py-16 md:py-[48px]">
+<div class="max-w-[1280px] mx-auto px-6 md:px-[64px]">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<div class="md:col-span-8 space-y-6 font-body text-body text-on-surface leading-relaxed">
+<p class="text-xl font-medium text-primary mb-8 border-l-4 border-secondary-container pl-6 py-2 bg-surface-container-low">
+                            "Education is not merely the accumulation of facts, but the preparation for life itself. We strive to build individuals of character, competence, and compassion."
+                        </p>
+<p>
+                            It gives me immense pleasure to welcome you to the digital portal of Central Academy Anta. As an institution with a 30-year legacy, we have consistently adapted to the changing paradigms of education while staying rooted in our core values.
+                        </p>
+<p>
+                            Our primary goal is to provide an environment where every student can discover their unique potential. We believe in a holistic approach that balances academic rigor with co-curricular engagement, ensuring that our students are prepared for the challenges of the modern world.
+                        </p>
+<p>
+                            The role of education today has expanded beyond the classroom. It involves building resilience, fostering critical thinking, and instilling a sense of global citizenship. At Central Academy Anta, our dedicated faculty works tirelessly to create learning experiences that are engaging, relevant, and inspiring.
+                        </p>
+<p>
+                            We value the partnership between the school and parents. Your involvement is crucial to the success of our students. Together, we can create a supportive community that encourages every child to excel.
+                        </p>
+<div class="mt-12 pt-8 border-t border-border-default">
+<img alt="Signature of Director" class="h-16 mb-4 opacity-80 mix-blend-multiply" data-alt="Elegant handwritten signature in dark blue ink on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVU-5d1VPwI4xgiX8lOUEfN3nEbso91m9DWlamLBodSyRWFheG89xOpfcgGhZD2WihoCqNE3vjQwGl2PqZbrmsy-bjBR17Jf970TqD8zD_dXrdWrdhw5bJwHUeDy3O8LkjmuI0ycpn2GWKlRXAl6hSyT2k4XX5VmbfBme1JnqnwbXHuvRmN5ESFTc4y7UtKQS8a54Cjzw1lU9-WTODOAbo11BAJ9vsZ_--Yy08BRd3oSmeVoQYN22lgckwHz4WCdQxorZBivDxo22z"/>
+<p class="font-h4 text-h4 text-primary-container">Dr. S. K. Sharma</p>
+<p class="font-body-small text-body-small text-text-secondary">Director</p>
+</div>
+</div>
+<!-- Sidebar -->
+<div class="md:col-span-4 space-y-8">
+<div class="bg-surface-container-low rounded-xl p-8 border border-border-default">
+<h3 class="font-h3 text-h3 text-primary-container mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" data-icon="lightbulb">lightbulb</span>
+                                Our Core Values
+                            </h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-teal-dark mt-1" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-label text-label text-on-surface">Academic Excellence</p>
+<p class="font-body-small text-body-small text-text-secondary">Rigorous curriculum designed to challenge and inspire.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-teal-dark mt-1" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-label text-label text-on-surface">Character Building</p>
+<p class="font-body-small text-body-small text-text-secondary">Fostering integrity, empathy, and resilience.</p>
+</div>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-teal-dark mt-1" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-label text-label text-on-surface">Holistic Development</p>
+<p class="font-body-small text-body-small text-text-secondary">Balancing academics with sports and arts.</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="bg-school-blue-dark text-white rounded-xl p-8 relative overflow-hidden">
+<div class="absolute top-0 right-0 opacity-10">
+<span class="material-symbols-outlined text-9xl" data-icon="school">school</span>
+</div>
+<h3 class="font-h3 text-h3 mb-4 relative z-10">30 Years of Legacy</h3>
+<p class="font-body-small text-body-small text-school-blue-light mb-6 relative z-10">
+                                Central Academy Anta has been a beacon of quality education since its inception, continually evolving to meet the needs of tomorrow.
+                            </p>
+<a class="inline-flex items-center gap-2 text-secondary-fixed-dim hover:text-white font-label text-label transition-colors relative z-10" href="#">
+                                Discover Our History
+                                <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Priority Theme Cards (Bento Grid) -->
+<section class="py-16 md:py-[48px] bg-bg-secondary border-t border-border-default">
+<div class="max-w-[1280px] mx-auto px-6 md:px-[64px]">
+<div class="text-center mb-12">
+<h2 class="font-h2 text-h2 text-primary-container mb-4">Strategic Priorities</h2>
+<p class="font-body text-body text-text-secondary max-w-2xl mx-auto">Our roadmap for the future focuses on innovation, student well-being, and community engagement.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white rounded-xl p-8 border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-shadow group">
+<div class="w-12 h-12 bg-teal-light rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-teal-dark" data-icon="biotech">biotech</span>
+</div>
+<h4 class="font-h4 text-h4 text-on-surface mb-3">Future-Ready Learning</h4>
+<p class="font-body-small text-body-small text-text-secondary">Integrating advanced technology and STEM programs to prepare students for the digital age.</p>
+</div>
+<div class="bg-white rounded-xl p-8 border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-shadow group">
+<div class="w-12 h-12 bg-amber-light rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-secondary" data-icon="psychology">psychology</span>
+</div>
+<h4 class="font-h4 text-h4 text-on-surface mb-3">Student Well-being</h4>
+<p class="font-body-small text-body-small text-text-secondary">Comprehensive counseling and mental health support systems to ensure a nurturing environment.</p>
+</div>
+<div class="bg-white rounded-xl p-8 border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-shadow group">
+<div class="w-12 h-12 bg-school-blue-light rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary-container" data-icon="diversity_3">diversity_3</span>
+</div>
+<h4 class="font-h4 text-h4 text-on-surface mb-3">Community Integration</h4>
+<p class="font-body-small text-body-small text-text-secondary">Strengthening ties with local organizations and fostering active parent-school partnerships.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 w-full py-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full max-w-7xl mx-auto px-16 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed">
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<img alt="Logo" class="h-10 w-10 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<div class="text-lg font-bold text-blue-900 dark:text-blue-400">Central Academy Anta</div>
+</div>
+<p class="text-slate-500 dark:text-slate-400">
+                    A legacy of 30 years in shaping futures and nurturing excellence in education.
+                </p>
+<p class="text-blue-900 dark:text-blue-400 font-semibold">© 2024 Central Academy Anta. 30 Years of Academic Excellence.</p>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div class="space-y-4">
+<h4 class="font-bold text-blue-900 dark:text-blue-400 uppercase tracking-wider text-xs">Quick Links</h4>
+<nav class="flex flex-col space-y-2">
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">About</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Facilities</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Events</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Gallery</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-blue-900 dark:text-blue-400 uppercase tracking-wider text-xs">Resources</h4>
+<nav class="flex flex-col space-y-2">
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Admissions</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Contact</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition-all duration-300" href="#">Terms of Service</a>
+</nav>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-blue-900 dark:text-blue-400 uppercase tracking-wider text-xs">Newsletter</h4>
+<p class="text-slate-500 dark:text-slate-400 text-xs">Stay updated with our latest news and events.</p>
+<form class="flex gap-2">
+<input class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-lg px-3 py-2 text-xs flex-grow focus:outline-none focus:ring-2 focus:ring-[#1B4F8A]" placeholder="Email address" type="email"/>
+<button class="bg-[#1B4F8A] text-white px-4 py-2 rounded-lg text-xs font-bold hover:bg-[#0C447C] transition-all">Subscribe</button>
+</form>
+</div>
+</div>
+</footer>
+</body></html>

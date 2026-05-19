@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admission Process - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Noto Sans', sans-serif;
+        }
+        .font-display {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#1B4F8A",
+                        "primary-dark": "#0C447C",
+                        "primary-light": "#E6F1FB",
+                        "primary-extra-light": "#F0F6FC",
+                        "accent": "#BA7517",
+                        "accent-light": "#FAEEDA",
+                        "accent-dark": "#633806",
+                        "teal": "#0F6E56",
+                        "teal-light": "#E1F5EE",
+                        "teal-dark": "#085041",
+                        "surface": "#FFFFFF",
+                        "surface-variant": "#F8F7F5",
+                        "border-default": "#E2E0DB",
+                        "text-primary": "#1a1a1a",
+                        "text-secondary": "#555555",
+                        "text-tertiary": "#888888"
+                    },
+                    "borderRadius": {
+                        "sm": "6px",
+                        "DEFAULT": "8px",
+                        "lg": "12px",
+                        "xl": "16px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section": "48px",
+                        "page-desktop": "64px",
+                        "container-max": "1280px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "sm": "8px"
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white text-text-primary min-h-screen flex flex-col antialiased">
+<!-- TopAppBar from COMPONENTS_15 -->
+<header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md fixed top-0 w-full z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm transition-all font-['Plus_Jakarta_Sans'] antialiased">
+<div class="flex justify-between items-center h-20 px-6 lg:px-16 max-w-[1280px] mx-auto">
+<div class="flex items-center gap-3">
+<img alt="School Logo" class="h-12 w-12 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<div class="flex flex-col">
+<span class="text-xl font-extrabold tracking-tight text-[#1B4F8A] dark:text-blue-50 leading-tight">Central Academy</span>
+<span class="text-xs font-medium text-slate-500 dark:text-slate-400">Anta, Baran</span>
+</div>
+</div>
+<nav class="hidden md:flex gap-8 items-center h-full">
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Facilities</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Events</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Gallery</a>
+<a class="text-[#1B4F8A] dark:text-blue-400 font-bold border-b-2 border-[#1B4F8A] pb-1" href="#">Admissions</a>
+<a class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] dark:hover:text-blue-300 transition-all duration-200" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-600 dark:text-slate-400 font-medium hover:text-[#1B4F8A] transition-all duration-200 text-sm">हिन्दी</button>
+<button class="bg-[#1B4F8A] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#0C447C] transition-all scale-95 active:scale-100 hidden md:block">
+                Portal
+            </button>
+<button class="md:hidden text-[#1B4F8A]">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow pt-20">
+<!-- Breadcrumb -->
+<div class="max-w-[1280px] mx-auto px-6 lg:px-16 py-4">
+<nav class="flex items-center gap-2 text-[13px] text-text-tertiary">
+<a class="hover:underline text-text-secondary" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-text-primary">Admission Process</span>
+</nav>
+</div>
+<!-- Hero Section -->
+<section class="bg-primary-extra-light py-12 px-6 lg:px-16">
+<div class="max-w-[1280px] mx-auto text-center">
+<div class="mb-4">
+<span class="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary">Admission 2025-26</span>
+</div>
+<h1 class="text-[36px] md:text-[48px] font-bold text-primary leading-tight mb-4">Admission Process</h1>
+<p class="text-[18px] text-text-secondary max-w-2xl mx-auto leading-relaxed">
+                A simple, transparent, and guided journey to join the Central Academy Anta community.
+            </p>
+<div class="w-12 h-1 bg-accent mx-auto mt-8 rounded-full"></div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="py-12 px-6 lg:px-16 bg-white relative">
+<div class="max-w-[900px] mx-auto relative">
+<!-- Dotted Line Background -->
+<div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 border-l-[4px] border-dotted border-primary-light -ml-[2px] z-0"></div>
+<!-- Step 1: Registration -->
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center mb-16">
+<div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-6 md:mt-0 pl-16 md:pl-0">
+<h2 class="text-[28px] font-semibold text-primary mb-3">Step 1: Registration</h2>
+<p class="text-[16px] text-text-secondary leading-relaxed mb-4">
+                        Begin by submitting the online inquiry form. Our admissions team will reach out to schedule a campus tour and provide the detailed application packet.
+                    </p>
+<div class="bg-primary-extra-light p-6 rounded-lg border border-border-default shadow-sm inline-block text-left">
+<h4 class="text-[18px] font-semibold text-text-primary mb-3">Required Documents</h4>
+<ul class="text-[14px] text-text-secondary space-y-2">
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-teal text-[18px]">check_circle</span>
+                                Birth Certificate (Original + Photocopy)
+                            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-teal text-[18px]">check_circle</span>
+                                Previous School Records/TC
+                            </li>
+<li class="flex items-center gap-2">
+<span class="material-symbols-outlined text-teal text-[18px]">check_circle</span>
+                                Recent Passport Photographs
+                            </li>
+</ul>
+</div>
+</div>
+<!-- Number Bubble -->
+<div class="absolute left-0 md:left-1/2 -ml-8 w-16 h-16 bg-primary border-4 border-white rounded-full flex items-center justify-center text-[32px] font-bold text-white shadow-md z-20 order-1 md:order-2">
+                    1
+                </div>
+<div class="md:w-1/2 md:pl-12 order-3 hidden md:block">
+<img alt="Registration process" class="rounded-lg shadow-sm w-full h-[240px] object-cover border border-border-default" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYouNSL5LJDl-gRm8ea7JZimv0-1Bxvh965PioLvs3hY4HdIarQxELxwBvN_-O2rwGCd0EO8qeLXGHVmiv_0fhO8iPk7r_XhQyp6rqf8PThirmRR_RTumBSg3aMR95ygSdiYXvPlvqWeFkhxfJf4sPXJOoKR9PP2JWNYQroNIaurCp_3Q3Wriniul0e_BpYjMV8xcXt759uTX91qZPtIVgWIJ3DnrJE-QPwla9Xrw7wa1idHw4K-a7RQHcwqRi0LNEwDd1ktrUWLZw"/>
+</div>
+</div>
+<!-- Step 2: Assessment -->
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center mb-16">
+<div class="md:w-1/2 md:pr-12 order-3 hidden md:block">
+<img alt="Academic assessment" class="rounded-lg shadow-sm w-full h-[240px] object-cover border border-border-default" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2q6TslMh5evfQYiqwLB_FthFXYL6ueBG_unNKfnuqRwPRtB84eO9u8gOxkfqd_-rpl2zboLsIsCExtW-no65gWp02sIe2iX7vvhC1YEI_FUL6OdVksNnCnwc--4NPGwQBaonaQ_KUqVdXAXtq0ZCAgUV3e_kNvl_FkdpKYPuuqry6c3ela6fYx13lWADY2fr6hP8sWKbW1uJwkRpo5MoNQYi6zwA_QTu8iWDM4JjEY6bR3Sws5PJ7n5wdsGM6AvQFIN1YztpWz1A"/>
+</div>
+<!-- Number Bubble -->
+<div class="absolute left-0 md:left-1/2 -ml-8 w-16 h-16 bg-accent border-4 border-white rounded-full flex items-center justify-center text-[32px] font-bold text-white shadow-md z-20 order-1 md:order-2">
+                    2
+                </div>
+<div class="md:w-1/2 md:pl-12 order-2 md:order-3 mt-6 md:mt-0 pl-16 md:pl-0">
+<h2 class="text-[28px] font-semibold text-primary mb-3">Step 2: Assessment</h2>
+<p class="text-[16px] text-text-secondary leading-relaxed mb-6">
+                        Prospective students participate in a grade-appropriate interactive assessment. This helps us understand their academic standing and learning style to ensure the best fit.
+                    </p>
+<div class="flex flex-wrap gap-3">
+<span class="bg-teal-light text-teal-dark px-3 py-1.5 rounded-full font-medium text-[12px] border border-teal/20">Grades 1-5: Interactive Session</span>
+<span class="bg-primary-light text-primary-dark px-3 py-1.5 rounded-full font-medium text-[12px] border border-primary/20">Grades 6-12: Written Evaluation</span>
+</div>
+</div>
+</div>
+<!-- Step 3: Enrollment -->
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center">
+<div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-6 md:mt-0 pl-16 md:pl-0">
+<h2 class="text-[28px] font-semibold text-primary mb-3">Step 3: Enrollment</h2>
+<p class="text-[16px] text-text-secondary leading-relaxed mb-6">
+                        Upon successful assessment, an official offer of admission is extended. Complete the enrollment by submitting the final paperwork and securing your seat with the initial fee deposit.
+                    </p>
+<div class="inline-flex items-center gap-2 text-teal-dark font-semibold text-[14px] bg-teal-light px-4 py-2 rounded-lg border border-teal/20">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Welcome to the Academy
+                    </div>
+</div>
+<!-- Number Bubble -->
+<div class="absolute left-0 md:left-1/2 -ml-8 w-16 h-16 bg-teal border-4 border-white rounded-full flex items-center justify-center text-[32px] font-bold text-white shadow-md z-20 order-1 md:order-2">
+                    3
+                </div>
+<div class="md:w-1/2 md:pl-12 order-3 hidden md:block">
+<img alt="Enrollment success" class="rounded-lg shadow-sm w-full h-[240px] object-cover border border-border-default" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACj-m-mTdb1p1_N7uq4aClP2TRwWOsVQvyxOqHg1C-t3Ojj8JItwEPH4RVNKHAW9HBT0nkMTuqppktrNBV31m_P8Mj_orC7pzh6WZiZj37O1zqsHef_nbUozQc5JVCLiagdgC3r-6V2X5p_oNr0D6s4bfDG2NVAQbSpXhSstn9mhR0mEaX6vJXgYEpiQKeUcSqDeDv1-yuqgsRN7fyTG7vfOc-GpIiKFyI_LZBGr1OtF10XAIzfqmygmfpyTusKRAhks-AJCahAXGz"/>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-12 px-6 lg:px-16 bg-surface-variant">
+<div class="max-w-[800px] mx-auto text-center bg-white border border-border-default rounded-lg p-10 md:p-12 shadow-sm">
+<h2 class="text-[28px] font-semibold text-text-primary mb-4">Ready to Apply?</h2>
+<p class="text-[16px] text-text-secondary mb-8 leading-relaxed">
+                Take the first step towards a bright future at Central Academy Anta. Our admissions team is ready to assist you.
+            </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-primary text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-dark transition-all shadow-md h-12 flex items-center justify-center">
+                    Start Online Application
+                </button>
+<button class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary-light transition-all h-12 flex items-center justify-center bg-transparent">
+                    Contact Admissions Office
+                </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from COMPONENTS_15 -->
+<footer class="bg-slate-50 dark:bg-slate-950 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed border-t border-slate-200 dark:border-slate-800 w-full mt-auto py-12">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 lg:px-16 max-w-[1280px] mx-auto">
+<div class="opacity-80 hover:opacity-100 transition-opacity">
+<div class="text-lg font-bold text-[#1B4F8A] dark:text-blue-100 mb-4 flex items-center gap-2">
+<img alt="School Logo" class="h-8 w-8 object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54"/>
+<span>Central Academy Anta</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 mb-2">
+                © 2024 Central Academy Anta. 30 Years of Academic Excellence. Institutional Trust &amp; Academic Warmth.
+            </p>
+</div>
+<div class="opacity-80 hover:opacity-100 transition-opacity">
+<h4 class="font-bold text-[#1B4F8A] dark:text-blue-400 mb-4">Quick Links</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">About Us</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">Mandatory Disclosure</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">Staff Directory</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">Careers</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">Privacy Policy</a>
+</nav>
+</div>
+<div class="opacity-80 hover:opacity-100 transition-opacity">
+<h4 class="font-bold text-[#1B4F8A] dark:text-blue-400 mb-4">Support</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-[#1B4F8A] font-semibold hover:underline" href="#">Admissions</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">Contact Us</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">Alumni Association</a>
+<a class="text-slate-500 dark:text-slate-400 hover:underline hover:text-[#1B4F8A] dark:hover:text-blue-300" href="#">Sitemap</a>
+</nav>
+</div>
+</div>
+</footer>
+</body></html>

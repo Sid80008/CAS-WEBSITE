@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery Album Detail - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "green": "#3B6D11",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary-container": "#005a45",
+                        "background": "#fcf9f8",
+                        "inverse-on-surface": "#f3f0ef",
+                        "bg-tertiary": "#F1EFE8",
+                        "on-surface-variant": "#424750",
+                        "on-tertiary-fixed-variant": "#00513e",
+                        "on-primary-container": "#9ac2ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-container": "#7ed0b3",
+                        "teal-light": "#E1F5EE",
+                        "primary-container": "#1b4f8a",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-container-high": "#eae7e7",
+                        "surface-bright": "#fcf9f8",
+                        "error-container": "#ffdad6",
+                        "surface-dim": "#dcd9d9",
+                        "secondary-fixed-dim": "#ffb869",
+                        "school-blue-light": "#E6F1FB",
+                        "on-secondary-container": "#704200",
+                        "on-error": "#ffffff",
+                        "text-secondary": "#555555",
+                        "school-blue-dark": "#0C447C",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-container": "#f0eded",
+                        "primary": "#00386b",
+                        "bg-secondary": "#F8F7F5",
+                        "primary-fixed": "#d4e3ff",
+                        "on-tertiary-fixed": "#002117",
+                        "amber-light": "#FAEEDA",
+                        "secondary-fixed": "#ffdcbb",
+                        "text-tertiary": "#888888",
+                        "inverse-surface": "#313030",
+                        "border-default": "#E2E0DB",
+                        "school-blue-extra-light": "#F0F6FC",
+                        "secondary": "#885200",
+                        "on-primary-fixed-variant": "#0e4782",
+                        "on-tertiary": "#ffffff",
+                        "amber-dark": "#633806",
+                        "secondary-container": "#fdad4e",
+                        "tertiary-fixed-dim": "#84d6b9",
+                        "teal-dark": "#085041",
+                        "tertiary-fixed": "#a0f3d4",
+                        "outline-variant": "#c2c6d1",
+                        "on-secondary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "border-hover": "#B4B2A9",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "coral-light": "#FAECE7",
+                        "surface-tint": "#305f9b",
+                        "on-surface": "#1c1b1b",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "coral": "#993C1D",
+                        "purple": "#534AB7",
+                        "on-secondary-fixed": "#2b1700",
+                        "tertiary": "#004031",
+                        "outline": "#737781",
+                        "surface-container-low": "#f6f3f2",
+                        "surface": "#fcf9f8",
+                        "inverse-primary": "#a6c8ff",
+                        "on-background": "#1c1b1b",
+                        "on-primary": "#ffffff",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "page-desktop": "64px",
+                        "base": "4px",
+                        "section": "48px",
+                        "container-max": "1280px",
+                        "page-mobile": "24px",
+                        "xl": "32px",
+                        "xs": "4px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "h4": ["Plus Jakarta Sans"],
+                        "label": ["Inter"],
+                        "caption": ["Inter"],
+                        "display": ["Plus Jakarta Sans"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "body-large": ["Inter"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "overline": ["Inter"],
+                        "body-small": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                        "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen flex flex-col pt-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm font-['Plus_Jakarta_Sans'] antialiased">
+<div class="flex justify-between items-center h-20 px-6 lg:px-16 max-w-[1280px] mx-auto">
+<div class="flex items-center gap-2 scale-95 active:scale-100 transition-transform cursor-pointer">
+<span class="text-xl font-extrabold tracking-tight text-[#1B4F8A]">Central Academy Anta</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 font-medium hover:text-[#1B4F8A] transition-all duration-200" href="#">Home</a>
+<a class="text-slate-600 font-medium hover:text-[#1B4F8A] transition-all duration-200" href="#">Facilities</a>
+<a class="text-slate-600 font-medium hover:text-[#1B4F8A] transition-all duration-200" href="#">Events</a>
+<a class="text-[#1B4F8A] font-bold border-b-2 border-[#1B4F8A] pb-1 hover:text-[#1B4F8A] transition-all duration-200" href="#">Gallery</a>
+<a class="text-slate-600 font-medium hover:text-[#1B4F8A] transition-all duration-200" href="#">Admissions</a>
+<a class="text-slate-600 font-medium hover:text-[#1B4F8A] transition-all duration-200" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center text-slate-600 hover:text-[#1B4F8A] transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-sm font-medium text-[#1B4F8A] hover:bg-school-blue-light px-3 py-1.5 rounded-md transition-colors border border-transparent">हिन्दी</button>
+<button class="bg-[#1B4F8A] text-white font-medium text-sm px-4 py-2 rounded-md hover:bg-school-blue-dark transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:-translate-y-px active:translate-y-0">Portal</button>
+<button class="md:hidden text-slate-600">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-page-mobile md:px-page-desktop py-section">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 mb-section">
+<a class="font-body-small text-text-secondary hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-text-tertiary text-sm">chevron_right</span>
+<a class="font-body-small text-text-secondary hover:text-primary transition-colors" href="#">Gallery</a>
+<span class="material-symbols-outlined text-text-tertiary text-sm">chevron_right</span>
+<span aria-current="page" class="font-body-small text-on-background font-medium">Annual Sports Day 2024</span>
+</nav>
+<!-- Hero / Album Header -->
+<section class="mb-section bg-school-blue-extra-light rounded-xl p-8 border border-border-default flex flex-col md:flex-row justify-between items-start md:items-end gap-6 shadow-sm">
+<div>
+<div class="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full border border-border-default mb-4">
+<span class="material-symbols-outlined text-primary text-sm">event</span>
+<span class="font-caption text-text-secondary">February 15, 2024</span>
+</div>
+<h1 class="font-h1 text-primary-container mb-2">Annual Sports Day 2024</h1>
+<p class="font-body-large text-text-secondary max-w-2xl">Celebrating athleticism, teamwork, and school spirit across all houses. A day of competitive track events, gymnastics displays, and community celebration.</p>
+</div>
+<div class="flex flex-col sm:flex-row items-center gap-4 bg-white p-4 rounded-lg border border-border-default shadow-sm w-full md:w-auto shrink-0">
+<div class="flex items-center gap-3 px-4 sm:border-r sm:border-border-default">
+<div class="bg-school-blue-light p-2 rounded-full text-primary">
+<span class="material-symbols-outlined">photo_library</span>
+</div>
+<div>
+<span class="block font-h4 text-on-surface">124</span>
+<span class="block font-caption text-text-tertiary">Photos</span>
+</div>
+</div>
+<button class="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-on-primary font-label px-6 py-3 rounded-lg hover:bg-school-blue-dark transition-all shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:-translate-y-px active:translate-y-0">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">download</span>
+                    Download All
+                </button>
+</div>
+</section>
+<!-- Masonry Grid -->
+<section class="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6">
+<!-- Photo Item 1 (Landscape) -->
+<div class="break-inside-avoid group relative rounded-lg overflow-hidden bg-surface-container border border-border-default shadow-sm cursor-pointer">
+<img alt="Sports Event Photo" class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-105" data-alt="high school students running a relay race on a bright red track, sunny day, dynamic action shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfzout6fWb-LOtf13_zWh-e8WiTNyWBXaMY2cr9LsHa2s0daIMd3aaXEnNCmVB25d3241mlF2gK6bGz66M5zGm36x5TJeg-J95Yp07PA1g-7zuQyHTEzjsLz-UGmaTNSGOp25mZ4xluNRTQhRU2n5y_nQ_rOT21FAquQVvl1jkj0p-o-nZYIQevUs09kuefN2ceYx17kSOatZqzUU1alaXEiqY5ECWJsVpjNbijVSVNucgQyADOLKfQ5LEIimQvUMyJpWOqASqvuq3"/>
+<div class="absolute inset-0 bg-primary-container/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transform scale-75 group-hover:scale-100 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">zoom_in</span>
+</div>
+</div>
+</div>
+<!-- Photo Item 2 (Portrait) -->
+<div class="break-inside-avoid group relative rounded-lg overflow-hidden bg-surface-container border border-border-default shadow-sm cursor-pointer">
+<img alt="Sports Event Photo" class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-105" data-alt="young student holding a gold medal, smiling brightly, wearing school sports uniform, shallow depth of field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPlrh3FDvUz1trVJQP9NYZkfiJYobDbk3cCVAZ9d_J2l0Y4I9WxVB2buxNXMKNsvLQ6pDKE2TNFEOQpZYU6DtV9ye_0F3IkNkW5CUabcM1F6JAIAm0VwUgJTRJBZb0f7wHKrk8oTHAZFxPL-YjSx51r9oic1U0vSsC9OBXe3dWz44BGO1w25B7y6tmUZ9FXfNP_UAoBGm5CRUwDKXJrVvTsK-vo_HNZZ9-hH19zuhvtQffv01S2eh4wEhDWu_8Zzom35v_dwbbIxyA"/>
+<div class="absolute inset-0 bg-primary-container/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transform scale-75 group-hover:scale-100 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">zoom_in</span>
+</div>
+</div>
+</div>
+<!-- Photo Item 3 (Square-ish) -->
+<div class="break-inside-avoid group relative rounded-lg overflow-hidden bg-surface-container border border-border-default shadow-sm cursor-pointer">
+<img alt="Sports Event Photo" class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-105" data-alt="group of students cheering in the bleachers, wearing school house colors, vibrant and energetic mood" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDQdWRh0b6QuWfFkZ538jaC9wHxzhy4I4bZZtZSPLPaG8fNqSh44VntKFRfiB2Nv6i_C0CD2BJEj1gAKCrPCltvPvmgTi-6qe9m6ktBae7Bas2SE8bIPKnxt8N5VrPUpsW-GtDa_STzwtSPMR8qrMb-ilYrEVsukyUJEq8iYluWtnZVZJaMtR9Ug_98nJ7ifBp9qBkEyJsCP4zU0JUvvlZ00hSeECNz5BmIRvThzcOv2nOnfmGXirUuDHmXZT3Msxu3kxKBoRVCxF7E"/>
+<div class="absolute inset-0 bg-primary-container/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transform scale-75 group-hover:scale-100 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">zoom_in</span>
+</div>
+</div>
+</div>
+<!-- Photo Item 4 (Portrait) -->
+<div class="break-inside-avoid group relative rounded-lg overflow-hidden bg-surface-container border border-border-default shadow-sm cursor-pointer">
+<img alt="Sports Event Photo" class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-105" data-alt="high jump event at school sports day, athlete mid-air over the bar, clear blue sky background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzFTO7iPuQQNiK1noVkQ66RId8MUd_jLv4SaEN7sd_cNLNLHfiSoV2m3EdXLVyfxTHrYDxhvYZfB2sH3nZdYzstdmr2jnn2xTHzEt7ydgUxjDuulWJUZ-J2KVoY8Z5TuVhVOlj0BuU3Mb8HI25AG9XW6e7nfZR-T6yY8Q8n_GPjdz7VKxdo9TyaLCTuUUyyBKtVgRO9JXENCWHpxzzNdFM4NOnQV8f_8fMT7Ljw0ZJ6pVNWiNDokvKMV6UT_W9VNcUp6DGJdPgT0_A"/>
+<div class="absolute inset-0 bg-primary-container/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transform scale-75 group-hover:scale-100 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">zoom_in</span>
+</div>
+</div>
+</div>
+<!-- Photo Item 5 (Landscape) -->
+<div class="break-inside-avoid group relative rounded-lg overflow-hidden bg-surface-container border border-border-default shadow-sm cursor-pointer">
+<img alt="Sports Event Photo" class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-105" data-alt="tug of war competition between two student houses, intense effort, dusty sports field" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE7M3p5YP5CMB3lffxhaB3UeZZPNwHZJP2icG41cvZkd6C4fDUVNkgKUSa6VDFoYQLXE5w32o0VQLGRWH6HNLpgdBO5QVP1-jhehQciqBnP4MQXZ9vUgCZR1ExFW-DHKjGlnP2pCnY0UtrLO53DgH4fzfuq94Ka6qtNSsJUl4x-rOier3rmxnGTBVFK4CQ8UR0oPOcPZb-VDMBwtOBqZL2hvBW5gX0zC7HeXBQYZQQIfz0taxHDeBfQJr0nCng_kn9zk9rXnAMwFXK"/>
+<div class="absolute inset-0 bg-primary-container/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transform scale-75 group-hover:scale-100 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">zoom_in</span>
+</div>
+</div>
+</div>
+<!-- Photo Item 6 (Portrait) -->
+<div class="break-inside-avoid group relative rounded-lg overflow-hidden bg-surface-container border border-border-default shadow-sm cursor-pointer">
+<img alt="Sports Event Photo" class="w-full h-auto object-cover block transition-transform duration-500 group-hover:scale-105" data-alt="school marching band playing instruments during sports day opening ceremony, bright sunny uniforms" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNBYl3ibZISeEBIz2mL4sK80Ry_TkzCUw_Fzhe-LNH9jK9iHvy5zW9LRmNEQ77CdC4zUa5RIB2GAnmsxnm8iXDRM-SIMzkDK-O1Kdjc12-ku4k-M5dEfP53DOv9-4aOvq-juQBRvfBfHqdhME0yhm84FRKt6k6ChWKatIJ3t-qd8L2QnDuGfA4aqOsxTM8W2DeJoI64xVBZdYk8Jttld6x9E-iN5n6X-qMk3BNGKzOdmJ5Fe5TkXXugWbMkNfhbwtc7qeS1gmlfgBq"/>
+<div class="absolute inset-0 bg-primary-container/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+<div class="bg-white/20 backdrop-blur-sm p-3 rounded-full text-white transform scale-75 group-hover:scale-100 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">zoom_in</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Load More -->
+<div class="mt-12 flex justify-center">
+<button class="font-label text-primary bg-white border-2 border-primary px-8 py-3 rounded-lg hover:bg-school-blue-extra-light transition-colors flex items-center gap-2">
+                Load More Photos
+                <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 border-t border-slate-200 w-full py-12 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed text-[#1B4F8A]">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6 lg:px-16 max-w-[1280px] mx-auto">
+<div class="flex flex-col gap-4">
+<span class="text-lg font-bold text-[#1B4F8A]">Central Academy Anta</span>
+<p class="text-slate-500 font-['Inter']">© 2024 Central Academy Anta. 30 Years of Academic Excellence. Institutional Trust &amp; Academic Warmth.</p>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-slate-500 hover:underline hover:text-[#1B4F8A] transition-opacity opacity-80 hover:opacity-100" href="#">About Us</a>
+<a class="text-slate-500 hover:underline hover:text-[#1B4F8A] transition-opacity opacity-80 hover:opacity-100" href="#">Mandatory Disclosure</a>
+<a class="text-slate-500 hover:underline hover:text-[#1B4F8A] transition-opacity opacity-80 hover:opacity-100" href="#">Staff Directory</a>
+</div>
+<div class="flex flex-col gap-3">
+<a class="text-slate-500 hover:underline hover:text-[#1B4F8A] transition-opacity opacity-80 hover:opacity-100" href="#">Careers</a>
+<a class="text-slate-500 hover:underline hover:text-[#1B4F8A] transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:underline hover:text-[#1B4F8A] transition-opacity opacity-80 hover:opacity-100" href="#">Contact</a>
+</div>
+</div>
+</footer>
+</body></html>

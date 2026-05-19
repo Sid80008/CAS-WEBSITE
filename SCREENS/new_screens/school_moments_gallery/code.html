@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-container": "#704200",
+                    "on-primary-fixed-variant": "#0e4782",
+                    "outline": "#737781",
+                    "surface": "#fcf9f8",
+                    "surface-bright": "#fcf9f8",
+                    "border-hover": "#B4B2A9",
+                    "primary": "#00386b",
+                    "on-tertiary-fixed-variant": "#00513e",
+                    "school-blue-extra-light": "#F0F6FC",
+                    "purple": "#534AB7",
+                    "on-secondary-fixed": "#2b1700",
+                    "tertiary": "#004031",
+                    "on-secondary-fixed-variant": "#673d00",
+                    "text-tertiary": "#888888",
+                    "tertiary-fixed": "#a0f3d4",
+                    "surface-variant": "#e5e2e1",
+                    "background": "#fcf9f8",
+                    "surface-container-highest": "#e5e2e1",
+                    "coral-light": "#FAECE7",
+                    "school-blue-light": "#E6F1FB",
+                    "green": "#3B6D11",
+                    "secondary-container": "#fdad4e",
+                    "secondary-fixed": "#ffdcbb",
+                    "text-secondary": "#555555",
+                    "error-container": "#ffdad6",
+                    "surface-tint": "#305f9b",
+                    "secondary": "#885200",
+                    "on-primary-fixed": "#001c3a",
+                    "inverse-primary": "#a6c8ff",
+                    "on-background": "#1c1b1b",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "surface-container-high": "#eae7e7",
+                    "bg-secondary": "#F8F7F5",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container": "#f0eded",
+                    "primary-container": "#1b4f8a",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#d4e3ff",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dcd9d9",
+                    "inverse-surface": "#313030",
+                    "school-blue-dark": "#0C447C",
+                    "on-surface-variant": "#424750",
+                    "teal-light": "#E1F5EE",
+                    "outline-variant": "#c2c6d1",
+                    "amber-dark": "#633806",
+                    "teal-dark": "#085041",
+                    "error": "#ba1a1a",
+                    "border-default": "#E2E0DB",
+                    "on-error": "#ffffff",
+                    "secondary-fixed-dim": "#ffb869",
+                    "on-primary-container": "#9ac2ff",
+                    "bg-tertiary": "#F1EFE8",
+                    "on-surface": "#1c1b1b",
+                    "on-primary": "#ffffff",
+                    "coral": "#993C1D",
+                    "tertiary-fixed-dim": "#84d6b9",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-tertiary-fixed": "#002117",
+                    "surface-container-low": "#f6f3f2",
+                    "amber-light": "#FAEEDA",
+                    "tertiary-container": "#005a45",
+                    "on-tertiary-container": "#7ed0b3",
+                    "on-tertiary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "base": "4px",
+                    "xs": "4px",
+                    "page-mobile": "24px",
+                    "md": "16px",
+                    "page-desktop": "64px",
+                    "sm": "8px",
+                    "container-max": "1280px",
+                    "lg": "24px",
+                    "xl": "32px",
+                    "section": "48px"
+            },
+            "fontFamily": {
+                    "overline": [
+                            "Inter"
+                    ],
+                    "caption": [
+                            "Inter"
+                    ],
+                    "h2": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-large": [
+                            "Inter"
+                    ],
+                    "body": [
+                            "Inter"
+                    ],
+                    "h4": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "h1": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "body-small": [
+                            "Inter"
+                    ],
+                    "h3": [
+                            "Plus Jakarta Sans"
+                    ],
+                    "label": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Plus Jakarta Sans"
+                    ]
+            },
+            "fontSize": {
+                    "overline": [
+                            "11px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "letterSpacing": "0.1em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "caption": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h2": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "body-large": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "body": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.6",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h4": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "h1": [
+                            "36px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-small": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h3": [
+                            "22px",
+                            {
+                                    "lineHeight": "1.4",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label": [
+                            "14px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "display": [
+                            "48px",
+                            {
+                                    "lineHeight": "1.1",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md docked full-width top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm sticky">
+<div class="flex justify-between items-center w-full px-6 md:px-16 h-20 max-w-[1280px] mx-auto">
+<div class="text-lg font-black text-[#1B4F8A] dark:text-white uppercase tracking-wider">Central Academy Anta</div>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-8 font-['Plus_Jakarta_Sans'] text-sm font-medium tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#BA7517] transition-colors duration-200" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#BA7517] transition-colors duration-200" href="#">Admissions</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#BA7517] transition-colors duration-200" href="#">Toppers</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-[#BA7517] transition-colors duration-200" href="#">Traditions</a>
+<a class="text-[#1B4F8A] dark:text-blue-400 font-bold border-b-2 border-[#1B4F8A] pb-1 hover:text-[#BA7517] transition-colors duration-200" href="#">Gallery</a>
+</nav>
+<div class="hidden md:flex items-center gap-4">
+<button class="bg-primary text-on-primary font-label text-label px-6 py-2 h-10 rounded-DEFAULT hover:bg-school-blue-dark transition-all duration-200 shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:-translate-y-[1px]">Apply Now</button>
+</div>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-[#1B4F8A] dark:text-[#E6F1FB] p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar (Mobile) -->
+<aside class="fixed inset-y-0 left-0 z-[60] md:hidden h-full w-64 border-r border-slate-100 dark:border-slate-800 bg-white dark:bg-slate-900 shadow-xl -translate-x-full transition-transform duration-300 flex flex-col" id="mobile-menu">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-school-blue-light flex items-center justify-center text-primary font-bold">CA</div>
+<div>
+<h3 class="font-h4 text-h4 text-[#1B4F8A]">Central Academy</h3>
+<p class="font-caption text-caption text-text-secondary">Institutional Excellence</p>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto py-4 font-['Plus_Jakarta_Sans'] text-base divide-y divide-slate-100 dark:divide-slate-800">
+<a class="flex items-center gap-4 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined text-xl">home</span> Home
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined text-xl">school</span> Admissions
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined text-xl">emoji_events</span> Toppers
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800" href="#">
+<span class="material-symbols-outlined text-xl">account_balance</span> Traditions
+            </a>
+<a class="flex items-center gap-4 px-6 py-4 bg-blue-50 dark:bg-blue-900/20 text-[#1B4F8A] dark:text-blue-300 border-r-4 border-[#1B4F8A]" href="#">
+<span class="material-symbols-outlined text-xl">photo_library</span> Gallery
+            </a>
+</nav>
+<div class="p-6 border-t border-slate-100 dark:border-slate-800">
+<button class="w-full bg-primary text-on-primary font-label text-label py-3 rounded-DEFAULT hover:bg-school-blue-dark transition-all duration-200">Inquiry</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 w-full max-w-container-max mx-auto px-page-mobile md:px-page-desktop py-section">
+<!-- Page Header -->
+<div class="mb-xl md:mb-section flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<h1 class="font-h1 text-h1 text-on-surface mb-2">School Gallery</h1>
+<p class="font-body text-body text-text-secondary max-w-2xl">A visual journey through the academic, cultural, and sporting events that define life at Central Academy Anta.</p>
+</div>
+</div>
+<!-- Category Tabs -->
+<div class="mb-xl overflow-x-auto pb-2 border-b border-border-default hide-scrollbar">
+<div class="flex gap-8 min-w-max">
+<button class="font-label text-label text-primary border-b-2 border-primary pb-2 px-1">All Albums</button>
+<button class="font-label text-label text-text-secondary hover:text-primary transition-colors pb-2 px-1">Annual Functions</button>
+<button class="font-label text-label text-text-secondary hover:text-primary transition-colors pb-2 px-1">Sports Events</button>
+<button class="font-label text-label text-text-secondary hover:text-primary transition-colors pb-2 px-1">Academic Awards</button>
+<button class="font-label text-label text-text-secondary hover:text-primary transition-colors pb-2 px-1">Campus Life</button>
+</div>
+</div>
+<!-- Gallery Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+<!-- Album Card 1 -->
+<a class="group relative rounded-lg overflow-hidden bg-surface-container-lowest border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 block" href="#">
+<div class="aspect-[4/3] overflow-hidden bg-bg-tertiary">
+<img alt="Students performing on stage with colorful lighting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Students performing on stage during annual cultural event with colorful lighting and formal costumes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCrckHrwvKy2o00izeW5TFJE7jmveO9Qq6KHBYbhkHtGuDFNtIUOOvccz6Ly8S5XA-2O7Y1pS1OK-xGQGbu8wbNqVTwP-kEzXz7y5bslT8MKeLXwGT0JCf6HfqXb0Fqdx7_VfHvy57EMbZqfEl0khZ7SZyt_C6F262N2Cl0tdnAMJ89d0Axid35l7zO9633T0Zu0qT56L90RqJfiC9HOq6yyeAuVgB14SFzK8qjHjT2mYRH3kiG_mHtOc7u2XkIvqMxEuTz1qPVlTE"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-h3 text-h3 text-white mb-2">Annual Cultural Fest 2023</h3>
+<div class="flex items-center justify-between text-white/80 font-caption text-caption">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">photo_library</span> 42 Photos</span>
+<span>Nov 15, 2023</span>
+</div>
+</div>
+</a>
+<!-- Album Card 2 -->
+<a class="group relative rounded-lg overflow-hidden bg-surface-container-lowest border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 block" href="#">
+<div class="aspect-[4/3] overflow-hidden bg-bg-tertiary">
+<img alt="Students competing in a running race on an athletic track" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Students sprinting on red athletic track during sunny day sports meet wearing school athletic uniforms" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY5QJkB5ts9RytR5AMMNfPV3IkCTLlV1pGI234GwGuh1mEGI5jSMgZadLPsVjBuyai_VSFmPwvCIyInuGqFjgQ4Rr3v-I-s2DWBkqwZa18GN8HloZvTlWwPdrdNUn9d7kj8U2kyJ0x3J_OYApSD9bR9ulGtwk9xeVe015UMyzVx2K1O_Od5SXZk9K6tBogGQJZ8r5Dx9-aPJ3hzJk8KUxqOFFdxunrJ6167-Cv80hsFpZLRU4QqP00hVGebpjUTpfmqIg-cDZ2oRPr"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-h3 text-h3 text-white mb-2">Inter-House Sports Meet</h3>
+<div class="flex items-center justify-between text-white/80 font-caption text-caption">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">photo_library</span> 86 Photos</span>
+<span>Oct 05, 2023</span>
+</div>
+</div>
+</a>
+<!-- Album Card 3 -->
+<a class="group relative rounded-lg overflow-hidden bg-surface-container-lowest border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 block" href="#">
+<div class="aspect-[4/3] overflow-hidden bg-bg-tertiary">
+<img alt="Students in graduation gowns holding certificates" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Happy students in academic robes tossing caps in the air in front of classic brick school building" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmuHCbzOS-k7Nn3a_hFxizi42-4WWw9JLrSQuK7gSpweEa-el6Ugc7GqPULkw8g-HmB7waQ85JZZqNcn1qSxE9YEl4q-FuVPdM8QKSHp13swGx12S3_osPqVJna_NuxcBEyvVfs3aGZb9Y-LTi5rZ7yRqxgtdRxkaMHcuCRK8y4GMTSxgs7hWbFC_f3Ht1F5smTpPEsl6lwlY7x4TQ6_g3VjwPQkiQbimiB8UBhfjx1aWyiyboLzlbRAECUcrPpZ72Y1zcaBRZqZxI"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-h3 text-h3 text-white mb-2">Graduation Ceremony</h3>
+<div class="flex items-center justify-between text-white/80 font-caption text-caption">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">photo_library</span> 120 Photos</span>
+<span>Mar 20, 2023</span>
+</div>
+</div>
+</a>
+<!-- Album Card 4 -->
+<a class="group relative rounded-lg overflow-hidden bg-surface-container-lowest border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 block" href="#">
+<div class="aspect-[4/3] overflow-hidden bg-bg-tertiary">
+<img alt="Students working in a modern science laboratory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Students wearing white lab coats and safety goggles conducting chemistry experiment with colorful liquids in bright modern laboratory" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbUZHkp50UuIhSH-CZEDBYiAj96EX_5atH3n9Tty6QsrCF9ehQBg12p5tiqPwg3kI4HJhKCYXwR1lBrES1sJXJ1njAM2efjBqETEtGBdscV0A8PpRuxBGb_g-cQpigbCiFHeFeUDnTnUfnWZ_ZgYRSLcwMRW0tYUrLFAQpkYXE3qB-2h7U3YR3D3uB1S8GlcoecJLs5RLPdJJqdRioSeH2LoXJVuOXsdgCkRanuL4yj60pz5X5OrYRySbb803rq4X9Ya1KlnpWYcIY"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-h3 text-h3 text-white mb-2">Science Exhibition</h3>
+<div class="flex items-center justify-between text-white/80 font-caption text-caption">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">photo_library</span> 35 Photos</span>
+<span>Feb 10, 2023</span>
+</div>
+</div>
+</a>
+<!-- Album Card 5 -->
+<a class="group relative rounded-lg overflow-hidden bg-surface-container-lowest border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 block" href="#">
+<div class="aspect-[4/3] overflow-hidden bg-bg-tertiary">
+<img alt="Students sitting in a circle outdoors reading books" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Diverse group of students sitting on green campus lawn studying and laughing together under shade of large tree" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0DbjaTi-qpTYlxkiQ_8KYKzFV46B7Wd_QvPEtqKR1dN3_V22bKk5pzSgknQr4gzT7Gy9CI7NLj2sEZPTHcNX7bpZBNOVUYCx_XF_TZVQWBfe5NFc3iZiKoyk5iu_jDpEGc61HqKdP7jWHvkhoYQ783J8hh-nSamOBTSseXbGD1L5yCU6Ug58NT9bEn_AOQ9gBbSc7u6ab_wNaCcRBkqPs0f5lHXOv0cnNMpwsUnZpvVRTKHiRGovJLQQZJQ6nGTW64iECjkc42uEk"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-h3 text-h3 text-white mb-2">Campus Life &amp; Activities</h3>
+<div class="flex items-center justify-between text-white/80 font-caption text-caption">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">photo_library</span> 56 Photos</span>
+<span>Jan 2023</span>
+</div>
+</div>
+</a>
+<!-- Album Card 6 -->
+<a class="group relative rounded-lg overflow-hidden bg-surface-container-lowest border border-border-default shadow-[0_1px_3px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.1)] transition-all duration-300 block" href="#">
+<div class="aspect-[4/3] overflow-hidden bg-bg-tertiary">
+<img alt="Art students painting in a bright studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Students focused on canvas painting in bright art studio surrounded by colorful art supplies and easels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDE1wVRttavxP0R8sK0v47Weu8EVPOFLmmVk09e050QA1W4I6ElQwBnA845811BiYBHj6R2b1eUdjIkc8wDpnDWONKcbHgHFlJTtb6Tua1Kow39T3cHUeHih04nVb6N3D4ATHseUgqZ_7IFoJIQAoWMtz1-wTFRjznjXd7kPahTfUCros3j8GbLoJEXxDP6v2EziuERO-C0oxJl8_Q34bOSRQfW15F9RTxrnXAeRV560SOcpIaDusfLAj9he6OmklHL5MvC0JmBWglj"/>
+</div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+<h3 class="font-h3 text-h3 text-white mb-2">Fine Arts Workshop</h3>
+<div class="flex items-center justify-between text-white/80 font-caption text-caption">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">photo_library</span> 28 Photos</span>
+<span>Dec 12, 2022</span>
+</div>
+</div>
+</a>
+</div>
+<!-- Load More -->
+<div class="mt-xl flex justify-center">
+<button class="bg-surface text-primary border-2 border-primary font-label text-label px-6 py-2 h-10 rounded-DEFAULT hover:bg-school-blue-extra-light transition-all duration-200">Load More Albums</button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 mt-auto">
+<div class="max-w-[1280px] mx-auto px-6 md:px-16 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="font-bold text-[#1B4F8A] dark:text-blue-400 font-['Plus_Jakarta_Sans'] text-xs md:text-sm text-center md:text-left">
+                © 2024 Central Academy Anta. 30 Years of Academic Excellence.
+            </div>
+<nav class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-2 font-['Plus_Jakarta_Sans'] text-xs md:text-sm text-slate-500 dark:text-slate-400">
+<a class="hover:text-[#1B4F8A] dark:hover:text-blue-300 underline underline-offset-4 transition-opacity duration-200" href="#">Mandatory Disclosure</a>
+<a class="hover:text-[#1B4F8A] dark:hover:text-blue-300 underline underline-offset-4 transition-opacity duration-200" href="#">Staff Portal</a>
+<a class="hover:text-[#1B4F8A] dark:hover:text-blue-300 underline underline-offset-4 transition-opacity duration-200" href="#">Alumni</a>
+<a class="hover:text-[#1B4F8A] dark:hover:text-blue-300 underline underline-offset-4 transition-opacity duration-200" href="#">Privacy Policy</a>
+</nav>
+</div>
+</footer>
+</body></html>

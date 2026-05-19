@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Academics - Central Academy Anta</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "border-hover": "#B4B2A9",
+                    "on-background": "#1c1b1b",
+                    "surface-container-highest": "#e5e2e1",
+                    "purple": "#534AB7",
+                    "surface-dim": "#dcd9d9",
+                    "school-blue-light": "#E6F1FB",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#a6c8ff",
+                    "background": "#fcf9f8",
+                    "tertiary-fixed-dim": "#84d6b9",
+                    "outline": "#737781",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#2b1700",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "secondary-fixed-dim": "#ffb869",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary-fixed": "#002117",
+                    "bg-secondary": "#F8F7F5",
+                    "primary": "#00386b",
+                    "surface-container-high": "#eae7e7",
+                    "teal-dark": "#085041",
+                    "teal-light": "#E1F5EE",
+                    "secondary-container": "#fdad4e",
+                    "on-tertiary-fixed-variant": "#00513e",
+                    "on-error-container": "#93000a",
+                    "on-surface-variant": "#424750",
+                    "surface": "#fcf9f8",
+                    "school-blue-extra-light": "#F0F6FC",
+                    "outline-variant": "#c2c6d1",
+                    "error": "#ba1a1a",
+                    "tertiary-container": "#005a45",
+                    "on-secondary-container": "#704200",
+                    "amber-light": "#FAEEDA",
+                    "surface-container-low": "#f6f3f2",
+                    "primary-container": "#1b4f8a",
+                    "on-tertiary-container": "#7ed0b3",
+                    "on-primary": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "secondary-fixed": "#ffdcbb",
+                    "text-secondary": "#555555",
+                    "tertiary-fixed": "#a0f3d4",
+                    "on-secondary-fixed-variant": "#673d00",
+                    "inverse-surface": "#313030",
+                    "on-primary-container": "#9ac2ff",
+                    "tertiary": "#004031",
+                    "on-primary-fixed-variant": "#0e4782",
+                    "bg-tertiary": "#F1EFE8",
+                    "on-primary-fixed": "#001c3a",
+                    "surface-tint": "#305f9b",
+                    "on-tertiary": "#ffffff",
+                    "surface-variant": "#e5e2e1",
+                    "on-secondary": "#ffffff",
+                    "school-blue-dark": "#0C447C",
+                    "green": "#3B6D11",
+                    "text-tertiary": "#888888",
+                    "coral-light": "#FAECE7",
+                    "on-surface": "#1c1b1b",
+                    "coral": "#993C1D",
+                    "primary-fixed": "#d4e3ff",
+                    "border-default": "#E2E0DB",
+                    "secondary": "#885200",
+                    "surface-container": "#f0eded",
+                    "error-container": "#ffdad6",
+                    "amber-dark": "#633806"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "lg": "24px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "container-max": "1280px",
+                    "page-desktop": "64px",
+                    "md": "16px",
+                    "page-mobile": "24px",
+                    "base": "4px",
+                    "section": "48px",
+                    "xl": "32px"
+            },
+            "fontFamily": {
+                    "body-large": ["Inter"],
+                    "h4": ["Plus Jakarta Sans"],
+                    "display": ["Plus Jakarta Sans"],
+                    "h3": ["Plus Jakarta Sans"],
+                    "h1": ["Plus Jakarta Sans"],
+                    "caption": ["Inter"],
+                    "body": ["Inter"],
+                    "h2": ["Plus Jakarta Sans"],
+                    "body-small": ["Inter"],
+                    "overline": ["Inter"],
+                    "label": ["Inter"]
+            },
+            "fontSize": {
+                    "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col">
+<!-- Shared Component: TopAppBar -->
+<header class="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-50">
+<div class="flex justify-between items-center w-full max-w-7xl mx-auto px-8 h-20">
+<!-- Brand Logo -->
+<div class="flex items-center gap-sm">
+<img alt="Central Academy Anta Logo" class="h-10 w-auto" data-alt="Official blue and gold crest logo of Central Academy Anta on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAde0vnWVnXFi8lxPcLrEJ4S2A1ODDdmNuwKbBlHK7KuuNsXPRSlUMh4PalCGIc6lmeHe186bJ-9a450z0-9kqfMYqoTIwoTCucwICRuoP0CaP-UT6sn1Q-ISQ1TGmgJAYWH1GJXmz4KlXTam5Va1EDYwB3IexCb4yGn-3v4CPwM2_3S0d4jFVh62jlgWNCTEXrJeQBtSO0mS4h3JLPhcxeegtCjQQh5UCM1JEq7vcFlNCpJrCgO7gYI6ri1DLmI3XmnFH8UjupjCKy"/>
+<span class="text-xl font-bold text-blue-900 font-['Plus_Jakarta_Sans'] tracking-tight">Central Academy Anta</span>
+</div>
+<!-- Navigation Links -->
+<nav class="hidden md:flex items-center gap-lg font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight">
+<a class="text-slate-600 hover:text-blue-800 hover:bg-slate-50 transition-colors duration-200 px-2 py-1 rounded" href="#">Home</a>
+<a class="text-slate-600 hover:text-blue-800 hover:bg-slate-50 transition-colors duration-200 px-2 py-1 rounded" href="#">About Us</a>
+<a class="text-blue-900 border-b-2 border-amber-600 pb-1 px-2 py-1 Active: opacity-80 scale-95" href="#">Academics</a>
+<a class="text-slate-600 hover:text-blue-800 hover:bg-slate-50 transition-colors duration-200 px-2 py-1 rounded" href="#">Admissions</a>
+<a class="text-slate-600 hover:text-blue-800 hover:bg-slate-50 transition-colors duration-200 px-2 py-1 rounded" href="#">Campus Life</a>
+<a class="text-slate-600 hover:text-blue-800 hover:bg-slate-50 transition-colors duration-200 px-2 py-1 rounded" href="#">Contact</a>
+</nav>
+<!-- Trailing Action -->
+<div class="hidden md:block">
+<button class="bg-blue-900 text-white font-['Plus_Jakarta_Sans'] text-sm font-semibold tracking-tight px-4 py-2 rounded-lg hover:opacity-80 scale-95 transition-all">Enquire Now</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-page-mobile md:px-page-desktop py-section flex flex-col gap-section">
+<!-- Header / Intro Section -->
+<section class="flex flex-col items-center text-center gap-sm max-w-3xl mx-auto">
+<h1 class="font-h1 text-h1 text-primary">Academic Excellence</h1>
+<p class="font-body-large text-body-large text-on-surface-variant">Discover our structured curriculum framework, essential policies, and the core philosophy that maintains our standard of rigorous academic achievement.</p>
+</section>
+<!-- Discipline Quote Block -->
+<section class="bg-school-blue-dark rounded-xl p-xl flex flex-col items-center justify-center text-center gap-md relative overflow-hidden shadow-md">
+<span class="material-symbols-outlined text-secondary opacity-30 absolute -top-8 -left-4 pointer-events-none" style="font-size: 160px; font-variation-settings: 'FILL' 1;">format_quote</span>
+<blockquote class="font-h2 text-h2 text-on-primary max-w-3xl z-10 leading-snug">
+                "Discipline is the bridge between goals and accomplishment. It is the uncompromising foundation of our academic integrity."
+            </blockquote>
+<cite class="font-overline text-overline text-inverse-primary z-10 mt-sm uppercase">Institutional Core Philosophy</cite>
+</section>
+<!-- Bento Grid: Academic Calendar & Leave Policy -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<!-- Academic Calendar (Spans 2 columns on large screens) -->
+<div class="lg:col-span-2 bg-surface-container-lowest border border-border-default rounded-xl shadow-sm p-lg flex flex-col gap-lg hover:shadow-md transition-shadow">
+<div class="flex items-center gap-sm border-b border-border-default pb-md">
+<span class="material-symbols-outlined text-primary text-h2" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<h2 class="font-h2 text-h2 text-on-surface">Academic Calendar</h2>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-md">
+<!-- Term 1 Card -->
+<div class="bg-school-blue-extra-light p-md rounded-lg flex flex-col gap-xs border border-school-blue-light">
+<h3 class="font-h4 text-h4 text-primary">Term 1: Spring/Summer</h3>
+<p class="font-body-small text-body-small text-on-surface-variant">April 1st – September 30th</p>
+<div class="mt-sm">
+<span class="inline-block px-3 py-1 bg-amber-light text-amber-dark rounded-full font-label text-label border border-amber-dark/20">Half-Yearly Exams: Sep 15</span>
+</div>
+</div>
+<!-- Term 2 Card -->
+<div class="bg-school-blue-extra-light p-md rounded-lg flex flex-col gap-xs border border-school-blue-light">
+<h3 class="font-h4 text-h4 text-primary">Term 2: Autumn/Winter</h3>
+<p class="font-body-small text-body-small text-on-surface-variant">October 1st – March 31st</p>
+<div class="mt-sm">
+<span class="inline-block px-3 py-1 bg-teal-light text-teal-dark rounded-full font-label text-label border border-teal-dark/20">Final Assessments: Mar 10</span>
+</div>
+</div>
+<!-- Major Holidays -->
+<div class="sm:col-span-2 bg-surface-container-low p-md rounded-lg flex flex-col gap-sm border border-border-default">
+<h3 class="font-h4 text-h4 text-on-surface">Major Recesses</h3>
+<ul class="flex flex-wrap gap-sm">
+<li class="bg-white border border-border-default px-sm py-xs rounded font-caption text-caption text-on-surface-variant shadow-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">sunny</span> Summer: May 15 - Jun 30
+                            </li>
+<li class="bg-white border border-border-default px-sm py-xs rounded font-caption text-caption text-on-surface-variant shadow-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">festival</span> Diwali Break: 5 Days
+                            </li>
+<li class="bg-white border border-border-default px-sm py-xs rounded font-caption text-caption text-on-surface-variant shadow-sm flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px]">ac_unit</span> Winter Break: Dec 25 - Jan 5
+                            </li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Leave & Absence Policy -->
+<div class="lg:col-span-1 bg-coral-light border border-coral/20 rounded-xl shadow-sm p-lg flex flex-col gap-md">
+<div class="flex items-center gap-sm text-coral border-b border-coral/20 pb-md">
+<span class="material-symbols-outlined text-h2" style="font-variation-settings: 'FILL' 1;">event_busy</span>
+<h2 class="font-h3 text-h3 text-coral">Leave &amp; Absence Policy</h2>
+</div>
+<p class="font-body text-body text-on-surface-variant font-medium">
+                    Consistent attendance is vital for academic success. A minimum of <span class="text-coral font-bold">75% attendance</span> is mandatory for promotion.
+                </p>
+<ul class="flex flex-col gap-md font-body-small text-body-small text-on-surface mt-sm">
+<li class="flex items-start gap-sm bg-white/60 p-sm rounded border border-coral/10">
+<span class="material-symbols-outlined text-coral text-[18px] mt-0.5">medical_services</span>
+<span>Medical leaves extending beyond 2 days require a verified doctor's certificate.</span>
+</li>
+<li class="flex items-start gap-sm bg-white/60 p-sm rounded border border-coral/10">
+<span class="material-symbols-outlined text-coral text-[18px] mt-0.5">edit_document</span>
+<span>Prior written permission from the Principal is required for planned leaves exceeding 3 days.</span>
+</li>
+<li class="flex items-start gap-sm bg-white/60 p-sm rounded border border-coral/10">
+<span class="material-symbols-outlined text-coral text-[18px] mt-0.5">warning</span>
+<span>Unexcused absences during formative assessments will result in zero grading.</span>
+</li>
+</ul>
+</div>
+</section>
+<!-- School Rules & Regulations (Custom Numbered Grid) -->
+<section class="flex flex-col gap-lg bg-surface-container-lowest border border-border-default rounded-xl shadow-sm p-lg md:p-xl">
+<div class="flex flex-col gap-xs border-b border-border-default pb-md">
+<h2 class="font-h2 text-h2 text-primary">School Rules &amp; Regulations</h2>
+<p class="font-body text-body text-on-surface-variant">Strict adherence to these regulations ensures a safe, respectful, and highly productive academic environment for all students.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-xl gap-y-lg pt-sm">
+<!-- Rule 1 -->
+<div class="flex items-start gap-md">
+<div class="flex-shrink-0 w-12 h-12 bg-school-blue-light text-primary rounded-full flex items-center justify-center font-h3 text-h3 shadow-sm border border-border-default">1</div>
+<div class="flex flex-col gap-xs pt-1">
+<h4 class="font-h4 text-h4 text-on-surface">Punctuality &amp; Arrival</h4>
+<p class="font-body-small text-body-small text-on-surface-variant">Students must report to the campus by 7:50 AM. Latecomers will be marked absent for the first period and require a specialized gate pass from the discipline committee.</p>
+</div>
+</div>
+<!-- Rule 2 -->
+<div class="flex items-start gap-md">
+<div class="flex-shrink-0 w-12 h-12 bg-school-blue-light text-primary rounded-full flex items-center justify-center font-h3 text-h3 shadow-sm border border-border-default">2</div>
+<div class="flex flex-col gap-xs pt-1">
+<h4 class="font-h4 text-h4 text-on-surface">Uniform &amp; Grooming Standards</h4>
+<p class="font-body-small text-body-small text-on-surface-variant">Complete, neat, and school-approved uniform is compulsory. Identity cards must be worn at all times. Improper grooming will result in disciplinary action.</p>
+</div>
+</div>
+<!-- Rule 3 -->
+<div class="flex items-start gap-md">
+<div class="flex-shrink-0 w-12 h-12 bg-school-blue-light text-primary rounded-full flex items-center justify-center font-h3 text-h3 shadow-sm border border-border-default">3</div>
+<div class="flex flex-col gap-xs pt-1">
+<h4 class="font-h4 text-h4 text-on-surface">Campus Behavior &amp; Respect</h4>
+<p class="font-body-small text-body-small text-on-surface-variant">Respectful conduct towards peers, faculty, and support staff is non-negotiable. Bullying, vandalism, or the use of foul language leads to immediate suspension.</p>
+</div>
+</div>
+<!-- Rule 4 -->
+<div class="flex items-start gap-md">
+<div class="flex-shrink-0 w-12 h-12 bg-school-blue-light text-primary rounded-full flex items-center justify-center font-h3 text-h3 shadow-sm border border-border-default">4</div>
+<div class="flex flex-col gap-xs pt-1">
+<h4 class="font-h4 text-h4 text-on-surface">Prohibition of Electronics</h4>
+<p class="font-body-small text-body-small text-on-surface-variant">Mobile phones, smartwatches, and all unauthorized electronic devices are strictly prohibited on campus grounds. Confiscated items will only be returned to parents.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="bg-slate-50 border-t border-slate-200 mt-auto w-full py-12 px-8">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<!-- Brand & Copyright -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left gap-2">
+<span class="text-lg font-black text-blue-900 font-['Plus_Jakarta_Sans']">Central Academy Anta</span>
+<span class="font-['Plus_Jakarta_Sans'] text-sm leading-relaxed text-slate-500">© 2024 Central Academy Anta. 30 Years of Academic Excellence.</span>
+</div>
+<!-- Legal & Utility Links -->
+<nav class="flex flex-wrap justify-center md:justify-end gap-6 font-['Plus_Jakarta_Sans'] text-sm leading-relaxed">
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Privacy Policy</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Terms of Service</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Alumni Portal</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Sitemap</a>
+<a class="text-slate-500 hover:text-blue-700 underline underline-offset-4 transition-all duration-300" href="#">Mandatory Disclosure</a>
+</nav>
+</div>
+</footer>
+</body></html>

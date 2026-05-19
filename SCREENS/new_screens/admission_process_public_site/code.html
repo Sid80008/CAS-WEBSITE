@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admission Process - Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#313030",
+                        "secondary-fixed-dim": "#ffb869",
+                        "surface-container": "#f0eded",
+                        "bg-secondary": "#F8F7F5",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#9ac2ff",
+                        "surface": "#fcf9f8",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#f3f0ef",
+                        "on-tertiary-container": "#7ed0b3",
+                        "secondary": "#885200",
+                        "border-hover": "#B4B2A9",
+                        "primary-fixed": "#d4e3ff",
+                        "on-secondary": "#ffffff",
+                        "outline-variant": "#c2c6d1",
+                        "primary-container": "#1b4f8a",
+                        "text-secondary": "#555555",
+                        "secondary-container": "#fdad4e",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container-low": "#f6f3f2",
+                        "on-surface": "#1c1b1b",
+                        "school-blue-light": "#E6F1FB",
+                        "on-tertiary-fixed-variant": "#00513e",
+                        "on-primary": "#ffffff",
+                        "bg-tertiary": "#F1EFE8",
+                        "teal-light": "#E1F5EE",
+                        "school-blue-dark": "#0C447C",
+                        "tertiary-fixed": "#a0f3d4",
+                        "outline": "#737781",
+                        "tertiary-container": "#005a45",
+                        "error": "#ba1a1a",
+                        "school-blue-extra-light": "#F0F6FC",
+                        "on-secondary-fixed": "#2b1700",
+                        "on-background": "#1c1b1b",
+                        "on-primary-fixed": "#001c3a",
+                        "tertiary-fixed-dim": "#84d6b9",
+                        "coral-light": "#FAECE7",
+                        "teal-dark": "#085041",
+                        "surface-dim": "#dcd9d9",
+                        "on-tertiary-fixed": "#002117",
+                        "on-secondary-container": "#704200",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#a6c8ff",
+                        "background": "#fcf9f8",
+                        "tertiary": "#004031",
+                        "surface-container-high": "#eae7e7",
+                        "on-primary-fixed-variant": "#0e4782",
+                        "surface-container-highest": "#e5e2e1",
+                        "on-surface-variant": "#424750",
+                        "green": "#3B6D11",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#673d00",
+                        "amber-dark": "#633806",
+                        "text-tertiary": "#888888",
+                        "surface-bright": "#fcf9f8",
+                        "border-default": "#E2E0DB",
+                        "purple": "#534AB7",
+                        "inverse-primary": "#a6c8ff",
+                        "secondary-fixed": "#ffdcbb",
+                        "primary": "#00386b",
+                        "surface-tint": "#305f9b",
+                        "coral": "#993C1D",
+                        "amber-light": "#FAEEDA"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section": "48px",
+                        "page-desktop": "64px",
+                        "container-max": "1280px",
+                        "lg": "24px",
+                        "xs": "4px",
+                        "xl": "32px",
+                        "md": "16px",
+                        "page-mobile": "24px",
+                        "sm": "8px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "overline": ["Inter"],
+                        "h4": ["Plus Jakarta Sans"],
+                        "caption": ["Inter"],
+                        "body-small": ["Inter"],
+                        "h1": ["Plus Jakarta Sans"],
+                        "display": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "h3": ["Plus Jakarta Sans"],
+                        "h2": ["Plus Jakarta Sans"],
+                        "body-large": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    "fontSize": {
+                        "overline": ["11px", { "lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "h4": ["18px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-small": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "h1": ["36px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display": ["48px", { "lineHeight": "1.1", "fontWeight": "700" }],
+                        "body": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "h3": ["22px", { "lineHeight": "1.4", "fontWeight": "600" }],
+                        "h2": ["28px", { "lineHeight": "1.3", "fontWeight": "600" }],
+                        "body-large": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label": ["14px", { "lineHeight": "1.5", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body min-h-screen flex flex-col">
+<!-- TopAppBar from JSON -->
+<header class="bg-white/95 dark:bg-slate-900/95 backdrop-blur-md font-['Plus_Jakarta_Sans'] font-bold text-sm text-[#1B4F8A] docked sticky top-0 w-full z-50 border-b border-slate-100 dark:border-slate-800 shadow-lg">
+<div class="max-w-7xl mx-auto flex justify-between items-center px-8 h-20">
+<div class="text-xl font-extrabold text-[#1B4F8A] dark:text-white">
+                Central Academy Anta
+            </div>
+<!-- Navigation hidden on mobile, visible on md -->
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-[#1B4F8A] dark:text-slate-300 hover:text-[#BA7517] transition-all hover:-translate-y-0.5 duration-300" href="#">Home</a>
+<a class="text-[#BA7517] font-bold border-b-2 border-[#BA7517]" href="#">Admissions</a>
+<a class="text-[#1B4F8A] dark:text-slate-300 hover:text-[#BA7517] transition-all hover:-translate-y-0.5 duration-300" href="#">Academic</a>
+<a class="text-[#1B4F8A] dark:text-slate-300 hover:text-[#BA7517] transition-all hover:-translate-y-0.5 duration-300" href="#">Gallery</a>
+<a class="text-[#1B4F8A] dark:text-slate-300 hover:text-[#BA7517] transition-all hover:-translate-y-0.5 duration-300" href="#">Contact</a>
+</nav>
+<button class="bg-primary-container text-on-primary px-6 py-2 rounded-lg font-label text-label hover:bg-school-blue-dark transition-colors shadow-sm hidden md:block">
+                Apply Now
+            </button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-[#1B4F8A]">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="bg-school-blue-extra-light py-section px-page-mobile md:px-page-desktop">
+<div class="max-w-container-max mx-auto text-center">
+<h1 class="font-display text-display text-primary mb-sm">Admission Process</h1>
+<p class="font-body-large text-body-large text-text-secondary max-w-2xl mx-auto">
+                    A simple, transparent, and guided journey to join the Central Academy Anta community.
+                </p>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="py-section px-page-mobile md:px-page-desktop bg-surface relative">
+<div class="max-w-4xl mx-auto relative">
+<!-- Dotted Line Background -->
+<div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 border-l-[3px] border-dotted border-school-blue-light -ml-[1.5px] z-0"></div>
+<!-- Step 1: Registration -->
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center mb-xl md:mb-section">
+<div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-md md:mt-0 pl-16 md:pl-0">
+<h2 class="font-h2 text-h2 text-primary mb-xs">Registration</h2>
+<p class="font-body text-body text-text-secondary">
+                            Begin by submitting the online inquiry form. Our admissions team will reach out to schedule a campus tour and provide the detailed application packet.
+                        </p>
+<div class="mt-md bg-white p-4 rounded-lg border border-border-default shadow-sm inline-block text-left">
+<h4 class="font-h4 text-h4 text-on-surface mb-xs">Required Documents</h4>
+<ul class="font-body-small text-body-small text-text-secondary list-disc pl-5">
+<li>Birth Certificate</li>
+<li>Previous School Records</li>
+<li>Recent Photographs</li>
+</ul>
+</div>
+</div>
+<!-- Number Bubble -->
+<div class="absolute left-0 md:left-1/2 -ml-6 md:-ml-8 w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-primary rounded-full flex items-center justify-center font-display text-h2 text-primary shadow-md z-20 order-1 md:order-2">
+                        1
+                    </div>
+<div class="md:w-1/2 md:pl-12 order-3 hidden md:block">
+<img alt="Student filling out forms" class="rounded-xl shadow-md w-full h-48 object-cover border border-border-default" data-alt="Close up of a student filling out a registration form with a pen on a wooden desk, soft natural light from a window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYouNSL5LJDl-gRm8ea7JZimv0-1Bxvh965PioLvs3hY4HdIarQxELxwBvN_-O2rwGCd0EO8qeLXGHVmiv_0fhO8iPk7r_XhQyp6rqf8PThirmRR_RTumBSg3aMR95ygSdiYXvPlvqWeFkhxfJf4sPXJOoKR9PP2JWNYQroNIaurCp_3Q3Wriniul0e_BpYjMV8xcXt759uTX91qZPtIVgWIJ3DnrJE-QPwla9Xrw7wa1idHw4K-a7RQHcwqRi0LNEwDd1ktrUWLZw"/>
+</div>
+</div>
+<!-- Step 2: Assessment -->
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center mb-xl md:mb-section">
+<div class="md:w-1/2 md:pr-12 order-3 hidden md:block">
+<img alt="Students taking an assessment" class="rounded-xl shadow-md w-full h-48 object-cover border border-border-default" data-alt="Students focused on an assessment in a bright, modern classroom setting, looking engaged and attentive" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2q6TslsMh5evfQYiqwLB_FthFXYL6ueBG_unNKfnuqRwPRtB84eO9u8gOxkfqd_-rpl2zboLsIsCExtW-no65gWp02sIe2iX7vvhC1YEI_FUL6OdVksNnCnwc--4NPGwQBaonaQ_KUqVdXAXtq0ZCAgUV3e_kNvl_FkdpKYPuuqry6c3ela6fYx13lWADY2fr6hP8sWKbW1uJwkRpo5MoNQYi6zwA_QTu8iWDM4JjEY6bR3Sws5PJ7n5wdsGM6AvQFIN1YztpWz1A"/>
+</div>
+<!-- Number Bubble -->
+<div class="absolute left-0 md:left-1/2 -ml-6 md:-ml-8 w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-secondary-container rounded-full flex items-center justify-center font-display text-h2 text-secondary-container shadow-md z-20 order-1 md:order-2">
+                        2
+                    </div>
+<div class="md:w-1/2 md:pl-12 order-2 md:order-3 mt-md md:mt-0 pl-16 md:pl-0 text-left">
+<h2 class="font-h2 text-h2 text-primary mb-xs">Assessment</h2>
+<p class="font-body text-body text-text-secondary">
+                            Prospective students participate in a grade-appropriate interactive assessment. This helps us understand their academic standing and learning style to ensure the best fit.
+                        </p>
+<div class="mt-md flex gap-4">
+<span class="bg-teal-light text-teal-dark px-3 py-1 rounded-full font-label text-caption border border-tertiary-fixed">Grades 1-5: Interactive</span>
+<span class="bg-school-blue-light text-school-blue-dark px-3 py-1 rounded-full font-label text-caption border border-primary-fixed">Grades 6-12: Written</span>
+</div>
+</div>
+</div>
+<!-- Step 3: Enrollment -->
+<div class="relative z-10 flex flex-col md:flex-row items-start md:items-center">
+<div class="md:w-1/2 md:pr-12 md:text-right order-2 md:order-1 mt-md md:mt-0 pl-16 md:pl-0">
+<h2 class="font-h2 text-h2 text-primary mb-xs">Enrollment</h2>
+<p class="font-body text-body text-text-secondary">
+                            Upon successful assessment, an official offer of admission is extended. Complete the enrollment by submitting the final paperwork and securing your seat with the initial fee deposit.
+                        </p>
+<div class="mt-md inline-flex items-center gap-2 text-green font-label text-label bg-green/10 px-4 py-2 rounded-lg">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                            Welcome to the Academy
+                        </div>
+</div>
+<!-- Number Bubble -->
+<div class="absolute left-0 md:left-1/2 -ml-6 md:-ml-8 w-12 h-12 md:w-16 md:h-16 bg-white border-4 border-green rounded-full flex items-center justify-center font-display text-h2 text-green shadow-md z-20 order-1 md:order-2">
+                        3
+                    </div>
+<div class="md:w-1/2 md:pl-12 order-3 hidden md:block">
+<img alt="Happy student in graduation cap" class="rounded-xl shadow-md w-full h-48 object-cover border border-border-default" data-alt="Happy diverse group of students walking on a sunny campus path, symbolizing the start of a new educational journey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACj-m-mTdb1p1_N7uq4aClP2TRwWOsVQvyxOqHg1C-t3Ojj8JItwEPH4RVNKHAW9HBT0nkMTuqppktrNBV31m_P8Mj_orC7pzh6WZiZj37O1zqsHef_nbUozQc5JVCLiagdgC3r-6V2X5p_oNr0D6s4bfDG2NVAQbSpXhSstn9mhR0mEaX6vJXgYEpiQKeUcSqDeDv1-yuqgsRN7fyTG7vfOc-GpIiKFyI_LZBGr1OtF10XAIzfqmygmfpyTusKRAhks-AJCahAXGz"/>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section px-page-mobile md:px-page-desktop bg-white">
+<div class="max-w-3xl mx-auto text-center bg-bg-secondary border border-border-default rounded-xl p-8 md:p-12 shadow-sm">
+<h2 class="font-h2 text-h2 text-on-surface mb-sm">Ready to Apply?</h2>
+<p class="font-body text-body text-text-secondary mb-lg">
+                    Take the first step towards a bright future at Central Academy Anta. Our admissions team is ready to assist you.
+                </p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<button class="bg-primary-container text-on-primary px-8 py-3 rounded-lg font-label text-body hover:bg-school-blue-dark transition-colors shadow-md h-12 flex items-center justify-center">
+                        Start Application
+                    </button>
+<button class="border-2 border-primary-container text-primary-container px-8 py-3 rounded-lg font-label text-body hover:bg-school-blue-extra-light transition-colors h-12 flex items-center justify-center bg-transparent">
+                        Contact Admissions
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer from JSON -->
+<footer class="bg-slate-900 dark:bg-black font-['Plus_Jakarta_Sans'] text-xs text-white docked full-width relative border-t-4 border-[#BA7517] w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center max-w-7xl mx-auto mt-auto">
+<div class="mb-6 md:mb-0 text-center md:text-left text-white font-bold">
+<p>© 2024 Central Academy Anta. All Rights Reserved. 30 Years of Excellence.</p>
+</div>
+<nav class="flex gap-6 flex-wrap justify-center">
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Alumni</a>
+<a class="text-slate-400 hover:text-white transition-colors" href="#">Sitemap</a>
+</nav>
+</footer>
+</body></html>

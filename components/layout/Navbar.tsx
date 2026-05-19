@@ -25,9 +25,9 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex justify-between items-center px-8 h-20">
         <Link href="/" className="flex items-center gap-4 group">
           <img 
-            alt="Central Academy Anta Logo" 
+            alt="Central Academy Senior Secondary School Logo" 
             className="h-12 w-12 object-contain transition-transform group-hover:scale-105" 
-            src="https://lh3.googleusercontent.com/aida/ADBb0uhpGmpLBOIZQweyrdd5jlaYGAcWQ51IS6Q_XovFqk44qkfU8aOEm_YtbNmoI4z7ODHUiBUnFFwWr_MJIeI6IIXsX8bc4O3A03x_UNCqIcbzA-pSFKbqzjr8ADLazZdkPDsQ6gP1TfdwxJS9gFNyFXOnGAPzuNYc1H6yY6FeTpDuw0CtqkyX83dfWPvuyfLJ58VnafgOvDKu37lUqMPnvaZ9xaAXZJLtJC-phweJ1H_d7_av_j_DCmqMWywCUYPTIX1toHZkw3IRP54" 
+            src="/logo.png"
           />
           <div className="flex flex-col">
             <span className="text-xl font-extrabold text-school-blue leading-tight">Central Academy Anta</span>
