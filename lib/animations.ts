@@ -1,21 +1,19 @@
 /**
  * Shared animation variants for Framer Motion.
- * Based on TruCourt motion design system — premium, calm, scroll-triggered.
- *
- * Philosophy: "Elegant motion without distracting the user."
+ * All durations halved in speed (doubled in time) for a calmer, more premium feel.
  */
 
 /** The premium easing curve used throughout the site */
 export const EASE = [0.22, 1, 0.36, 1] as const;
 
-/** Standard fade-up reveal — used for almost every section element */
+/** Standard fade-up reveal */
 export const fadeUp = {
   hidden: { opacity: 0, y: 30, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.8, ease: EASE },
+    transition: { duration: 1.6, ease: EASE },
   },
 };
 
@@ -26,27 +24,27 @@ export const fadeUpBig = {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.9, ease: EASE },
+    transition: { duration: 1.8, ease: EASE },
   },
 };
 
-/** Fade in from the left — statistics text, left-side content */
+/** Fade in from the left */
 export const fadeLeft = {
   hidden: { opacity: 0, x: -30 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.8, ease: EASE },
+    transition: { duration: 1.6, ease: EASE },
   },
 };
 
-/** Fade in from the right — images, right-side content */
+/** Fade in from the right */
 export const fadeRight = {
   hidden: { opacity: 0, x: 30 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.8, ease: EASE },
+    transition: { duration: 1.6, ease: EASE },
   },
 };
 
@@ -55,21 +53,20 @@ export const fadeIn = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { duration: 0.6, ease: EASE },
+    transition: { duration: 1.2, ease: EASE },
   },
 };
 
 /**
  * Container variant for staggered children.
- * Wrap a list of items in a `<motion.div variants={staggerContainer}>`
- * and give each child `<motion.div variants={fadeUp}>`.
+ * Stagger and delay doubled for calmer feel.
  */
 export const staggerContainer = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.3,
+      delayChildren: 0.2,
     },
   },
 };
@@ -79,14 +76,13 @@ export const staggerFast = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
     },
   },
 };
 
 /**
  * Viewport settings: animate once when 20% of element enters viewport.
- * Use with whileInView on motion elements.
  */
 export const VIEWPORT = { once: true, amount: 0.2 } as const;

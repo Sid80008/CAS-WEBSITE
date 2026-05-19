@@ -9,22 +9,21 @@ export default function LoadingScreen() {
   const [phase, setPhase] = useState<Phase>("zoom");
 
   useEffect(() => {
-    // Skip on subsequent visits within the same session
     if (sessionStorage.getItem("cas-intro-seen")) {
       setPhase("done");
       return;
     }
 
-    // Lock body scroll while showing
     document.body.classList.add("loading-lock");
 
-    const t1 = setTimeout(() => setPhase("pulse"), 600);   // zoom → pulse
-    const t2 = setTimeout(() => setPhase("absorb"), 1400); // pulse → absorb
+    // Timings doubled (half speed): zoom 1200ms, pulse 1600ms, absorb 1000ms
+    const t1 = setTimeout(() => setPhase("pulse"), 1200);
+    const t2 = setTimeout(() => setPhase("absorb"), 2800);
     const t3 = setTimeout(() => {
       setPhase("done");
       sessionStorage.setItem("cas-intro-seen", "1");
       document.body.classList.remove("loading-lock");
-    }, 1900);
+    }, 3800);
 
     return () => {
       clearTimeout(t1);
@@ -39,7 +38,7 @@ export default function LoadingScreen() {
   return (
     <div
       className={`fixed inset-0 z-[9999] flex items-center justify-center bg-white
-                  transition-opacity duration-500
+                  transition-opacity duration-1000
                   ${phase === "absorb" ? "opacity-0" : "opacity-100"}`}
       aria-hidden="true"
     >
@@ -49,14 +48,14 @@ export default function LoadingScreen() {
           <div className="absolute w-40 h-40 rounded-full border-2 border-[#1B4F8A]/30 animate-ping pointer-events-none" />
           <div
             className="absolute w-56 h-56 rounded-full border border-[#1B4F8A]/15 animate-ping pointer-events-none"
-            style={{ animationDelay: "150ms" }}
+            style={{ animationDelay: "300ms" }}
           />
         </>
       )}
 
-      {/* Logo */}
+      {/* Logo only — no text */}
       <div
-        className="relative transition-all duration-500 ease-out"
+        className="relative transition-all duration-1000 ease-out"
         style={{
           transform:
             phase === "zoom"
@@ -75,22 +74,6 @@ export default function LoadingScreen() {
           priority
           className="object-contain drop-shadow-lg"
         />
-      </div>
-
-      {/* School name — fades in only during pulse phase */}
-      <div
-        className={`absolute bottom-1/3 text-center transition-all duration-500
-          ${phase === "pulse"
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-3"
-          }`}
-      >
-        <p className="text-[#1B4F8A] font-bold text-lg tracking-wide">
-          Central Academy
-        </p>
-        <p className="text-gray-400 text-xs tracking-widest uppercase">
-          Anta, Rajasthan
-        </p>
       </div>
     </div>
   );

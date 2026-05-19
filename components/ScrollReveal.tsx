@@ -39,7 +39,7 @@ export default function ScrollReveal({
       whileInView={animate}
       viewport={{ once: true, margin: "-60px" }}
       transition={{
-        duration: prefersReduced ? 0.2 : 0.55,
+        duration: prefersReduced ? 0.2 : 1.1,
         delay: prefersReduced ? 0 : delay,
         ease: [0.21, 0.47, 0.32, 0.98],
       }}
