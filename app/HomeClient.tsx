@@ -38,7 +38,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
           className="absolute inset-0 w-full h-full object-cover z-0"
           initial={{ scale: 1.06, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 2.4, ease: EASE }}
+          transition={{ duration: 1.85, ease: EASE }}
         />
 
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
@@ -47,7 +47,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
             className="text-xs font-semibold text-school-blue-light mb-4 uppercase tracking-[0.2em] bg-black/30 px-4 py-1 rounded-full backdrop-blur-sm"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: EASE, delay: 0.4 }}
+            transition={{ duration: 0.92, ease: EASE, delay: 0.31 }}
           >
             Empowering Minds
           </motion.span>
@@ -57,7 +57,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
             className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg leading-tight"
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, ease: EASE, delay: 0.7 }}
+            transition={{ duration: 1.23, ease: EASE, delay: 0.54 }}
           >
             Excellence in Education Since 2013
           </motion.h1>
@@ -67,7 +67,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
             className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl drop-shadow-md"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.6, ease: EASE, delay: 1.0 }}
+            transition={{ duration: 1.23, ease: EASE, delay: 0.77 }}
           >
             Nurturing holistic development and academic brilliance in a secure, modern environment.
           </motion.p>
@@ -77,7 +77,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
             className="flex flex-wrap gap-4 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, ease: EASE, delay: 1.3 }}
+            transition={{ duration: 1.08, ease: EASE, delay: 1.0 }}
           >
             <Link href="/admissions">
               <motion.button

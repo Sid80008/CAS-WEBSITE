@@ -50,14 +50,14 @@ export function Navbar() {
         }`}
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.3, ease: EASE }}
+      transition={{ duration: 1.0, ease: EASE }}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-8 h-20">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, ease: EASE, delay: 0.1 }}
+          transition={{ duration: 0.92, ease: EASE, delay: 0.1 }}
         >
           <Link href="/" className="flex items-center gap-4 group">
             <motion.img
@@ -79,10 +79,10 @@ export function Navbar() {
           className="hidden lg:flex gap-8 items-center"
           initial="hidden"
           animate="visible"
-          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.14, delayChildren: 0.6 } } }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.108, delayChildren: 0.46 } } }}
         >
           {/* About — dropdown */}
-          <motion.div variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: EASE } } }}>
+          <motion.div variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.77, ease: EASE } } }}>
             <DropdownMenu>
               <DropdownMenuTrigger
                 className={`flex items-center gap-1 font-semibold transition-colors hover:text-school-amber outline-none ${
@@ -114,7 +114,7 @@ export function Navbar() {
             return (
               <motion.div
                 key={link.href}
-                variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0, transition: { duration: 1.0, ease: EASE } } }}
+                variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.77, ease: EASE } } }}
               >
                 <Link
                   href={link.href}
@@ -135,7 +135,7 @@ export function Navbar() {
           className="hidden lg:flex items-center gap-4"
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.0, ease: EASE, delay: 1.6 }}
+          transition={{ duration: 0.77, ease: EASE, delay: 1.23 }}
         >
           <button
             onClick={() => setLanguage(language === "en" ? "hi" : "en")}

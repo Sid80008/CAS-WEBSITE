@@ -85,8 +85,9 @@ function LoginFormInner() {
         return
       }
 
-      // Success — redirect to admin dashboard
-      router.replace('/admin')
+      // Hard redirect — forces a full page reload so the middleware
+      // can read the new session cookie before entering /admin
+      window.location.href = '/admin'
     } catch {
       setErrorMsg('Something went wrong. Please try again or contact the school office.')
     } finally {

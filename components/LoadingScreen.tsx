@@ -16,14 +16,14 @@ export default function LoadingScreen() {
 
     document.body.classList.add("loading-lock");
 
-    // Timings doubled (half speed): zoom 1200ms, pulse 1600ms, absorb 1000ms
-    const t1 = setTimeout(() => setPhase("pulse"), 1200);
-    const t2 = setTimeout(() => setPhase("absorb"), 2800);
+    // Timings at 0.65× original speed: zoom 923ms, pulse 1230ms, absorb 769ms
+    const t1 = setTimeout(() => setPhase("pulse"), 923);
+    const t2 = setTimeout(() => setPhase("absorb"), 2154);
     const t3 = setTimeout(() => {
       setPhase("done");
       sessionStorage.setItem("cas-intro-seen", "1");
       document.body.classList.remove("loading-lock");
-    }, 3800);
+    }, 2923);
 
     return () => {
       clearTimeout(t1);
@@ -38,8 +38,8 @@ export default function LoadingScreen() {
   return (
     <div
       className={`fixed inset-0 z-[9999] flex items-center justify-center bg-white
-                  transition-opacity duration-1000
                   ${phase === "absorb" ? "opacity-0" : "opacity-100"}`}
+      style={{ transition: "opacity 769ms ease" }}
       aria-hidden="true"
     >
       {/* Ripple rings — only during pulse phase */}
@@ -55,8 +55,9 @@ export default function LoadingScreen() {
 
       {/* Logo only — no text */}
       <div
-        className="relative transition-all duration-1000 ease-out"
+        className="relative ease-out"
         style={{
+          transition: "transform 923ms ease-out, opacity 923ms ease-out",
           transform:
             phase === "zoom"
               ? "scale(0.18)"
