@@ -13,7 +13,7 @@ export const SCHOOL = {
   state: 'Rajasthan',
   pincode: '325202',
   website: 'https://centralacademyantah.vercel.app',
-  established: 1994,
+  established: 2017,
   get yearsOfExcellence() {
     return new Date().getFullYear() - this.established;
   },

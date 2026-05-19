@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LogIn, Menu, ChevronDown, X } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -11,6 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { EASE } from "@/lib/animations";
 
 const ABOUT_LINKS = [
   { name: "Vision & Mission", href: "/about/vision-mission" },
@@ -35,77 +37,112 @@ export function Navbar() {
   const isAboutActive = pathname.startsWith("/about");
 
   return (
-    <header className="bg-white/95 backdrop-blur-md text-school-blue font-sans sticky top-0 w-full z-50 border-b border-slate-100 shadow-sm transition-all duration-300">
+    <motion.header
+      className="bg-white/95 backdrop-blur-md text-school-blue font-sans sticky top-0 w-full z-50 border-b border-slate-100 shadow-sm"
+      initial={{ opacity: 0, y: -16 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.65, ease: EASE }}
+    >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-8 h-20">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-4 group">
-          <img
-            alt="Central Academy Senior Secondary School Logo"
-            className="h-12 w-12 object-contain transition-transform group-hover:scale-105"
-            src="/logo.png"
-          />
-          <div className="flex flex-col">
-            <span className="text-xl font-extrabold text-school-blue leading-tight">Central Academy Anta</span>
-            <span className="text-[10px] font-bold tracking-widest text-school-amber uppercase">Education for Excellence</span>
-          </div>
-        </Link>
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: EASE, delay: 0.1 }}
+        >
+          <Link href="/" className="flex items-center gap-4 group">
+            <motion.img
+              alt="Central Academy Senior Secondary School Logo"
+              className="h-12 w-12 object-contain"
+              src="/logo.png"
+              whileHover={{ scale: 1.08, rotate: 3 }}
+              transition={{ duration: 0.25 }}
+            />
+            <div className="flex flex-col">
+              <span className="text-xl font-extrabold text-school-blue leading-tight">Central Academy Anta</span>
+              <span className="text-[10px] font-bold tracking-widest text-school-amber uppercase">Education for Excellence</span>
+            </div>
+          </Link>
+        </motion.div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex gap-8 items-center">
+        <motion.nav
+          className="hidden lg:flex gap-8 items-center"
+          initial="hidden"
+          animate="visible"
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.3 } } }}
+        >
           {/* About — dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger
-              className={`flex items-center gap-1 font-semibold transition-all hover:text-school-amber outline-none ${
-                isAboutActive
-                  ? "text-school-amber border-b-2 border-school-amber py-1"
-                  : "text-school-blue"
-              }`}
-            >
-              About <ChevronDown className="h-3.5 w-3.5 mt-0.5" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-52 rounded-xl shadow-xl border-slate-100 p-1">
-              {ABOUT_LINKS.map((link) => (
-                <DropdownMenuItem key={link.name} asChild>
-                  <Link
-                    href={link.href}
-                    className="flex items-center px-3 py-2 text-sm font-medium text-school-blue hover:bg-school-blue-light hover:text-school-blue rounded-lg cursor-pointer transition-colors"
-                  >
-                    {link.name}
-                  </Link>
-                </DropdownMenuItem>
-              ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <motion.div variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } } }}>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                className={`flex items-center gap-1 font-semibold transition-colors hover:text-school-amber outline-none ${
+                  isAboutActive
+                    ? "text-school-amber border-b-2 border-school-amber py-1"
+                    : "text-school-blue"
+                }`}
+              >
+                About <ChevronDown className="h-3.5 w-3.5 mt-0.5" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-52 rounded-xl shadow-xl border-slate-100 p-1">
+                {ABOUT_LINKS.map((link) => (
+                  <DropdownMenuItem key={link.name} asChild>
+                    <Link
+                      href={link.href}
+                      className="flex items-center px-3 py-2 text-sm font-medium text-school-blue hover:bg-school-blue-light hover:text-school-blue rounded-lg cursor-pointer transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </motion.div>
 
           {/* Other nav links */}
           {NAV_LINKS.map((link) => {
             const isActive = pathname === link.href;
             return (
-              <Link
+              <motion.div
                 key={link.href}
-                href={link.href}
-                className={`font-semibold transition-all hover:text-school-amber ${
-                  isActive
-                    ? "text-school-amber border-b-2 border-school-amber py-1"
-                    : "text-school-blue"
-                }`}
+                variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } } }}
               >
-                {link.name}
-              </Link>
+                <Link
+                  href={link.href}
+                  className={`font-semibold transition-colors hover:text-school-amber ${
+                    isActive
+                      ? "text-school-amber border-b-2 border-school-amber py-1"
+                      : "text-school-blue"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
             );
           })}
-        </nav>
+        </motion.nav>
 
-        <div className="hidden lg:flex items-center gap-4">
+        <motion.div
+          className="hidden lg:flex items-center gap-4"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: EASE, delay: 0.8 }}
+        >
           {/* Hindi toggle hidden — not yet implemented */}
           {/* TODO: Wire up i18n before re-enabling */}
           <Link href="/login">
-            <Button className="bg-school-blue text-white hover:bg-school-blue-dark transition-all shadow-md flex items-center gap-2">
-              <LogIn className="h-4 w-4" />
-              Portal
-            </Button>
+            <motion.div
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Button className="bg-school-blue text-white hover:bg-school-blue-dark transition-all shadow-md flex items-center gap-2">
+                <LogIn className="h-4 w-4" />
+                Portal
+              </Button>
+            </motion.div>
           </Link>
-        </div>
+        </motion.div>
 
         {/* Mobile Toggle */}
         <button
@@ -157,6 +194,6 @@ export function Navbar() {
           </Link>
         </div>
       )}
-    </header>
+    </motion.header>
   );
 }
