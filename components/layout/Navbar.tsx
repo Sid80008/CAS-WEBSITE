@@ -146,7 +146,7 @@ export function Navbar() {
             <span>{language === "en" ? "EN" : "हि"}</span>
           </button>
 
-          <Link href="/login">
+          <Link href="/portal">
             <motion.div
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}

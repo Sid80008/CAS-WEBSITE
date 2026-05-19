@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Parent Portal - Performance &amp; Progress | Central Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-primary-fixed-variant":"#0e4782","on-primary-container":"#9ac2ff","green":"#3B6D11","surface-variant":"#e5e2e1","outline-variant":"#c2c6d1","amber-dark":"#633806","coral-light":"#FAECE7","surface-container-highest":"#e5e2e1","tertiary":"#004031","primary":"#00386b","on-error":"#ffffff","surface-container":"#f0eded","primary-container":"#1b4f8a","on-primary-fixed":"#001c3a","error":"#ba1a1a","background":"#fcf9f8","outline":"#737781","teal-light":"#E1F5EE","on-tertiary":"#ffffff","secondary":"#885200","school-blue-dark":"#0C447C","surface-container-low":"#f6f3f2","error-container":"#ffdad6","primary-fixed":"#d4e3ff","border-default":"#E2E0DB","surface":"#fcf9f8","on-tertiary-container":"#7ed0b3","amber-light":"#FAEEDA","on-secondary-container":"#704200","secondary-container":"#fdad4e","teal-dark":"#085041","on-background":"#1c1b1b","surface-container-lowest":"#ffffff","on-secondary-fixed-variant":"#673d00","on-primary":"#ffffff","coral":"#993C1D","on-secondary":"#ffffff","school-blue-extra-light":"#F0F6FC","school-blue-light":"#E6F1FB","on-surface":"#1c1b1b","surface-container-high":"#eae7e7","on-surface-variant":"#424750"},borderRadius:{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},spacing:{"sm":"8px","section":"48px","lg":"24px","xl":"32px","page-desktop":"64px","container-max":"1280px"},fontFamily:{"h1":["Plus Jakarta Sans"],"h2":["Plus Jakarta Sans"],"h3":["Plus Jakarta Sans"],"h4":["Plus Jakarta Sans"],"body":["Inter"],"label":["Inter"],"caption":["Inter"],"body-small":["Inter"],"overline":["Inter"]},fontSize:{"h2":["28px",{"lineHeight":"1.3","fontWeight":"600"}],"h3":["22px",{"lineHeight":"1.4","fontWeight":"600"}],"h4":["18px",{"lineHeight":"1.4","fontWeight":"600"}],"body":["16px",{"lineHeight":"1.6","fontWeight":"400"}],"label":["14px",{"lineHeight":"1.5","fontWeight":"500"}],"caption":["12px",{"lineHeight":"1.5","fontWeight":"400"}],"body-small":["14px",{"lineHeight":"1.5","fontWeight":"400"}],"overline":["11px",{"lineHeight":"1.4","letterSpacing":"0.1em","fontWeight":"600"}]}}}}
+</script>
+<style>
+.material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24;}
+body{background-color:#fcf9f8;font-family:'Inter',sans-serif;}
+</style>
+</head>
+<body class="text-on-surface">
+
+<!-- Sidebar -->
+<aside class="h-full w-64 fixed left-0 top-0 overflow-y-auto bg-surface-container-low border-r border-border-default z-50 flex flex-col gap-2 p-4">
+  <div class="mb-8 px-2">
+    <div class="flex items-center gap-3">
+      <img src="/logo.png" alt="CAS" class="w-10 h-10 object-contain"/>
+      <div><h1 class="font-h3 text-h3 font-bold text-primary leading-tight">Central Academy</h1><p class="font-label text-label text-on-surface-variant">Anta Campus</p></div>
+    </div>
+  </div>
+  <nav class="flex flex-col gap-1 flex-1">
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors" href="/portal/parent/"><span class="material-symbols-outlined">dashboard</span><span class="font-label text-label">Dashboard</span></a>
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors" href="#"><span class="material-symbols-outlined">school</span><span class="font-label text-label">Academics</span></a>
+    <a class="flex items-center gap-3 px-4 py-3 bg-primary-container text-on-primary-container rounded-lg font-bold shadow-sm" href="#"><span class="material-symbols-outlined">analytics</span><span class="font-label text-label">Performance</span></a>
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors" href="#"><span class="material-symbols-outlined">payments</span><span class="font-label text-label">Fee Portal</span></a>
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors" href="#"><span class="material-symbols-outlined">calendar_month</span><span class="font-label text-label">Calendar</span></a>
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors" href="#"><span class="material-symbols-outlined">settings</span><span class="font-label text-label">Settings</span></a>
+  </nav>
+  <div class="mt-auto pt-4 border-t border-border-default flex flex-col gap-2">
+    <a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg" href="#"><span class="material-symbols-outlined">help_outline</span><span class="font-label text-label">Help Support</span></a>
+    <a href="/" class="w-full mt-2 py-2 px-4 bg-primary text-on-primary font-label text-label rounded-lg hover:bg-school-blue-dark transition-all text-center">← Back to Site</a>
+  </div>
+</aside>
+
+<!-- Top Bar -->
+<header class="fixed top-0 right-0 left-64 h-16 z-40 bg-surface border-b border-border-default flex justify-between items-center px-6">
+  <div class="flex items-center gap-4">
+    <h2 class="font-h4 text-h4 font-bold text-primary">Performance &amp; Progress Report</h2>
+    <span class="bg-teal-light text-teal-dark px-2 py-0.5 rounded-full font-overline text-overline">SESSION 2023-24</span>
+  </div>
+  <div class="flex items-center gap-6">
+    <a class="font-label text-label text-on-surface-variant hover:text-primary" href="#">Contact Support</a>
+    <div class="flex items-center gap-3">
+      <button class="p-2 text-on-surface-variant hover:bg-surface-variant rounded-full"><span class="material-symbols-outlined">notifications</span></button>
+      <div class="flex items-center gap-3 pl-4 border-l border-border-default">
+        <div class="text-right"><p class="font-label text-label font-bold">Aryan Sharma</p><p class="text-[11px] text-on-surface-variant">Class 10-B | Roll No. 24</p></div>
+        <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold border-2 border-primary-fixed">A</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main -->
+<main class="ml-64 pt-24 pb-12 px-page-desktop max-w-container-max mx-auto">
+
+  <!-- Stats Grid -->
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-section">
+    <div class="bg-surface-container-lowest p-6 rounded-lg border border-border-default shadow-sm hover:shadow-md transition-all group">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-2 bg-primary-fixed text-primary rounded-lg group-hover:bg-primary group-hover:text-on-primary transition-colors"><span class="material-symbols-outlined">grade</span></div>
+        <span class="text-green font-label text-label flex items-center gap-1">+2.4% <span class="material-symbols-outlined text-[16px]">trending_up</span></span>
+      </div>
+      <p class="text-on-surface-variant font-label text-label mb-1">Current Aggregate</p>
+      <h3 class="font-h2 text-h2 text-primary">88.5%</h3>
+    </div>
+    <div class="bg-surface-container-lowest p-6 rounded-lg border border-border-default shadow-sm hover:shadow-md transition-all group">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-2 bg-secondary-container/40 text-secondary rounded-lg group-hover:bg-secondary group-hover:text-on-secondary transition-colors"><span class="material-symbols-outlined">leaderboard</span></div>
+        <span class="text-on-surface-variant font-label text-label">Top 5%</span>
+      </div>
+      <p class="text-on-surface-variant font-label text-label mb-1">Class Rank</p>
+      <h3 class="font-h2 text-h2 text-secondary">04 <span class="text-label font-normal text-on-surface-variant">/ 42</span></h3>
+    </div>
+    <div class="bg-surface-container-lowest p-6 rounded-lg border border-border-default shadow-sm hover:shadow-md transition-all group">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-2 bg-teal-light text-teal-dark rounded-lg group-hover:bg-tertiary group-hover:text-on-tertiary transition-colors"><span class="material-symbols-outlined">event_available</span></div>
+        <span class="text-green font-label text-label">Excellent</span>
+      </div>
+      <p class="text-on-surface-variant font-label text-label mb-1">Attendance</p>
+      <h3 class="font-h2 text-h2 text-teal-dark">96%</h3>
+    </div>
+    <div class="bg-surface-container-lowest p-6 rounded-lg border border-border-default shadow-sm hover:shadow-md transition-all group">
+      <div class="flex justify-between items-start mb-4">
+        <div class="p-2 bg-error-container text-error rounded-lg group-hover:bg-error group-hover:text-on-error transition-colors"><span class="material-symbols-outlined">assignment_late</span></div>
+        <span class="text-error font-label text-label">Pending</span>
+      </div>
+      <p class="text-on-surface-variant font-label text-label mb-1">Active Projects</p>
+      <h3 class="font-h2 text-h2 text-error">02</h3>
+    </div>
+  </div>
+
+  <!-- Charts Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-lg mb-section">
+    <!-- Bar Chart -->
+    <div class="lg:col-span-2 bg-surface-container-lowest p-8 rounded-lg border border-border-default shadow-sm">
+      <div class="flex justify-between items-center mb-8">
+        <div>
+          <h3 class="font-h3 text-h3 text-primary">Subject-wise Performance</h3>
+          <p class="font-body-small text-body-small text-on-surface-variant">Comparative analysis with class average (Term 2)</p>
+        </div>
+        <div class="flex gap-4 items-center">
+          <div class="flex items-center gap-2"><span class="w-3 h-3 bg-primary rounded-full"></span><span class="text-caption text-on-surface-variant">Student</span></div>
+          <div class="flex items-center gap-2"><span class="w-3 h-3 bg-outline-variant rounded-full"></span><span class="text-caption text-on-surface-variant">Class Avg</span></div>
+        </div>
+      </div>
+      <div class="flex items-end justify-between h-64 gap-6 px-4">
+        <!-- Math -->
+        <div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative">
+          <div class="w-full flex justify-center gap-1 items-end h-full">
+            <div class="w-6 bg-outline-variant/30 rounded-t-sm transition-all" style="height:75%"></div>
+            <div class="w-8 bg-primary rounded-t-sm group-hover:brightness-110 shadow-sm transition-all" style="height:0%" data-target="92%"></div>
+          </div>
+          <span class="font-label text-label text-on-surface-variant">Math</span>
+          <div class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary px-3 py-1 rounded text-caption pointer-events-none z-10">Student: 92% | Avg: 75%</div>
+        </div>
+        <!-- Science -->
+        <div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative">
+          <div class="w-full flex justify-center gap-1 items-end h-full">
+            <div class="w-6 bg-outline-variant/30 rounded-t-sm transition-all" style="height:70%"></div>
+            <div class="w-8 bg-primary rounded-t-sm group-hover:brightness-110 shadow-sm transition-all" style="height:0%" data-target="88%"></div>
+          </div>
+          <span class="font-label text-label text-on-surface-variant">Science</span>
+          <div class="absolute -top-12 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-on-primary px-3 py-1 rounded text-caption pointer-events-none z-10">Student: 88% | Avg: 70%</div>
+        </div>
+        <!-- English -->
+        <div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative">
+          <div class="w-full flex justify-center gap-1 items-end h-full">
+            <div class="w-6 bg-outline-variant/30 rounded-t-sm transition-all" style="height:82%"></div>
+            <div class="w-8 bg-primary rounded-t-sm group-hover:brightness-110 shadow-sm transition-all" style="height:0%" data-target="80%"></div>
+          </div>
+          <span class="font-label text-label text-on-surface-variant">English</span>
+        </div>
+        <!-- History -->
+        <div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative">
+          <div class="w-full flex justify-center gap-1 items-end h-full">
+            <div class="w-6 bg-outline-variant/30 rounded-t-sm transition-all" style="height:65%"></div>
+            <div class="w-8 bg-primary rounded-t-sm group-hover:brightness-110 shadow-sm transition-all" style="height:0%" data-target="95%"></div>
+          </div>
+          <span class="font-label text-label text-on-surface-variant">History</span>
+        </div>
+        <!-- Hindi -->
+        <div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative">
+          <div class="w-full flex justify-center gap-1 items-end h-full">
+            <div class="w-6 bg-outline-variant/30 rounded-t-sm transition-all" style="height:78%"></div>
+            <div class="w-8 bg-primary rounded-t-sm group-hover:brightness-110 shadow-sm transition-all" style="height:0%" data-target="84%"></div>
+          </div>
+          <span class="font-label text-label text-on-surface-variant">Hindi</span>
+        </div>
+        <!-- IT -->
+        <div class="flex-1 flex flex-col items-center gap-2 group cursor-pointer relative">
+          <div class="w-full flex justify-center gap-1 items-end h-full">
+            <div class="w-6 bg-outline-variant/30 rounded-t-sm transition-all" style="height:85%"></div>
+            <div class="w-8 bg-primary rounded-t-sm group-hover:brightness-110 shadow-sm transition-all" style="height:0%" data-target="98%"></div>
+          </div>
+          <span class="font-label text-label text-on-surface-variant">IT</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Downloads & PTM -->
+    <div class="flex flex-col gap-lg">
+      <div class="bg-surface-container-lowest p-6 rounded-lg border border-border-default shadow-sm">
+        <h4 class="font-h4 text-h4 text-on-surface mb-4 flex items-center gap-2"><span class="material-symbols-outlined text-primary">download</span>Report Cards</h4>
+        <div class="flex flex-col gap-3">
+          <button class="flex items-center justify-between p-3 border border-border-default rounded-lg hover:border-primary hover:bg-school-blue-extra-light transition-all group">
+            <div class="text-left"><p class="font-label text-label font-bold text-on-surface">Quarterly Exam</p><p class="text-caption text-on-surface-variant">PDF • 1.2 MB</p></div>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">picture_as_pdf</span>
+          </button>
+          <button class="flex items-center justify-between p-3 border border-border-default rounded-lg hover:border-primary hover:bg-school-blue-extra-light transition-all group">
+            <div class="text-left"><p class="font-label text-label font-bold text-on-surface">Half Yearly Exam</p><p class="text-caption text-on-surface-variant">PDF • 2.4 MB</p></div>
+            <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">picture_as_pdf</span>
+          </button>
+          <button class="flex items-center justify-between p-3 bg-surface-container-low border border-dashed border-border-default rounded-lg opacity-60 cursor-not-allowed">
+            <div class="text-left"><p class="font-label text-label font-bold text-on-surface">Final Term Exam</p><p class="text-caption text-on-surface-variant">Releasing March 2024</p></div>
+            <span class="material-symbols-outlined">lock</span>
+          </button>
+        </div>
+      </div>
+      <div class="bg-primary-container p-6 rounded-lg shadow-sm text-on-primary-container">
+        <h4 class="font-h4 text-h4 mb-2">Teacher Interaction</h4>
+        <p class="font-body-small text-body-small opacity-80 mb-4">Next Parent-Teacher Meeting is scheduled for Saturday.</p>
+        <button class="w-full py-2 bg-on-primary-container text-primary-container font-label text-label font-bold rounded-lg hover:opacity-90 transition-opacity">Schedule Slot</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Teacher Remarks -->
+  <div class="bg-surface-container-lowest rounded-lg border border-border-default shadow-sm overflow-hidden">
+    <div class="p-6 border-b border-border-default bg-surface-container-low flex justify-between items-center">
+      <h3 class="font-h3 text-h3 text-primary">Teacher's Detailed Remarks</h3>
+      <div class="flex gap-2">
+        <button class="px-3 py-1 bg-surface-container-lowest border border-border-default rounded-lg text-caption font-label hover:border-primary transition-all">Filter: Term 2</button>
+        <button class="px-3 py-1 bg-surface-container-lowest border border-border-default rounded-lg text-caption font-label hover:border-primary transition-all">All Subjects</button>
+      </div>
+    </div>
+    <div class="divide-y divide-border-default">
+      <!-- Remark 1 -->
+      <div class="p-6 flex flex-col md:flex-row gap-6 hover:bg-surface-container transition-colors">
+        <div class="w-full md:w-48 shrink-0">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-teal-dark flex items-center justify-center text-white font-bold">S</div>
+            <div><p class="font-label text-label font-bold">Mrs. Sunita Rao</p><p class="text-caption text-on-surface-variant">Mathematics</p></div>
+          </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-teal-light text-teal-dark rounded-full text-caption font-medium"><span class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1">sentiment_very_satisfied</span>Positive</div>
+        </div>
+        <div class="flex-1">
+          <p class="font-body text-body text-on-surface mb-2">"Aryan has shown exceptional growth in Euclidean Geometry this term. His problem-solving approach has become much more structured. He is consistently among the first to solve complex equations in class and often helps peers who are struggling."</p>
+          <p class="text-caption text-on-surface-variant italic">— Posted on Jan 14, 2024</p>
+        </div>
+      </div>
+      <!-- Remark 2 -->
+      <div class="p-6 flex flex-col md:flex-row gap-6 hover:bg-surface-container transition-colors">
+        <div class="w-full md:w-48 shrink-0">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">A</div>
+            <div><p class="font-label text-label font-bold">Dr. Alok Verma</p><p class="text-caption text-on-surface-variant">Physics</p></div>
+          </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-light text-amber-dark rounded-full text-caption font-medium"><span class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1">emoji_objects</span>Encouraging</div>
+        </div>
+        <div class="flex-1">
+          <p class="font-body text-body text-on-surface mb-2">"Great enthusiasm during lab practicals. While his theoretical understanding is strong, I would encourage Aryan to spend more time on numerical practice related to Thermodynamics. His recent project on solar cells was highly commendable."</p>
+          <p class="text-caption text-on-surface-variant italic">— Posted on Jan 10, 2024</p>
+        </div>
+      </div>
+      <!-- Remark 3 -->
+      <div class="p-6 flex flex-col md:flex-row gap-6 hover:bg-surface-container transition-colors border-l-4 border-coral">
+        <div class="w-full md:w-48 shrink-0">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="w-10 h-10 rounded-full bg-coral flex items-center justify-center text-white font-bold">D</div>
+            <div><p class="font-label text-label font-bold">Mr. David Smith</p><p class="text-caption text-on-surface-variant">English Lit.</p></div>
+          </div>
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 bg-coral-light text-coral rounded-full text-caption font-medium"><span class="material-symbols-outlined text-[16px]" style="font-variation-settings:'FILL' 1">error</span>Needs Focus</div>
+        </div>
+        <div class="flex-1">
+          <p class="font-body text-body text-on-surface mb-2">"Aryan's creative writing skills are impressive, but there's a noticeable trend of late submissions this month. We need to work on time management to ensure his work reflects his full potential. Grammar accuracy in long-form essays also needs review."</p>
+          <p class="text-caption text-on-surface-variant italic">— Posted on Jan 05, 2024</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- FAB -->
+<button class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center hover:scale-105 active:scale-95 transition-all z-50 group">
+  <span class="material-symbols-outlined">message</span>
+  <span class="absolute right-16 bg-on-surface text-surface px-3 py-1 rounded text-caption opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Chat with Class Teacher</span>
+</button>
+
+<script>
+window.addEventListener('DOMContentLoaded',()=>{
+  const bars=document.querySelectorAll('[data-target]');
+  bars.forEach(bar=>{
+    const target=bar.getAttribute('data-target');
+    setTimeout(()=>{
+      bar.style.transition='height 1s cubic-bezier(0.16,1,0.3,1)';
+      bar.style.height=target;
+    },200);
+  });
+});
+</script>
+</body></html>
