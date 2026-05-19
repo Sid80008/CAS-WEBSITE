@@ -56,7 +56,7 @@ export default function HomeClient({ notices, toppers, studentCount }: HomeProps
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: EASE, delay: 0.35 }}
           >
-            Excellence in Education Since 2017
+            Excellence in Education Since 2013
           </motion.h1>
 
           {/* Sub */}
@@ -120,7 +120,7 @@ export default function HomeClient({ notices, toppers, studentCount }: HomeProps
               <BookOpen className="h-8 w-8" />
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-school-blue">8+ Years</h3>
+              <h3 className="text-2xl font-bold text-school-blue">12+ Years</h3>
               <p className="text-sm text-text-secondary">Of Academic Excellence</p>
             </div>
           </motion.div>

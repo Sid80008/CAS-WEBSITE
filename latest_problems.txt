@@ -308,3 +308,19 @@ Here is the breakdown: 9 out of 16 routes exist (56%), but of those 9, one is bl
 If a real parent visited this site today — which is entirely possible since it is live on the internet — they would find a school that lists the wrong phone number, the wrong email address, two different wrong addresses, a 2-year-old admission session, an empty events page, a dead Portal login, seven dead footer links, and a homepage with a section that literally says "Awards records will be updated soon." That parent would not call. They would not apply. They would assume the school either doesn't exist anymore or doesn't care about its own website. The structural foundation is good — the pages that work look clean and professional. But the content, data, and functionality layers are in an early alpha state being served publicly as if it were production.
 
 The four things that must be fixed before anyone outside the development team is allowed to see this URL are: the login page crash, all the wrong contact information, the 2024-25 session year on admissions, and the "View All" notices misdirect to events. Everything else can follow in priority order from there.
+
+
+
+
+----------------------------------
+survey 4
+----------------------------------
+
+1. not all photos are loading
+2. 2+photos button on galler section not working
+3. change logo
+4. sub-tabs in galleryy section not Working
+5. photos issue in all tabs
+6. quick overview safety and support system photo not there
+7. no sub-sections in about section
+8. 
