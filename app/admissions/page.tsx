@@ -29,7 +29,7 @@ import {
 export default function AdmissionForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -43,22 +43,24 @@ export default function AdmissionForm() {
       phone: formData.get("phone"),
       email: formData.get("email"),
       grade: formData.get("grade"),
-      gender: formData.get("gender"),
-      address: formData.get("address"),
     };
 
     try {
-      const res = await fetch("/api/public/admission", {
+      const res = await fetch("/api/admission-enquiry", {
         method: "POST",
         body: JSON.stringify(data),
         headers: { "Content-Type": "application/json" }
       });
 
-      if (!res.ok) throw new Error("Submission failed. Please try again.");
+      const result = await res.json();
 
-      setIsSubmitted(true);
-    } catch (err: any) {
-      setError(err.message);
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        setError(result.error || "Submission failed. Please try again.");
+      }
+    } catch {
+      setError(`Network error. Please call us directly at ${SCHOOL.phone1}.`);
     } finally {
       setLoading(false);
     }

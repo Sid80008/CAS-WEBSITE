@@ -24,6 +24,46 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // About → existing about page
+      {
+        source: "/about",
+        destination: "/about/vision-mission",
+        permanent: false,
+      },
+      // Academics → homepage (page not yet built)
+      {
+        source: "/academics",
+        destination: "/",
+        permanent: false,
+      },
+      // Admin catch-all → login (portal not fully built)
+      {
+        source: "/admin/:path*",
+        destination: "/login",
+        permanent: false,
+      },
+      // Alumni → homepage (page not yet built)
+      {
+        source: "/alumni",
+        destination: "/",
+        permanent: false,
+      },
+      // Legal pages → homepage (pages not yet built)
+      {
+        source: "/privacy",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/terms",
+        destination: "/",
+        permanent: false,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
+

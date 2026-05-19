@@ -77,7 +77,7 @@ export function Footer() {
           <nav className="flex flex-wrap justify-center gap-6 text-xs text-slate-500">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-            <Link href="/sitemap" className="hover:text-white transition-colors">Sitemap</Link>
+            <Link href="/sitemap.xml" className="hover:text-white transition-colors">Sitemap</Link>
           </nav>
           <div className="flex gap-4">
             <a href="#" className="h-8 w-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-school-blue transition-colors">
