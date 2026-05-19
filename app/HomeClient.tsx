@@ -12,20 +12,23 @@ import {
   Trophy,
   Laptop
 } from "lucide-react";
-import PublicLayout from "@/components/layout/PublicLayout";
+
 import Animate from "@/components/Animate";
 import { fadeUp, fadeLeft, fadeRight, fadeIn, staggerContainer, staggerFast, EASE, VIEWPORT } from "@/lib/animations";
+import { useLanguage } from "@/context/LanguageContext";
+import { SCHOOL_STATS } from "@/lib/stats";
 
 /** Minimal hero data inlined — notices/toppers are loaded by a wrapper in a server component below */
 interface HomeProps {
-  notices: { id: string; titleEn: string; isPinned: boolean; createdAt: Date }[];
+  notices: { id: string; titleEn: string; titleHi: string | null; isPinned: boolean; createdAt: Date }[];
   toppers: { id: string; name: string; class: string; year: number; percentage: number; imageUrl: string | null }[];
   studentCount: number;
 }
 
-export default function HomeClient({ notices, toppers, studentCount }: HomeProps) {
+export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
+  const { language } = useLanguage();
   return (
-    <PublicLayout>
+    <>
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="relative w-full h-[620px] flex items-center justify-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0 bg-black/45 z-10" />
@@ -103,59 +106,26 @@ export default function HomeClient({ notices, toppers, studentCount }: HomeProps
       {/* ── Quick Stats ──────────────────────────────────────── */}
       <section className="py-12 px-6 max-w-7xl mx-auto -mt-12 relative z-30">
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-6"
           variants={staggerFast}
           initial="hidden"
           whileInView="visible"
           viewport={VIEWPORT}
         >
-          {/* Stat 1 */}
-          <motion.div
-            variants={fadeUp}
-            className="bg-white rounded-xl shadow-lg p-8 border border-slate-100 flex items-center gap-6"
-            whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-          >
-            <div className="h-16 w-16 rounded-full bg-school-blue-light flex items-center justify-center text-school-blue shrink-0">
-              <BookOpen className="h-8 w-8" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-school-blue">12+ Years</h3>
-              <p className="text-sm text-text-secondary">Of Academic Excellence</p>
-            </div>
-          </motion.div>
-
-          {/* Stat 2 */}
-          <motion.div
-            variants={fadeUp}
-            className="bg-white rounded-xl shadow-lg p-8 border border-slate-100 border-t-4 border-t-school-amber flex items-center gap-6"
-            whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-          >
-            <div className="h-16 w-16 rounded-full bg-amber-50 flex items-center justify-center text-school-amber shrink-0">
-              <UsersIcon className="h-8 w-8" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-school-blue">{studentCount || 500}+</h3>
-              <p className="text-sm text-text-secondary">Active Students Enrolled</p>
-            </div>
-          </motion.div>
-
-          {/* Stat 3 */}
-          <motion.div
-            variants={fadeUp}
-            className="bg-white rounded-xl shadow-lg p-8 border border-slate-100 flex items-center gap-6"
-            whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
-          >
-            <div className="h-16 w-16 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
-              <Trophy className="h-8 w-8" />
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-school-blue">100%</h3>
-              <p className="text-sm text-text-secondary">Board Results Record</p>
-            </div>
-          </motion.div>
+          {SCHOOL_STATS.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              variants={fadeUp}
+              className={`bg-white rounded-xl shadow-lg p-8 border border-slate-100 flex flex-col items-center text-center gap-3 ${
+                i === 1 ? "border-t-4 border-t-school-amber" : ""
+              }`}
+              whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+            >
+              <h3 className="text-3xl font-bold text-school-blue">{stat.value}</h3>
+              <p className="text-sm text-text-secondary leading-tight">{stat.label}</p>
+            </motion.div>
+          ))}
         </motion.div>
       </section>
 
@@ -169,9 +139,11 @@ export default function HomeClient({ notices, toppers, studentCount }: HomeProps
               <div className="flex items-center justify-between mb-2">
                 <h2 className="text-2xl font-bold text-school-blue flex items-center gap-2">
                   <Megaphone className="h-6 w-6 text-school-amber" />
-                  Latest Notices
+                  {language === "hi" ? "नवीनतम सूचनाएं" : "Latest Notices"}
                 </h2>
-                <Link href="/notices" className="text-sm font-semibold text-school-blue hover:underline">View All</Link>
+                <Link href="/notices" className="text-sm font-semibold text-school-blue hover:underline">
+                  {language === "hi" ? "सभी देखें" : "View All"}
+                </Link>
               </div>
             </Animate>
 
@@ -191,16 +163,32 @@ export default function HomeClient({ notices, toppers, studentCount }: HomeProps
                   transition={{ duration: 0.2 }}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    {idx === 0 && <span className="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-full uppercase">New</span>}
-                    {notice.isPinned && <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-full uppercase">Important</span>}
+                    {idx === 0 && (
+                      <span className="px-2 py-0.5 bg-amber-100 text-amber-800 text-[10px] font-bold rounded-full uppercase">
+                        {language === "hi" ? "नया" : "New"}
+                      </span>
+                    )}
+                    {notice.isPinned && (
+                      <span className="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-bold rounded-full uppercase">
+                        {language === "hi" ? "महत्वपूर्ण" : "Important"}
+                      </span>
+                    )}
                     <span className="text-[11px] text-text-tertiary">
-                      {new Date(notice.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}
+                      {new Date(notice.createdAt).toLocaleDateString(language === "hi" ? "hi-IN" : "en-IN", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                      })}
                     </span>
                   </div>
-                  <h4 className="text-sm font-semibold text-text-primary line-clamp-2">{notice.titleEn}</h4>
+                  <h4 className={`text-sm font-semibold text-text-primary line-clamp-2 ${language === "hi" && notice.titleHi ? "font-hindi" : ""}`}>
+                    {language === "hi" && notice.titleHi ? notice.titleHi : notice.titleEn}
+                  </h4>
                 </motion.div>
               )) : (
-                <motion.p variants={fadeUp} className="p-4 text-sm text-text-tertiary italic text-center">No recent notices</motion.p>
+                <motion.p variants={fadeUp} className="p-4 text-sm text-text-tertiary italic text-center">
+                  {language === "hi" ? "कोई हालिया सूचना नहीं" : "No recent notices"}
+                </motion.p>
               )}
             </motion.div>
           </div>
@@ -248,11 +236,7 @@ export default function HomeClient({ notices, toppers, studentCount }: HomeProps
                     </div>
                   </div>
                 </motion.div>
-              )) : (
-                <motion.p variants={fadeUp} className="col-span-2 text-center py-12 text-text-tertiary italic border border-dashed rounded-xl">
-                  Awards records will be updated soon.
-                </motion.p>
-              )}
+              )) : null}
             </motion.div>
           </div>
         </div>
@@ -293,7 +277,7 @@ export default function HomeClient({ notices, toppers, studentCount }: HomeProps
           </motion.div>
         </div>
       </section>
-    </PublicLayout>
+    </>
   );
 }
 

@@ -1,5 +1,14 @@
 import { prisma } from "@/lib/prisma";
-import HomeClient from "@/components/HomeClient";
+import PublicLayout from "@/components/layout/PublicLayout";
+import { HomeClient } from "./HomeClient";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Central Academy Senior Secondary School, Anta | Quality Education Since 2013",
+  description:
+    "Central Academy Senior Secondary School (CAS), Anta, Baran, Rajasthan. CBSE affiliated school offering Classes I to XII with modern facilities, experienced faculty.",
+  keywords: "CAS Anta, Central Academy School Anta, CBSE school Baran, school in Anta Rajasthan",
+};
 
 async function getHomeData() {
   try {
@@ -24,5 +33,9 @@ async function getHomeData() {
 
 export default async function Home() {
   const data = await getHomeData();
-  return <HomeClient {...data} />;
+  return (
+    <PublicLayout>
+      <HomeClient {...data} />
+    </PublicLayout>
+  );
 }

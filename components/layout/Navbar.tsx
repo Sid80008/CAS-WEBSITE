@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LogIn, Menu, ChevronDown, X } from "lucide-react";
+import { LogIn, Menu, ChevronDown, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { EASE } from "@/lib/animations";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ABOUT_LINKS = [
   { name: "Vision & Mission", href: "/about/vision-mission" },
@@ -32,6 +33,7 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const pathname = usePathname();
+  const { language, setLanguage } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isAboutActive = pathname.startsWith("/about");
@@ -128,8 +130,15 @@ export function Navbar() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: EASE, delay: 0.8 }}
         >
-          {/* Hindi toggle hidden — not yet implemented */}
-          {/* TODO: Wire up i18n before re-enabling */}
+          <button
+            onClick={() => setLanguage(language === "en" ? "hi" : "en")}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200 text-xs font-bold text-school-blue hover:bg-slate-50 transition-all active:scale-95 shadow-sm bg-white"
+            aria-label="Toggle language"
+          >
+            <Globe className="h-3.5 w-3.5 text-school-amber" />
+            <span>{language === "en" ? "EN" : "हि"}</span>
+          </button>
+
           <Link href="/login">
             <motion.div
               whileHover={{ scale: 1.04 }}
@@ -192,6 +201,17 @@ export function Navbar() {
               Staff / Admin Portal
             </Button>
           </Link>
+
+          <div className="flex justify-between items-center border-t border-slate-100 pt-4 mt-2">
+            <span className="text-xs font-bold text-text-tertiary">Language / भाषा</span>
+            <button
+              onClick={() => setLanguage(language === "en" ? "hi" : "en")}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 text-xs font-bold text-school-blue bg-white shadow-sm"
+            >
+              <Globe className="h-3.5 w-3.5 text-school-amber" />
+              <span>{language === "en" ? "English" : "हिंदी"}</span>
+            </button>
+          </div>
         </div>
       )}
     </motion.header>

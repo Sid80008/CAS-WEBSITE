@@ -11,8 +11,18 @@ const notoSans = Noto_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "CAS - Central Academy School",
-  description: "Next-generation school management and information platform.",
+  title: {
+    default: "Central Academy Senior Secondary School, Anta",
+    template: "%s | CAS Anta",
+  },
+  description:
+    "Central Academy Senior Secondary School (CAS), Anta, Baran, Rajasthan. CBSE affiliated school offering Classes I–XII with modern facilities, experienced faculty, and over a decade of academic excellence.",
+  metadataBase: new URL("https://centralacademyantah.vercel.app"),
+  openGraph: {
+    siteName: "Central Academy Senior Secondary School",
+    locale: "en_IN",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

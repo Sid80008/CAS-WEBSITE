@@ -3,8 +3,8 @@ import { Loader2 } from 'lucide-react'
 import LoginForm from '@/components/LoginForm'
 
 export const metadata = {
-  title: 'Login – Central Academy Senior Secondary School',
-  description: 'Access the Central Academy School staff and admin portal.',
+  title: "Portal Login",
+  description: "Login to the Central Academy School staff or admin portal.",
 }
 
 function LoginSkeleton() {
