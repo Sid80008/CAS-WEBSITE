@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import PublicLayout from "@/components/layout/PublicLayout";
 import { HomeClient } from "./HomeClient";
 import type { Metadata } from "next";

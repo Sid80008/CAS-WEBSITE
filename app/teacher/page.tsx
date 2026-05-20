@@ -1,13 +1,12 @@
 // app/teacher/page.tsx
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 
 export const dynamic = 'force-dynamic';
 
 export default async function TeacherDashboard() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   
   // Fetch the staff profile linked to this login
   const staff = await prisma.staff.findUnique({

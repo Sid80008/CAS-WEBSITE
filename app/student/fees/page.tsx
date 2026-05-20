@@ -1,12 +1,10 @@
-// app/student/fees/page.tsx
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 
 export const dynamic = 'force-dynamic';
 
 export default async function StudentFeesPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   
   const student = await prisma.student.findUnique({
     where: { userId: (session?.user as any).id },
@@ -16,7 +14,7 @@ export default async function StudentFeesPage() {
 
   const feeRecords = await prisma.feeRecord.findMany({
     where: { studentId: student.id },
-    include: { feeStructure: true },
+    include: { structure: true },
     orderBy: { dueDate: 'asc' }
   });
 
@@ -62,7 +60,7 @@ export default async function StudentFeesPage() {
             ) : (
               pendingFees.map(fee => (
                 <tr key={fee.id} className="hover:bg-slate-50">
-                  <td className="px-6 py-4 font-medium text-gray-900">{fee.feeStructure.feeType}</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">{fee.structure.feeType}</td>
                   <td className="px-6 py-4 text-gray-500">{new Date(fee.dueDate).toLocaleDateString('en-IN')}</td>
                   <td className="px-6 py-4 font-bold text-red-600">₹{fee.amountDue - fee.amountPaid}</td>
                   <td className="px-6 py-4">
@@ -97,7 +95,7 @@ export default async function StudentFeesPage() {
             ) : (
               paidFees.map(fee => (
                 <tr key={fee.id}>
-                  <td className="px-6 py-4 font-medium text-gray-900">{fee.feeStructure.feeType}</td>
+                  <td className="px-6 py-4 font-medium text-gray-900">{fee.structure.feeType}</td>
                   <td className="px-6 py-4 text-gray-500">
                     {fee.paidDate ? new Date(fee.paidDate).toLocaleDateString('en-IN') : '-'}
                   </td>

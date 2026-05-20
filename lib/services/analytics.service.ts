@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { startOfYear, endOfYear, subYears } from "date-fns";
 
 export class AnalyticsService {

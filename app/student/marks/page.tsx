@@ -1,12 +1,10 @@
-// app/student/marks/page.tsx
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 
 export const dynamic = 'force-dynamic';
 
 export default async function StudentMarksPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   const student = await prisma.student.findUnique({
     where: { userId: (session?.user as any).id },
@@ -14,7 +12,7 @@ export default async function StudentMarksPage() {
 
   if (!student) return <div>Student profile not found.</div>;
 
-  const marks = await prisma.mark.findMany({
+  const marks = await prisma.examResult.findMany({
     where: { studentId: student.id },
     include: {
       subject: true,
@@ -27,7 +25,7 @@ export default async function StudentMarksPage() {
   });
 
   const groupedMarks = marks.reduce((acc, mark) => {
-    const examName = mark.exam.name;
+    const examName = mark.exam.title;
     if (!acc[examName]) acc[examName] = [];
     acc[examName].push(mark);
     return acc;

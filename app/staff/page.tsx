@@ -1,6 +1,6 @@
 import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { GraduationCap, Award, Mail, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
 

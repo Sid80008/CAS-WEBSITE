@@ -1,11 +1,10 @@
 // app/teacher/layout.tsx
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
 
 export default async function TeacherLayout({ children }: { children: React.ReactNode }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
 
   if (!session || (session.user as any).role !== "TEACHER") {
     redirect("/login");

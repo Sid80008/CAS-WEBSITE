@@ -1,6 +1,6 @@
 import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
-import { prisma } from "@/lib/prisma";
+import prisma from "@/lib/prisma";
 import { NoticesClient } from "./NoticesClient";
 
 export const metadata = {
