@@ -24,8 +24,14 @@ export const {
           const { prisma } = await import("@/lib/prisma")
           const bcrypt = await import("bcryptjs")
           
-          const user = await prisma.user.findUnique({ 
-            where: { email },
+          const user = await prisma.user.findFirst({ 
+            where: {
+              OR: [
+                { email: email },
+                { student: { admissionNo: email } },
+                { parent: { phone: email } }
+              ]
+            },
             include: {
               roles: {
                 include: {

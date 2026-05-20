@@ -50,7 +50,7 @@ export default function PortalPage() {
           transition={{ duration: 0.85, ease: EASE, delay: 0.15 }}
         >
           <a
-            href="/portal/student/"
+            href="/portal/student/dashboard"
             className="group block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] transition-all duration-300 shadow-xl"
           >
             <div className="w-16 h-16 rounded-2xl bg-school-amber/20 flex items-center justify-center mb-6 group-hover:bg-school-amber/30 transition-colors">
@@ -83,7 +83,7 @@ export default function PortalPage() {
           transition={{ duration: 0.85, ease: EASE, delay: 0.28 }}
         >
           <a
-            href="/portal/parent/"
+            href="/portal/parent/dashboard"
             className="group block bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 hover:bg-white/20 hover:border-white/40 hover:scale-[1.02] transition-all duration-300 shadow-xl"
           >
             <div className="w-16 h-16 rounded-2xl bg-emerald-400/20 flex items-center justify-center mb-6 group-hover:bg-emerald-400/30 transition-colors">

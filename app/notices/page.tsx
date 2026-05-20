@@ -10,10 +10,10 @@ export const metadata = {
 
 async function getNotices() {
   return await prisma.notice.findMany({
-    where: { published: true },
+    where: { isPublic: true },
     orderBy: [
       { isPinned: "desc" },
-      { createdAt: "desc" }
+      { publishedAt: "desc" }
     ]
   });
 }

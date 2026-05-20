@@ -315,12 +315,22 @@ The four things that must be fixed before anyone outside the development team is
 ----------------------------------
 survey 4
 ----------------------------------
+1. student and parents login not real
+2. login still not really accessible
 
-1. not all photos are loading
-2. 2+photos button on galler section not working
-3. change logo
-4. sub-tabs in galleryy section not Working
-5. photos issue in all tabs
-6. quick overview safety and support system photo not there
-7. no sub-sections in about section
-8. 
+
+------------------------------------
+animation ideas
+------------------------------------
+
+1. loading animation ----- cas logo zoom in and absorb and then web loads
+2. scroll animation ------ saas slow and effective scroll
+3. 
+
+-------------------------------------
+additional ideas
+-------------------------------------
+
+1. transport page [route, name, phone number, vehicle no. ]
+2. director and principal message and details sync with real ones from other website
+3. classwise syllabus and teachers page [syllabus, teacher of subject and teacher number]

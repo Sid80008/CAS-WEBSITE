@@ -13,7 +13,9 @@ interface Notice {
   contentHi: string | null;
   slug: string;
   published: boolean;
+  isPublic: boolean;
   isPinned: boolean;
+  publishedAt: Date | string;
   createdBy: string;
   createdAt: Date | string;
   updatedAt: Date | string;
@@ -88,7 +90,7 @@ export function NoticesClient({ initialNotices }: NoticesClientProps) {
                     </div>
                     <div className="flex items-center gap-2 text-text-tertiary text-sm font-semibold">
                       <Calendar className="h-4 w-4" />
-                      {format(new Date(notice.createdAt), "MMMM d, yyyy")}
+                      {format(new Date(notice.publishedAt), "MMMM d, yyyy")}
                     </div>
                   </div>
 
@@ -114,12 +116,12 @@ export function NoticesClient({ initialNotices }: NoticesClientProps) {
 
                   <div className="mt-8 pt-6 border-t border-slate-100 flex justify-between items-center text-xs text-text-tertiary font-bold tracking-widest uppercase">
                     <span>
-                      {language === "hi" ? "संदर्भ संख्या" : "Ref No"}: CAS/{new Date(notice.createdAt).getFullYear()}/{(idx + 1).toString().padStart(3, "0")}
+                      {language === "hi" ? "संदर्भ संख्या" : "Ref No"}: CAS/{new Date(notice.publishedAt).getFullYear()}/{(idx + 1).toString().padStart(3, "0")}
                     </span>
                     <span className="flex items-center gap-1">
                       <History className="h-4 w-4" />{" "}
                       {language === "hi" ? "समय" : "Posted"}{" "}
-                      {format(new Date(notice.createdAt), "hh:mm a")}
+                      {format(new Date(notice.publishedAt), "hh:mm a")}
                     </span>
                   </div>
                 </div>

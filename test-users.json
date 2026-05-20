@@ -1,0 +1,32 @@
+[
+  {
+    "role": "ADMIN",
+    "email": "admin@casanta.com",
+    "password": "admin_password_123",
+    "notes": "Linked to Staff ID: ADM001"
+  },
+  {
+    "role": "OFFICE",
+    "email": "office@casanta.com",
+    "password": "office_password_123",
+    "notes": "Linked to Staff ID: OFF001"
+  },
+  {
+    "role": "TEACHER",
+    "email": "teacher@casanta.com",
+    "password": "teacher_password_123",
+    "notes": "Linked to Staff ID: TCH001"
+  },
+  {
+    "role": "STUDENT",
+    "email": "student@casanta.com",
+    "password": "student_password_123",
+    "notes": "Linked to Student: Rahul Sharma (Adm No: CAS-2026-0001)"
+  },
+  {
+    "role": "PARENT",
+    "email": "parent@casanta.com",
+    "password": "parent_password_123",
+    "notes": "Linked to Parent: Anjali Sharma (Phone: 9876543210)"
+  }
+]

@@ -3,6 +3,8 @@ import type { NextAuthConfig } from "next-auth";
 export default {
   providers: [], // Empty array for Edge compatibility in Middleware
   session: { strategy: "jwt" },
+  secret: process.env.AUTH_SECRET || process.env.JWT_SECRET,
+  trustHost: true,
   callbacks: {
     async jwt({ token, user, account }) {
       if (user) {
