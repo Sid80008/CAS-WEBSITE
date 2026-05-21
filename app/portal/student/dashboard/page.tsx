@@ -4,7 +4,7 @@ import { redirect } from "next/navigation"
 
 export default async function StudentDashboardPage() {
   const session = await auth()
-  if (!session?.user) redirect("/login")
+  if (!session?.user) redirect("/portal/login")
 
   const student = await prisma.student.findUnique({
     where: { userId: session.user.id },
@@ -22,9 +22,9 @@ export default async function StudentDashboardPage() {
   const enrollment = student.enrollments[0]
 
   // Calculate Attendance
-  const attendances = await prisma.attendance.findMany({
-    where: { studentId: student.id, yearId: enrollment?.yearId }
-  })
+  const attendances = enrollment ? await prisma.attendance.findMany({
+    where: { studentId: student.id, yearId: enrollment.yearId }
+  }) : []
   const totalDays = attendances.length || 1 // Avoid div by zero
   const presentDays = attendances.filter(a => a.status === 'PRESENT').length
   const attendancePercentage = Math.round((presentDays / totalDays) * 100) || 0

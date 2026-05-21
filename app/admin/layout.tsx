@@ -15,7 +15,7 @@ export default async function AdminLayout({
 
   const roles = (session.user as any).roles || [];
   if (!roles.includes("ADMIN")) {
-    redirect("/portal");
+    redirect("/admin/login");
   }
 
   return (
