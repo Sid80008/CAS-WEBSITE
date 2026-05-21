@@ -22,7 +22,6 @@ export default async function FeesPage() {
     }),
     prisma.feeStructure.findMany({
       include: { class: true },
-      orderBy: { createdAt: "desc" } as any,
     }),
     prisma.feeRecord.aggregate({
       _sum: { amountPaid: true },
