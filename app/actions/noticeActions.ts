@@ -1,35 +1,48 @@
-// app/actions/noticeActions.ts
 'use server';
-
+// app/actions/noticeActions.ts
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
+import { auth } from '@/auth';
 import { NoticeTargetRole } from '@prisma/client';
 
 export async function createNotice(formData: FormData) {
-  // DEV WORKAROUND: Get the first admin user, or create a mock one if the DB is empty
-  let admin = await prisma.user.findFirst({ where: { role: 'ADMIN' } });
-  if (!admin) {
-    admin = await prisma.user.create({
-      data: {
-        email: 'admin@cas.com',
-        passwordHash: 'mock_hashed_password',
-        role: 'ADMIN',
-      },
-    });
-  }
+  const session = await auth();
+  if (!session?.user?.id) throw new Error('Not authenticated');
+
+  const titleEn = formData.get('titleEn') as string;
+  const contentEn = formData.get('contentEn') as string;
+
+  // Build a URL-safe slug
+  const slug = titleEn
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .slice(0, 60) + '-' + Date.now();
 
   await prisma.notice.create({
     data: {
-      titleEn: formData.get('titleEn') as string,
+      titleEn,
       titleHi: (formData.get('titleHi') as string) || null,
-      contentEn: formData.get('contentEn') as string,
-      contentHi: (formData.get('contentHi') as string) || null,
-      isPublic: formData.get('isPublic') === 'true',
-      isPinned: formData.get('isPinned') === 'true',
+      contentEn,
+      slug,
+      published: formData.get('published') === 'on',
+      isPinned: formData.get('isPinned') === 'on',
       targetRole: (formData.get('targetRole') as NoticeTargetRole) || 'ALL',
-      postedById: admin.id,
+      createdBy: session.user.id,
     },
   });
 
+  revalidatePath('/admin/notices');
+  revalidatePath('/notices');
+}
+
+export async function toggleNoticePublished(id: string, published: boolean) {
+  await prisma.notice.update({ where: { id }, data: { published } });
+  revalidatePath('/admin/notices');
+  revalidatePath('/notices');
+}
+
+export async function toggleNoticePinned(id: string, isPinned: boolean) {
+  await prisma.notice.update({ where: { id }, data: { isPinned } });
   revalidatePath('/admin/notices');
 }
