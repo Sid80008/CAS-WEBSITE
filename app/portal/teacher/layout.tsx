@@ -95,9 +95,9 @@ export default function TeacherPortalLayout({ children }: { children: ReactNode 
             <span className="text-[12px] text-[#424750]">© 2024 Institutional Excellence Management System. All rights reserved.</span>
           </div>
           <div className="flex gap-6">
-            <Link href="#" className="text-[12px] text-[#424750] hover:text-[#00386b] transition-colors">Terms of Service</Link>
-            <Link href="#" className="text-[12px] text-[#424750] hover:text-[#00386b] transition-colors">Data Privacy</Link>
-            <Link href="#" className="text-[12px] text-[#424750] hover:text-[#00386b] transition-colors">Support</Link>
+            <Link href="/terms" className="text-[12px] text-[#424750] hover:text-[#00386b] transition-colors">Terms of Service</Link>
+            <Link href="/privacy" className="text-[12px] text-[#424750] hover:text-[#00386b] transition-colors">Data Privacy</Link>
+            <Link href="/contact" className="text-[12px] text-[#424750] hover:text-[#00386b] transition-colors">Support</Link>
           </div>
         </footer>
       </main>

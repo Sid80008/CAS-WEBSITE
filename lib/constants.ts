@@ -12,7 +12,7 @@ export const SCHOOL = {
   city: 'antah, Baran',
   state: 'Rajasthan',
   pincode: '325202',
-  website: 'https://centralacademyantahh.vercel.app',
+  website: 'https://centralacademyantah.vercel.app',
   established: 2013,
   get yearsOfExcellence() {
     return new Date().getFullYear() - this.established;

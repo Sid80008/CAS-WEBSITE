@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   },
   description:
     "Central Academy Senior Secondary School (CAS), antah, Baran, Rajasthan. RBSE affiliated school offering Classes I–XII with modern facilities, experienced faculty, and over a decade of academic excellence.",
-  metadataBase: new URL("https://centralacademyantahh.vercel.app"),
+  metadataBase: new URL("https://centralacademyantah.vercel.app"),
   openGraph: {
     siteName: "Central Academy Senior Secondary School",
     locale: "en_IN",

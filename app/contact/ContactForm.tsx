@@ -1,8 +1,10 @@
 "use client";
 
-import React, { useState, useRef } from "react";
+import React, { useRef, useEffect } from "react";
+import { useFormState, useFormStatus } from "react-dom";
 import PublicLayout from "@/components/layout/PublicLayout";
 import { SCHOOL } from "@/lib/constants";
+import { submitContact } from "@/app/actions/contact";
 import {
   MapPin,
   Phone,
@@ -11,7 +13,6 @@ import {
   Send,
   MessageSquare,
   Globe,
-  Share2,
   Loader2,
   CheckCircle2,
 } from "lucide-react";
@@ -20,45 +21,39 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
+function SubmitButton() {
+  const { pending } = useFormStatus();
+
+  return (
+    <Button
+      type="submit"
+      disabled={pending}
+      className="w-full h-16 bg-school-blue hover:bg-school-blue-dark rounded-2xl font-bold uppercase tracking-[0.2em] text-xs shadow-2xl shadow-school-blue/20 flex items-center justify-center gap-3 disabled:opacity-60"
+    >
+      {pending ? (
+        <>
+          <Loader2 className="h-4 w-4 animate-spin" />
+          Sending…
+        </>
+      ) : (
+        <>
+          <Send className="h-4 w-4" />
+          Submit Message
+        </>
+      )}
+    </Button>
+  );
+}
+
 export function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const [errorMsg, setErrorMsg] = useState("");
+  const [state, formAction] = useFormState(submitContact, { success: false, error: "", message: "" });
   const formRef = useRef<HTMLFormElement>(null);
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setStatus("loading");
-    setErrorMsg("");
-
-    const form = e.currentTarget;
-    const data = {
-      name: (form.elements.namedItem("name") as HTMLInputElement)?.value,
-      email: (form.elements.namedItem("email") as HTMLInputElement)?.value,
-      subject: (form.elements.namedItem("subject") as HTMLInputElement)?.value,
-      message: (form.elements.namedItem("message") as HTMLTextAreaElement)?.value,
-    };
-
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-
-      if (result.success) {
-        setStatus("success");
-        form.reset();
-      } else {
-        setStatus("error");
-        setErrorMsg(result.error || "Submission failed. Please try again.");
-      }
-    } catch {
-      setStatus("error");
-      setErrorMsg(`Network error. Please call us at ${SCHOOL.phone1}.`);
+  useEffect(() => {
+    if (state.success && formRef.current) {
+      formRef.current.reset();
     }
-  }
+  }, [state.success]);
 
   return (
     <PublicLayout>
@@ -110,9 +105,6 @@ export function ContactForm() {
                   line2="Sundays: Closed (By Appointment Only)"
                 />
               </div>
-
-              {/* Social media links will be added once official pages are set up */}
-              <p className="text-xs text-slate-500 mt-2">Connect with us via phone or email for the fastest response.</p>
             </div>
 
             {/* Contact Form Column */}
@@ -128,26 +120,18 @@ export function ContactForm() {
                   </div>
                 </div>
 
-                {/* Success State */}
-                {status === "success" ? (
-                  <div className="flex flex-col items-center justify-center py-16 text-center">
+                {state.success ? (
+                  <div className="flex flex-col items-center justify-center py-16 text-center animate-in fade-in zoom-in duration-500">
                     <div className="h-20 w-20 bg-emerald-50 rounded-full flex items-center justify-center mb-6">
                       <CheckCircle2 className="h-10 w-10 text-emerald-600" />
                     </div>
                     <h4 className="text-2xl font-bold text-school-blue mb-3">Message Sent!</h4>
                     <p className="text-text-secondary max-w-sm">
-                      Thank you for reaching out. We will get back to you soon.
-                      For urgent matters, call <strong>{SCHOOL.phone1}</strong>.
+                      {state.message}
                     </p>
-                    <button
-                      onClick={() => setStatus("idle")}
-                      className="mt-6 text-sm font-semibold text-school-blue hover:text-school-amber transition-colors underline underline-offset-2"
-                    >
-                      Send another message
-                    </button>
                   </div>
                 ) : (
-                  <form ref={formRef} onSubmit={handleSubmit} className="space-y-8">
+                  <form ref={formRef} action={formAction} className="space-y-8">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                       <div className="space-y-2">
                         <Label htmlFor="name" className="text-[10px] font-black uppercase tracking-[0.2em] text-text-tertiary">Your Name *</Label>
@@ -192,29 +176,13 @@ export function ContactForm() {
                       />
                     </div>
 
-                    {status === "error" && (
+                    {state.error && (
                       <div className="bg-red-50 border border-red-100 text-red-600 px-4 py-3 rounded-xl text-sm font-medium">
-                        {errorMsg}
+                        {state.error}
                       </div>
                     )}
 
-                    <Button
-                      type="submit"
-                      disabled={status === "loading"}
-                      className="w-full h-16 bg-school-blue hover:bg-school-blue-dark rounded-2xl font-bold uppercase tracking-[0.2em] text-xs shadow-2xl shadow-school-blue/20 flex items-center justify-center gap-3 disabled:opacity-60"
-                    >
-                      {status === "loading" ? (
-                        <>
-                          <Loader2 className="h-4 w-4 animate-spin" />
-                          Sending…
-                        </>
-                      ) : (
-                        <>
-                          <Send className="h-4 w-4" />
-                          Submit Message
-                        </>
-                      )}
-                    </Button>
+                    <SubmitButton />
                   </form>
                 )}
               </div>

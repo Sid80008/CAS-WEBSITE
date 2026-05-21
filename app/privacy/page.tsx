@@ -1,70 +1,60 @@
-import PublicLayout from "@/components/layout/PublicLayout";
-import { SCHOOL } from "@/lib/constants";
-import type { Metadata } from "next";
+import React from "react";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy – Central Academy Senior Secondary School",
-  description: "Privacy policy for the Central Academy Senior Secondary School website.",
+  title: "Privacy Policy | Central Academy Senior Secondary School, antah",
+  description: "Privacy Policy for Central Academy Senior Secondary School, antah.",
 };
 
-export default function PrivacyPage() {
+export default function PrivacyPolicyPage() {
   return (
-    <PublicLayout>
-      <section className="bg-school-blue py-20 px-6 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Privacy Policy</h1>
-          <p className="text-white/70">Last updated: April 2026</p>
+    <main className="min-h-screen bg-slate-50 py-20">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-slate-100">
+          <p className="text-sm text-school-amber font-bold tracking-widest uppercase mb-4">Legal</p>
+          <h1 className="text-3xl md:text-4xl font-extrabold text-[#1B4F8A] mb-8">Privacy Policy</h1>
+          
+          <div className="prose prose-slate max-w-none prose-p:text-slate-600 prose-headings:text-slate-800">
+            <p><em>Last updated: {new Date().getFullYear()} (Subject to final legal review)</em></p>
+            
+            <h2>1. Information We Collect</h2>
+            <p>
+              Central Academy antah collects information to provide better services to our students, parents, and staff. We may collect personal information such as names, addresses, phone numbers, email addresses, and educational records during the admission and enrollment process.
+            </p>
+
+            <h2>2. How We Use Information</h2>
+            <p>
+              The information we collect is used to:
+            </p>
+            <ul>
+              <li>Process admissions and maintain student records.</li>
+              <li>Communicate with parents regarding academic progress and school events.</li>
+              <li>Provide access to our online portals (Student and Parent portals).</li>
+              <li>Improve our educational programs and website functionality.</li>
+            </ul>
+
+            <h2>3. Information Sharing and Disclosure</h2>
+            <p>
+              We do not sell, trade, or otherwise transfer your personally identifiable information to outside parties without your consent, except where required by law or to trusted third parties who assist us in operating our website and conducting our school business, so long as those parties agree to keep this information confidential.
+            </p>
+
+            <h2>4. Data Security</h2>
+            <p>
+              We implement a variety of security measures to maintain the safety of your personal information. Our website and portals are secured with standard encryption protocols to protect data during transmission.
+            </p>
+
+            <h2>5. Changes to our Privacy Policy</h2>
+            <p>
+              If we decide to change our privacy policy, we will post those changes on this page. Policy changes will apply only to information collected after the date of the change.
+            </p>
+
+            <h2>Contacting Us</h2>
+            <p>
+              If there are any questions regarding this privacy policy, you may contact us using the information on our Contact page.
+            </p>
+          </div>
         </div>
-      </section>
-
-      <section className="py-20 px-6">
-        <div className="max-w-3xl mx-auto prose prose-slate prose-lg">
-          <h2>1. Information We Collect</h2>
-          <p>
-            When you submit an enquiry or contact form on our website, we collect your name, phone
-            number, email address, and any message you provide. This information is used solely to
-            respond to your enquiry.
-          </p>
-
-          <h2>2. How We Use Your Information</h2>
-          <p>
-            Information collected through our admission enquiry and contact forms is used only to
-            respond to your specific request. We do not sell, share, or rent your personal data to
-            third parties.
-          </p>
-
-          <h2>3. Cookies</h2>
-          <p>
-            Our website may use essential cookies required for the site to function correctly. We do
-            not use advertising or tracking cookies.
-          </p>
-
-          <h2>4. Data Security</h2>
-          <p>
-            We take reasonable precautions to protect your data. Information submitted through our
-            forms is stored securely and accessible only to authorised school staff.
-          </p>
-
-          <h2>5. Your Rights</h2>
-          <p>
-            You may contact us at any time to request deletion of your information or to ask what
-            data we hold about you.
-          </p>
-
-          <h2>6. Contact Us</h2>
-          <p>
-            For any privacy-related queries, please contact us at:
-            <br />
-            <strong>{SCHOOL.name}</strong>
-            <br />
-            {SCHOOL.address}
-            <br />
-            Email: <a href={`mailto:${SCHOOL.email}`}>{SCHOOL.email}</a>
-            <br />
-            Phone: {SCHOOL.phone1}
-          </p>
-        </div>
-      </section>
-    </PublicLayout>
+      </div>
+    </main>
   );
 }

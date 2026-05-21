@@ -1,8 +1,8 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, Suspense } from 'react'
 import { signIn, getSession } from 'next-auth/react'
-import { useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -14,10 +14,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Lock, User, Loader2, GraduationCap } from 'lucide-react'
+import { Lock, User, Loader2, GraduationCap, Users } from 'lucide-react'
 
-export default function PortalLoginPage() {
-  const router = useRouter()
+function PortalLoginContent() {
+  const searchParams = useSearchParams()
+  const roleParam = searchParams.get('role')
+  const isParent = roleParam === 'parent'
+  
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -45,7 +48,6 @@ export default function PortalLoginPage() {
         return
       }
 
-      // Fetch the session to get roles, then redirect to the correct dashboard
       const session = await getSession()
       const roles: string[] = (session?.user as any)?.roles || []
 
@@ -56,11 +58,10 @@ export default function PortalLoginPage() {
       } else if (roles.includes('ADMIN')) {
         window.location.href = '/admin'
       } else if (roles.includes('TEACHER')) {
-        window.location.href = '/teacher'
+        window.location.href = '/portal/teacher'
       } else if (roles.includes('OFFICE')) {
-        window.location.href = '/office'
+        window.location.href = '/portal/office'
       } else {
-        // Fallback — let middleware decide
         window.location.href = '/'
       }
     } catch {
@@ -71,20 +72,19 @@ export default function PortalLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1B4F8A] to-[#0a2847] px-4">
-      <Card className="w-full max-w-md border-none shadow-2xl bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden">
-        <div className="h-3 bg-amber-500" />
-        <CardHeader className="pt-10 pb-6 text-center">
-          <div className="mx-auto h-12 w-12 bg-[#1B4F8A] rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-            <GraduationCap className="text-white h-7 w-7" />
-          </div>
-          <CardTitle className="text-3xl font-bold tracking-tight text-gray-900">
-            Portal Login
-          </CardTitle>
-          <CardDescription className="text-gray-500 mt-2">
-            Central Academy antah — Student & Parent
-          </CardDescription>
-        </CardHeader>
+    <Card className="w-full max-w-md border-none shadow-2xl bg-white/95 backdrop-blur-sm rounded-3xl overflow-hidden">
+      <div className={`h-3 ${isParent ? 'bg-emerald-500' : 'bg-amber-500'}`} />
+      <CardHeader className="pt-10 pb-6 text-center">
+        <div className={`mx-auto h-12 w-12 rounded-2xl flex items-center justify-center mb-4 shadow-lg ${isParent ? 'bg-emerald-500' : 'bg-[#1B4F8A]'}`}>
+          {isParent ? <Users className="text-white h-7 w-7" /> : <GraduationCap className="text-white h-7 w-7" />}
+        </div>
+        <CardTitle className="text-3xl font-bold tracking-tight text-gray-900">
+          {isParent ? 'Parent Portal' : 'Student Portal'}
+        </CardTitle>
+        <CardDescription className="text-gray-500 mt-2">
+          Central Academy antah — Secure Login
+        </CardDescription>
+      </CardHeader>
 
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-5">
@@ -153,7 +153,16 @@ export default function PortalLoginPage() {
             &larr; Back to Main Website
           </a>
         </CardFooter>
-      </Card>
+    </Card>
+  )
+}
+
+export default function PortalLoginPage() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#1B4F8A] to-[#0a2847] px-4">
+      <Suspense fallback={<div className="text-white">Loading Secure Portal...</div>}>
+        <PortalLoginContent />
+      </Suspense>
     </div>
   )
 }

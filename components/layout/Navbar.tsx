@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { LogIn, Menu, ChevronDown, X, Globe } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,8 +20,7 @@ import { useScrolled } from "@/hooks/useScrolled";
 
 const ABOUT_LINKS = [
   { name: "Vision & Mission", href: "/about/vision-mission" },
-  { name: "Director's Message", href: "/about/director" },
-  { name: "Principal's Message", href: "/about/principal" },
+  { name: "Leadership & Vision", href: "/about/leadership" },
 ];
 
 const NAV_LINKS = [
@@ -60,13 +60,19 @@ export function Navbar() {
           transition={{ duration: 0.92, ease: EASE, delay: 0.1 }}
         >
           <Link href="/" className="flex items-center gap-4 group">
-            <motion.img
-              alt="Central Academy Senior Secondary School Logo"
-              className="h-12 w-12 object-contain"
-              src="/logo.png"
+            <motion.div
+              className="relative h-12 w-12"
               whileHover={{ scale: 1.08, rotate: 3 }}
               transition={{ duration: 0.25 }}
-            />
+            >
+              <Image
+                src="/logo.png"
+                alt="Central Academy Senior Secondary School Logo"
+                fill
+                priority
+                className="object-contain"
+              />
+            </motion.div>
             <div className="flex flex-col">
               <span className="text-xl font-extrabold text-school-blue leading-tight">Central Academy antah</span>
               <span className="text-[10px] font-bold tracking-widest text-school-amber uppercase">Education for Excellence</span>
@@ -132,28 +138,30 @@ export function Navbar() {
         </motion.nav>
 
         <motion.div
-          className="hidden lg:flex items-center gap-4"
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.77, ease: EASE, delay: 1.23 }}
+          className="hidden lg:flex items-center gap-5 border-l border-slate-200 pl-6"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.92, ease: EASE, delay: 0.1 }}
         >
+          {/* Language Toggle */}
           <button
             onClick={() => setLanguage(language === "en" ? "hi" : "en")}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-slate-200 text-xs font-bold text-school-blue hover:bg-slate-50 transition-all active:scale-95 shadow-sm bg-white"
-            aria-label="Toggle language"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-full hover:bg-slate-100 text-sm font-semibold text-school-blue transition-colors focus:ring-2 focus:ring-school-amber outline-none"
+            aria-label={language === "en" ? "Switch to Hindi" : "Switch to English"}
+            title={language === "en" ? "हिंदी में बदलें" : "Switch to English"}
           >
-            <Globe className="h-3.5 w-3.5 text-school-amber" />
+            <Globe className="h-4 w-4 text-school-amber" />
             <span>{language === "en" ? "EN" : "हि"}</span>
           </button>
 
-          <Link href="/portal">
+          <Link href="/portal" aria-label="Go to Portals">
             <motion.div
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.2 }}
             >
-              <Button className="bg-school-blue text-white hover:bg-school-blue-dark transition-all shadow-md flex items-center gap-2">
-                <LogIn className="h-4 w-4" />
+              <Button className="bg-school-blue text-white hover:bg-school-blue-dark transition-all shadow-md flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-school-amber focus-visible:ring-offset-2">
+                <LogIn className="h-4 w-4" aria-hidden="true" />
                 Portal
               </Button>
             </motion.div>

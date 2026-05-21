@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { 
   Megaphone,
@@ -32,14 +33,20 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
       {/* ── Hero ─────────────────────────────────────────────── */}
       <section className="relative w-full h-[620px] flex items-center justify-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0 bg-black/45 z-10" />
-        <motion.img
-          src="/gallery/slider/1741166362_slider-17.jpg"
-          alt="Students on campus"
-          className="absolute inset-0 w-full h-full object-cover z-0"
+        <motion.div
+          className="absolute inset-0 z-0"
           initial={{ scale: 1.06, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1.85, ease: EASE }}
-        />
+        >
+          <Image
+            src="/gallery/slider/1741166362_slider-17.jpg"
+            alt="Students on campus"
+            fill
+            priority
+            className="object-cover"
+          />
+        </motion.div>
 
         <div className="relative z-20 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
           {/* Badge */}
@@ -112,20 +119,26 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
           whileInView="visible"
           viewport={VIEWPORT}
         >
-          {SCHOOL_STATS.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              variants={fadeUp}
-              className={`bg-white rounded-xl shadow-lg p-8 border border-slate-100 flex flex-col items-center text-center gap-3 ${
-                i === 1 ? "border-t-4 border-t-school-amber" : ""
-              }`}
-              whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}
-              transition={{ duration: 0.25, ease: "easeOut" }}
-            >
-              <h3 className="text-3xl font-bold text-school-blue">{stat.value}</h3>
-              <p className="text-sm text-text-secondary leading-tight">{stat.label}</p>
-            </motion.div>
-          ))}
+          {SCHOOL_STATS.map((stat, i) => {
+            let displayValue = stat.value;
+            if (i === 0 && studentCount > 400) {
+              displayValue = `${studentCount}+`;
+            }
+            return (
+              <motion.div
+                key={stat.label}
+                variants={fadeUp}
+                className={`bg-white rounded-xl shadow-lg p-8 border border-slate-100 flex flex-col items-center text-center gap-3 ${
+                  i === 1 ? "border-t-4 border-t-school-amber" : ""
+                }`}
+                whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+              >
+                <h3 className="text-3xl font-bold text-school-blue">{displayValue}</h3>
+                <p className="text-sm text-text-secondary leading-tight">{stat.label}</p>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </section>
 
