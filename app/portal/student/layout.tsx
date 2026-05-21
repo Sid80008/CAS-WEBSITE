@@ -15,7 +15,7 @@ export default async function StudentPortalLayout({ children }: { children: Reac
   // Ensure they have the STUDENT role
   const roles = (session.user as any).roles || []
   if (!roles.includes("STUDENT")) {
-    redirect("/portal")
+    redirect("/portal/login")
   }
 
   // Fetch Student data

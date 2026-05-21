@@ -15,7 +15,7 @@ export default async function ParentPortalLayout({ children }: { children: React
   // Ensure they have the PARENT role
   const roles = (session.user as any).roles || []
   if (!roles.includes("PARENT")) {
-    redirect("/portal")
+    redirect("/portal/login")
   }
 
   // Fetch Parent data

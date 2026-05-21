@@ -11,9 +11,6 @@ export const {
 } = NextAuth({
   ...authConfig,
   trustHost: true,
-  pages: {
-    signIn: "/login",
-  },
   providers: [
     Credentials({
       async authorize(credentials) {
@@ -67,6 +64,5 @@ export const {
       },
     }),
   ],
-  secret: process.env.AUTH_SECRET || process.env.JWT_SECRET,
 })
 
