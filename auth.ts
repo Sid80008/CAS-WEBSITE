@@ -21,7 +21,8 @@ export const {
 
         if (parsedCredentials.success) {
           const { email, password } = parsedCredentials.data
-          const { prisma } = await import("@/lib/prisma")
+          const prismaModule = await import("@/lib/prisma")
+          const prisma = prismaModule.default
           const bcrypt = await import("bcryptjs")
           
           const user = await prisma.user.findFirst({ 

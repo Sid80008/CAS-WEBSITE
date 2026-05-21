@@ -85,9 +85,19 @@ function LoginFormInner() {
         return
       }
 
-      // Hard redirect — forces a full page reload so the middleware
-      // can read the new session cookie before entering /admin
-      window.location.href = '/admin'
+      // Fetch the session to read the role and redirect appropriately
+      const { getSession } = await import('next-auth/react')
+      const session = await getSession()
+      const roles: string[] = (session?.user as any)?.roles ?? []
+
+      if (roles.includes('STUDENT')) {
+        window.location.href = '/portal/student/dashboard'
+      } else if (roles.includes('PARENT')) {
+        window.location.href = '/portal/parent/dashboard'
+      } else {
+        // ADMIN, OFFICE, TEACHER — all go to /admin
+        window.location.href = '/admin'
+      }
     } catch {
       setErrorMsg('Something went wrong. Please try again or contact the school office.')
     } finally {

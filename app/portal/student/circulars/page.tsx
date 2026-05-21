@@ -1,4 +1,5 @@
 import React from "react";
+import { SCHOOL } from "@/lib/constants";
 import { LucideIcon } from "lucide-react";
 
 export default function Page() {
@@ -193,7 +194,7 @@ export default function Page() {
 <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
 <div className="space-y-4">
 <span className="text-white font-bold text-xl block">Central Academy Anta</span>
-<p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-400 max-w-sm">Dedicated to nurturing young minds with a foundation of values, excellence, and global perspective for over 30 years.</p>
+<p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-400 max-w-sm">Dedicated to nurturing young minds with a foundation of values, excellence, and global perspective for over {SCHOOL.yearsOfExcellence} years.</p>
 </div>
 <div className="flex flex-wrap gap-8 text-xs font-['Plus_Jakarta_Sans']">
 <a className="text-slate-400 hover:text-white transition-all" href="#">Privacy Policy</a>
@@ -211,7 +212,7 @@ export default function Page() {
 </div>
 </div>
 <div className="max-w-container-max mx-auto mt-12 pt-8 border-t border-slate-800 text-center">
-<p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500">© 2024 Central Academy Anta. All Rights Reserved. 30 Years of Excellence.</p>
+          <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-500">© {new Date().getFullYear()} {SCHOOL.name}. All Rights Reserved. {SCHOOL.yearsOfExcellence} Years of Excellence.</p>
 </div>
 </footer>
 

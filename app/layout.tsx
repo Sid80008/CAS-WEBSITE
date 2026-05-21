@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s | CAS Anta",
   },
   description:
-    "Central Academy Senior Secondary School (CAS), Anta, Baran, Rajasthan. CBSE affiliated school offering Classes I–XII with modern facilities, experienced faculty, and over a decade of academic excellence.",
+    "Central Academy Senior Secondary School (CAS), Anta, Baran, Rajasthan. RBSE affiliated school offering Classes I–XII with modern facilities, experienced faculty, and over a decade of academic excellence.",
   metadataBase: new URL("https://centralacademyantah.vercel.app"),
   openGraph: {
     siteName: "Central Academy Senior Secondary School",

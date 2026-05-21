@@ -10,7 +10,7 @@ export default async function AdminLayout({
   const session = await auth();
 
   if (!session?.user) {
-    redirect("/portal/login");
+    redirect("/admin/login");
   }
 
   const roles = (session.user as any).roles || [];

@@ -24,7 +24,7 @@ Education is not merely a transaction of knowledge. It is a lifelong investment 
 We have built our school around three pillars: disciplined academics, holistic development, and a values-based environment. Our teachers are not just instructors; they are mentors who invest personally in each student's journey. Our infrastructure is designed not just to teach, but to inspire.
 
 To every parent who has trusted us with their child — thank you. Your faith drives us to be better every day. To every student who walks through our gates — know that we see your potential, and our entire institution stands behind your growth and success.`}
-        additionalInfo="Central Academy is affiliated with the Central Board of Secondary Education (CBSE) and offers classes from I to XII across Science, Commerce, and Arts streams."
+        additionalInfo="Central Academy is affiliated with the Rajasthan Board of Secondary Education (RBSE), Affiliation No. 1212, and offers classes from I to XII across Science, Commerce, and Arts streams."
       />
     </PublicLayout>
   );
