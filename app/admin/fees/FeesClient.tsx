@@ -61,6 +61,35 @@ export default function FeesClient({ records, structures, stats }: Props) {
     });
   }
 
+  const downloadCsv = () => {
+    if (!records || records.length === 0) return;
+    
+    const headers = ["Student Name", "Admission No", "Fee Type", "Status", "Amount Due", "Amount Paid", "Due Date", "Paid Date"].join(',');
+    const rows = records.map(r => [
+      `${r.student.firstName} ${r.student.lastName}`,
+      r.student.admissionNo,
+      r.structure.feeType,
+      r.status,
+      r.amountDue ?? 0,
+      r.amountPaid,
+      r.dueDate ? new Date(r.dueDate).toLocaleDateString() : "",
+      r.paidDate ? new Date(r.paidDate).toLocaleDateString() : ""
+    ].join(',')).join('\n');
+    const csvContent = `${headers}\n${rows}`;
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', `fee_records_export.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const printReceipt = () => {
+    window.print();
+  };
+
   const collectionRate = stats.totalDueAll > 0 ? (stats.totalPaidAll / stats.totalDueAll) * 100 : 0;
 
   return (
@@ -72,7 +101,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
           <p className="text-on-surface-variant font-body-lg">Oversee school finances and student billing</p>
         </div>
         <div className="flex gap-3">
-          <button className="px-6 py-2 bg-surface-container-lowest border border-outline text-primary rounded-lg font-bold flex items-center gap-2 hover:bg-surface transition-all">
+          <button onClick={downloadCsv} className="px-6 py-2 bg-surface-container-lowest border border-outline text-primary rounded-lg font-bold flex items-center gap-2 hover:bg-surface transition-all">
             <span className="material-symbols-outlined">file_download</span>
             Export Report
           </button>
@@ -203,7 +232,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
                         <td className="px-4 py-4 text-right font-bold text-error-red">₹{(r.amountDue ?? 0).toLocaleString("en-IN")}</td>
                         <td className="px-4 py-4 text-center">
                           {r.status === "PAID" && r.receiptNo ? (
-                            <button className="material-symbols-outlined text-primary hover:scale-110 transition-transform">receipt_long</button>
+                            <button onClick={printReceipt} className="material-symbols-outlined text-primary hover:scale-110 transition-transform">receipt_long</button>
                           ) : (
                             <button className="material-symbols-outlined text-outline cursor-not-allowed" disabled>block</button>
                           )}

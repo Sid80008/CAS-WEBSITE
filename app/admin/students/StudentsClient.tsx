@@ -1,11 +1,17 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useRef } from "react";
 import Link from "next/link";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import type { Student } from "@prisma/client";
+import { bulkUploadStudents } from "../../actions/bulkActions";
 
 interface Props {
   students: Student[];
   stats: { total: number; active: number; tcIssued: number; feePaidPercentage: number; attendanceAlerts: number };
+  filteredCount: number;
+  currentPage: number;
+  searchQuery: string;
+  statusQuery: string;
 }
 
 function initials(s: Student) {
@@ -25,35 +31,76 @@ function statusBadge(status: string) {
   }
 }
 
-export default function StudentsClient({ students, stats }: Props) {
-  const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("All Status");
-  const [page, setPage] = useState(1);
+export default function StudentsClient({ students, stats, filteredCount, currentPage, searchQuery, statusQuery }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
+  const [localSearch, setLocalSearch] = useState(searchQuery);
+
   const PAGE_SIZE = 10;
+  const pageCount = Math.max(1, Math.ceil(filteredCount / PAGE_SIZE));
 
-  const filtered = useMemo(() => {
-    return students.filter((s) => {
-      const q = search.toLowerCase();
-      const matchesSearch =
-        !q ||
-        s.firstName.toLowerCase().includes(q) ||
-        s.lastName.toLowerCase().includes(q) ||
-        s.admissionNo.toLowerCase().includes(q) ||
-        (s.parentName ?? "").toLowerCase().includes(q);
-      const matchesStatus =
-        statusFilter === "All Status" ||
-        (statusFilter === "Active" && s.status === "ACTIVE") ||
-        (statusFilter === "On Leave" && s.status === "TC_ISSUED") ||
-        (statusFilter === "Inactive" && s.status === "DETAINED");
-      return matchesSearch && matchesStatus;
-    });
-  }, [students, search, statusFilter]);
+  const updateFilters = (key: string, value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) {
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+    // Reset to page 1 when changing filters
+    if (key !== 'page') params.delete('page');
+    router.push(`${pathname}?${params.toString()}`);
+  };
 
-  const pageCount = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
-  const paged = filtered.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+  const downloadCsv = () => {
+    if (!students || students.length === 0) return;
+    
+    const headers = ["Admission No", "First Name", "Last Name", "Status", "Parent Name", "Parent Phone"].join(',');
+    const rows = students.map(s => [
+      s.admissionNo,
+      s.firstName,
+      s.lastName,
+      s.status,
+      s.parentName || "",
+      s.parentPhone || ""
+    ].join(',')).join('\n');
+    const csvContent = `${headers}\n${rows}`;
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', `students_export.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleBulkUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("csvFile", file);
+      try {
+        await bulkUploadStudents(formData);
+        alert("Bulk upload successful!");
+      } catch (err: any) {
+        alert("Error during bulk upload: " + err.message);
+      }
+      e.target.value = ""; // reset
+    }
+  };
 
   return (
     <div className="max-w-[1440px] mx-auto">
+      {/* Hidden File Input for Bulk Upload */}
+      <input type="file" accept=".csv" className="hidden" ref={fileInputRef} onChange={handleFileChange} />
+      
       {/* Page Header */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
         <div>
@@ -61,7 +108,7 @@ export default function StudentsClient({ students, stats }: Props) {
           <p className="text-body-md text-on-surface-variant">View and manage all student records, academic progress and statuses.</p>
         </div>
         <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-surface border border-outline-variant text-on-surface font-semibold rounded-lg hover:bg-surface-container-low transition-all">
+          <button onClick={downloadCsv} className="flex items-center gap-2 px-4 py-2.5 bg-surface border border-outline-variant text-on-surface font-semibold rounded-lg hover:bg-surface-container-low transition-all">
             <span className="material-symbols-outlined">download</span>
             Export CSV
           </button>
@@ -120,19 +167,21 @@ export default function StudentsClient({ students, stats }: Props) {
       <div className="bg-surface border border-outline-variant rounded-t-xl p-4 flex flex-wrap items-center gap-4">
         <div className="flex-1 min-w-[200px] relative">
           <span className="absolute inset-y-0 left-3 flex items-center material-symbols-outlined text-outline">search</span>
-          <input 
-            className="w-full pl-10 pr-4 py-2 bg-sidebar-bg border border-outline-variant/30 rounded-lg focus:ring-1 focus:ring-primary text-body-md" 
-            placeholder="Filter by name or ID..." 
-            type="text"
-            value={search}
-            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-          />
+          <form onSubmit={(e) => { e.preventDefault(); updateFilters('q', localSearch); }}>
+            <input 
+              className="w-full pl-10 pr-4 py-2 bg-sidebar-bg border border-outline-variant/30 rounded-lg focus:ring-1 focus:ring-primary text-body-md" 
+              placeholder="Filter by name or ID... (Press Enter)" 
+              type="text"
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
+            />
+          </form>
         </div>
         <div className="flex items-center gap-2">
           <span className="text-label-md text-on-surface-variant">Status:</span>
           <select 
-            value={statusFilter}
-            onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
+            value={statusQuery}
+            onChange={(e) => updateFilters('status', e.target.value)}
             className="bg-sidebar-bg border border-outline-variant/30 rounded-lg px-3 py-2 text-body-md focus:ring-1 focus:ring-primary outline-none"
           >
             <option>All Status</option>
@@ -166,7 +215,7 @@ export default function StudentsClient({ students, stats }: Props) {
             </tr>
           </thead>
           <tbody className="divide-y divide-outline-variant/40">
-            {paged.length === 0 ? (
+            {students.length === 0 ? (
               <tr>
                 <td colSpan={7} className="px-6 py-16 text-center text-on-surface-variant">
                   <span className="material-symbols-outlined text-5xl text-outline mb-2">search_off</span>
@@ -174,7 +223,7 @@ export default function StudentsClient({ students, stats }: Props) {
                 </td>
               </tr>
             ) : (
-              paged.map((s) => (
+              students.map((s) => (
                 <tr key={s.id} className="hover:bg-surface-container-low transition-colors group">
                   <td className="px-6 py-4 text-body-md font-bold text-primary">#{s.admissionNo}</td>
                   <td className="px-6 py-4">
@@ -205,32 +254,36 @@ export default function StudentsClient({ students, stats }: Props) {
         
         {/* Pagination */}
         <div className="px-6 py-4 bg-surface flex flex-col md:flex-row md:items-center justify-between gap-4 border-t border-outline-variant">
-          <p className="text-body-md text-on-surface-variant">Showing <span className="font-bold text-on-surface">{Math.min((page - 1) * PAGE_SIZE + 1, filtered.length)} - {Math.min(page * PAGE_SIZE, filtered.length)}</span> of <span className="font-bold text-on-surface">{filtered.length}</span> entries</p>
+          <p className="text-body-md text-on-surface-variant">
+            Showing <span className="font-bold text-on-surface">{filteredCount === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1} - {Math.min(currentPage * PAGE_SIZE, filteredCount)}</span> of <span className="font-bold text-on-surface">{filteredCount}</span> entries
+          </p>
           <div className="flex items-center gap-1">
-            <button onClick={() => setPage(1)} disabled={page === 1} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
+            <button onClick={() => updateFilters('page', '1')} disabled={currentPage === 1} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
               <span className="material-symbols-outlined">first_page</span>
             </button>
-            <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
+            <button onClick={() => updateFilters('page', String(Math.max(1, currentPage - 1)))} disabled={currentPage === 1} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
               <span className="material-symbols-outlined">chevron_left</span>
             </button>
             <div className="flex items-center px-2">
               {Array.from({ length: Math.min(pageCount, 5) }, (_, i) => {
-                const n = i + 1;
+                const startPage = Math.max(1, currentPage - 2);
+                const n = startPage + i;
+                if (n > pageCount) return null;
                 return (
                   <span
                     key={n}
-                    onClick={() => setPage(n)}
-                    className={`px-3 py-1 text-body-md rounded-md cursor-pointer ${n === page ? "bg-primary text-white font-bold" : "text-on-surface-variant hover:bg-surface-container-high"}`}
+                    onClick={() => updateFilters('page', String(n))}
+                    className={`px-3 py-1 text-body-md rounded-md cursor-pointer ${n === currentPage ? "bg-primary text-white font-bold" : "text-on-surface-variant hover:bg-surface-container-high"}`}
                   >
                     {n}
                   </span>
                 );
               })}
             </div>
-            <button onClick={() => setPage(p => Math.min(pageCount, p + 1))} disabled={page === pageCount} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
+            <button onClick={() => updateFilters('page', String(Math.min(pageCount, currentPage + 1)))} disabled={currentPage === pageCount || pageCount === 0} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
               <span className="material-symbols-outlined">chevron_right</span>
             </button>
-            <button onClick={() => setPage(pageCount)} disabled={page === pageCount} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
+            <button onClick={() => updateFilters('page', String(pageCount))} disabled={currentPage === pageCount || pageCount === 0} className="p-2 rounded-lg hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30">
               <span className="material-symbols-outlined">last_page</span>
             </button>
           </div>
@@ -257,7 +310,7 @@ export default function StudentsClient({ students, stats }: Props) {
             </div>
             <h3 className="font-headline-md text-headline-md text-on-primary mb-2">Quick Actions</h3>
             <ul className="space-y-3 mt-4">
-              <li className="flex items-center gap-3 text-body-md group cursor-pointer">
+              <li onClick={handleBulkUploadClick} className="flex items-center gap-3 text-body-md group cursor-pointer hover:font-bold">
                 <span className="w-2 h-2 rounded-full bg-secondary-container"></span>
                 <span className="group-hover:translate-x-1 transition-transform">Bulk Upload Students</span>
               </li>
