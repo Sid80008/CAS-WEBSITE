@@ -26,6 +26,6 @@ export const SCHOOL_STATS = [
     label: "Classes Offered",
     value: "I – XII",
     icon: "book-open",
-    note: "All CBSE grades",
+    note: "All RBSE grades",
   },
 ] as const;

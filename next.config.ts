@@ -27,12 +27,16 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Alumni → homepage (page not yet built)
       {
         source: "/alumni",
         destination: "/",
         permanent: false,
       },
+      {
+        source: "/about",
+        destination: "/about/vision-mission",
+        permanent: true,
+      }
     ];
   },
 };
