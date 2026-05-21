@@ -4,10 +4,10 @@ import { HomeClient } from "./HomeClient";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Central Academy Senior Secondary School, Anta | Quality Education Since 2013",
+  title: "Central Academy Senior Secondary School, antah | Quality Education Since 2013",
   description:
-    "Central Academy Senior Secondary School (CAS), Anta, Baran, Rajasthan. RBSE affiliated school offering Classes I to XII with modern facilities, experienced faculty.",
-  keywords: "CAS Anta, Central Academy School Anta, RBSE school Baran, school in Anta Rajasthan",
+    "Central Academy Senior Secondary School (CAS), antah, Baran, Rajasthan. RBSE affiliated school offering Classes I to XII with modern facilities, experienced faculty.",
+  keywords: "CAS antah, Central Academy School antah, RBSE school Baran, school in antah Rajasthan",
 };
 
 async function getHomeData() {

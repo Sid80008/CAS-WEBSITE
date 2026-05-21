@@ -7,12 +7,12 @@ export const SCHOOL = {
   shortName: 'CAS',
   phone1: '+91-7737689684',
   phone2: '07457-294633',
-  email: 'centralacademyanta@gmail.com',
-  address: 'Near Sahkari Petrol Pump, Kota Road, Anta, Baran, Rajasthan – 325202',
-  city: 'Anta, Baran',
+  email: 'centralacademyantah@gmail.com',
+  address: 'Near Sahkari Petrol Pump, Kota Road, antah, Baran, Rajasthan – 325202',
+  city: 'antah, Baran',
   state: 'Rajasthan',
   pincode: '325202',
-  website: 'https://centralacademyantah.vercel.app',
+  website: 'https://centralacademyantahh.vercel.app',
   established: 2013,
   get yearsOfExcellence() {
     return new Date().getFullYear() - this.established;

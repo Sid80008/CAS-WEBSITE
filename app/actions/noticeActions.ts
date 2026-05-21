@@ -11,6 +11,7 @@ export async function createNotice(formData: FormData) {
 
   const titleEn = formData.get('titleEn') as string;
   const contentEn = formData.get('contentEn') as string;
+  const imageUrl = formData.get('imageUrl') as string;
 
   // Build a URL-safe slug
   const slug = titleEn
@@ -25,6 +26,7 @@ export async function createNotice(formData: FormData) {
       titleHi: (formData.get('titleHi') as string) || null,
       contentEn,
       slug,
+      imageUrl: imageUrl || null,
       published: formData.get('published') === 'on',
       isPinned: formData.get('isPinned') === 'on',
       targetRole: (formData.get('targetRole') as NoticeTargetRole) || 'ALL',

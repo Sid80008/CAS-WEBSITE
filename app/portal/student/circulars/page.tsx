@@ -9,7 +9,7 @@ export default function Page() {
 
 <nav className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-sm docked full-width top-0 sticky z-50 flex justify-between items-center px-6 h-16 w-full font-['Plus_Jakarta_Sans'] font-semibold text-sm">
 <div className="flex items-center gap-8">
-<span className="text-lg font-bold text-[#1B4F8A] dark:text-white uppercase tracking-tight">Central Academy Anta</span>
+<span className="text-lg font-bold text-[#1B4F8A] dark:text-white uppercase tracking-tight">Central Academy antah</span>
 <div className="hidden md:flex gap-6 items-center">
 <a className="text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-[#1B4F8A] transition-colors duration-200" href="#">Dashboard</a>
 <a className="text-[#1B4F8A] border-b-2 border-[#1B4F8A] pb-1" href="#">Notices</a>
@@ -39,7 +39,7 @@ export default function Page() {
 <div className="relative z-20 h-full flex flex-col justify-center px-12 text-white">
 <span className="inline-flex items-center px-3 py-1 rounded-full bg-amber-light text-amber-dark text-overline mb-4 w-fit">Academic Session 2024-25</span>
 <h1 className="font-display text-h1 mb-4">Circulars &amp; Notices</h1>
-<p className="font-body text-body-large max-w-2xl opacity-90">Stay informed about the latest academic schedules, holiday announcements, and school events. Official communications for students and parents of Central Academy Anta.</p>
+<p className="font-body text-body-large max-w-2xl opacity-90">Stay informed about the latest academic schedules, holiday announcements, and school events. Official communications for students and parents of Central Academy antah.</p>
 </div>
 </div>
 </header>
@@ -97,7 +97,7 @@ export default function Page() {
 <span className="text-caption text-text-tertiary">3 Days Remaining</span>
 </div>
 <h3 className="font-display text-h3 text-on-surface mb-2 group-hover:text-[#1B4F8A] transition-colors">Diwali Vacation and School Reopening</h3>
-<p className="font-body text-body-small text-text-secondary mb-6">Central Academy Anta will remain closed from October 30th to November 4th for the festive occasion of Diwali. Wishing all students a safe and prosperous celebration.</p>
+<p className="font-body text-body-small text-text-secondary mb-6">Central Academy antah will remain closed from October 30th to November 4th for the festive occasion of Diwali. Wishing all students a safe and prosperous celebration.</p>
 <div className="flex items-center gap-4">
 <button className="flex items-center gap-2 bg-[#1B4F8A] text-white px-6 py-2.5 rounded-lg font-label text-sm hover:bg-school-blue-dark transition-all">
                                         View Details
@@ -181,9 +181,9 @@ export default function Page() {
 <div className="bg-[#F8F7F5] border border-border-default rounded-lg p-6">
 <h4 className="font-display font-bold text-on-surface text-h4 mb-4">Need Help?</h4>
 <p className="font-body text-body-small text-text-secondary mb-4">If you are unable to find a specific circular or need clarification, please contact the administration office.</p>
-<a className="flex items-center gap-3 text-[#1B4F8A] font-semibold text-sm hover:underline" href="mailto:admin@centralacademyanta.edu">
+<a className="flex items-center gap-3 text-[#1B4F8A] font-semibold text-sm hover:underline" href="mailto:admin@centralacademyantah.edu">
 <span className="material-symbols-outlined text-lg">mail</span>
-                        admin@centralacademyanta.edu
+                        admin@centralacademyantah.edu
                     </a>
 </div>
 </aside>
@@ -193,7 +193,7 @@ export default function Page() {
 <footer className="bg-slate-900 dark:bg-black border-t-4 border-[#BA7517] text-white py-12 px-8">
 <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
 <div className="space-y-4">
-<span className="text-white font-bold text-xl block">Central Academy Anta</span>
+<span className="text-white font-bold text-xl block">Central Academy antah</span>
 <p className="font-['Plus_Jakarta_Sans'] text-xs text-slate-400 max-w-sm">Dedicated to nurturing young minds with a foundation of values, excellence, and global perspective for over {SCHOOL.yearsOfExcellence} years.</p>
 </div>
 <div className="flex flex-wrap gap-8 text-xs font-['Plus_Jakarta_Sans']">

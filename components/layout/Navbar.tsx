@@ -68,7 +68,7 @@ export function Navbar() {
               transition={{ duration: 0.25 }}
             />
             <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-school-blue leading-tight">Central Academy Anta</span>
+              <span className="text-xl font-extrabold text-school-blue leading-tight">Central Academy antah</span>
               <span className="text-[10px] font-bold tracking-widest text-school-amber uppercase">Education for Excellence</span>
             </div>
           </Link>

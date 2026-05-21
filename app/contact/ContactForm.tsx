@@ -81,7 +81,7 @@ export function ContactForm() {
             <div className="lg:col-span-5 space-y-12">
               <div className="space-y-4">
                 <h2 className="text-4xl font-bold text-school-blue tracking-tight">Visit Our Campus</h2>
-                <p className="text-text-secondary leading-relaxed">Located in Anta, Baran, our campus is a sanctuary for learning and growth.</p>
+                <p className="text-text-secondary leading-relaxed">Located in antah, Baran, our campus is a sanctuary for learning and growth.</p>
               </div>
 
               <div className="space-y-8">
@@ -229,7 +229,7 @@ export function ContactForm() {
         <iframe
           title="School Location"
           className="w-full h-full border-none"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.34440537233!2d76.5164101!3d24.8715893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396ff5e78ec89307%3A0xcf9570f7d5668e1a!2sCentral%20Academy%20School%2C%20Anta!5e0!3m2!1sen!2sin!4v1714000000000!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.34440537233!2d76.5164101!3d24.8715893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396ff5e78ec89307%3A0xcf9570f7d5668e1a!2sCentral%20Academy%20School%2C%20antah!5e0!3m2!1sen!2sin!4v1714000000000!5m2!1sen!2sin"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -240,7 +240,7 @@ export function ContactForm() {
             <h4 className="font-bold text-school-blue">Find Us on Maps</h4>
           </div>
           <p className="text-[10px] font-bold text-text-tertiary uppercase leading-relaxed">
-            Search &quot;Central Academy School Anta&quot; on Google Maps for directions.
+            Search &quot;Central Academy School antah&quot; on Google Maps for directions.
           </p>
         </div>
       </section>

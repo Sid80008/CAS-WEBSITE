@@ -9,7 +9,7 @@ export default function Page() {
 <aside className="h-full w-64 fixed left-0 top-0 overflow-y-auto bg-surface-container-low border-r border-border-default z-50 flex flex-col gap-2 p-4">
 <div className="mb-8 px-2">
 <h1 className="font-h3 text-h3 font-bold text-primary">Central Academy</h1>
-<p className="font-label text-label text-on-surface-variant">Anta Campus</p>
+<p className="font-label text-label text-on-surface-variant">antah Campus</p>
 </div>
 <nav className="flex flex-col gap-1 flex-1">
 <a className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant/50 rounded-lg transition-colors group" href="#">

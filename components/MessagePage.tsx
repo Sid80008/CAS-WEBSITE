@@ -89,7 +89,7 @@ export default function MessagePage({
               <p className="font-black text-school-blue text-xl tracking-tight">{name}</p>
               <p className="text-school-amber font-bold text-sm">{role}</p>
               <p className="text-text-tertiary text-sm mt-1">
-                Central Academy Senior Secondary School, Anta
+                Central Academy Senior Secondary School, antah
               </p>
             </div>
           </div>

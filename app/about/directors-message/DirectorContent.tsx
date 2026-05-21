@@ -39,7 +39,7 @@ export function DirectorContent() {
                 "We don't just build schools; we build foundations for a lifetime of success and meaningful contribution to society."
               </p>
               <p>
-                As the Director of Central Academy School, Anta, it has been my lifelong mission to provide world-class education that is accessible and transformative. Since our founding in 2013, we have remained steadfast in our pursuit of excellence.
+                As the Director of Central Academy School, antah, it has been my lifelong mission to provide world-class education that is accessible and transformative. Since our founding in 2013, we have remained steadfast in our pursuit of excellence.
               </p>
               <p>
                 Our vision is to create a learning ecosystem that goes beyond textbooks. We invest heavily in technology, infrastructure, and most importantly, in our people. Our teachers are mentors who ignite the fire of learning in every student.

@@ -1,5 +1,5 @@
 ---
-name: Central Academy Anta Official Design System
+name: Central Academy antah Official Design System
 colors:
   surface: '#fcf9f8'
   surface-dim: '#dcd9d9'
@@ -143,10 +143,10 @@ spacing:
 ---
 
 
-Complete visual design specification for all 27 public website pages of Central Academy Anta
+Complete visual design specification for all 27 public website pages of Central Academy antah
 markdown
 
-# Central Academy Anta — Complete Visual Design Specification
+# Central Academy antah — Complete Visual Design Specification
 ## Tier 1 Public Website — All 27 Pages
 
 **Document Purpose:** Comprehensive visual design blueprint for every public-facing page  
@@ -561,7 +561,7 @@ Social: Facebook, Twitter (X), Instagram
 - Logo Image + Text Stack:
   - Image: 48px height
   - Text: "Central Academy" (16px, semibold)
-  - Subtext: "Anta, Baran" (12px, regular, text-secondary)
+  - Subtext: "antah, Baran" (12px, regular, text-secondary)
 
 **Navigation Links (Center):**
 - Font: 14px, medium weight
@@ -687,13 +687,13 @@ Social: Facebook, Twitter (X), Instagram
 - Header: "Contact Us" (same styling as column 2)
 - Address: Icon + text rows
   - MapPin icon (20px, white, opacity 0.7)
-  - "Near Sahkari Petrol Pump, Anta, Baran 325202"
+  - "Near Sahkari Petrol Pump, antah, Baran 325202"
 - Phone: Icon + text
   - Phone icon (20px)
   - "+91-7737689684"
 - Email: Icon + text
   - Mail icon (20px)
-  - "centralacademyanta@gmail.com"
+  - "centralacademyantah@gmail.com"
 - Hours: Icon + text
   - Clock icon (20px)
   - "Mon–Sat: 8:00 AM – 4:00 PM"
@@ -705,7 +705,7 @@ Social: Facebook, Twitter (X), Instagram
 - Padding: `20px 0`
 - Flex: Space between
 - Left: Copyright text
-  - "© 2026 Central Academy Anta. All rights reserved."
+  - "© 2026 Central Academy antah. All rights reserved."
   - Font: 13px, opacity 0.7
 - Right: Social icons
   - Facebook, Twitter (X) icons (24px)
@@ -1567,13 +1567,13 @@ Infinite: Yes
 - Heading: H2, "Visit Us"
 - Address: Body large, text primary
   - Icon: MapPin (24px, school blue)
-  - Text: "Near Sahkari Petrol Pump, Anta, Baran 325202"
+  - Text: "Near Sahkari Petrol Pump, antah, Baran 325202"
 - Phone: Body, school blue link
   - Icon: Phone (24px)
   - Text: "+91-7737689684"
 - Email: Body, school blue link
   - Icon: Mail (24px)
-  - Text: "centralacademyanta@gmail.com"
+  - Text: "centralacademyantah@gmail.com"
 - Hours: Body, text secondary
   - Icon: Clock (24px)
   - Text: "Mon–Sat: 8:00 AM – 4:00 PM"
@@ -1627,7 +1627,7 @@ Infinite: Yes
   - Padding Top: `16px`
   - Name: 18px, bold, text primary
   - Title: 15px, regular, text secondary
-    - "Director, Central Academy Anta"
+    - "Director, Central Academy antah"
 
 **Key Themes Section (Below Message):**
 - Heading: H3, "Key Priorities"
@@ -1657,7 +1657,7 @@ Infinite: Yes
 
 **Principal Info:**
 - Name: "Radha Meena"
-- Title: "Principal, Central Academy Anta"
+- Title: "Principal, Central Academy antah"
 
 **Content Focus:**
 - Longer message (~500 words from profile)
@@ -2835,7 +2835,7 @@ Infinite: Yes
 - Border Left: `4px solid` Teal
 - Padding: `20px 24px`
 - Icon: Info (24px, teal)
-- Text: "This portal allows parents and schools to verify the authenticity of Transfer Certificates issued by Central Academy Anta."
+- Text: "This portal allows parents and schools to verify the authenticity of Transfer Certificates issued by Central Academy antah."
 
 **Search Form:**
 - Container: White card, centered, max-width `600px`
@@ -2894,7 +2894,7 @@ Infinite: Yes
 **Contact Info (Below Form):**
 - Text: "For assistance, contact: +91-7737689684"
 - Link: Clickable phone number
-- Email: "centralacademyanta@gmail.com"
+- Email: "centralacademyantah@gmail.com"
 
 **Security Note:**
 - Small text (bottom of page)
@@ -2935,7 +2935,7 @@ Infinite: Yes
 1. Address:
    - Icon: MapPin
    - Title: "Visit Us"
-   - Text: "Near Sahkari Petrol Pump, Kota Road, Anta, Baran, Rajasthan — 325202"
+   - Text: "Near Sahkari Petrol Pump, Kota Road, antah, Baran, Rajasthan — 325202"
 2. Phone:
    - Icon: Phone
    - Title: "Call Us"
@@ -2944,7 +2944,7 @@ Infinite: Yes
 3. Email:
    - Icon: Mail
    - Title: "Email Us"
-   - Text: "centralacademyanta@gmail.com" (clickable mailto: link)
+   - Text: "centralacademyantah@gmail.com" (clickable mailto: link)
 4. Office Hours:
    - Icon: Clock
    - Title: "Office Hours"

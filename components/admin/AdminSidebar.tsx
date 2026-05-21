@@ -108,7 +108,7 @@ export default function AdminSidebar() {
           </Link>
           <div className="pt-4 border-t border-outline-variant">
             <a
-              href="mailto:support@casanta.ac.in"
+              href="mailto:support@casantah.ac.in"
               className="flex items-center gap-3 text-on-surface-variant px-4 py-2 hover:bg-[#eae7e7] transition-colors text-sm rounded-lg"
             >
               <span className="material-symbols-outlined">help_outline</span>

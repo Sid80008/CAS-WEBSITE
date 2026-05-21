@@ -8,7 +8,7 @@ async function main() {
   if (!user) {
     user = await prisma.user.create({
       data: {
-        email: "admin@casanta.edu.in",
+        email: "admin@casantah.edu.in",
         password: "hashed_password", // Placeholder
         isActive: true
       }

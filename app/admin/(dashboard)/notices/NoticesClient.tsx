@@ -131,6 +131,10 @@ export default function NoticesClient({ notices }: Props) {
                   <option value="TEACHER">Teachers</option>
                 </select>
               </div>
+              <div>
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Image/Attachment URL (Optional)</label>
+                <input name="imageUrl" type="url" className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" placeholder="https://example.com/image.jpg" />
+              </div>
               <div className="flex gap-6">
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input type="checkbox" name="published" className="w-4 h-4 rounded" /> <span className="text-sm">Publish immediately</span>

@@ -455,6 +455,8 @@ model Notice {
   targetClass String?
   scheduledAt DateTime?
   publishedAt DateTime         @default(now())
+  imageUrl    String?
+  attachmentUrl String?
 
   createdBy String
   author    User   @relation(fields: [createdBy], references: [id])

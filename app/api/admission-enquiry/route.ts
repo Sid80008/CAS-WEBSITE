@@ -90,12 +90,12 @@ export async function POST(request: Request) {
       await resend.emails.send({
         from: "Central Academy School <onboarding@resend.dev>",
         to: email,
-        subject: "We received your admission enquiry — CAS Anta",
+        subject: "We received your admission enquiry — CAS antah",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
             <div style="background: #1e3a5f; color: white; padding: 24px; border-radius: 8px 8px 0 0;">
               <h2 style="margin: 0;">Enquiry Received ✓</h2>
-              <p style="margin: 4px 0 0; opacity: 0.8;">Central Academy Senior Secondary School, Anta</p>
+              <p style="margin: 4px 0 0; opacity: 0.8;">Central Academy Senior Secondary School, antah</p>
             </div>
             <div style="padding: 24px; border: 1px solid #e5e7eb; border-top: none; border-radius: 0 0 8px 8px;">
               <p>Dear <strong>${parentName}</strong>,</p>

@@ -8,7 +8,7 @@ import { GalleryGrid } from "./GalleryGrid";
 export const metadata: Metadata = {
   title: "Photo Gallery",
   description:
-    "Browse photos from school events, annual functions, sports days, and everyday life at Central Academy Senior Secondary School, Anta.",
+    "Browse photos from school events, annual functions, sports days, and everyday life at Central Academy Senior Secondary School, antah.",
 };
 
 async function getAlbums() {

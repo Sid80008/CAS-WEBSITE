@@ -82,7 +82,7 @@ export default function PortalLoginPage() {
             Portal Login
           </CardTitle>
           <CardDescription className="text-gray-500 mt-2">
-            Central Academy Anta — Student & Parent
+            Central Academy antah — Student & Parent
           </CardDescription>
         </CardHeader>
 

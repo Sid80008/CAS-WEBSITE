@@ -53,7 +53,7 @@ async function main() {
   const adminHash = await getHash(adminPassword);
   const adminUser = await prisma.user.create({
     data: {
-      email: 'admin@casanta.com',
+      email: 'admin@casantah.com',
       password: adminHash,
       isActive: true,
       roles: {
@@ -78,7 +78,7 @@ async function main() {
   const officeHash = await getHash(officePassword);
   const officeUser = await prisma.user.create({
     data: {
-      email: 'office@casanta.com',
+      email: 'office@casantah.com',
       password: officeHash,
       isActive: true,
       roles: {
@@ -103,7 +103,7 @@ async function main() {
   const teacherHash = await getHash(teacherPassword);
   const teacherUser = await prisma.user.create({
     data: {
-      email: 'teacher@casanta.com',
+      email: 'teacher@casantah.com',
       password: teacherHash,
       isActive: true,
       roles: {
@@ -128,7 +128,7 @@ async function main() {
   const studentHash = await getHash(studentPassword);
   const studentUser = await prisma.user.create({
     data: {
-      email: 'student@casanta.com',
+      email: 'student@casantah.com',
       password: studentHash,
       isActive: true,
       roles: {
@@ -166,7 +166,7 @@ async function main() {
   const parentHash = await getHash(parentPassword);
   const parentUser = await prisma.user.create({
     data: {
-      email: 'parent@casanta.com',
+      email: 'parent@casantah.com',
       password: parentHash,
       isActive: true,
       roles: {

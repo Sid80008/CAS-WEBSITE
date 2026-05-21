@@ -20,7 +20,7 @@ export function PrincipalContent() {
              />
              <div className="absolute bottom-6 right-6 bg-white p-6 rounded-xl shadow-xl border-l-4 border-school-amber">
                 <h4 className="text-xl font-bold text-school-blue">Dr. S. K. Pathak</h4>
-                <p className="text-xs font-bold text-text-tertiary uppercase tracking-widest mt-1">Principal, CAS Anta</p>
+                <p className="text-xs font-bold text-text-tertiary uppercase tracking-widest mt-1">Principal, CAS antah</p>
              </div>
           </div>
           <div className="md:col-span-7 space-y-8">
@@ -38,7 +38,7 @@ export function PrincipalContent() {
 
              <div className="space-y-6 text-text-primary leading-relaxed text-sm md:text-base">
                 <p>
-                  At Central Academy School, Anta, we believe that every child is unique and possesses immense potential. Our role is to provide a fertile ground where these seeds of talent can sprout and flourish into mighty oaks of excellence.
+                  At Central Academy School, antah, we believe that every child is unique and possesses immense potential. Our role is to provide a fertile ground where these seeds of talent can sprout and flourish into mighty oaks of excellence.
                 </p>
                 <p>
                   Our curriculum is designed to challenge the mind while nurturing the soul. We integrate traditional values with modern pedagogical techniques, ensuring our students are well-equipped to navigate the complexities of the 21st century.

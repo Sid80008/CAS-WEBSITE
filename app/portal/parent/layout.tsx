@@ -43,7 +43,7 @@ export default async function ParentPortalLayout({ children }: { children: React
             <Image src="/logo.png" alt="CAS Logo" width={40} height={40} className="object-contain" />
             <div>
               <h1 className="font-h3 text-xl font-bold text-[#0C447C] leading-tight">Central Academy</h1>
-              <p className="font-label text-sm text-[#424750]">Anta Campus</p>
+              <p className="font-label text-sm text-[#424750]">antah Campus</p>
             </div>
           </div>
         </div>

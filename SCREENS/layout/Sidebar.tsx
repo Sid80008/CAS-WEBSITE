@@ -40,7 +40,7 @@ export function Sidebar() {
           <div className="h-8 w-8 bg-indigo-600 rounded-lg flex items-center justify-center">
             <span className="font-bold text-white">C</span>
           </div>
-          <span className="font-bold text-lg tracking-tight uppercase">CAS Anta</span>
+          <span className="font-bold text-lg tracking-tight uppercase">CAS antah</span>
         </Link>
       </div>
 
@@ -77,7 +77,7 @@ export function Sidebar() {
           </div>
           <div className="flex-1 min-w-0">
             <p className="text-sm font-semibold truncate">Admin User</p>
-            <p className="text-xs text-gray-400 truncate">admin@casanta.com</p>
+            <p className="text-xs text-gray-400 truncate">admin@casantah.com</p>
           </div>
         </div>
 

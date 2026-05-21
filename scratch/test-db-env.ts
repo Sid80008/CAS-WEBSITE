@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 async function testConnection() {
-  const url = "postgresql://postgres.uwgqjuhwaaucyyjnrrvc:centralacademyantah@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true";
+  const url = "postgresql://postgres.uwgqjuhwaaucyyjnrrvc:centralacademyantahh@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true";
   
   const prisma = new PrismaClient({
     datasourceUrl: url,

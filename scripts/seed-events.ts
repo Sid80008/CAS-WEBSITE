@@ -12,7 +12,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 // You need an admin user ID to set createdBy — query the DB for it.
-const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || "admin@centralacademyanta.edu.in";
+const ADMIN_EMAIL = process.env.SEED_ADMIN_EMAIL || "admin@centralacademyantah.edu.in";
 
 const events = [
   {

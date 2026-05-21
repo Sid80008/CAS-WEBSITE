@@ -44,7 +44,7 @@ export default function Page() {
 <span className="material-symbols-outlined">menu</span>
 </button>
 <div className="hidden md:block">
-<span className="text-h3 font-h3 font-bold text-primary">Central Academy Anta</span>
+<span className="text-h3 font-h3 font-bold text-primary">Central Academy antah</span>
 </div>
 </div>
 <div className="flex items-center gap-lg">
@@ -129,7 +129,7 @@ export default function Page() {
 </div>
 <div>
 <p className="font-h4 text-h4">Transportation Fees</p>
-<p className="font-caption text-caption text-text-tertiary">Bus Route: Sector 4 - Anta</p>
+<p className="font-caption text-caption text-text-tertiary">Bus Route: Sector 4 - antah</p>
 </div>
 </div>
 <div className="space-y-sm">
@@ -235,7 +235,7 @@ export default function Page() {
 
 <footer className="mt-auto p-page-mobile md:p-page-desktop bg-surface-container-low border-t border-outline-variant">
 <div className="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-md">
-<p className="font-caption text-caption text-text-secondary">© 2024 Central Academy Anta. All Rights Reserved.</p>
+<p className="font-caption text-caption text-text-secondary">© 2024 Central Academy antah. All Rights Reserved.</p>
 <div className="flex gap-lg">
 <a className="font-caption text-caption text-primary hover:underline" href="#">Privacy Policy</a>
 <a className="font-caption text-caption text-primary hover:underline" href="#">Terms of Service</a>

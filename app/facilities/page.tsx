@@ -4,7 +4,7 @@ import { FacilitiesContent } from "./FacilitiesContent";
 export const metadata: Metadata = {
   title: "Facilities",
   description:
-    "Explore world-class facilities at CAS Anta including digital library, science labs, computer lab, sports complex, and smart classrooms.",
+    "Explore world-class facilities at CAS antah including digital library, science labs, computer lab, sports complex, and smart classrooms.",
 };
 
 export default function FacilitiesPage() {

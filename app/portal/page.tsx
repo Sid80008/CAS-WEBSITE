@@ -30,7 +30,7 @@ export default function PortalPage() {
           <img src="/logo.png" alt="CAS Logo" className="h-14 w-14 object-contain group-hover:scale-105 transition-transform" />
           <div className="text-left">
             <p className="text-white font-extrabold text-xl leading-tight">Central Academy</p>
-            <p className="text-white/60 text-xs tracking-widest uppercase">Anta Campus</p>
+            <p className="text-white/60 text-xs tracking-widest uppercase">antah Campus</p>
           </div>
         </Link>
         <h1 className="text-4xl md:text-5xl font-extrabold text-white mb-4">

@@ -42,7 +42,7 @@ The footer is arguably in worse shape than the navbar. It has four columns — Q
 
 **Portals column: 3 out of 4 links are dead or broken.** "Staff Login" links to `/admin/dashboard` — 404. "Student Portal" links to `/login` — blank page. "Parent Portal" also links to `/login` — blank page and the exact same URL as Student Portal, meaning there's no distinction between a student login and a parent login at all. "Alumni Connect" goes to `/alumni` — 404. Effectively the entire Portals column in the footer is non-functional.
 
-**The contact information is wrong on three counts.** The address says "Main Road, Anta, Baran, Rajasthan - 325202" but the contact page says "Station Road, Anta" and the real address from the school's own original website is "Near Sahkari Petrol Pump, Kota Road, Anta." The phone number `+91 7457 244555` is not the school's real number — the real numbers are `07457-294633` and `+91-7737689684`. The email `info@centralacademyanta.com` uses a domain that isn't registered, so any email sent there bounces and disappears.
+**The contact information is wrong on three counts.** The address says "Main Road, antah, Baran, Rajasthan - 325202" but the contact page says "Station Road, antah" and the real address from the school's own original website is "Near Sahkari Petrol Pump, Kota Road, antah." The phone number `+91 7457 244555` is not the school's real number — the real numbers are `07457-294633` and `+91-7737689684`. The email `info@centralacademyantah.com` uses a domain that isn't registered, so any email sent there bounces and disappears.
 
 **Footer bottom bar: all 3 links are dead.** Privacy Policy → `/privacy` (404), Terms of Service → `/terms` (404), Sitemap → `/sitemap` (404). These three links appear on every single page since the footer is global.
 
@@ -71,7 +71,7 @@ Now let me test all the broken/missing routes and portals to confirm.I now have 
 ---
 
 # COMPLETE QA AUDIT REPORT
-## centralacademyantah.vercel.app — April 2026
+## centralacademyantahh.vercel.app — April 2026
 
 ---
 
@@ -97,7 +97,7 @@ Before anything else, here is the full routing reality of this site. I tested ev
 
 **HIGH — Three homepage stats are 100% hardcoded with no backend connection.** "500+ Active Students Enrolled," "100% Board Results Record," and "30+ Years of Academic Excellence" — none of these pull from a database. They are static strings. If 50 students leave tomorrow, the site still says 500+. If one student fails a board exam, the site still claims 100%. The "30+ Years" claim is also arithmetically wrong — 2026 minus 1994 is 32 years, not 30+. These are fake dynamic stats pretending to be real.
 
-**HIGH — Digital Library image on the homepage is an AI-generated placeholder.** It loads from `lh3.googleusercontent.com/aida-public/...` which is Google's AI image generation CDN. This is not a photo of CAS Anta's library. It is a fake image served from an external server you don't control. If Google rate-limits or removes it, the image disappears from the homepage with no fallback.
+**HIGH — Digital Library image on the homepage is an AI-generated placeholder.** It loads from `lh3.googleusercontent.com/aida-public/...` which is Google's AI image generation CDN. This is not a photo of CAS antah's library. It is a fake image served from an external server you don't control. If Google rate-limits or removes it, the image disappears from the homepage with no fallback.
 
 **MEDIUM — The logo itself is externally hosted.** Both the nav logo and footer logo load from `lh3.googleusercontent.com/aida/...` — same Google AI CDN issue. This is the school's logo. If that URL dies, every single page on the entire site loses its logo simultaneously.
 
@@ -171,17 +171,17 @@ Before anything else, here is the full routing reality of this site. I tested ev
 
 ### PAGE 8: Contact `/contact`
 
-**CRITICAL — All contact information is wrong.** There are three separate data problems on this one page. The address says "Station Road, Anta, District Baran, Rajasthan 325202" — the real address from official school records is "Near Sahkari Petrol Pump, Kota Road, Anta." The phone numbers listed are `+91 7457 244555` and `+91 7457 244666` — the real numbers are `07457-294633` and `+91-7737689684`. These are not even close. The email addresses are `info@casanta.edu.in` and `admissions@casanta.edu.in` — the domain `casanta.edu.in` does not exist and has never been registered, meaning every email sent to these addresses bounces and is permanently lost.
+**CRITICAL — All contact information is wrong.** There are three separate data problems on this one page. The address says "Station Road, antah, District Baran, Rajasthan 325202" — the real address from official school records is "Near Sahkari Petrol Pump, Kota Road, antah." The phone numbers listed are `+91 7457 244555` and `+91 7457 244666` — the real numbers are `07457-294633` and `+91-7737689684`. These are not even close. The email addresses are `info@casantah.edu.in` and `admissions@casantah.edu.in` — the domain `casantah.edu.in` does not exist and has never been registered, meaning every email sent to these addresses bounces and is permanently lost.
 
 **CRITICAL — The contact form's backend status is unknown.** The "Submit Message" button exists with four fields (Name, Email, Subject, Message). Whether it calls an API, sends to an email inbox, or does nothing is completely unknown from static analysis. There is no visible success confirmation, no error state, no loading indicator in the HTML. This form is potentially dead.
 
 **HIGH — Social media icons (FB, IG, LI, YT) are completely dead.** They appear as text labels in the HTML with no `href` attribute, no URL, nothing. Clicking FB, IG, LI, or YT does nothing whatsoever.
 
-**HIGH — No Google Maps embed exists.** The page says *"Search for 'Central Academy Anta' on Google Maps"* — this is a text instruction, not an embedded map. The original school site had an actual embedded Google Maps iframe with the correct pin. There is not even a link to Google Maps on this page.
+**HIGH — No Google Maps embed exists.** The page says *"Search for 'Central Academy antah' on Google Maps"* — this is a text instruction, not an embedded map. The original school site had an actual embedded Google Maps iframe with the correct pin. There is not even a link to Google Maps on this page.
 
 **MEDIUM — "Expected response within 2 working hours" is a hardcoded claim** with no system behind it to actually enforce or track response times.
 
-**MEDIUM — The footer and contact page show different addresses.** The footer says "Main Road, Anta, Baran, Rajasthan - 325202." The contact page says "Station Road, Anta." They are different wrong addresses of the same school.
+**MEDIUM — The footer and contact page show different addresses.** The footer says "Main Road, antah, Baran, Rajasthan - 325202." The contact page says "Station Road, antah." They are different wrong addresses of the same school.
 
 ---
 
@@ -230,7 +230,7 @@ export default function LoginPage() {
 
 **Fix 2 — "View All" notices button (Frontend, Critical, 5 minutes).** Find the homepage notices section and change the href from `/events` to `/notices`.
 
-**Fix 3 — Fix all wrong contact data (Frontend, Critical, 30 minutes).** Do a global find-and-replace across the entire codebase for every occurrence of the wrong phone, email, and address. Replace `+91 7457 244555` with `+91-7737689684`, replace `info@casanta.edu.in` and `info@centralacademyanta.com` with `centralacademyanta@gmail.com`, and replace all address variants with `Near Sahkari Petrol Pump, Kota Road, Anta, Baran, Rajasthan – 325202`. Do this in a constants file if possible so you never have to update it in multiple places again.
+**Fix 3 — Fix all wrong contact data (Frontend, Critical, 30 minutes).** Do a global find-and-replace across the entire codebase for every occurrence of the wrong phone, email, and address. Replace `+91 7457 244555` with `+91-7737689684`, replace `info@casantah.edu.in` and `info@centralacademyantah.com` with `centralacademyantah@gmail.com`, and replace all address variants with `Near Sahkari Petrol Pump, Kota Road, antah, Baran, Rajasthan – 325202`. Do this in a constants file if possible so you never have to update it in multiple places again.
 
 **Fix 4 — Admission session year (Frontend, Critical, 2 minutes).** Change the string `"2024-25 session"` on `/admissions` to `"2026-27 session"`. Better yet, make this dynamic: `const currentSession = () => { const y = new Date().getFullYear(); return \`${y}-${String(y+1).slice(2)}\` }`.
 
@@ -274,8 +274,8 @@ Then add `onSubmit` handlers in the form components that call these endpoints, s
 // app/sitemap.ts
 export default function sitemap() {
   return [
-    { url: 'https://centralacademyantah.vercel.app', lastModified: new Date() },
-    { url: 'https://centralacademyantah.vercel.app/about/vision-mission', lastModified: new Date() },
+    { url: 'https://centralacademyantahh.vercel.app', lastModified: new Date() },
+    { url: 'https://centralacademyantahh.vercel.app/about/vision-mission', lastModified: new Date() },
     // ... all working pages
   ]
 }
@@ -290,8 +290,8 @@ export default function sitemap() {
 ```tsx
 // app/facilities/page.tsx
 export const metadata = {
-  title: 'Facilities – Central Academy Senior Secondary School, Anta',
-  description: 'Explore world-class facilities at CAS Anta...'
+  title: 'Facilities – Central Academy Senior Secondary School, antah',
+  description: 'Explore world-class facilities at CAS antah...'
 }
 ```
 

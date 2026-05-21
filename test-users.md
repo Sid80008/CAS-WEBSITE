@@ -1,4 +1,4 @@
-# Central Academy Anta — Portal Test Accounts
+# Central Academy antah — Portal Test Accounts
 
 This file contains the list of test users and passwords created for testing the portals and website.
 
@@ -6,11 +6,11 @@ This file contains the list of test users and passwords created for testing the 
 
 | Portal / Role | Email / ID | Password | Notes / Associated Records |
 |---|---|---|---|
-| **Admin Portal** | `admin@casanta.com` | `admin_password_123` | Linked to Staff ID: ADM001 |
-| **Office Portal** | `office@casanta.com` | `office_password_123` | Linked to Staff ID: OFF001 |
-| **Teacher Portal** | `teacher@casanta.com` | `teacher_password_123` | Linked to Staff ID: TCH001 |
-| **Student Portal** | `student@casanta.com` | `student_password_123` | Linked to Student ID: Rahul Sharma (Adm No: `CAS-2026-0001`) |
-| **Parent Portal** | `parent@casanta.com` | `parent_password_123` | Linked to Parent ID: Anjali Sharma (Phone: `9876543210`) |
+| **Admin Portal** | `admin@casantah.com` | `admin_password_123` | Linked to Staff ID: ADM001 |
+| **Office Portal** | `office@casantah.com` | `office_password_123` | Linked to Staff ID: OFF001 |
+| **Teacher Portal** | `teacher@casantah.com` | `teacher_password_123` | Linked to Staff ID: TCH001 |
+| **Student Portal** | `student@casantah.com` | `student_password_123` | Linked to Student ID: Rahul Sharma (Adm No: `CAS-2026-0001`) |
+| **Parent Portal** | `parent@casantah.com` | `parent_password_123` | Linked to Parent ID: Anjali Sharma (Phone: `9876543210`) |
 
 ---
 

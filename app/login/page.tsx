@@ -5,7 +5,7 @@ import { Loader2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Portal Login",
-  description: "Staff and admin portal login for Central Academy Senior Secondary School, Anta.",
+  description: "Staff and admin portal login for Central Academy Senior Secondary School, antah.",
 };
 
 function LoginSkeleton() {

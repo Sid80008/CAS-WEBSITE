@@ -42,9 +42,9 @@ class LoginErrorBoundary extends Component<
               The portal is temporarily unavailable. Please contact the school office.
             </p>
             <div className="bg-slate-50 rounded-xl p-4 text-sm text-gray-700">
-              <p className="font-semibold mb-1">Central Academy Anta</p>
+              <p className="font-semibold mb-1">Central Academy antah</p>
               <p>📞 +91-7737689684</p>
-              <p>📧 centralacademyanta@gmail.com</p>
+              <p>📧 centralacademyantah@gmail.com</p>
             </div>
           </div>
         </div>
@@ -121,7 +121,7 @@ function LoginFormInner() {
             Welcome Back
           </CardTitle>
           <CardDescription className="text-gray-500 mt-2">
-            Central Academy Anta — Admin Portal
+            Central Academy antah — Admin Portal
           </CardDescription>
         </CardHeader>
 
@@ -139,7 +139,7 @@ function LoginFormInner() {
                 <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400 group-focus-within:text-indigo-500 transition-colors" />
                 <Input
                   type="email"
-                  placeholder="admin@casanta.com"
+                  placeholder="admin@casantah.com"
                   className="pl-11 h-12 bg-gray-50 border-gray-200 focus:bg-white focus:ring-indigo-500 rounded-xl transition-all"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
