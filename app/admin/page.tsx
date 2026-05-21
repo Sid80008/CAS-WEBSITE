@@ -27,7 +27,7 @@ export default async function AdminDashboard() {
     prisma.student.count({ where: { status: "ACTIVE" } }),
     prisma.student.count({ where: { createdAt: { gte: thirtyDaysAgo } } }),
     prisma.attendance.findMany({ where: { date: { gte: startOfToday } } }),
-    prisma.student.findMany({ orderBy: { createdAt: "desc" }, take: 5, include: { class: true } }),
+    prisma.student.findMany({ orderBy: { createdAt: "desc" }, take: 5, include: { enrollments: { include: { section: { include: { class: true } } } } } }),
     prisma.notice.findMany({ orderBy: { publishedAt: "desc" }, take: 2 }),
     prisma.event.findMany({ where: { date: { gte: new Date() }, published: true }, orderBy: { date: "asc" }, take: 3 }),
     prisma.feeRecord.count({ where: { status: { in: ["PENDING", "OVERDUE"] } } }),
@@ -179,7 +179,7 @@ export default async function AdminDashboard() {
                     recentAdmissions.map((s) => (
                       <tr key={s.id} className="text-sm hover:bg-[#f6f3f2]">
                         <td className="py-3 font-semibold text-primary">{s.firstName} {s.lastName}</td>
-                        <td className="py-3 text-on-surface-variant">{s.class?.name ?? "—"}</td>
+                        <td className="py-3 text-on-surface-variant">{s.enrollments?.[0]?.section?.class?.name ?? "—"}</td>
                         <td className="py-3 text-on-surface-variant">{new Date(s.createdAt).toLocaleDateString("en-IN")}</td>
                         <td className="py-3">
                           <span className={`inline-flex px-2 py-0.5 rounded-full text-xs font-semibold ${s.status === "ACTIVE" ? "bg-tertiary-fixed/30 text-tertiary-container" : "bg-[#eae7e7] text-outline"}`}>
