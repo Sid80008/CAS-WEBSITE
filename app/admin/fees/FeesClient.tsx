@@ -1,5 +1,4 @@
 "use client";
-// app/admin/fees/FeesClient.tsx
 import { useState, useMemo, useTransition } from "react";
 import { markFeeAsPaid } from "@/app/actions/feeActions";
 
@@ -35,29 +34,26 @@ type Tab = "records" | "structures";
 
 function statusBadge(status: string) {
   switch (status) {
-    case "PAID":     return <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-tertiary-fixed/30 text-tertiary-container">Paid</span>;
-    case "PENDING":  return <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-secondary-fixed/30 text-secondary">Pending</span>;
-    case "OVERDUE":  return <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-error-container text-error">Overdue</span>;
-    case "PARTIAL":  return <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary-fixed/30 text-primary">Partial</span>;
-    default:         return <span className="inline-flex px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#eae7e7] text-outline">{status}</span>;
+    case "PAID":     return <span className="px-3 py-1 rounded-full text-[12px] font-bold bg-tertiary-fixed text-on-tertiary-fixed-variant">Paid</span>;
+    case "PENDING":  return <span className="px-3 py-1 rounded-full text-[12px] font-bold bg-secondary-fixed text-on-secondary-fixed-variant">Pending</span>;
+    case "OVERDUE":  return <span className="px-3 py-1 rounded-full text-[12px] font-bold bg-error-container text-on-error-container">Overdue</span>;
+    case "PARTIAL":  return <span className="px-3 py-1 rounded-full text-[12px] font-bold bg-primary-fixed-dim text-on-primary-fixed-variant">Partial</span>;
+    default:         return <span className="px-3 py-1 rounded-full text-[12px] font-bold bg-surface-variant text-on-surface-variant">{status}</span>;
   }
 }
 
 export default function FeesClient({ records, structures, stats }: Props) {
   const [tab, setTab] = useState<Tab>("records");
   const [search, setSearch] = useState("");
-  const [statusFilter, setStatusFilter] = useState("All");
   const [isPending, startTransition] = useTransition();
 
   const filtered = useMemo(() => {
     return records.filter((r) => {
       const q = search.toLowerCase();
       const name = `${r.student.firstName} ${r.student.lastName}`.toLowerCase();
-      const matchSearch = !q || name.includes(q) || r.student.admissionNo.toLowerCase().includes(q);
-      const matchStatus = statusFilter === "All" || r.status === statusFilter;
-      return matchSearch && matchStatus;
+      return !q || name.includes(q) || r.student.admissionNo.toLowerCase().includes(q);
     });
-  }, [records, search, statusFilter]);
+  }, [records, search]);
 
   function handleMarkPaid(id: string) {
     startTransition(() => {
@@ -65,200 +61,208 @@ export default function FeesClient({ records, structures, stats }: Props) {
     });
   }
 
+  const collectionRate = stats.totalDue > 0 ? (stats.totalPaid / stats.totalDue) * 100 : 0;
+
   return (
-    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      {/* Page Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+    <div className="max-w-[1440px] mx-auto font-body-md">
+      {/* Header Section */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <h1 className="font-bold text-3xl text-primary mb-1">Fee Management</h1>
-          <p className="text-sm text-on-surface-variant">Track fee structures, payments, dues and receipts.</p>
+          <h1 className="font-headline-lg text-headline-lg text-primary">Fee Management</h1>
+          <p className="text-on-surface-variant font-body-lg">Oversee school finances and student billing</p>
         </div>
-        <div className="flex items-center gap-3">
-          <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-outline-variant text-on-surface font-semibold rounded-lg hover:bg-[#f6f3f2] transition-all text-sm">
-            <span className="material-symbols-outlined text-xl">download</span>
-            Export
+        <div className="flex gap-3">
+          <button className="px-6 py-2 bg-surface-container-lowest border border-outline text-primary rounded-lg font-bold flex items-center gap-2 hover:bg-surface transition-all">
+            <span className="material-symbols-outlined">file_download</span>
+            Export Report
           </button>
-          <button
-            onClick={() => alert("Record Payment modal — coming soon")}
-            className="flex items-center gap-2 px-6 py-2.5 bg-secondary-container text-on-secondary-container font-bold rounded-lg shadow-sm hover:shadow-md active:scale-95 transition-all text-sm"
+          <button className="px-6 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-2 hover:opacity-90 transition-all">
+            <span className="material-symbols-outlined">add_card</span>
+            New Invoice
+          </button>
+        </div>
+      </div>
+
+      {/* Bento Dashboard Metrics */}
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+        <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-label-md uppercase tracking-wider text-outline">Total Collected</span>
+            <span className="material-symbols-outlined text-teal-accent">trending_up</span>
+          </div>
+          <div className="font-headline-md text-primary">₹{stats.totalPaid.toLocaleString("en-IN")}</div>
+          <div className="text-xs text-on-tertiary-container mt-1 font-medium">All time collection</div>
+        </div>
+        <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-label-md uppercase tracking-wider text-outline">Pending Dues</span>
+            <span className="material-symbols-outlined text-secondary">pending_actions</span>
+          </div>
+          <div className="font-headline-md text-primary">₹{stats.totalDue.toLocaleString("en-IN")}</div>
+          <div className="text-xs text-secondary mt-1 font-medium">{stats.pending} records pending</div>
+        </div>
+        <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-label-md uppercase tracking-wider text-outline">Overdue Accounts</span>
+            <span className="material-symbols-outlined text-error-red">warning</span>
+          </div>
+          <div className="font-headline-md text-primary">₹{stats.overdue > 0 ? "..." : "0"}</div>
+          <div className="text-xs text-error-red mt-1 font-medium">Action required: {stats.overdue} records</div>
+        </div>
+        <div className="bg-primary-container text-white p-5 rounded-xl shadow-sm border border-outline-variant">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-label-md uppercase tracking-wider text-on-primary-container">Collection Rate</span>
+            <span className="material-symbols-outlined text-on-primary-container">insights</span>
+          </div>
+          <div className="font-headline-md text-on-primary">{collectionRate.toFixed(1)}%</div>
+          <div className="w-full bg-on-primary-container/30 h-1.5 rounded-full mt-2 overflow-hidden">
+            <div className="bg-secondary-container h-full" style={{ width: `${Math.min(100, collectionRate)}%` }}></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Main Tabs Container */}
+      <div className="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+        {/* Tab Headers */}
+        <div className="flex border-b border-outline-variant bg-sidebar-bg/50">
+          <button 
+            onClick={() => setTab("structures")}
+            className={`px-8 py-4 font-body-md transition-all flex items-center gap-2 ${tab === "structures" ? "border-b-2 border-primary text-primary font-bold" : "text-on-surface-variant hover:bg-surface-container"}`}
           >
-            <span className="material-symbols-outlined text-xl">add</span>
-            Record Payment
+            <span className="material-symbols-outlined text-[20px]">account_tree</span>
+            Fee Structures
           </button>
-        </div>
-      </div>
-
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-        <div className="bg-white border border-outline-variant p-5 rounded-xl shadow-sm">
-          <div className="p-2 bg-error-container rounded-lg text-error w-fit mb-3">
-            <span className="material-symbols-outlined">account_balance_wallet</span>
-          </div>
-          <p className="text-xs font-bold text-outline uppercase tracking-wider">Total Due</p>
-          <p className="text-xl font-bold text-error">₹{stats.totalDue.toLocaleString("en-IN")}</p>
-        </div>
-        <div className="bg-white border border-outline-variant p-5 rounded-xl shadow-sm">
-          <div className="p-2 bg-tertiary-fixed/30 rounded-lg text-tertiary w-fit mb-3">
-            <span className="material-symbols-outlined">payments</span>
-          </div>
-          <p className="text-xs font-bold text-outline uppercase tracking-wider">Total Collected</p>
-          <p className="text-xl font-bold text-tertiary-container">₹{stats.totalPaid.toLocaleString("en-IN")}</p>
-        </div>
-        <div className="bg-white border border-outline-variant p-5 rounded-xl shadow-sm">
-          <div className="p-2 bg-secondary-fixed/30 rounded-lg text-secondary w-fit mb-3">
-            <span className="material-symbols-outlined">pending</span>
-          </div>
-          <p className="text-xs font-bold text-outline uppercase tracking-wider">Pending Records</p>
-          <p className="text-xl font-bold text-secondary">{stats.pending}</p>
-        </div>
-        <div className="bg-white border border-outline-variant p-5 rounded-xl shadow-sm">
-          <div className="p-2 bg-error-container rounded-lg text-error-red w-fit mb-3">
-            <span className="material-symbols-outlined">warning</span>
-          </div>
-          <p className="text-xs font-bold text-outline uppercase tracking-wider">Overdue</p>
-          <p className="text-xl font-bold text-error">{stats.overdue}</p>
-        </div>
-      </div>
-
-      {/* Tabs */}
-      <div className="flex gap-0 border-b border-outline-variant mb-0">
-        {(["records", "structures"] as Tab[]).map((t) => (
-          <button
-            key={t}
-            onClick={() => setTab(t)}
-            className={`px-6 py-3 text-sm font-semibold capitalize transition-colors ${
-              tab === t
-                ? "border-b-2 border-primary text-primary"
-                : "text-on-surface-variant hover:text-on-surface"
-            }`}
+          <button 
+            onClick={() => setTab("records")}
+            className={`px-8 py-4 font-body-md transition-all flex items-center gap-2 ${tab === "records" ? "border-b-2 border-primary text-primary font-bold" : "text-on-surface-variant hover:bg-surface-container"}`}
           >
-            {t === "records" ? "Payment Records" : "Fee Structures"}
+            <span className="material-symbols-outlined text-[20px]">history_edu</span>
+            Payment Records
           </button>
-        ))}
-      </div>
+        </div>
 
-      {tab === "records" && (
-        <>
-          {/* Filter bar */}
-          <div className="bg-white border border-outline-variant rounded-t-none rounded-b-none border-t-0 p-4 flex flex-wrap items-center gap-4 border-x">
-            <div className="flex-1 min-w-[200px] relative">
-              <span className="absolute inset-y-0 left-3 flex items-center material-symbols-outlined text-outline text-xl">search</span>
-              <input
-                className="w-full pl-10 pr-4 py-2 bg-[#f6f3f2] border border-outline-variant/30 rounded-lg focus:ring-1 focus:ring-primary text-sm outline-none"
-                placeholder="Search by student name or admission no..."
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-              />
+        {/* Content Area */}
+        {tab === "records" && (
+          <div className="p-6">
+            <div className="flex flex-col md:flex-row justify-between gap-4 mb-6">
+              <div className="flex items-center gap-3">
+                <div className="relative group">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+                  <input 
+                    className="pl-10 pr-4 py-2 bg-sidebar-bg border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary/20 w-full md:w-80 text-body-md outline-none" 
+                    placeholder="Filter by name, grade, or ID..." 
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                </div>
+                <button className="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-all">
+                  <span className="material-symbols-outlined text-on-surface-variant">filter_list</span>
+                </button>
+              </div>
+              <div className="flex items-center gap-2 text-label-md text-outline">
+                <span>Showing {filtered.length} records</span>
+              </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold text-on-surface-variant">Status:</span>
-              <select
-                value={statusFilter}
-                onChange={(e) => setStatusFilter(e.target.value)}
-                className="bg-[#f6f3f2] border border-outline-variant/30 rounded-lg px-3 py-2 text-sm outline-none"
-              >
-                <option value="All">All Status</option>
-                <option value="PENDING">Pending</option>
-                <option value="PAID">Paid</option>
-                <option value="OVERDUE">Overdue</option>
-                <option value="PARTIAL">Partial</option>
-              </select>
-            </div>
-          </div>
 
-          {/* Table */}
-          <div className="bg-white border border-t-0 border-outline-variant rounded-b-xl overflow-x-auto shadow-sm">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-[#f6f3f2] border-b border-outline-variant">
-                  {["Student", "Fee Type", "Amount Due", "Amount Paid", "Due Date", "Status", "Actions"].map((h) => (
-                    <th key={h} className="px-6 py-4 text-xs font-bold text-outline uppercase tracking-wider">{h}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-outline-variant/40">
-                {filtered.length === 0 ? (
-                  <tr>
-                    <td colSpan={7} className="px-6 py-16 text-center text-sm text-on-surface-variant">
-                      No fee records found.
-                    </td>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-sidebar-bg border-b border-outline-variant">
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase">Student Details</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase">Fee Type</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase">Status</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-right">Amount Paid</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-right">Balance Due</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-center">Receipt</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-center">Action</th>
                   </tr>
-                ) : (
-                  filtered.map((r) => (
-                    <tr key={r.id} className="hover:bg-[#f6f3f2] transition-colors">
-                      <td className="px-6 py-4">
-                        <p className="text-sm font-semibold text-on-surface">{r.student.firstName} {r.student.lastName}</p>
-                        <p className="text-xs text-on-surface-variant">#{r.student.admissionNo}</p>
-                      </td>
-                      <td className="px-6 py-4 text-sm text-on-surface-variant">{r.structure.feeType}</td>
-                      <td className="px-6 py-4 text-sm font-bold text-error">₹{(r.amountDue ?? 0).toLocaleString("en-IN")}</td>
-                      <td className="px-6 py-4 text-sm font-bold text-tertiary-container">₹{r.amountPaid.toLocaleString("en-IN")}</td>
-                      <td className="px-6 py-4 text-sm text-on-surface-variant">
-                        {r.dueDate ? new Date(r.dueDate).toLocaleDateString("en-IN") : "—"}
-                      </td>
-                      <td className="px-6 py-4">{statusBadge(r.status)}</td>
-                      <td className="px-6 py-4">
-                        {r.status !== "PAID" && (
-                          <button
-                            onClick={() => handleMarkPaid(r.id)}
-                            disabled={isPending}
-                            className="flex items-center gap-1 px-3 py-1.5 bg-tertiary-fixed/30 text-tertiary-container text-xs font-bold rounded-lg hover:bg-tertiary-fixed/50 transition-all disabled:opacity-50"
-                          >
-                            <span className="material-symbols-outlined text-base">check_circle</span>
-                            Mark Paid
-                          </button>
-                        )}
-                        {r.status === "PAID" && r.receiptNo && (
-                          <span className="text-xs text-on-surface-variant font-mono">#{r.receiptNo}</span>
-                        )}
-                      </td>
+                </thead>
+                <tbody className="divide-y divide-outline-variant">
+                  {filtered.length === 0 ? (
+                    <tr>
+                      <td colSpan={7} className="px-4 py-16 text-center text-on-surface-variant">No records found.</td>
                     </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+                  ) : (
+                    filtered.map((r) => (
+                      <tr key={r.id} className="hover:bg-surface-container-low transition-colors group">
+                        <td className="px-4 py-4">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
+                              {r.student.firstName[0]}{r.student.lastName[0]}
+                            </div>
+                            <div>
+                              <div className="font-bold text-primary">{r.student.firstName} {r.student.lastName}</div>
+                              <div className="text-xs text-outline">#{r.student.admissionNo}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td className="px-4 py-4 text-body-md">{r.structure.feeType}</td>
+                        <td className="px-4 py-4">{statusBadge(r.status)}</td>
+                        <td className="px-4 py-4 text-right font-bold text-primary">₹{r.amountPaid.toLocaleString("en-IN")}</td>
+                        <td className="px-4 py-4 text-right font-bold text-error-red">₹{(r.amountDue ?? 0).toLocaleString("en-IN")}</td>
+                        <td className="px-4 py-4 text-center">
+                          {r.status === "PAID" && r.receiptNo ? (
+                            <button className="material-symbols-outlined text-primary hover:scale-110 transition-transform">receipt_long</button>
+                          ) : (
+                            <button className="material-symbols-outlined text-outline cursor-not-allowed" disabled>block</button>
+                          )}
+                        </td>
+                        <td className="px-4 py-4 text-center">
+                          {r.status !== "PAID" && (
+                            <button onClick={() => handleMarkPaid(r.id)} disabled={isPending} className="px-3 py-1 bg-primary text-white text-xs rounded-lg hover:bg-primary-container transition-all">
+                              Pay
+                            </button>
+                          )}
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </>
-      )}
+        )}
 
-      {tab === "structures" && (
-        <div className="bg-white border border-t-0 border-outline-variant rounded-b-xl overflow-x-auto shadow-sm">
-          <table className="w-full text-left border-collapse">
-            <thead>
-              <tr className="bg-[#f6f3f2] border-b border-outline-variant">
-                {["Name", "Class", "Fee Type", "Amount", "Frequency", "Actions"].map((h) => (
-                  <th key={h} className="px-6 py-4 text-xs font-bold text-outline uppercase tracking-wider">{h}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-outline-variant/40">
-              {structures.length === 0 ? (
-                <tr>
-                  <td colSpan={6} className="px-6 py-16 text-center text-sm text-on-surface-variant">
-                    No fee structures configured yet.
-                  </td>
-                </tr>
-              ) : (
-                structures.map((s) => (
-                  <tr key={s.id} className="hover:bg-[#f6f3f2] transition-colors">
-                    <td className="px-6 py-4 text-sm font-semibold text-on-surface">{s.name ?? s.feeType}</td>
-                    <td className="px-6 py-4 text-sm text-on-surface-variant">{s.class.name}</td>
-                    <td className="px-6 py-4 text-sm text-on-surface-variant">{s.feeType}</td>
-                    <td className="px-6 py-4 text-sm font-bold text-primary">₹{s.amount.toLocaleString("en-IN")}</td>
-                    <td className="px-6 py-4 text-sm text-on-surface-variant capitalize">{s.frequency.toLowerCase()}</td>
-                    <td className="px-6 py-4">
-                      <button className="p-2 text-on-surface-variant hover:text-primary hover:bg-primary-fixed/20 rounded-lg transition-all">
-                        <span className="material-symbols-outlined text-xl">edit</span>
-                      </button>
-                    </td>
+        {tab === "structures" && (
+          <div className="p-6">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-sidebar-bg border-b border-outline-variant">
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase">Structure Name</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase">Class</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase">Fee Type</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-right">Amount</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-center">Frequency</th>
+                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-center">Action</th>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
-      )}
+                </thead>
+                <tbody className="divide-y divide-outline-variant">
+                  {structures.length === 0 ? (
+                    <tr>
+                      <td colSpan={6} className="px-4 py-16 text-center text-on-surface-variant">No fee structures.</td>
+                    </tr>
+                  ) : (
+                    structures.map((s) => (
+                      <tr key={s.id} className="hover:bg-surface-container-low transition-colors group">
+                        <td className="px-4 py-4 font-bold text-primary">{s.name ?? s.feeType}</td>
+                        <td className="px-4 py-4 text-body-md">{s.class.name}</td>
+                        <td className="px-4 py-4 text-body-md">{s.feeType}</td>
+                        <td className="px-4 py-4 text-right font-bold text-primary">₹{s.amount.toLocaleString("en-IN")}</td>
+                        <td className="px-4 py-4 text-center text-body-md capitalize">{s.frequency.toLowerCase()}</td>
+                        <td className="px-4 py-4 text-center">
+                          <button className="material-symbols-outlined text-outline group-hover:text-primary transition-colors">edit</button>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
