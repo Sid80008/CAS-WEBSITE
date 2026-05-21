@@ -5,7 +5,7 @@ import type { Student } from "@prisma/client";
 
 interface Props {
   students: Student[];
-  stats: { total: number; active: number; tcIssued: number };
+  stats: { total: number; active: number; tcIssued: number; feePaidPercentage: number; attendanceAlerts: number };
 }
 
 function initials(s: Student) {
@@ -99,20 +99,20 @@ export default function StudentsClient({ students, stats }: Props) {
             <div className="p-2 bg-secondary-fixed/50 rounded-lg text-secondary">
               <span className="material-symbols-outlined">payments</span>
             </div>
-            <span className="text-label-md text-error">15 Pending</span>
+            <span className="text-label-md text-error">{stats.tcIssued} Pending / Left</span>
           </div>
-          <p className="text-label-md font-bold text-outline uppercase tracking-wider">Fee Paid (Q3)</p>
-          <p className="text-headline-md font-bold text-on-surface">92%</p>
+          <p className="text-label-md font-bold text-outline uppercase tracking-wider">Fee Paid (Overall)</p>
+          <p className="text-headline-md font-bold text-on-surface">{stats.feePaidPercentage}%</p>
         </div>
         <div className="bg-surface-container-lowest border border-outline-variant p-5 rounded-xl shadow-sm">
           <div className="flex justify-between items-start mb-2">
             <div className="p-2 bg-error-container rounded-lg text-error-red">
               <span className="material-symbols-outlined">warning</span>
             </div>
-            <span className="text-label-md text-error-red">Critical</span>
+            <span className="text-label-md text-error-red">{stats.attendanceAlerts > 0 ? "Critical" : "Normal"}</span>
           </div>
           <p className="text-label-md font-bold text-outline uppercase tracking-wider">Attendance Alerts</p>
-          <p className="text-headline-md font-bold text-on-surface">8 Students</p>
+          <p className="text-headline-md font-bold text-on-surface">{stats.attendanceAlerts} Students</p>
         </div>
       </div>
 

@@ -27,7 +27,7 @@ type FeeStructure = {
 interface Props {
   records: FeeRecord[];
   structures: FeeStructure[];
-  stats: { totalDue: number; totalPaid: number; pending: number; overdue: number };
+  stats: { totalPaidMTD: number; totalDuePending: number; totalOverdue: number; totalDueAll: number; totalPaidAll: number; pendingCount: number; overdueCount: number; };
 }
 
 type Tab = "records" | "structures";
@@ -61,7 +61,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
     });
   }
 
-  const collectionRate = stats.totalDue > 0 ? (stats.totalPaid / stats.totalDue) * 100 : 0;
+  const collectionRate = stats.totalDueAll > 0 ? (stats.totalPaidAll / stats.totalDueAll) * 100 : 0;
 
   return (
     <div className="max-w-[1440px] mx-auto font-body-md">
@@ -87,27 +87,27 @@ export default function FeesClient({ records, structures, stats }: Props) {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
         <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-label-md uppercase tracking-wider text-outline">Total Collected</span>
+            <span className="text-label-md uppercase tracking-wider text-outline">Total Revenue (MTD)</span>
             <span className="material-symbols-outlined text-teal-accent">trending_up</span>
           </div>
-          <div className="font-headline-md text-primary">₹{stats.totalPaid.toLocaleString("en-IN")}</div>
-          <div className="text-xs text-on-tertiary-container mt-1 font-medium">All time collection</div>
+          <div className="font-headline-md text-primary">₹{stats.totalPaidMTD.toLocaleString("en-IN")}</div>
+          <div className="text-xs text-on-tertiary-container mt-1 font-medium">This month collection</div>
         </div>
         <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <span className="text-label-md uppercase tracking-wider text-outline">Pending Dues</span>
             <span className="material-symbols-outlined text-secondary">pending_actions</span>
           </div>
-          <div className="font-headline-md text-primary">₹{stats.totalDue.toLocaleString("en-IN")}</div>
-          <div className="text-xs text-secondary mt-1 font-medium">{stats.pending} records pending</div>
+          <div className="font-headline-md text-primary">₹{stats.totalDuePending.toLocaleString("en-IN")}</div>
+          <div className="text-xs text-secondary mt-1 font-medium">{stats.pendingCount} records pending</div>
         </div>
         <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <span className="text-label-md uppercase tracking-wider text-outline">Overdue Accounts</span>
             <span className="material-symbols-outlined text-error-red">warning</span>
           </div>
-          <div className="font-headline-md text-primary">₹{stats.overdue > 0 ? "..." : "0"}</div>
-          <div className="text-xs text-error-red mt-1 font-medium">Action required: {stats.overdue} records</div>
+          <div className="font-headline-md text-primary">₹{stats.totalOverdue > 0 ? stats.totalOverdue.toLocaleString("en-IN") : "0"}</div>
+          <div className="text-xs text-error-red mt-1 font-medium">Action required: {stats.overdueCount} records</div>
         </div>
         <div className="bg-primary-container text-white p-5 rounded-xl shadow-sm border border-outline-variant">
           <div className="flex items-center justify-between mb-2">
