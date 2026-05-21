@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { signIn, getSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -45,8 +45,24 @@ export default function PortalLoginPage() {
         return
       }
 
-      // Hard redirect to the selector page so middleware can route them
-      window.location.href = '/portal'
+      // Fetch the session to get roles, then redirect to the correct dashboard
+      const session = await getSession()
+      const roles: string[] = (session?.user as any)?.roles || []
+
+      if (roles.includes('STUDENT')) {
+        window.location.href = '/portal/student/dashboard'
+      } else if (roles.includes('PARENT')) {
+        window.location.href = '/portal/parent/dashboard'
+      } else if (roles.includes('ADMIN')) {
+        window.location.href = '/admin'
+      } else if (roles.includes('TEACHER')) {
+        window.location.href = '/teacher'
+      } else if (roles.includes('OFFICE')) {
+        window.location.href = '/office'
+      } else {
+        // Fallback — let middleware decide
+        window.location.href = '/'
+      }
     } catch {
       setErrorMsg('Something went wrong. Please try again or contact the school office.')
     } finally {
