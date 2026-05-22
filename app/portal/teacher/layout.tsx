@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ReactNode } from "react";
 import { LogoutButton } from "@/components/LogoutButton";
+import ProfileDropdown from "@/components/portal/ProfileDropdown";
 
 export default function TeacherPortalLayout({ children }: { children: ReactNode }) {
   return (
@@ -79,7 +80,7 @@ export default function TeacherPortalLayout({ children }: { children: ReactNode 
             <div className="flex items-center gap-4">
               <button className="material-symbols-outlined text-[#00386b] cursor-pointer active:scale-95 transition-transform">notifications</button>
               <button className="material-symbols-outlined text-[#00386b] cursor-pointer active:scale-95 transition-transform">help</button>
-              <button className="material-symbols-outlined text-[#00386b] cursor-pointer active:scale-95 transition-transform">account_circle</button>
+              <ProfileDropdown align="right" />
             </div>
           </div>
         </header>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
+import ProfileDropdown from "@/components/portal/ProfileDropdown";
 
 const navItems = [
   { href: "/admin",            icon: "dashboard",       label: "Dashboard" },
@@ -53,8 +54,8 @@ export default function AdminSidebar() {
           <button className="p-2 rounded-full hover:bg-[#eae7e7] transition-all">
             <span className="material-symbols-outlined text-on-surface-variant">help</span>
           </button>
-          <div className="h-8 w-8 rounded-full bg-primary-container flex items-center justify-center ml-2">
-            <span className="text-white text-xs font-bold">AD</span>
+          <div className="ml-2">
+            <ProfileDropdown align="right" />
           </div>
         </div>
       </header>

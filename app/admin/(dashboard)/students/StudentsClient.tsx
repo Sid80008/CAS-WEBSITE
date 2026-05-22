@@ -2,11 +2,19 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import type { Student } from "@prisma/client";
+import type { Student, Enrollment, Section, Class } from "@prisma/client";
 import { bulkUploadStudents } from "@/app/actions/bulkActions";
 
+type StudentWithEnrollments = Student & {
+  enrollments: (Enrollment & {
+    section: Section & {
+      class: Class;
+    };
+  })[];
+};
+
 interface Props {
-  students: Student[];
+  students: StudentWithEnrollments[];
   stats: { total: number; active: number; tcIssued: number; feePaidPercentage: number; attendanceAlerts: number };
   filteredCount: number;
   currentPage: number;
@@ -232,7 +240,11 @@ export default function StudentsClient({ students, stats, filteredCount, current
                       <span className="text-body-md font-semibold text-on-surface">{s.firstName} {s.lastName}</span>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-body-md text-on-surface-variant">—</td>
+                  <td className="px-6 py-4 text-body-md text-on-surface-variant">
+                    {s.enrollments && s.enrollments.length > 0
+                      ? `${s.enrollments[0].section.class.name} - ${s.enrollments[0].section.name}`
+                      : "—"}
+                  </td>
                   <td className="px-6 py-4 text-body-md text-on-surface-variant">{s.parentName ?? "—"}</td>
                   <td className="px-6 py-4 text-body-md text-on-surface-variant">{s.parentPhone ?? "—"}</td>
                   <td className="px-6 py-4">{statusBadge(s.status)}</td>

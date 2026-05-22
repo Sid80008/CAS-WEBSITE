@@ -7,30 +7,41 @@ export const dynamic = 'force-dynamic';
 
 export default async function NewStudentPage() {
   // Fetch dropdown data directly from the DB
-  const classes = await prisma.class.findMany({
-    orderBy: [{ name: 'asc' }, { section: 'asc' }]
+  const sections = await prisma.section.findMany({
+    include: { class: true }
   });
 
-  const sessions = await prisma.academicSession.findMany({
+  // Sort sections by Class Name, then Section Name
+  const sortedSections = sections.sort((a, b) => {
+    const classCompare = a.class.name.localeCompare(b.class.name);
+    if (classCompare !== 0) return classCompare;
+    return a.name.localeCompare(b.name);
+  });
+
+  const years = await prisma.academicYear.findMany({
     orderBy: { startDate: 'desc' }
   });
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-8 rounded shadow">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Add New Student</h1>
+        <h1 className="text-2xl font-bold text-gray-800">Add New Student</h1>
         <Link href="/admin/students" className="text-gray-500 hover:text-gray-700">Cancel</Link>
       </div>
 
       <form action={createStudent} className="space-y-4 text-black">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-3 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Admission No</label>
             <input type="text" name="admissionNo" required className="mt-1 block w-full border border-gray-300 rounded p-2" />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Full Name</label>
-            <input type="text" name="name" required className="mt-1 block w-full border border-gray-300 rounded p-2" />
+            <label className="block text-sm font-medium text-gray-700">First Name</label>
+            <input type="text" name="firstName" required className="mt-1 block w-full border border-gray-300 rounded p-2" />
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Last Name</label>
+            <input type="text" name="lastName" required className="mt-1 block w-full border border-gray-300 rounded p-2" />
           </div>
         </div>
 
@@ -63,19 +74,19 @@ export default async function NewStudentPage() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700">Class & Section</label>
-            <select name="classId" required className="mt-1 block w-full border border-gray-300 rounded p-2">
-              <option value="">Select Class...</option>
-              {classes.map((cls) => (
-                <option key={cls.id} value={cls.id}>{cls.name} - {cls.section}</option>
+            <select name="sectionId" required className="mt-1 block w-full border border-gray-300 rounded p-2">
+              <option value="">Select Class & Section...</option>
+              {sortedSections.map((sec) => (
+                <option key={sec.id} value={sec.id}>{sec.class.name} - {sec.name}</option>
               ))}
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700">Academic Session</label>
-            <select name="sessionId" required className="mt-1 block w-full border border-gray-300 rounded p-2">
-              <option value="">Select Session...</option>
-              {sessions.map((session) => (
-                <option key={session.id} value={session.id}>{session.name}</option>
+            <label className="block text-sm font-medium text-gray-700">Academic Year</label>
+            <select name="yearId" required className="mt-1 block w-full border border-gray-300 rounded p-2">
+              <option value="">Select Academic Year...</option>
+              {years.map((year) => (
+                <option key={year.id} value={year.id}>{year.name}</option>
               ))}
             </select>
           </div>

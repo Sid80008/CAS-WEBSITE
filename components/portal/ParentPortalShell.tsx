@@ -3,23 +3,42 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import StudentSidebar from "@/components/portal/StudentSidebar";
+import { usePathname } from "next/navigation";
 import ProfileDropdown from "@/components/portal/ProfileDropdown";
 
-interface StudentPortalShellProps {
-  student: {
-    firstName: string;
-    lastName: string;
-    photo?: string | null;
+interface ParentPortalShellProps {
+  parent: {
+    name: string;
+    phone: string;
+    students: {
+      student: {
+        firstName: string;
+        lastName: string;
+      };
+    }[];
   };
-  gradeLabel: string;
   children: React.ReactNode;
 }
 
-export default function StudentPortalShell({ student, gradeLabel, children }: StudentPortalShellProps) {
+const navItems = [
+  { href: "/portal/parent/dashboard", icon: "dashboard", label: "Dashboard" },
+  { href: "/portal/parent/performance", icon: "insights", label: "Performance" },
+  { href: "/portal/parent/fees", icon: "account_balance_wallet", label: "Fee Payments" },
+  { href: "/portal/parent/connect", icon: "chat", label: "Teacher Connect" },
+];
+
+export default function ParentPortalShell({ parent, children }: ParentPortalShellProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
+
+  function isActive(href: string) {
+    if (href === "/portal/parent/dashboard") return pathname === "/portal/parent/dashboard";
+    return pathname.startsWith(href);
+  }
+
+  const childName = parent.students[0]?.student 
+    ? `${parent.students[0].student.firstName} ${parent.students[0].student.lastName}`
+    : "Student";
 
   return (
     <div className="bg-[#fcf9f8] text-[#1c1b1b] font-body min-h-screen">
@@ -55,10 +74,31 @@ export default function StudentPortalShell({ student, gradeLabel, children }: St
           </button>
         </div>
         
-        {/* We can listen to link clicks in sidebar on mobile to close the sidebar */}
-        <div onClick={() => setSidebarOpen(false)}>
-          <StudentSidebar />
-        </div>
+        <nav className="flex-grow space-y-1">
+          {navItems.map((item) => {
+            const active = isActive(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setSidebarOpen(false)}
+                className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-medium ${
+                  active
+                    ? "bg-[#00386b]/10 text-[#00386b] font-bold border-l-4 border-[#00386b] rounded-l-none"
+                    : "text-[#424750] hover:bg-[#e5e2e1]/50"
+                }`}
+              >
+                <span
+                  className="material-symbols-outlined text-[22px]"
+                  style={active ? { fontVariationSettings: "'FILL' 1" } : {}}
+                >
+                  {item.icon}
+                </span>
+                <span>{item.label}</span>
+              </Link>
+            );
+          })}
+        </nav>
 
         <div className="mt-auto border-t border-[#E2E0DB] pt-4">
           <Link
@@ -82,7 +122,7 @@ export default function StudentPortalShell({ student, gradeLabel, children }: St
             >
               <span className="material-symbols-outlined">menu</span>
             </button>
-            <h2 className="font-h4 text-base md:text-lg text-[#00386b] font-bold">Student Portal</h2>
+            <h2 className="font-h4 text-base md:text-lg text-[#00386b] font-bold">Parent Portal</h2>
           </div>
           
           <div className="flex items-center gap-4 md:gap-6">
@@ -105,9 +145,9 @@ export default function StudentPortalShell({ student, gradeLabel, children }: St
               <div className="flex items-center gap-2 md:gap-3 pl-2 md:pl-4 border-l border-[#E2E0DB]">
                 <div className="text-right hidden sm:block">
                   <p className="font-label text-sm font-bold text-[#1c1b1b] leading-tight">
-                    {student.firstName} {student.lastName}
+                    {parent.name}
                   </p>
-                  <p className="font-caption text-xs text-[#424750]">{gradeLabel}</p>
+                  <p className="font-caption text-xs text-[#424750]">Parent of {childName}</p>
                 </div>
                 <ProfileDropdown align="right" />
               </div>

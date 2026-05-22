@@ -7,25 +7,36 @@ import { revalidatePath } from 'next/cache';
 
 export async function createStudent(formData: FormData) {
   const admissionNo = formData.get('admissionNo') as string;
-  const name = formData.get('name') as string;
+  const firstName = formData.get('firstName') as string;
+  const lastName = formData.get('lastName') as string;
   const dob = formData.get('dob') as string;
   const gender = formData.get('gender') as string;
   const parentName = formData.get('parentName') as string;
   const parentPhone = formData.get('parentPhone') as string;
-  const classId = formData.get('classId') as string;
-  const sessionId = formData.get('sessionId') as string;
+  const sectionId = formData.get('sectionId') as string;
+  const yearId = formData.get('yearId') as string;
 
-  await prisma.student.create({
-    data: {
-      admissionNo,
-      name,
-      dob: new Date(dob),
-      gender,
-      parentName,
-      parentPhone,
-      classId,
-      sessionId,
-    },
+  // Use a transaction to create the Student and their Enrollment
+  await prisma.$transaction(async (tx) => {
+    const student = await tx.student.create({
+      data: {
+        admissionNo,
+        firstName,
+        lastName,
+        dob: new Date(dob),
+        gender,
+        parentName,
+        parentPhone,
+      },
+    });
+
+    await tx.enrollment.create({
+      data: {
+        studentId: student.id,
+        sectionId,
+        yearId,
+      },
+    });
   });
 
   revalidatePath('/admin/students');

@@ -52,6 +52,17 @@ export default async function StudentsPage({
   ] = await Promise.all([
     prisma.student.findMany({
       where: whereCondition,
+      include: {
+        enrollments: {
+          include: {
+            section: {
+              include: {
+                class: true,
+              },
+            },
+          },
+        },
+      },
       skip,
       take: pageSize,
       orderBy: { admissionNo: "asc" },

@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import PublicLayout from "@/components/layout/PublicLayout";
 
 export const metadata: Metadata = {
   title: "Our Leadership | Central Academy Senior Secondary School, antah",
@@ -10,7 +11,8 @@ export const metadata: Metadata = {
 
 export default function LeadershipPage() {
   return (
-    <main className="min-h-screen bg-[#fcf9f8] text-[#1c1b1b] font-body pt-24 pb-16">
+    <PublicLayout>
+      <div className="min-h-screen bg-[#fcf9f8] text-[#1c1b1b] font-body pt-24 pb-16">
       <div className="max-w-[1280px] mx-auto px-6 md:px-16">
         
         {/* Hero Section */}
@@ -288,6 +290,7 @@ export default function LeadershipPage() {
         </section>
 
       </div>
-    </main>
+      </div>
+    </PublicLayout>
   );
 }
