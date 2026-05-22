@@ -1,5 +1,4 @@
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { createHomework } from "@/app/actions/homeworkActions";
 import Link from "next/link";
@@ -7,7 +6,7 @@ import Link from "next/link";
 export const dynamic = 'force-dynamic';
 
 export default async function TeacherAcademicsPage() {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const teacherId = (session?.user as any)?.id;
 
   if (!teacherId) {

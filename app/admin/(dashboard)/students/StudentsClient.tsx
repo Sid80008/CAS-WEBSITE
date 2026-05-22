@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import type { Student } from "@prisma/client";
-import { bulkUploadStudents } from "../../actions/bulkActions";
+import { bulkUploadStudents } from "@/app/actions/bulkActions";
 
 interface Props {
   students: Student[];

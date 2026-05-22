@@ -2,11 +2,10 @@
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
-import { getServerSession } from "next-auth/next";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { auth } from "@/auth";
 
 export async function createHomework(formData: FormData) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   const teacherId = (session?.user as any)?.id;
   
   if (!teacherId) throw new Error("Unauthorized");

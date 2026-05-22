@@ -153,8 +153,7 @@ body {
     body {
         cursor: none;
     }
-    a, button, input, select, textarea, [role=\
-button\], .cursor-pointer {
+    a, button, input, select, textarea, [role="button"], .cursor-pointer {
         cursor: none;
     }
 
