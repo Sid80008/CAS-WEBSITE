@@ -210,7 +210,7 @@ export function Navbar() {
             </Link>
           ))}
 
-          <Link href="/login" onClick={() => setMobileOpen(false)} className="mt-2">
+          <Link href="/portal/login" onClick={() => setMobileOpen(false)} className="mt-2">
             <Button className="w-full bg-school-blue text-white hover:bg-school-blue-dark flex items-center gap-2 justify-center">
               <LogIn className="h-4 w-4" />
               Staff / Admin Portal

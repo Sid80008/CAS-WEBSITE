@@ -41,7 +41,7 @@ export function Footer() {
           <div>
             <h5 className="text-school-amber font-bold mb-6 uppercase tracking-wider text-sm">Portals</h5>
             <ul className="flex flex-col gap-3 text-sm text-slate-400">
-              <li><Link href="/login" className="hover:text-white transition-colors">Staff Login</Link></li>
+              <li><Link href="/admin/login" className="hover:text-white transition-colors">Staff Login</Link></li>
               <li><Link href="/portal" className="hover:text-white transition-colors">Student Portal</Link></li>
               <li><Link href="/portal" className="hover:text-white transition-colors">Parent Portal</Link></li>
               <li><Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link></li>

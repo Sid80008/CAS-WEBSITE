@@ -1,9 +1,11 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getToken } from 'next-auth/jwt';
+import NextAuth from 'next-auth';
+import authConfig from './auth.config';
 
-export default async function middleware(req: NextRequest) {
-  const token = await getToken({ req, secret: process.env.AUTH_SECRET });
-  const isLoggedIn = !!token;
+const { auth } = NextAuth(authConfig);
+
+export default auth((req) => {
+  const isLoggedIn = !!req.auth;
+  const roles = (req.auth?.user as any)?.roles as string[] ?? [];
   const { pathname } = req.nextUrl;
 
   // ── 1. Login / auth pages ─────────────────────────────────────────────────
@@ -14,13 +16,12 @@ export default async function middleware(req: NextRequest) {
 
   if (isAuthRoute) {
     if (isLoggedIn) {
-      const roles = (token?.roles as string[]) ?? [];
-      if (roles.includes('ADMIN'))   return NextResponse.redirect(new URL('/admin', req.nextUrl));
-      if (roles.includes('TEACHER')) return NextResponse.redirect(new URL('/portal/teacher', req.nextUrl));
-      if (roles.includes('OFFICE'))  return NextResponse.redirect(new URL('/portal/office', req.nextUrl));
-      if (roles.includes('STUDENT')) return NextResponse.redirect(new URL('/portal/student/dashboard', req.nextUrl));
-      if (roles.includes('PARENT'))  return NextResponse.redirect(new URL('/portal/parent/dashboard', req.nextUrl));
-      return NextResponse.redirect(new URL('/', req.nextUrl));
+      if (roles.includes('ADMIN'))   return Response.redirect(new URL('/admin', req.nextUrl));
+      if (roles.includes('TEACHER')) return Response.redirect(new URL('/portal/teacher', req.nextUrl));
+      if (roles.includes('OFFICE'))  return Response.redirect(new URL('/portal/office', req.nextUrl));
+      if (roles.includes('STUDENT')) return Response.redirect(new URL('/portal/student/dashboard', req.nextUrl));
+      if (roles.includes('PARENT'))  return Response.redirect(new URL('/portal/parent/dashboard', req.nextUrl));
+      return Response.redirect(new URL('/', req.nextUrl));
     }
     return;
   }
@@ -38,32 +39,30 @@ export default async function middleware(req: NextRequest) {
       const loginUrl = pathname.startsWith('/admin')
         ? '/admin/login'
         : '/portal/login';
-      return NextResponse.redirect(new URL(loginUrl, req.nextUrl));
+      return Response.redirect(new URL(loginUrl, req.nextUrl));
     }
 
-    const roles = (token?.roles as string[]) ?? [];
-    
     // Strict RBAC Verification
     if (pathname.startsWith('/admin') && !roles.includes('ADMIN')) {
-      return NextResponse.redirect(new URL('/', req.nextUrl));
+      return Response.redirect(new URL('/', req.nextUrl));
     }
     if (pathname.startsWith('/portal/teacher') && !roles.includes('TEACHER')) {
-      return NextResponse.redirect(new URL('/portal/login', req.nextUrl));
+      return Response.redirect(new URL('/portal/login', req.nextUrl));
     }
     if (pathname.startsWith('/portal/office') && !roles.includes('OFFICE')) {
-      return NextResponse.redirect(new URL('/portal/login', req.nextUrl));
+      return Response.redirect(new URL('/portal/login', req.nextUrl));
     }
     if (pathname.startsWith('/portal/student') && !roles.includes('STUDENT')) {
-      return NextResponse.redirect(new URL('/portal/login', req.nextUrl));
+      return Response.redirect(new URL('/portal/login', req.nextUrl));
     }
     if (pathname.startsWith('/portal/parent') && !roles.includes('PARENT')) {
-      return NextResponse.redirect(new URL('/portal/login', req.nextUrl));
+      return Response.redirect(new URL('/portal/login', req.nextUrl));
     }
   }
 
   // ── 3. Everything else (public pages, /portal selector, /) ────────────────
   // Just pass through — no action needed.
-}
+});
 
 export const config = {
   // Run middleware on all pages except Next.js internals, API routes, and static files
