@@ -64,6 +64,15 @@ export default function LeadershipPage() {
                       Today, seeing our students excel in various fields brings immense pride. We remain committed to our core values of integrity, discipline, and academic excellence. Our journey has just begun, and we look forward to shaping the leaders of tomorrow.
                     </p>
                   </div>
+                  <div className="mt-6 flex justify-start">
+                    <Link
+                      href="/about/director?tab=hariprakash"
+                      className="inline-flex items-center gap-2 bg-[#00386b] hover:bg-[#002547] text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm group"
+                    >
+                      Read Full Message
+                      <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </Link>
+                  </div>
                 </div>
                 
                 {/* Key Stats */}
@@ -125,6 +134,15 @@ export default function LeadershipPage() {
                       We focus on holistic development—nurturing the mind, body, and spirit. By integrating modern pedagogy with traditional values, we ensure that our students are well-equipped to navigate the complexities of the 21st century.
                     </p>
                   </div>
+                  <div className="mt-6 flex justify-start">
+                    <Link
+                      href="/about/director?tab=rekhraj"
+                      className="inline-flex items-center gap-2 bg-[#00386b] hover:bg-[#002547] text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm group"
+                    >
+                      Read Full Message
+                      <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </Link>
+                  </div>
                 </div>
                 
                 {/* Key Stats */}
@@ -178,9 +196,18 @@ export default function LeadershipPage() {
                   <h3 className="text-xl md:text-2xl font-bold text-[#00386b] mb-4 font-sans">
                     Cultivating Excellence Daily
                   </h3>
-                  <p className="text-[#43474f] text-base leading-relaxed mb-8">
+                  <p className="text-[#43474f] text-base leading-relaxed mb-6">
                     My philosophy centers on creating a safe, stimulating environment where curiosity thrives. We don't just teach subjects; we mentor students to find their passion and develop the resilience needed for life's journey.
                   </p>
+                  <div className="mb-8 flex justify-start">
+                    <Link
+                      href="/about/principal"
+                      className="inline-flex items-center gap-2 bg-[#00386b] hover:bg-[#002547] text-white px-5 py-2.5 rounded-xl font-bold text-sm transition-all shadow-sm group"
+                    >
+                      Read Full Message
+                      <span className="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </Link>
+                  </div>
                   
                   {/* Pedagogical Approach Boxes */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

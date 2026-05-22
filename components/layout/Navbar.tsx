@@ -21,6 +21,8 @@ import { useScrolled } from "@/hooks/useScrolled";
 const ABOUT_LINKS = [
   { name: "Vision & Mission", href: "/about/vision-mission" },
   { name: "Leadership & Vision", href: "/about/leadership" },
+  { name: "Principal's Message", href: "/about/principal" },
+  { name: "Directors' Message", href: "/about/director" },
 ];
 
 const NAV_LINKS = [
