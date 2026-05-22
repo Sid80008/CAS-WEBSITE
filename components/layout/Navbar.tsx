@@ -52,14 +52,15 @@ export function Navbar() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 1.0, ease: EASE }}
     >
-      <div className="max-w-7xl mx-auto flex justify-between items-center px-8 h-20">
+      <div className="w-full max-w-[1536px] mx-auto flex justify-between items-center px-4 md:px-8 lg:px-6 xl:px-12 h-20">
         {/* Logo */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.92, ease: EASE, delay: 0.1 }}
+          className="shrink-0"
         >
-          <Link href="/" className="flex items-center gap-4 group">
+          <Link href="/" className="flex items-center gap-3 xl:gap-4 group">
             <motion.div
               className="relative h-12 w-12"
               whileHover={{ scale: 1.08, rotate: 3 }}
@@ -74,15 +75,15 @@ export function Navbar() {
               />
             </motion.div>
             <div className="flex flex-col">
-              <span className="text-xl font-extrabold text-school-blue leading-tight">Central Academy antah</span>
-              <span className="text-[10px] font-bold tracking-widest text-school-amber uppercase">Education for Excellence</span>
+              <span className="text-base sm:text-lg md:text-xl font-extrabold text-school-blue leading-tight">Central Academy antah</span>
+              <span className="text-[8px] sm:text-[9px] md:text-[10px] font-bold tracking-widest text-school-amber uppercase">Education for Excellence</span>
             </div>
           </Link>
         </motion.div>
 
         {/* Desktop Navigation */}
         <motion.nav
-          className="hidden lg:flex gap-8 items-center"
+          className="hidden lg:flex gap-4 xl:gap-7 items-center whitespace-nowrap"
           initial="hidden"
           animate="visible"
           variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.108, delayChildren: 0.46 } } }}
@@ -138,7 +139,7 @@ export function Navbar() {
         </motion.nav>
 
         <motion.div
-          className="hidden lg:flex items-center gap-5 border-l border-slate-200 pl-6"
+          className="hidden lg:flex items-center gap-3 xl:gap-5 border-l border-slate-200 pl-4 xl:pl-6 shrink-0"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.92, ease: EASE, delay: 0.1 }}

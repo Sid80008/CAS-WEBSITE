@@ -61,7 +61,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
 
           {/* Heading */}
           <motion.h1
-            className="text-5xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg leading-tight"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg leading-tight"
             initial={{ opacity: 0, y: 32 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.23, ease: EASE, delay: 0.54 }}
@@ -71,7 +71,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
 
           {/* Sub */}
           <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl drop-shadow-md"
+            className="text-base sm:text-lg md:text-xl text-white/90 mb-8 max-w-2xl drop-shadow-md"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.23, ease: EASE, delay: 0.77 }}
@@ -81,14 +81,14 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-wrap gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center w-full sm:w-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.08, ease: EASE, delay: 1.0 }}
           >
-            <Link href="/admissions">
+            <Link href="/admissions" className="w-full sm:w-auto">
               <motion.button
-                className="bg-school-blue text-white px-8 py-4 rounded-lg font-semibold shadow-lg"
+                className="w-full sm:w-auto bg-school-blue text-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold shadow-lg"
                 whileHover={{ scale: 1.04, y: -2, boxShadow: "0 12px 30px rgba(30,58,138,0.35)" }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
@@ -96,9 +96,9 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
                 Apply for Admission
               </motion.button>
             </Link>
-            <Link href="/facilities">
+            <Link href="/facilities" className="w-full sm:w-auto">
               <motion.button
-                className="bg-transparent text-white border-2 border-white px-8 py-4 rounded-lg font-semibold shadow-lg"
+                className="w-full sm:w-auto bg-transparent text-white border-2 border-white px-6 md:px-8 py-3 md:py-4 rounded-lg font-semibold shadow-lg"
                 whileHover={{ scale: 1.04, y: -2, backgroundColor: "white", color: "#1B4F8A" }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
@@ -111,9 +111,9 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
       </section>
 
       {/* ── Quick Stats ──────────────────────────────────────── */}
-      <section className="py-12 px-6 max-w-7xl mx-auto -mt-12 relative z-30">
+      <section className="py-12 px-4 sm:px-6 max-w-7xl mx-auto -mt-12 md:-mt-16 relative z-30">
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6"
           variants={staggerFast}
           initial="hidden"
           whileInView="visible"
@@ -128,14 +128,14 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
               <motion.div
                 key={stat.label}
                 variants={fadeUp}
-                className={`bg-white rounded-xl shadow-lg p-8 border border-slate-100 flex flex-col items-center text-center gap-3 ${
+                className={`bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-8 border border-slate-100 flex flex-col items-center text-center gap-2 sm:gap-3 ${
                   i === 1 ? "border-t-4 border-t-school-amber" : ""
                 }`}
                 whileHover={{ y: -5, boxShadow: "0 16px 40px rgba(0,0,0,0.10)" }}
                 transition={{ duration: 0.25, ease: "easeOut" }}
               >
-                <h3 className="text-3xl font-bold text-school-blue">{displayValue}</h3>
-                <p className="text-sm text-text-secondary leading-tight">{stat.label}</p>
+                <h3 className="text-2xl sm:text-3xl font-bold text-school-blue">{displayValue}</h3>
+                <p className="text-xs sm:text-sm text-text-secondary leading-tight">{stat.label}</p>
               </motion.div>
             );
           })}
