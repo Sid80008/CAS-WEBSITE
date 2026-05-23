@@ -7,14 +7,6 @@ export default {
   trustHost: true,
   callbacks: {
     async signIn({ user }) {
-      if (user) {
-        const roles = (user as any).roles || [];
-        if (roles.includes('ADMIN'))   return '/admin';
-        if (roles.includes('TEACHER')) return '/portal/teacher';
-        if (roles.includes('OFFICE'))  return '/portal/office';
-        if (roles.includes('STUDENT')) return '/portal/student/dashboard';
-        if (roles.includes('PARENT'))  return '/portal/parent/dashboard';
-      }
       return true;
     },
     async jwt({ token, user }) {

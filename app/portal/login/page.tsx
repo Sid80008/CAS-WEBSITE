@@ -48,10 +48,22 @@ function PortalLoginContent() {
         return
       }
 
-      if (result.url) {
-        window.location.href = result.url;
+      // Successful login, fetch session to retrieve roles
+      const session = await getSession()
+      const roles = (session?.user as any)?.roles || []
+
+      if (roles.includes('ADMIN')) {
+        window.location.href = '/admin'
+      } else if (roles.includes('TEACHER')) {
+        window.location.href = '/portal/teacher'
+      } else if (roles.includes('OFFICE')) {
+        window.location.href = '/portal/office'
+      } else if (roles.includes('STUDENT')) {
+        window.location.href = '/portal/student/dashboard'
+      } else if (roles.includes('PARENT')) {
+        window.location.href = '/portal/parent/dashboard'
       } else {
-        window.location.href = '/';
+        window.location.href = result.url || '/'
       }
     } catch {
       setErrorMsg('Something went wrong. Please try again or contact the school office.')

@@ -1,7 +1,7 @@
 "use client";
 // app/admin/login/page.tsx
 import { useState } from "react";
-import { signIn } from "next-auth/react";
+import { signIn, getSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 
@@ -32,8 +32,22 @@ export default function AdminLoginPage() {
       setError("Invalid credentials. Please check your email and password.");
     } else {
       setSuccess(true);
-      setTimeout(() => {
-        window.location.href = result?.url || "/admin";
+      setTimeout(async () => {
+        const session = await getSession();
+        const roles = (session?.user as any)?.roles || [];
+        if (roles.includes("ADMIN")) {
+          window.location.href = "/admin";
+        } else if (roles.includes("TEACHER")) {
+          window.location.href = "/portal/teacher";
+        } else if (roles.includes("OFFICE")) {
+          window.location.href = "/portal/office";
+        } else if (roles.includes("STUDENT")) {
+          window.location.href = "/portal/student/dashboard";
+        } else if (roles.includes("PARENT")) {
+          window.location.href = "/portal/parent/dashboard";
+        } else {
+          window.location.href = result?.url || "/";
+        }
       }, 600);
     }
   }
