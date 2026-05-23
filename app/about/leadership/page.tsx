@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import PublicLayout from "@/components/layout/PublicLayout";
 
 export const metadata: Metadata = {
-  title: "Our Leadership | Central Academy Senior Secondary School, antah",
+  title: "Our Leadership",
   description: "Guided by a legacy of academic excellence and a future-focused vision, our leaders steer Central Academy Anta toward nurturing global citizens.",
 };
 

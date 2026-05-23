@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ReactNode } from "react";
+import NotificationBell from "@/components/portal/NotificationBell";
 
 export default function OfficePortalLayout({ children }: { children: ReactNode }) {
   return (
@@ -65,9 +66,7 @@ export default function OfficePortalLayout({ children }: { children: ReactNode }
               <span className="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-[#424750]">search</span>
             </div>
             <div className="flex items-center gap-2">
-              <button className="p-2 rounded-full hover:bg-[#eae7e7] transition-colors cursor-pointer active:scale-95">
-                <span className="material-symbols-outlined text-[#00386b]">notifications</span>
-              </button>
+              <NotificationBell />
               <button className="p-2 rounded-full hover:bg-[#eae7e7] transition-colors cursor-pointer active:scale-95">
                 <span className="material-symbols-outlined text-[#00386b]">help</span>
               </button>

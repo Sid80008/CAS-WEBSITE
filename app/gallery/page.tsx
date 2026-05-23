@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import PublicLayout from "@/components/layout/PublicLayout";
 import prisma from "@/lib/prisma";
 import { Button } from "@/components/ui/button";

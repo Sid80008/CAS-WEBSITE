@@ -6,6 +6,7 @@ import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import StudentSidebar from "@/components/portal/StudentSidebar";
 import ProfileDropdown from "@/components/portal/ProfileDropdown";
+import NotificationBell from "@/components/portal/NotificationBell";
 
 interface StudentPortalShellProps {
   student: {
@@ -97,10 +98,7 @@ export default function StudentPortalShell({ student, gradeLabel, children }: St
             </div>
             
             <div className="flex items-center gap-2 md:gap-4">
-              <button className="relative p-2 text-[#424750] hover:text-[#00386b] transition-all flex items-center justify-center" aria-label="View notifications">
-                <span className="material-symbols-outlined">notifications</span>
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#ba1a1a] rounded-full border-2 border-[#fcf9f8]"></span>
-              </button>
+              <NotificationBell />
               
               <div className="flex items-center gap-2 md:gap-3 pl-2 md:pl-4 border-l border-[#E2E0DB]">
                 <div className="text-right hidden sm:block">

@@ -110,7 +110,7 @@ export function GalleryGrid({ albums }: GalleryGridProps) {
                       {album.titleEn}
                     </h3>
                     <p className="text-sm text-text-tertiary font-medium flex items-center gap-2">
-                      <MapPin className="h-4 w-4" /> Main Campus, CAS antah
+                      <MapPin className="h-4 w-4" /> Main Campus, CAS Anta
                     </p>
                   </div>
                 </div>

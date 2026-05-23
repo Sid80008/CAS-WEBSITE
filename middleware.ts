@@ -14,6 +14,18 @@ export default auth((req) => {
     pathname === '/admin/login' ||
     pathname === '/portal/login';
 
+  if (pathname === '/login') {
+    if (isLoggedIn) {
+      if (roles.includes('ADMIN'))   return Response.redirect(new URL('/admin', req.nextUrl));
+      if (roles.includes('TEACHER')) return Response.redirect(new URL('/portal/teacher', req.nextUrl));
+      if (roles.includes('OFFICE'))  return Response.redirect(new URL('/portal/office', req.nextUrl));
+      if (roles.includes('STUDENT')) return Response.redirect(new URL('/portal/student/dashboard', req.nextUrl));
+      if (roles.includes('PARENT'))  return Response.redirect(new URL('/portal/parent/dashboard', req.nextUrl));
+      return Response.redirect(new URL('/', req.nextUrl));
+    }
+    return Response.redirect(new URL('/portal', req.nextUrl));
+  }
+
   if (isAuthRoute) {
     if (isLoggedIn) {
       if (roles.includes('ADMIN'))   return Response.redirect(new URL('/admin', req.nextUrl));

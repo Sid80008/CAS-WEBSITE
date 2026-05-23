@@ -12,6 +12,11 @@ export default {
 	theme: {
 		extend: {
 			colors: {
+				/* ── Portal styling tokens ── */
+				'portal-dark': '#002246',      // the dark bg
+				'portal-dark-text': '#e2e8f0', // light text FOR dark bg
+				'portal-card': '#001a3e',
+
 				/* ── MD3 / Stitch design tokens ── */
 				"background": "#fcf9f8",
 				"on-surface-variant": "#43474f",

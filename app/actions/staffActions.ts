@@ -42,3 +42,57 @@ export async function createStaff(formData: FormData) {
 
   revalidatePath('/admin/staff');
 }
+
+export async function updateStaff(id: string, formData: FormData) {
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+  const phone = formData.get('phone') as string;
+  const role = formData.get('role') as any;
+  const empCode = formData.get('empCode') as string;
+  const designation = formData.get('designation') as string;
+  const dateOfJoiningStr = formData.get('dateOfJoining') as string;
+  const dateOfJoining = dateOfJoiningStr ? new Date(dateOfJoiningStr) : null;
+  const isPublic = formData.get('isPublic') === 'true';
+
+  await prisma.$transaction(async (tx) => {
+    const staff = await tx.staff.update({
+      where: { id },
+      data: {
+        name,
+        empCode,
+        designation,
+        dateOfJoining,
+        isPublic,
+      },
+    });
+
+    await tx.user.update({
+      where: { id: staff.userId },
+      data: {
+        email: email || null,
+        phone: phone || null,
+        role: role || undefined,
+      },
+    });
+  });
+
+  revalidatePath('/admin/staff');
+}
+
+export async function deleteStaff(id: string) {
+  await prisma.$transaction(async (tx) => {
+    const staff = await tx.staff.findUnique({ where: { id } });
+    if (staff) {
+      // Clean relations
+      await tx.staffSubject.deleteMany({ where: { staffId: id } });
+      await tx.homework.deleteMany({ where: { postedById: id } });
+      await tx.leaveRequest.deleteMany({ where: { staffId: id } });
+      // Delete staff
+      await tx.staff.delete({ where: { id } });
+      // Delete user
+      await tx.user.delete({ where: { id: staff.userId } });
+    }
+  });
+
+  revalidatePath('/admin/staff');
+}

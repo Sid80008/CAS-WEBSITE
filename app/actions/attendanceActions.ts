@@ -4,22 +4,35 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { AttendanceStatus } from '@prisma/client';
+import { auth } from "@/auth";
 
 export async function saveBulkAttendance(formData: FormData) {
   const classId = formData.get('classId') as string;
   const dateStr = formData.get('date') as string;
   const date = new Date(dateStr);
 
-  // DEV WORKAROUND: Grab a mock staff member to act as the one marking attendance
-  let staff = await prisma.staff.findFirst();
-  if (!staff) {
-    // Create a mock office staff if none exists – minimal data for the foreign key
-    const user = await prisma.user.create({
-      data: { email: 'office@cas.com', passwordHash: 'mock', role: 'OFFICE' },
-    });
-    staff = await prisma.staff.create({
-      data: { empCode: 'EMP001', name: 'Office Admin', designation: 'Clerk', userId: user.id },
-    });
+  const session = await auth();
+  const userId = (session?.user as any)?.id;
+  let staffId: string | null = null;
+
+  if (userId) {
+    const staff = await prisma.staff.findUnique({ where: { userId } });
+    if (staff) {
+      staffId = staff.id;
+    }
+  }
+
+  if (!staffId) {
+    let staff = await prisma.staff.findFirst();
+    if (!staff) {
+      const user = await prisma.user.create({
+        data: { email: 'office@cas.com', passwordHash: 'mock', role: 'OFFICE' },
+      });
+      staff = await prisma.staff.create({
+        data: { empCode: 'EMP001', name: 'Office Admin', designation: 'Clerk', userId: user.id },
+      });
+    }
+    staffId = staff.id;
   }
 
   const attendancePromises: Promise<any>[] = [];
@@ -35,22 +48,23 @@ export async function saveBulkAttendance(formData: FormData) {
         },
         update: {
           status,
-          markedById: staff.id,
+          markedById: staffId,
         },
         create: {
           studentId,
           classId,
+          yearId: 'ay-2026-27',
           date,
           status,
-          markedById: staff.id,
+          markedById: staffId,
         },
       });
       attendancePromises.push(promise);
     }
   }
 
-  // Run all upserts in a transaction for atomicity
   await prisma.$transaction(attendancePromises);
 
   revalidatePath('/admin/attendance');
+  revalidatePath('/portal/teacher/attendance');
 }

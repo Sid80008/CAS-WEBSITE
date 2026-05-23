@@ -1,9 +1,10 @@
 import React from "react";
 import { Metadata } from "next";
 import { Bus, ShieldCheck, MapPin } from "lucide-react";
+import PublicLayout from "@/components/layout/PublicLayout";
 
 export const metadata: Metadata = {
-  title: "School Transport | Central Academy Senior Secondary School, antah",
+  title: "School Transport",
   description: "Safe and reliable school transport services covering major routes in and around antah, Baran.",
 };
 
@@ -15,7 +16,8 @@ const routes = [
 
 export default function TransportPage() {
   return (
-    <main className="min-h-screen bg-slate-50 py-20">
+    <PublicLayout>
+      <main className="min-h-screen bg-slate-50 py-20">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <div className="w-16 h-16 bg-[#e29b16]/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
@@ -69,5 +71,6 @@ export default function TransportPage() {
         </div>
       </div>
     </main>
+    </PublicLayout>
   );
 }

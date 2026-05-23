@@ -96,12 +96,13 @@
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.2;
     font-weight: 600;
-    color: var(--text-primary);
+    color: inherit;
   }
 
   /* Typography Base Overrides */
   p {
-    @apply text-base text-text-primary mb-4;
+    @apply text-base mb-4;
+    color: inherit;
     line-height: 1.6;
   }
 

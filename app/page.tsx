@@ -1,10 +1,14 @@
+export const dynamic = "force-dynamic";
+
 import prisma from "@/lib/prisma";
 import PublicLayout from "@/components/layout/PublicLayout";
 import { HomeClient } from "./HomeClient";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Central Academy Senior Secondary School, antah | Quality Education Since 2013",
+  title: {
+    absolute: "Central Academy Senior Secondary School, Anta | Quality Education Since 2013",
+  },
   description:
     "Central Academy Senior Secondary School (CAS), antah, Baran, Rajasthan. RBSE affiliated school offering Classes I to XII with modern facilities, experienced faculty.",
   keywords: "CAS antah, Central Academy School antah, RBSE school Baran, school in antah Rajasthan",

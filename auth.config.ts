@@ -6,10 +6,22 @@ export default {
   secret: process.env.AUTH_SECRET || process.env.JWT_SECRET,
   trustHost: true,
   callbacks: {
-    async jwt({ token, user, account }) {
+    async signIn({ user }) {
+      if (user) {
+        const roles = (user as any).roles || [];
+        if (roles.includes('ADMIN'))   return '/admin';
+        if (roles.includes('TEACHER')) return '/portal/teacher';
+        if (roles.includes('OFFICE'))  return '/portal/office';
+        if (roles.includes('STUDENT')) return '/portal/student/dashboard';
+        if (roles.includes('PARENT'))  return '/portal/parent/dashboard';
+      }
+      return true;
+    },
+    async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
         token.roles = (user as any).roles;
+        token.role = (user as any).roles?.[0] || '';
         token.permissions = (user as any).permissions;
       }
       return token;
@@ -18,9 +30,15 @@ export default {
       if (token.id) {
         session.user.id = token.id as string;
         (session.user as any).roles = token.roles as any;
+        (session.user as any).role = token.role as any;
         (session.user as any).permissions = token.permissions as any;
       }
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      if (url.startsWith("/")) return `${baseUrl}${url}`;
+      else if (new URL(url).origin === baseUrl) return url;
+      return baseUrl;
     },
   },
 } satisfies NextAuthConfig;

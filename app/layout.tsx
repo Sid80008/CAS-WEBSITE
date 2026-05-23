@@ -14,11 +14,11 @@ const notoSans = Noto_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Central Academy Senior Secondary School, antah",
-    template: "%s | CAS antah",
+    default: "Central Academy Senior Secondary School, Anta | RBSE",
+    template: "%s | Central Academy Senior Secondary School, Anta | RBSE",
   },
   description:
-    "Central Academy Senior Secondary School (CAS), antah, Baran, Rajasthan. RBSE affiliated school offering Classes I–XII with modern facilities, experienced faculty, and over a decade of academic excellence.",
+    "Central Academy Senior Secondary School (CAS), Anta, Baran, Rajasthan. RBSE affiliated school offering Classes I–XII with modern facilities, experienced faculty, and over a decade of academic excellence.",
   metadataBase: new URL("https://centralacademyantah.vercel.app"),
   openGraph: {
     siteName: "Central Academy Senior Secondary School",

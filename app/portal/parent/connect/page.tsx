@@ -52,7 +52,7 @@ export default async function ParentConnectPage() {
   const section = enrollment?.section;
   
   // Extract unique teachers and their subjects
-  const teachersMap: Record<string, { staffId: string; name: string; photo: string | null; designation: string | null; subjects: string[] }> = {};
+  const teachersMap: Record<string, { staffId: string; userId: string; name: string; photo: string | null; designation: string | null; subjects: string[] }> = {};
   
   if (section) {
     section.staffSubjects.forEach(ss => {
@@ -61,6 +61,7 @@ export default async function ParentConnectPage() {
       if (!teachersMap[staff.id]) {
         teachersMap[staff.id] = {
           staffId: staff.id,
+          userId: staff.userId,
           name: staff.name,
           photo: staff.photo,
           designation: staff.designation,
@@ -81,7 +82,7 @@ export default async function ParentConnectPage() {
           Direct messaging and meeting requests with {student.firstName}'s instructors.
         </p>
       </div>
-      <ConnectClient teachers={teachers} studentName={`${student.firstName} ${student.lastName}`} />
+      <ConnectClient teachers={teachers} studentName={`${student.firstName} ${student.lastName}`} activeUserId={session.user.id} />
     </div>
   );
 }

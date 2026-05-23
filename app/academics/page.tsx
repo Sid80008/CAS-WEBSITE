@@ -3,7 +3,7 @@ import { BookOpen, FlaskConical, Calculator, Globe, Music, Trophy } from "lucide
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Academics – Central Academy Senior Secondary School, antah",
+  title: "Academics",
   description:
     "Academic programmes at Central Academy antah — Classes I to XII. RBSE affiliated. Strong faculty in Science, Commerce, and Arts streams.",
 };

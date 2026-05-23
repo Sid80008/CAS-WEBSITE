@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ReactNode } from "react";
 import { LogoutButton } from "@/components/LogoutButton";
 import ProfileDropdown from "@/components/portal/ProfileDropdown";
+import NotificationBell from "@/components/portal/NotificationBell";
 
 export default function TeacherPortalLayout({ children }: { children: ReactNode }) {
   return (
@@ -45,6 +46,18 @@ export default function TeacherPortalLayout({ children }: { children: ReactNode 
               </Link>
             </li>
             <li>
+              <Link href="/portal/teacher/messages" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+                <span className="material-symbols-outlined">chat</span>
+                <span className="text-[14px] font-medium">Messages</span>
+              </Link>
+            </li>
+            <li>
+              <Link href="/portal/teacher/leave" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+                <span className="material-symbols-outlined">event_busy</span>
+                <span className="text-[14px] font-medium">Leave Requests</span>
+              </Link>
+            </li>
+            <li>
               <Link href="/portal/teacher/settings" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
                 <span className="material-symbols-outlined">settings</span>
                 <span className="text-[14px] font-medium">Settings</span>
@@ -78,7 +91,7 @@ export default function TeacherPortalLayout({ children }: { children: ReactNode 
               <span className="material-symbols-outlined absolute right-3 top-1.5 text-[#424750]">search</span>
             </div>
             <div className="flex items-center gap-4">
-              <button className="material-symbols-outlined text-[#00386b] cursor-pointer active:scale-95 transition-transform">notifications</button>
+              <NotificationBell />
               <button className="material-symbols-outlined text-[#00386b] cursor-pointer active:scale-95 transition-transform">help</button>
               <ProfileDropdown align="right" />
             </div>
@@ -104,9 +117,9 @@ export default function TeacherPortalLayout({ children }: { children: ReactNode 
       </main>
 
       {/* Floating Action Button */}
-      <button className="fixed bottom-8 right-8 w-14 h-14 bg-[#00386b] text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
+      <Link href="/portal/teacher/messages" className="fixed bottom-8 right-8 w-14 h-14 bg-[#00386b] text-white rounded-full shadow-lg flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-50">
         <span className="material-symbols-outlined">chat</span>
-      </button>
+      </Link>
     </div>
   );
 }

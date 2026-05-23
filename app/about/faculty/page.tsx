@@ -3,7 +3,7 @@ import { Metadata } from "next";
 import { Users } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Faculty Directory | Central Academy Senior Secondary School, antah",
+  title: "Faculty Directory",
   description: "Meet our dedicated and experienced faculty at Central Academy antah.",
 };
 

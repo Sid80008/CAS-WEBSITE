@@ -32,7 +32,9 @@ export default function AdminLoginPage() {
       setError("Invalid credentials. Please check your email and password.");
     } else {
       setSuccess(true);
-      setTimeout(() => router.push("/admin"), 600);
+      setTimeout(() => {
+        window.location.href = result?.url || "/admin";
+      }, 600);
     }
   }
 

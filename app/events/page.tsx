@@ -1,10 +1,12 @@
+export const dynamic = "force-dynamic";
+
 import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
 import prisma from "@/lib/prisma";
 import { EventsClient } from "./EventsClient";
 
 export const metadata = {
-  title: "Events & Happenings – Central Academy Senior Secondary School",
+  title: "Events & Happenings",
   description: "Celebrate the vibrant school life through cultural fests, sports meets, and academic seminars.",
 };
 

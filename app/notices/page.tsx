@@ -1,10 +1,12 @@
+export const dynamic = "force-dynamic";
+
 import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
 import prisma from "@/lib/prisma";
 import { NoticesClient } from "./NoticesClient";
 
 export const metadata = {
-  title: "Notice Board – Central Academy Senior Secondary School",
+  title: "Notice Board",
   description: "Stay updated with the latest announcements, schedules, and important information.",
 };
 
