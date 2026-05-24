@@ -22,7 +22,7 @@ import { SCHOOL_STATS } from "@/lib/stats";
 /** Minimal hero data inlined — notices/toppers are loaded by a wrapper in a server component below */
 interface HomeProps {
   notices: { id: string; titleEn: string; titleHi: string | null; isPinned: boolean; createdAt: Date }[];
-  toppers: { id: string; name: string; class: string; year: number; percentage: number; imageUrl: string | null }[];
+  toppers: { id: string; name: string; class: string; year: string | number; percentage: number; imageUrl: string | null }[];
   studentCount: number;
 }
 

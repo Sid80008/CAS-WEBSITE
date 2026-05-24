@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { createStaff, updateStaff, deleteStaff } from "@/app/actions/staffActions";
+import { useState, useMemo, useTransition } from "react";
+import { createStaff, updateStaff, deleteStaff, assignStaffSubject, unassignStaffSubject } from "@/app/actions/staffActions";
 
 type StaffMember = {
   id: string;
@@ -19,46 +19,86 @@ type StaffMember = {
     phone?: string | null;
     role: string;
   };
+  assignments: Array<{
+    sectionId: string;
+    subjectId: string;
+    className: string;
+    sectionName: string;
+    subjectName: string;
+  }>;
 };
 
 interface Props {
   staff: StaffMember[];
+  sections: Array<{ id: string; name: string; class: { name: string } }>;
+  subjects: Array<{ id: string; name: string; class: { name: string } | null }>;
 }
 
-export default function StaffClient({ staff }: Props) {
+export default function StaffClient({ staff, sections, subjects }: Props) {
   const [search, setSearch] = useState("");
   const [view, setView] = useState<"grid" | "list">("grid");
+  const [isPending, startTransition] = useTransition();
 
   // Modals state
   const [isAddOpen, setIsAddOpen] = useState(false);
   const [editingStaff, setEditingStaff] = useState<StaffMember | null>(null);
   const [deletingStaff, setDeletingStaff] = useState<StaffMember | null>(null);
+  const [assigningStaff, setAssigningStaff] = useState<StaffMember | null>(null);
 
   const filtered = useMemo(() =>
     staff.filter((s) => !search || s.name.toLowerCase().includes(search.toLowerCase()) ||
       (s.designation ?? "").toLowerCase().includes(search.toLowerCase())),
     [staff, search]);
 
+  const currentAssigningStaff = useMemo(() => {
+    if (!assigningStaff) return null;
+    return staff.find(s => s.id === assigningStaff.id) || assigningStaff;
+  }, [staff, assigningStaff]);
+
   const handleAddSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    await createStaff(formData);
-    setIsAddOpen(false);
+    startTransition(async () => {
+      await createStaff(formData);
+      setIsAddOpen(false);
+    });
   };
 
   const handleEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!editingStaff) return;
     const formData = new FormData(e.currentTarget);
-    await updateStaff(editingStaff.id, formData);
-    setEditingStaff(null);
+    startTransition(async () => {
+      await updateStaff(editingStaff.id, formData);
+      setEditingStaff(null);
+    });
   };
 
   const handleDeleteSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!deletingStaff) return;
-    await deleteStaff(deletingStaff.id);
-    setDeletingStaff(null);
+    startTransition(async () => {
+      await deleteStaff(deletingStaff.id);
+      setDeletingStaff(null);
+    });
+  };
+
+  const handleAssignSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!assigningStaff) return;
+    const formData = new FormData(e.currentTarget);
+    const sectionId = formData.get("sectionId") as string;
+    const subjectId = formData.get("subjectId") as string;
+    startTransition(async () => {
+      await assignStaffSubject(assigningStaff.id, sectionId, subjectId);
+    });
+  };
+
+  const handleUnassign = async (sectionId: string, subjectId: string) => {
+    if (!assigningStaff) return;
+    startTransition(async () => {
+      await unassignStaffSubject(assigningStaff.id, sectionId, subjectId);
+    });
   };
 
   return (
@@ -120,12 +160,39 @@ export default function StaffClient({ staff }: Props) {
                 <h3 className="font-bold text-sm text-[#1c1b1b]">{s.name}</h3>
                 <p className="text-xs text-[#555555] mt-0.5">{s.designation ?? "Staff"}</p>
                 {s.empCode && <p className="text-xs text-slate-500 font-mono mt-1">#{s.empCode}</p>}
+                
+                {/* Active Assignments Summary */}
+                <div className="mt-3 text-left w-full">
+                  <p className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Taught Classes</p>
+                  <div className="flex flex-wrap gap-1 mt-1">
+                    {s.assignments && s.assignments.length > 0 ? (
+                      s.assignments.slice(0, 3).map((a, i) => (
+                        <span key={i} className="text-[10px] bg-slate-100 px-2 py-0.5 rounded font-medium text-slate-700">
+                          {a.className}-{a.sectionName}: {a.subjectName}
+                        </span>
+                      ))
+                    ) : (
+                      <span className="text-[11px] italic text-slate-400">None assigned</span>
+                    )}
+                    {s.assignments && s.assignments.length > 3 && (
+                      <span className="text-[10px] text-primary font-bold">+{s.assignments.length - 3} more</span>
+                    )}
+                  </div>
+                </div>
               </div>
+              
               <div className="flex items-center justify-between border-t border-[#E2E0DB] pt-3 mt-auto">
                 <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${s.isActive ? "bg-[#E1F5EE] text-[#085041]" : "bg-[#eae7e7] text-slate-500"}`}>
                   {s.isActive ? "Active" : "Inactive"}
                 </span>
                 <div className="flex gap-1">
+                  <button
+                    onClick={() => setAssigningStaff(s)}
+                    className="p-1.5 hover:bg-emerald-50 rounded-lg transition-all text-emerald-600"
+                    title="Assign Classes"
+                  >
+                    <span className="material-symbols-outlined text-lg">school</span>
+                  </button>
                   <button
                     onClick={() => setEditingStaff(s)}
                     className="p-1.5 hover:bg-[#E6F1FB] rounded-lg transition-all text-[#00386b]"
@@ -176,6 +243,13 @@ export default function StaffClient({ staff }: Props) {
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2">
+                      <button
+                        onClick={() => setAssigningStaff(s)}
+                        className="p-2 hover:bg-emerald-50 rounded-lg transition-all text-emerald-600"
+                        title="Assign Classes"
+                      >
+                        <span className="material-symbols-outlined text-xl">school</span>
+                      </button>
                       <button
                         onClick={() => setEditingStaff(s)}
                         className="p-2 hover:bg-[#E6F1FB] rounded-lg transition-all text-[#00386b]"
@@ -255,7 +329,9 @@ export default function StaffClient({ staff }: Props) {
               </div>
               <div className="flex gap-3 justify-end pt-3 border-t border-[#E2E0DB]">
                 <button type="button" onClick={() => setIsAddOpen(false)} className="px-4 py-2 border border-[#E2E0DB] rounded-lg text-slate-600">Cancel</button>
-                <button type="submit" className="px-5 py-2 bg-[#00386b] hover:opacity-90 text-white font-bold rounded-lg shadow-sm">Save Staff</button>
+                <button type="submit" disabled={isPending} className="px-5 py-2 bg-[#00386b] hover:opacity-90 text-white font-bold rounded-lg shadow-sm disabled:opacity-60">
+                  {isPending ? "Adding..." : "Save Staff"}
+                </button>
               </div>
             </form>
           </div>
@@ -324,7 +400,9 @@ export default function StaffClient({ staff }: Props) {
               </div>
               <div className="flex gap-3 justify-end pt-3 border-t border-[#E2E0DB]">
                 <button type="button" onClick={() => setEditingStaff(null)} className="px-4 py-2 border border-[#E2E0DB] rounded-lg text-slate-600">Cancel</button>
-                <button type="submit" className="px-5 py-2 bg-[#00386b] hover:opacity-90 text-white font-bold rounded-lg shadow-sm">Save Changes</button>
+                <button type="submit" disabled={isPending} className="px-5 py-2 bg-[#00386b] hover:opacity-90 text-white font-bold rounded-lg shadow-sm disabled:opacity-60">
+                  {isPending ? "Saving..." : "Save Changes"}
+                </button>
               </div>
             </form>
           </div>
@@ -343,8 +421,91 @@ export default function StaffClient({ staff }: Props) {
             </div>
             <form onSubmit={handleDeleteSubmit} className="flex gap-3 justify-end pt-3 border-t border-[#E2E0DB]">
               <button type="button" onClick={() => setDeletingStaff(null)} className="px-4 py-2 border border-[#E2E0DB] rounded-lg text-slate-600">Cancel</button>
-              <button type="submit" className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg shadow-sm">Delete Account</button>
+              <button type="submit" disabled={isPending} className="px-5 py-2 bg-red-600 hover:bg-red-700 text-white font-bold rounded-lg shadow-sm disabled:opacity-60">
+                {isPending ? "Deleting..." : "Delete Account"}
+              </button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Class Assignment Modal */}
+      {currentAssigningStaff && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-xl border border-[#E2E0DB] p-6 max-w-lg w-full shadow-2xl space-y-6 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center border-b border-[#E2E0DB] pb-3">
+              <div>
+                <h3 className="text-lg font-bold text-[#00386b]">Assign Classes &amp; Subjects</h3>
+                <p className="text-xs text-slate-500">Manage teaching assignments for {currentAssigningStaff.name}</p>
+              </div>
+              <button onClick={() => setAssigningStaff(null)} className="text-gray-500 hover:text-gray-700">✕</button>
+            </div>
+
+            {/* Current Assignments List */}
+            <div className="space-y-2">
+              <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider">Current Assignments</h4>
+              {currentAssigningStaff.assignments && currentAssigningStaff.assignments.length > 0 ? (
+                <div className="divide-y divide-slate-100 max-h-48 overflow-y-auto border border-slate-200 rounded-lg">
+                  {currentAssigningStaff.assignments.map((a, i) => (
+                    <div key={i} className="flex items-center justify-between px-4 py-2.5 hover:bg-slate-50">
+                      <div>
+                        <p className="text-sm font-semibold text-slate-800">Class {a.className} - {a.sectionName}</p>
+                        <p className="text-xs text-slate-500">Subject: {a.subjectName}</p>
+                      </div>
+                      <button
+                        onClick={() => handleUnassign(a.sectionId, a.subjectId)}
+                        disabled={isPending}
+                        className="p-1 hover:bg-red-50 text-red-500 rounded transition-all"
+                        title="Remove Assignment"
+                      >
+                        <span className="material-symbols-outlined text-lg">delete_sweep</span>
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-sm text-slate-400 italic bg-slate-50 p-4 rounded-lg text-center border border-dashed border-slate-200">
+                  No active class assignments for this staff.
+                </p>
+              )}
+            </div>
+
+            {/* Assign Form */}
+            <form onSubmit={handleAssignSubmit} className="space-y-4 pt-4 border-t border-slate-100">
+              <h4 className="text-xs font-bold text-slate-600 uppercase tracking-wider">Add New Assignment</h4>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-600">Select Section</label>
+                  <select name="sectionId" required className="w-full px-3 py-2 bg-white border border-[#E2E0DB] rounded-lg outline-none focus:ring-1 focus:ring-[#00386b]">
+                    {sections.map(sec => (
+                      <option key={sec.id} value={sec.id}>Class {sec.class.name} - {sec.name}</option>
+                    ))}
+                  </select>
+                </div>
+                <div className="space-y-1">
+                  <label className="text-xs font-semibold text-slate-600">Select Subject</label>
+                  <select name="subjectId" required className="w-full px-3 py-2 bg-white border border-[#E2E0DB] rounded-lg outline-none focus:ring-1 focus:ring-[#00386b]">
+                    {subjects.map(sub => (
+                      <option key={sub.id} value={sub.id}>
+                        {sub.name} {sub.class ? `(Class ${sub.class.name})` : ""}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <button
+                type="submit"
+                disabled={isPending}
+                className="w-full py-2.5 bg-primary text-white font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all text-sm flex items-center justify-center gap-2 disabled:opacity-60"
+              >
+                <span className="material-symbols-outlined text-lg">add_circle</span>
+                {isPending ? "Assigning..." : "Assign class & subject"}
+              </button>
+            </form>
+
+            <div className="flex justify-end pt-3 border-t border-slate-100">
+              <button type="button" onClick={() => setAssigningStaff(null)} className="px-5 py-2 border border-[#E2E0DB] rounded-lg text-slate-600">Close</button>
+            </div>
           </div>
         </div>
       )}

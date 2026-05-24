@@ -1,69 +1,103 @@
-// app/actions/admissionActions.ts
 'use server';
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
-import { EnquiryStatus } from '@prisma/client';
+import { AdmissionStatus } from '@prisma/client';
 import { redirect } from 'next/navigation';
-
 import { z } from 'zod';
 
 const admissionSchema = z.object({
   studentName: z.string().min(1, "Student name is required"),
   parentName: z.string().min(1, "Parent name is required"),
-  parentPhone: z.string().min(10, "Valid phone number is required"),
-  parentEmail: z.string().email("Invalid email").optional().or(z.literal("")),
-  classAppliedFor: z.string().min(1, "Class is required"),
+  phone: z.string().min(10, "Valid phone number is required"),
+  email: z.string().email("Invalid email").optional().or(z.literal("")),
+  grade: z.string().min(1, "Grade/Class is required"),
 });
 
-// New Client Action with useFormState
+// Submit Enquiry (Client form callback)
 export async function submitEnquiryClient(prevState: any, formData: FormData) {
-  const data = Object.fromEntries(formData.entries());
-  
+  const data = {
+    studentName: formData.get('studentName') as string,
+    parentName: formData.get('parentName') as string,
+    phone: formData.get('phone') as string,
+    email: formData.get('email') as string,
+    grade: formData.get('grade') as string,
+  };
+
   const parsed = admissionSchema.safeParse(data);
   if (!parsed.success) {
     return { success: false, error: parsed.error.errors[0].message };
   }
 
   try {
-    await prisma.admissionEnquiry.create({
+    await prisma.admission.create({
       data: {
         studentName: parsed.data.studentName,
         parentName: parsed.data.parentName,
-        parentPhone: parsed.data.parentPhone,
-        parentEmail: parsed.data.parentEmail || '',
-        classAppliedFor: parsed.data.classAppliedFor,
-        status: 'NEW',
+        phone: parsed.data.phone,
+        email: parsed.data.email || '',
+        grade: parsed.data.grade,
+        status: 'PENDING',
       },
     });
     return { success: true, message: "Your enquiry has been received. Our office will contact you soon." };
   } catch (e) {
+    console.error("submitEnquiryClient error:", e);
     return { success: false, error: "Database error. Please try again." };
   }
 }
 
-// Public form submission (Legacy)
+// Public form submission (Redirect version)
 export async function submitEnquiry(formData: FormData) {
-  await prisma.admissionEnquiry.create({
+  const studentName = formData.get('studentName') as string;
+  const parentName = formData.get('parentName') as string;
+  const phone = formData.get('phone') as string;
+  const email = formData.get('email') as string;
+  const grade = formData.get('grade') as string;
+
+  await prisma.admission.create({
     data: {
-      studentName: formData.get('studentName') as string,
-      parentName: formData.get('parentName') as string,
-      parentPhone: formData.get('parentPhone') as string,
-      parentEmail: formData.get('parentEmail') as string,
-      classAppliedFor: formData.get('classAppliedFor') as string,
-      status: 'NEW',
+      studentName,
+      parentName,
+      phone,
+      email: email || '',
+      grade,
+      status: 'PENDING',
     },
   });
 
   redirect('/admissions?success=true');
 }
 
-// Admin status update
-export async function updateEnquiryStatus(formData: FormData) {
-  const id = formData.get('id') as string;
-  const status = formData.get('status') as EnquiryStatus;
+// Create Admission manual entry (For Admin UI)
+export async function createAdmission(formData: FormData) {
+  const studentName = formData.get('studentName') as string;
+  const parentName = formData.get('parentName') as string;
+  const phone = formData.get('phone') as string;
+  const email = formData.get('email') as string;
+  const grade = formData.get('grade') as string;
 
-  await prisma.admissionEnquiry.update({
+  if (!studentName || !parentName || !phone || !grade) {
+    throw new Error("Missing required fields");
+  }
+
+  await prisma.admission.create({
+    data: {
+      studentName,
+      parentName,
+      phone,
+      email: email || '',
+      grade,
+      status: 'PENDING',
+    },
+  });
+
+  revalidatePath('/admin/admissions');
+}
+
+// Admin status update
+export async function updateAdmissionStatus(id: string, status: AdmissionStatus) {
+  await prisma.admission.update({
     where: { id },
     data: { status },
   });

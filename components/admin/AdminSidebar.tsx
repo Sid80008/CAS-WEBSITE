@@ -13,6 +13,7 @@ const navItems = [
   { href: "/admin/attendance", icon: "event_available", label: "Attendance" },
   { href: "/admin/marks",      icon: "grade",           label: "Marks & Results" },
   { href: "/admin/staff",      icon: "badge",           label: "Staff" },
+  { href: "/admin/leaves",      icon: "event_busy",      label: "Leave Requests" },
   { href: "/admin/tc",         icon: "description",     label: "TC & Certificates" },
   { href: "/admin/notices",    icon: "campaign",        label: "Notices" },
   { href: "/admin/gallery",    icon: "photo_library",   label: "Gallery" },

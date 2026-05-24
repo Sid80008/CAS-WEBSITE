@@ -1,7 +1,6 @@
-"use client";
-
-﻿import React from "react";
+import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
+import Link from "next/link";
 import { 
   Library, 
   FlaskConical, 
@@ -24,42 +23,48 @@ export function FacilitiesContent() {
       desc: "Fully digitized classrooms equipped with high-definition interactive panels and audio-visual tools.", 
       icon: <Monitor />, 
       img: "/gallery/photo-dump/1741166362_slider-17.jpg",
-      color: "blue"
+      color: "blue",
+      slug: "smart-classrooms"
     },
     { 
       title: "Science Laboratories", 
       desc: "Advanced physics, chemistry, and biology labs for hands-on experimental learning.", 
       icon: <Microscope />, 
       img: "/gallery/photo-dump/1741166776-5.jpeg",
-      color: "amber"
+      color: "amber",
+      slug: "labs"
     },
     { 
       title: "Digital Library", 
       desc: "A well-stocked library with books, journals, and reference materials to support academic research and a love of reading.", 
       icon: <Library />, 
       img: "/gallery/slider/1774511691_slider-52.jpg",
-      color: "blue"
+      color: "blue",
+      slug: "library"
     },
     { 
       title: "Sports Complex", 
       desc: "State-of-the-art courts for basketball, volleyball, and a professional-grade cricket ground.", 
       icon: <Trophy />, 
       img: "/gallery/photo-dump/1741166412_slider-20.jpg",
-      color: "amber"
+      color: "amber",
+      slug: "sports"
     },
     { 
       title: "Art & Culture Studio", 
       desc: "Creative spaces for fine arts, dance, and music to nurture the artistic side of students.", 
       icon: <Palette />, 
       img: "/gallery/photo-dump/celebration.jpg",
-      color: "blue"
+      color: "blue",
+      slug: "art-culture"
     },
     { 
       title: "Safe Transport", 
       desc: "A fleet of school buses with GPS tracking and dedicated attendants for secure commuting.", 
       icon: <ShieldCheck />, 
       img: "/gallery/students/1741166878-13.jpeg",
-      color: "amber"
+      color: "amber",
+      slug: "transport"
     }
   ];
 
@@ -80,17 +85,30 @@ export function FacilitiesContent() {
          <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                {facilityData.map((f, i) => (
-                 <div key={i} className="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 hover:-translate-y-2 transition-all duration-500">
+                 <div key={i} className="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 hover:-translate-y-2 transition-all duration-500 flex flex-col h-full">
                     <div className="aspect-video relative overflow-hidden">
-                       <img src={f.img} alt={f.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" onError={(e) => { (e.target as HTMLImageElement).src = '/placeholder.png'; (e.target as HTMLImageElement).onerror = null; }} />
+                       <img src={f.img} alt={f.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                        <div className={`absolute bottom-6 left-6 h-12 w-12 rounded-xl flex items-center justify-center text-white backdrop-blur-md shadow-2xl ${f.color === 'blue' ? 'bg-school-blue/80' : 'bg-school-amber/80'}`}>
                           {React.cloneElement(f.icon as React.ReactElement, { className: "h-6 w-6" })}
                        </div>
                     </div>
-                    <div className="p-10">
-                       <h3 className="text-2xl font-bold text-school-blue mb-4 group-hover:text-school-amber transition-colors">{f.title}</h3>
-                       <p className="text-text-secondary leading-relaxed text-sm mb-8">{f.desc}</p>                    </div>
+                    <div className="p-10 flex flex-col flex-grow justify-between">
+                       <div>
+                          <h3 className="text-2xl font-bold text-school-blue mb-4 group-hover:text-school-amber transition-colors">
+                             <Link href={`/facilities/${f.slug}`}>{f.title}</Link>
+                          </h3>
+                          <p className="text-text-secondary leading-relaxed text-sm mb-8">{f.desc}</p>
+                       </div>
+                       <div>
+                          <Link 
+                            href={`/facilities/${f.slug}`} 
+                            className="inline-flex items-center text-sm font-bold text-school-blue group-hover:text-school-amber transition-colors"
+                          >
+                            Explore Detail →
+                          </Link>
+                       </div>
+                    </div>
                  </div>
                ))}
             </div>

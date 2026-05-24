@@ -27,6 +27,17 @@ export default function CustomCursor() {
       // Instantly update point
       point.style.left = `${mouseX}px`;
       point.style.top = `${mouseY}px`;
+
+      // Check element under cursor to detect blue background
+      const target = document.elementFromPoint(mouseX, mouseY);
+      if (target) {
+        const hasBlueBg = target.closest('.bg-primary, .bg-primary-container, .bg-school-blue, header, footer, .bg-\\[\\#00386b\\], .bg-\\[\\#1b4f8a\\], .bg-\\[\\#0C447C\\]');
+        if (hasBlueBg) {
+          document.body.classList.add('cursor-on-blue');
+        } else {
+          document.body.classList.remove('cursor-on-blue');
+        }
+      }
     };
 
     const animateAura = () => {

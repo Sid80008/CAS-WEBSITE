@@ -170,6 +170,124 @@ export default function AdmissionsForm() {
         </div>
       </section>
 
+      {/* ── Admission Process ── */}
+      <section className="bg-slate-50 border-b border-slate-200 py-16 px-6 md:px-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <span className="text-school-amber text-xs font-bold uppercase tracking-widest bg-yellow-100/60 px-3 py-1 rounded-full border border-yellow-200">
+              Admission Procedure
+            </span>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-school-blue mt-3 tracking-tight">
+              3-Step Admission Process
+            </h2>
+            <p className="text-slate-600 max-w-2xl mx-auto mt-2 text-sm md:text-base">
+              We aim to make our admission process as simple, transparent, and welcoming as possible. Here is how it works:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Step 1 */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-school-blue/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-school-blue/10 group-hover:scale-110 transition-transform">
+                01
+              </div>
+              <div className="w-12 h-12 bg-school-blue/10 text-school-blue rounded-xl flex items-center justify-center mb-6">
+                <FileText className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-school-blue mb-4">1. Registration & Application</h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Enquiry & Information</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    Parents can contact the school to inquire about the admission process, curriculum, and campus environment to gather all needed information.
+                  </p>
+                </div>
+                <div className="h-px bg-slate-100" />
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Registration</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    Parents register their child for admission, which involves completing a registration entry and paying the required registration fee.
+                  </p>
+                </div>
+                <div className="h-px bg-slate-100" />
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Application Form</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    After registration, parents obtain, complete, and submit the school's official admission application form with the required details.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-school-amber/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-school-amber/10 group-hover:scale-110 transition-transform">
+                02
+              </div>
+              <div className="w-12 h-12 bg-school-amber/10 text-school-amber rounded-xl flex items-center justify-center mb-6">
+                <BadgeCheck className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-school-blue mb-4">2. Assessment & Selection</h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Entrance Test / Assessment</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    Depending on the grade level, candidates undergo a proficiency test or developmental assessment to evaluate basic skills and academic readiness.
+                  </p>
+                </div>
+                <div className="h-px bg-slate-100" />
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Parent & Student Interview</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    We conduct interactive sessions with the child and parents to discuss interests, mutual expectations, and fit for the school environment.
+                  </p>
+                </div>
+                <div className="h-px bg-slate-100" />
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Selection & Results</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    Applications and assessment results are reviewed. Final selections are made based on merit, assessment performance, and seat availability.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-emerald-500/10 group-hover:scale-110 transition-transform">
+                03
+              </div>
+              <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+                <CheckCircle2 className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-bold text-school-blue mb-4">3. Admission & Enrollment</h3>
+              <div className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Offer of Admission</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    Successful candidates will receive an official Offer of Admission along with fee payment details and joining instructions.
+                  </p>
+                </div>
+                <div className="h-px bg-slate-100" />
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Acceptance & Fee Payment</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    To secure the seat, parents accept the offer by paying the admission fees, security deposit, first-quarter tuition fees, and other charges.
+                  </p>
+                </div>
+                <div className="h-px bg-slate-100" />
+                <div>
+                  <h4 className="font-semibold text-slate-800 text-sm mb-1">Documents & Orientation</h4>
+                  <p className="text-slate-600 text-xs leading-relaxed">
+                    Submit essential documents (TC, Birth Certificate, Aadhaar, Report Card) and attend the orientation program to welcome students.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── Form + Sidebar ── */}
       <section className="max-w-7xl mx-auto py-16 px-6 md:px-16">
         <div className="flex flex-col lg:flex-row gap-8 items-start">

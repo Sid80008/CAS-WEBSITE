@@ -1,6 +1,7 @@
 "use client";
+
 import { useState, useMemo, useTransition } from "react";
-import { markFeeAsPaid } from "@/app/actions/feeActions";
+import { markFeeAsPaid, createFeeInvoice } from "@/app/actions/feeActions";
 
 type FeeRecord = {
   id: string;
@@ -24,10 +25,18 @@ type FeeStructure = {
   class: { name: string };
 };
 
+type StudentListItem = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  admissionNo: string;
+};
+
 interface Props {
   records: FeeRecord[];
   structures: FeeStructure[];
   stats: { totalPaidMTD: number; totalDuePending: number; totalOverdue: number; totalDueAll: number; totalPaidAll: number; pendingCount: number; overdueCount: number; };
+  students: StudentListItem[];
 }
 
 type Tab = "records" | "structures";
@@ -42,10 +51,16 @@ function statusBadge(status: string) {
   }
 }
 
-export default function FeesClient({ records, structures, stats }: Props) {
+export default function FeesClient({ records, structures, stats, students }: Props) {
   const [tab, setTab] = useState<Tab>("records");
   const [search, setSearch] = useState("");
   const [isPending, startTransition] = useTransition();
+
+  // New Invoice Modal state
+  const [showInvoiceModal, setShowInvoiceModal] = useState(false);
+  const [selectedStructureId, setSelectedStructureId] = useState("");
+  const [customAmount, setCustomAmount] = useState("");
+  const [studentSearch, setStudentSearch] = useState("");
 
   const filtered = useMemo(() => {
     return records.filter((r) => {
@@ -55,11 +70,40 @@ export default function FeesClient({ records, structures, stats }: Props) {
     });
   }, [records, search]);
 
+  const filteredStudents = useMemo(() => {
+    const q = studentSearch.toLowerCase();
+    if (!q) return [];
+    return students.filter(s =>
+      `${s.firstName} ${s.lastName}`.toLowerCase().includes(q) ||
+      s.admissionNo.toLowerCase().includes(q)
+    ).slice(0, 5); // Limit suggestions to 5
+  }, [students, studentSearch]);
+
+  const handleStructureChange = (id: string) => {
+    setSelectedStructureId(id);
+    const struc = structures.find(s => s.id === id);
+    if (struc) {
+      setCustomAmount(String(struc.amount));
+    }
+  };
+
   function handleMarkPaid(id: string) {
-    startTransition(() => {
-      markFeeAsPaid(id);
+    startTransition(async () => {
+      await markFeeAsPaid(id);
     });
   }
+
+  const handleInvoiceSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    startTransition(async () => {
+      await createFeeInvoice(formData);
+      setShowInvoiceModal(false);
+      setStudentSearch("");
+      setSelectedStructureId("");
+      setCustomAmount("");
+    });
+  };
 
   const downloadCsv = () => {
     if (!records || records.length === 0) return;
@@ -93,7 +137,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
   const collectionRate = stats.totalDueAll > 0 ? (stats.totalPaidAll / stats.totalDueAll) * 100 : 0;
 
   return (
-    <div className="max-w-[1440px] mx-auto font-body-md">
+    <div className="max-w-[1440px] mx-auto font-body-md text-[#1c1b1b]">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
@@ -105,7 +149,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
             <span className="material-symbols-outlined">file_download</span>
             Export Report
           </button>
-          <button className="px-6 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-2 hover:opacity-90 transition-all">
+          <button onClick={() => setShowInvoiceModal(true)} className="px-6 py-2 bg-secondary-container text-on-secondary-container rounded-lg font-bold flex items-center gap-2 hover:opacity-90 transition-all">
             <span className="material-symbols-outlined">add_card</span>
             New Invoice
           </button>
@@ -114,7 +158,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
 
       {/* Bento Dashboard Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
+        <div className="bg-white border border-outline-variant p-5 rounded-xl shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <span className="text-label-md uppercase tracking-wider text-outline">Total Revenue (MTD)</span>
             <span className="material-symbols-outlined text-teal-accent">trending_up</span>
@@ -122,7 +166,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
           <div className="font-headline-md text-primary">₹{stats.totalPaidMTD.toLocaleString("en-IN")}</div>
           <div className="text-xs text-on-tertiary-container mt-1 font-medium">This month collection</div>
         </div>
-        <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
+        <div className="bg-white border border-outline-variant p-5 rounded-xl shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <span className="text-label-md uppercase tracking-wider text-outline">Pending Dues</span>
             <span className="material-symbols-outlined text-secondary">pending_actions</span>
@@ -130,7 +174,7 @@ export default function FeesClient({ records, structures, stats }: Props) {
           <div className="font-headline-md text-primary">₹{stats.totalDuePending.toLocaleString("en-IN")}</div>
           <div className="text-xs text-secondary mt-1 font-medium">{stats.pendingCount} records pending</div>
         </div>
-        <div className="bg-white/70 backdrop-blur-md border border-outline-variant p-5 rounded-xl shadow-sm">
+        <div className="bg-white border border-outline-variant p-5 rounded-xl shadow-sm">
           <div className="flex items-center justify-between mb-2">
             <span className="text-label-md uppercase tracking-wider text-outline">Overdue Accounts</span>
             <span className="material-symbols-outlined text-error-red">warning</span>
@@ -185,9 +229,6 @@ export default function FeesClient({ records, structures, stats }: Props) {
                     onChange={(e) => setSearch(e.target.value)}
                   />
                 </div>
-                <button className="p-2 border border-outline-variant rounded-lg hover:bg-surface-container transition-all">
-                  <span className="material-symbols-outlined text-on-surface-variant">filter_list</span>
-                </button>
               </div>
               <div className="flex items-center gap-2 text-label-md text-outline">
                 <span>Showing {filtered.length} records</span>
@@ -264,13 +305,12 @@ export default function FeesClient({ records, structures, stats }: Props) {
                     <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase">Fee Type</th>
                     <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-right">Amount</th>
                     <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-center">Frequency</th>
-                    <th className="px-4 py-3 font-label-md text-label-md text-outline uppercase text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant">
                   {structures.length === 0 ? (
                     <tr>
-                      <td colSpan={6} className="px-4 py-16 text-center text-on-surface-variant">No fee structures.</td>
+                      <td colSpan={5} className="px-4 py-16 text-center text-on-surface-variant">No fee structures.</td>
                     </tr>
                   ) : (
                     structures.map((s) => (
@@ -280,9 +320,6 @@ export default function FeesClient({ records, structures, stats }: Props) {
                         <td className="px-4 py-4 text-body-md">{s.feeType}</td>
                         <td className="px-4 py-4 text-right font-bold text-primary">₹{s.amount.toLocaleString("en-IN")}</td>
                         <td className="px-4 py-4 text-center text-body-md capitalize">{s.frequency.toLowerCase()}</td>
-                        <td className="px-4 py-4 text-center">
-                          <button className="material-symbols-outlined text-outline group-hover:text-primary transition-colors">edit</button>
-                        </td>
                       </tr>
                     ))
                   )}
@@ -292,6 +329,114 @@ export default function FeesClient({ records, structures, stats }: Props) {
           </div>
         )}
       </div>
+
+      {/* New Invoice Modal */}
+      {showInvoiceModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setShowInvoiceModal(false)} />
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 z-10 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-bold text-xl text-primary">Create New Invoice</h2>
+              <button onClick={() => setShowInvoiceModal(false)} className="p-2 hover:bg-[#eae7e7] rounded-lg">
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <form onSubmit={handleInvoiceSubmit} className="space-y-4">
+              {/* Student Search and Selection */}
+              <div className="space-y-1 relative">
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Search Student *</label>
+                <input 
+                  type="text" 
+                  value={studentSearch} 
+                  onChange={(e) => setStudentSearch(e.target.value)} 
+                  required={!formDataSelectedStudentId(studentSearch, students)}
+                  placeholder="Type name or Admission No..." 
+                  className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary"
+                />
+                {filteredStudents.length > 0 && (
+                  <div className="absolute top-[100%] left-0 right-0 bg-white border border-[#E2E0DB] rounded-lg shadow-lg z-50 divide-y divide-slate-100 max-h-40 overflow-y-auto">
+                    {filteredStudents.map(student => (
+                      <button
+                        key={student.id}
+                        type="button"
+                        onClick={() => {
+                          setStudentSearch(`${student.firstName} ${student.lastName} (#${student.admissionNo})`);
+                        }}
+                        className="w-full text-left px-4 py-2 hover:bg-[#f6f3f2] text-sm"
+                      >
+                        {student.firstName} {student.lastName} <span className="text-slate-400 font-mono">#{student.admissionNo}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+                {/* Hidden input to hold student ID */}
+                <input 
+                  type="hidden" 
+                  name="studentId" 
+                  value={students.find(s => `${s.firstName} ${s.lastName} (#${s.admissionNo})` === studentSearch)?.id || ""} 
+                />
+              </div>
+
+              {/* Fee Structure */}
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Fee Structure *</label>
+                <select 
+                  name="structureId" 
+                  value={selectedStructureId} 
+                  onChange={(e) => handleStructureChange(e.target.value)} 
+                  required 
+                  className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none bg-white"
+                >
+                  <option value="" disabled>Select structure</option>
+                  {structures.map(struc => (
+                    <option key={struc.id} value={struc.id}>
+                      {struc.name || struc.feeType} (Class {struc.class.name}) - ₹{struc.amount}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Custom Amount */}
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Amount Due (₹) *</label>
+                <input 
+                  name="amountDue" 
+                  type="number" 
+                  value={customAmount} 
+                  onChange={(e) => setCustomAmount(e.target.value)} 
+                  required 
+                  className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" 
+                  placeholder="₹"
+                />
+              </div>
+
+              {/* Due Date */}
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Due Date *</label>
+                <input 
+                  name="dueDate" 
+                  type="date" 
+                  required 
+                  className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" 
+                />
+              </div>
+
+              {/* Action buttons */}
+              <div className="flex gap-3 justify-end pt-4 border-t border-outline-variant">
+                <button type="button" onClick={() => setShowInvoiceModal(false)} className="px-4 py-2 border border-outline rounded-lg text-slate-600">Cancel</button>
+                <button type="submit" disabled={isPending || !students.some(s => `${s.firstName} ${s.lastName} (#${s.admissionNo})` === studentSearch)} className="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:opacity-90 shadow-sm disabled:opacity-60">
+                  {isPending ? "Billing..." : "Create Invoice"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
+}
+
+// Helper to check if search string represents a matched student
+function formDataSelectedStudentId(search: string, list: StudentListItem[]) {
+  return list.some(s => `${s.firstName} ${s.lastName} (#${s.admissionNo})` === search);
 }

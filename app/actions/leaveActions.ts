@@ -41,3 +41,21 @@ export async function submitLeaveRequest(formData: FormData) {
 
   revalidatePath('/portal/teacher/leave');
 }
+
+export async function approveLeaveRequest(id: string) {
+  await prisma.leaveRequest.update({
+    where: { id },
+    data: { status: 'APPROVED' }
+  });
+  revalidatePath('/admin/leaves');
+  revalidatePath('/portal/teacher/leave');
+}
+
+export async function rejectLeaveRequest(id: string) {
+  await prisma.leaveRequest.update({
+    where: { id },
+    data: { status: 'REJECTED' }
+  });
+  revalidatePath('/admin/leaves');
+  revalidatePath('/portal/teacher/leave');
+}

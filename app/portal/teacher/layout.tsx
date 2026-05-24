@@ -1,64 +1,76 @@
+"use client";
+
 import Link from "next/link";
 import { ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { LogoutButton } from "@/components/LogoutButton";
 import ProfileDropdown from "@/components/portal/ProfileDropdown";
 import NotificationBell from "@/components/portal/NotificationBell";
 
 export default function TeacherPortalLayout({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+
+  const getLinkClass = (href: string) => {
+    const isActive = pathname === href || (href !== "/portal/teacher" && pathname.startsWith(href));
+    return isActive
+      ? "text-[#085041] font-bold bg-[#E1F5EE] rounded-lg flex items-center px-4 py-3 gap-3 transition-transform hover:translate-x-1"
+      : "text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg";
+  };
+
   return (
     <div className="flex min-h-screen bg-[#fcf9f8] text-[#1c1b1b] font-body overflow-x-hidden">
       {/* SideNavBar */}
       <aside className="h-screen w-64 fixed left-0 top-0 z-50 flex flex-col bg-[#f6f3f2] border-r border-[#E2E0DB] pt-20 hidden md:flex">
         <div className="px-6 py-4 mb-4">
           <h2 className="text-[18px] leading-[1.4] font-bold text-[#085041]">Teacher Portal</h2>
-          <p className="text-[12px] text-[#424750]">Academic Year 2023-24</p>
+          <p className="text-[12px] text-[#424750]">Academic Year 2026-27</p>
         </div>
         <nav className="flex-grow px-2">
           <ul className="space-y-1">
             <li>
-              <Link href="/portal/teacher" className="text-[#085041] font-bold bg-[#E1F5EE] rounded-lg flex items-center px-4 py-3 gap-3 transition-transform hover:translate-x-1">
+              <Link href="/portal/teacher" className={getLinkClass("/portal/teacher")}>
                 <span className="material-symbols-outlined">dashboard</span>
                 <span className="text-[14px] font-medium">Dashboard</span>
               </Link>
             </li>
             <li>
-              <Link href="/portal/teacher/students" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+              <Link href="/portal/teacher/students" className={getLinkClass("/portal/teacher/students")}>
                 <span className="material-symbols-outlined">group</span>
                 <span className="text-[14px] font-medium">Students</span>
               </Link>
             </li>
             <li>
-              <Link href="/portal/teacher/attendance" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+              <Link href="/portal/teacher/attendance" className={getLinkClass("/portal/teacher/attendance")}>
                 <span className="material-symbols-outlined">fact_check</span>
                 <span className="text-[14px] font-medium">Attendance</span>
               </Link>
             </li>
             <li>
-              <Link href="/portal/teacher/academics" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+              <Link href="/portal/teacher/academics" className={getLinkClass("/portal/teacher/academics")}>
                 <span className="material-symbols-outlined">school</span>
                 <span className="text-[14px] font-medium">Academics</span>
               </Link>
             </li>
             <li>
-              <Link href="/portal/teacher/reports" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+              <Link href="/portal/teacher/reports" className={getLinkClass("/portal/teacher/reports")}>
                 <span className="material-symbols-outlined">assessment</span>
                 <span className="text-[14px] font-medium">Reports</span>
               </Link>
             </li>
             <li>
-              <Link href="/portal/teacher/messages" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+              <Link href="/portal/teacher/messages" className={getLinkClass("/portal/teacher/messages")}>
                 <span className="material-symbols-outlined">chat</span>
                 <span className="text-[14px] font-medium">Messages</span>
               </Link>
             </li>
             <li>
-              <Link href="/portal/teacher/leave" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+              <Link href="/portal/teacher/leave" className={getLinkClass("/portal/teacher/leave")}>
                 <span className="material-symbols-outlined">event_busy</span>
                 <span className="text-[14px] font-medium">Leave Requests</span>
               </Link>
             </li>
             <li>
-              <Link href="/portal/teacher/settings" className="text-[#424750] px-4 py-3 flex items-center gap-3 transition-all hover:bg-[#e5e2e1] rounded-lg">
+              <Link href="/portal/teacher/settings" className={getLinkClass("/portal/teacher/settings")}>
                 <span className="material-symbols-outlined">settings</span>
                 <span className="text-[14px] font-medium">Settings</span>
               </Link>

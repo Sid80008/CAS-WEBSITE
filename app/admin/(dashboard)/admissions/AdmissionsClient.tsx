@@ -1,6 +1,7 @@
 "use client";
-// app/admin/admissions/AdmissionsClient.tsx
+
 import { useState, useMemo, useTransition } from "react";
+import { createAdmission, updateAdmissionStatus } from "@/app/actions/admissionActions";
 
 type Enquiry = {
   id: string;
@@ -32,6 +33,8 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [selected, setSelected] = useState<Enquiry | null>(null);
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const filtered = useMemo(() =>
     enquiries.filter((e) => {
@@ -41,6 +44,48 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
       return match && matchStatus;
     }), [enquiries, search, statusFilter]);
 
+  const handleAddSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    startTransition(async () => {
+      await createAdmission(formData);
+      setIsAddOpen(false);
+    });
+  };
+
+  const handleStatusUpdate = (id: string, newStatus: string) => {
+    startTransition(async () => {
+      await updateAdmissionStatus(id, newStatus as any);
+      setSelected((prev) => prev ? { ...prev, status: newStatus } : null);
+    });
+  };
+
+  const downloadCsv = () => {
+    if (!enquiries || enquiries.length === 0) return;
+    
+    const headers = ["Student Name", "Parent Name", "Email", "Phone", "Grade Applied", "Status", "Date"].join(',');
+    const rows = enquiries.map(e => [
+      `"${e.studentName.replace(/"/g, '""')}"`,
+      `"${e.parentName.replace(/"/g, '""')}"`,
+      `"${e.email.replace(/"/g, '""')}"`,
+      `"${e.phone.replace(/"/g, '""')}"`,
+      `"Class ${e.grade.replace(/"/g, '""')}"`,
+      `"${e.status}"`,
+      new Date(e.createdAt).toLocaleDateString("en-IN")
+    ].join(',')).join('\n');
+    
+    const csvContent = `${headers}\n${rows}`;
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute('download', `admission_enquiries_${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const grades = ["Nursery", "LKG", "UKG", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+
   return (
     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* Header */}
@@ -49,10 +94,22 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
           <h1 className="font-bold text-3xl text-primary mb-1">Admissions</h1>
           <p className="text-sm text-on-surface-variant">Manage enquiries, track status and convert to enrollments.</p>
         </div>
-        <button className="flex items-center gap-2 px-6 py-2.5 bg-secondary-container text-on-secondary-container font-bold rounded-lg shadow-sm hover:shadow-md active:scale-95 transition-all text-sm">
-          <span className="material-symbols-outlined">add</span>
-          New Enquiry
-        </button>
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={downloadCsv} 
+            className="flex items-center gap-2 px-6 py-2.5 bg-white border border-outline text-primary font-bold rounded-lg shadow-sm hover:bg-[#f6f3f2] active:scale-95 transition-all text-sm"
+          >
+            <span className="material-symbols-outlined">file_download</span>
+            Download CSV
+          </button>
+          <button 
+            onClick={() => setIsAddOpen(true)}
+            className="flex items-center gap-2 px-6 py-2.5 bg-secondary-container text-on-secondary-container font-bold rounded-lg shadow-sm hover:shadow-md active:scale-95 transition-all text-sm"
+          >
+            <span className="material-symbols-outlined">add</span>
+            New Enquiry
+          </button>
+        </div>
       </div>
 
       {/* Stats */}
@@ -125,6 +182,53 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
         </table>
       </div>
 
+      {/* Add Enquiry Modal */}
+      {isAddOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsAddOpen(false)} />
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 z-10 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-bold text-xl text-primary">New Admission Enquiry</h2>
+              <button onClick={() => setIsAddOpen(false)} className="p-2 hover:bg-[#eae7e7] rounded-lg">
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <form onSubmit={handleAddSubmit} className="space-y-4">
+              <div>
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Student Name *</label>
+                <input name="studentName" required className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" placeholder="Full name of student" />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Parent Name *</label>
+                <input name="parentName" required className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" placeholder="Father's or Mother's name" />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Phone *</label>
+                  <input name="phone" type="tel" required className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" placeholder="10-digit number" />
+                </div>
+                <div>
+                  <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Grade seeking *</label>
+                  <select name="grade" required className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none bg-white">
+                    {grades.map(g => <option key={g} value={g}>Class {g}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Email Address</label>
+                <input name="email" type="email" className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" placeholder="optional@domain.com" />
+              </div>
+              <div className="flex gap-3 justify-end pt-4 border-t border-outline-variant">
+                <button type="button" onClick={() => setIsAddOpen(false)} className="px-4 py-2 border border-outline rounded-lg text-slate-600">Cancel</button>
+                <button type="submit" disabled={isPending} className="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:opacity-90 shadow-sm disabled:opacity-60">
+                  {isPending ? "Saving..." : "Save Enquiry"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
       {/* Detail Drawer */}
       {selected && (
         <div className="fixed inset-0 z-50 flex">
@@ -143,7 +247,7 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
               {[
                 { label: "Student Name", value: selected.studentName },
                 { label: "Parent Name", value: selected.parentName },
-                { label: "Email", value: selected.email },
+                { label: "Email", value: selected.email || "—" },
                 { label: "Phone", value: selected.phone },
                 { label: "Grade Applied", value: `Class ${selected.grade}` },
                 { label: "Enquiry Date", value: new Date(selected.createdAt).toLocaleDateString("en-IN") },
@@ -156,11 +260,26 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
               ))}
             </div>
             <div className="p-6 border-t border-outline-variant space-y-2">
-              <button className="w-full py-3 bg-tertiary-fixed/30 text-tertiary-container font-bold rounded-lg hover:bg-tertiary-fixed/50 transition-all text-sm flex items-center justify-center gap-2">
+              <button 
+                onClick={() => handleStatusUpdate(selected.id, "ENROLLED")} 
+                disabled={isPending}
+                className="w-full py-3 bg-tertiary-fixed/30 text-tertiary-container font-bold rounded-lg hover:bg-tertiary-fixed/50 transition-all text-sm flex items-center justify-center gap-2"
+              >
                 <span className="material-symbols-outlined">how_to_reg</span>Enroll Student
               </button>
-              <button className="w-full py-3 bg-primary-fixed/20 text-primary font-bold rounded-lg hover:bg-primary-fixed/30 transition-all text-sm flex items-center justify-center gap-2">
+              <button 
+                onClick={() => handleStatusUpdate(selected.id, "CALLED")} 
+                disabled={isPending}
+                className="w-full py-3 bg-primary-fixed/20 text-primary font-bold rounded-lg hover:bg-primary-fixed/30 transition-all text-sm flex items-center justify-center gap-2"
+              >
                 <span className="material-symbols-outlined">call</span>Mark as Called
+              </button>
+              <button 
+                onClick={() => handleStatusUpdate(selected.id, "REJECTED")} 
+                disabled={isPending}
+                className="w-full py-3 bg-red-50 text-red-600 border border-red-200 font-bold rounded-lg hover:bg-red-100 transition-all text-sm flex items-center justify-center gap-2"
+              >
+                <span className="material-symbols-outlined">block</span>Reject Enquiry
               </button>
             </div>
           </aside>

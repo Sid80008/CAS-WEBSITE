@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { SCHOOL } from "@/lib/constants";
+import prisma from "@/lib/prisma";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -33,12 +34,24 @@ export async function POST(request: Request) {
       );
     }
 
+    // Save to database
+    await prisma.admission.create({
+      data: {
+        studentName,
+        parentName,
+        phone,
+        email: email || "",
+        grade: grade || "Nursery",
+        status: "PENDING",
+      }
+    });
+
     const submittedAt = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
 
     // Send notification email to school
     await resend.emails.send({
       from: "CAS Website <onboarding@resend.dev>",
-      to: SCHOOL.email,
+      to: "siddharthmeenasiddhu@gmail.com",
       subject: `New Admission Enquiry — ${studentName} (Class ${grade || "Not specified"})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -89,7 +102,7 @@ export async function POST(request: Request) {
     if (email) {
       await resend.emails.send({
         from: "Central Academy School <onboarding@resend.dev>",
-        to: email,
+        to: "siddharthmeenasiddhu@gmail.com",
         subject: "We received your admission enquiry — CAS antah",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

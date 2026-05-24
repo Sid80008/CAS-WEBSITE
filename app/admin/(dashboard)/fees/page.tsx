@@ -11,7 +11,7 @@ export default async function FeesPage() {
   firstDayOfMonth.setDate(1);
   firstDayOfMonth.setHours(0, 0, 0, 0);
 
-  const [feeRecords, feeStructures, currentMonthRevenue, pendingDuesRecords, overdueRecords] = await Promise.all([
+  const [feeRecords, feeStructures, currentMonthRevenue, pendingDuesRecords, overdueRecords, students] = await Promise.all([
     prisma.feeRecord.findMany({
       include: {
         student: true,
@@ -37,6 +37,11 @@ export default async function FeesPage() {
       where: { status: "OVERDUE", dueDate: { lt: new Date() } },
       select: { amountDue: true, amountPaid: true },
     }),
+    prisma.student.findMany({
+      where: { status: "ACTIVE" },
+      orderBy: { firstName: "asc" },
+      select: { id: true, firstName: true, lastName: true, admissionNo: true }
+    })
   ]);
 
   const totalDuePending = pendingDuesRecords.reduce((sum, r) => sum + ((r.amountDue ?? 0) - r.amountPaid), 0);
@@ -54,5 +59,12 @@ export default async function FeesPage() {
     overdueCount: overdueRecords.length,
   };
 
-  return <FeesClient records={feeRecords as any} structures={feeStructures as any} stats={stats} />;
+  return (
+    <FeesClient
+      records={feeRecords as any}
+      structures={feeStructures as any}
+      stats={stats}
+      students={students as any}
+    />
+  );
 }

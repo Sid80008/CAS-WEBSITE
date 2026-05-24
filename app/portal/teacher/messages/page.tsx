@@ -125,19 +125,19 @@ export default async function TeacherMessagesPage() {
     const users = await prisma.user.findMany({
       where: { id: { in: uniqueMessageUserIds } },
       include: {
-        parents: true,
-        students: true
+        parent: true,
+        student: true
       }
     });
 
     users.forEach(u => {
       let name = u.email || "User";
       let info = "Portal User";
-      if (u.parents && u.parents.length > 0) {
-        name = u.parents[0].name || name;
+      if (u.parent) {
+        name = u.parent.name || name;
         info = "Parent";
-      } else if (u.students && u.students.length > 0) {
-        name = `${u.students[0].firstName} ${u.students[0].lastName}`;
+      } else if (u.student) {
+        name = `${u.student.firstName} ${u.student.lastName}`;
         info = "Student";
       }
       contactsMap.set(u.id, {
