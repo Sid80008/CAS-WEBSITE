@@ -6,7 +6,13 @@ import { SCHOOL } from "@/lib/constants";
 
 export function Footer() {
   return (
-    <footer className="bg-slate-900 text-white pt-16 pb-8 border-t-4 border-school-amber">
+    <footer
+      className="text-white pt-16 pb-8"
+      style={{
+        background: "var(--school-navy)",
+        borderTop: "3px solid var(--school-saffron)",
+      }}
+    >
       <div className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand Info */}
@@ -19,7 +25,7 @@ export function Footer() {
                 height={40}
                 className="object-contain"
               />
-              <span className="text-xl font-bold">{SCHOOL.shortName} – Central Academy</span>
+            <span className="text-xl font-bold" style={{ color: "#fff" }}>{SCHOOL.shortName} – Central Academy</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed mb-4">
               Dedicated to excellence in education, fostering a community of learners who are prepared to lead with integrity and innovation.
@@ -66,7 +72,7 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h5 className="text-school-amber font-bold mb-6 uppercase tracking-wider text-sm">Quick Links</h5>
+            <h5 className="font-bold mb-6 uppercase tracking-wider text-sm" style={{ color: "var(--school-saffron-light)" }}>Quick Links</h5>
             <ul className="flex flex-col gap-3 text-sm text-slate-400">
               <li><Link href="/about" className="hover:text-white transition-colors">About Us</Link></li>
               <li><Link href="/admissions" className="hover:text-white transition-colors">Admissions</Link></li>
@@ -77,7 +83,7 @@ export function Footer() {
 
           {/* Portals */}
           <div>
-            <h5 className="text-school-amber font-bold mb-6 uppercase tracking-wider text-sm">Portals</h5>
+            <h5 className="font-bold mb-6 uppercase tracking-wider text-sm" style={{ color: "var(--school-saffron-light)" }}>Portals</h5>
             <ul className="flex flex-col gap-3 text-sm text-slate-400">
               <li><Link href="/admin/login" className="hover:text-white transition-colors">Staff Login</Link></li>
               <li><Link href="/portal" className="hover:text-white transition-colors">Student Portal</Link></li>
@@ -88,18 +94,18 @@ export function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h5 className="text-school-amber font-bold mb-6 uppercase tracking-wider text-sm">Contact Us</h5>
+            <h5 className="font-bold mb-6 uppercase tracking-wider text-sm" style={{ color: "var(--school-saffron-light)" }}>Contact Us</h5>
             <ul className="flex flex-col gap-4 text-sm text-slate-400">
               <li className="flex gap-3">
-                <MapPin className="text-school-amber h-5 w-5 shrink-0 mt-0.5" />
+                <MapPin className="h-5 w-5 shrink-0 mt-0.5" style={{ color: "var(--school-saffron)" }} />
                 <span>{SCHOOL.address}</span>
               </li>
               <li className="flex gap-3">
-                <Phone className="text-school-amber h-5 w-5 shrink-0" />
+                <Phone className="h-5 w-5 shrink-0" style={{ color: "var(--school-saffron)" }} />
                 <span>{SCHOOL.phone1}</span>
               </li>
               <li className="flex gap-3">
-                <Mail className="text-school-amber h-5 w-5 shrink-0" />
+                <Mail className="h-5 w-5 shrink-0" style={{ color: "var(--school-saffron)" }} />
                 <a href={`mailto:${SCHOOL.email}`} className="hover:text-white transition-colors">
                   {SCHOOL.email}
                 </a>
@@ -108,7 +114,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6" style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}>
           <p className="text-slate-500 text-xs text-center md:text-left">
             © {new Date().getFullYear()} {SCHOOL.name}. All Rights Reserved. {SCHOOL.yearsOfExcellence}+ Years of Excellence.
           </p>

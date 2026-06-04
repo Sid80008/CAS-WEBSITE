@@ -1,6 +1,7 @@
 import React from "react";
 import { Metadata } from "next";
 import PublicLayout from "@/components/layout/PublicLayout";
+import { PageBanner } from "@/components/layout/PageBanner";
 import { BookOpen, Computer, ShieldCheck, CheckCircle, GraduationCap } from "lucide-react";
 import Link from "next/link";
 
@@ -12,44 +13,33 @@ export const metadata: Metadata = {
 export default function LibraryPage() {
   return (
     <PublicLayout>
-      <main className="min-h-screen bg-[#fcf9f8]">
+      <main className="min-h-screen bg-[#FAFAF5] text-text-primary">
+        {/* Page Banner (3-layer depth) */}
+        <PageBanner
+          titleEn="Digital Library"
+          titleHi="डिजिटल पुस्तकालय"
+          eyebrowEn="ACADEMIC HUB"
+          eyebrowHi="शैक्षणिक केंद्र"
+          imageSrc="/gallery/slider/1774511691_slider-52.jpg"
+        />
+
         {/* Breadcrumb */}
-        <section className="max-w-7xl mx-auto px-6 py-4">
-          <nav className="flex items-center gap-2 text-xs text-slate-500">
-            <Link href="/" className="hover:text-school-blue transition-colors">Home</Link>
+        <section className="max-w-7xl mx-auto px-6 py-6">
+          <nav className="flex items-center gap-2 text-xs text-slate-500 font-sans">
+            <Link href="/" className="hover:text-school-saffron transition-colors">Home</Link>
             <span>/</span>
-            <Link href="/facilities" className="hover:text-school-blue transition-colors">Facilities</Link>
+            <Link href="/facilities" className="hover:text-school-saffron transition-colors">Facilities</Link>
             <span>/</span>
-            <span className="text-slate-800 font-medium">School Library</span>
+            <span className="text-school-navy font-bold">Digital Library</span>
           </nav>
         </section>
 
-        {/* Hero Section */}
-        <section className="relative h-[450px] w-full overflow-hidden flex items-end">
-          <div 
-            className="absolute inset-0 bg-cover bg-center" 
-            style={{ 
-              backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDRfVrq57P6xqBMsbQgys51YgtF1SfWQrRxj7KiV7i2ggySOOiGOq02rMTMH_BiR3XsAor6NrOXKfUqvkBNgG_jtMreS5fuA5thHR6BXLyZYFo_vT4pyC1QIxpTgXOqT_IIBYlbPFF-ze5wFCEj2czuqtOIEgCrrgajBeuyB_Ovt_s5YHzs4EadTlaoMDPoNWciz_N8PnAcEg2_7llEqwyskz3BzH4-ZHBjGyfREj7dbbO7-4kfndV-57Ez6CzL5X6DfHf30ZjufHc')` 
-            }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#00386b]/95 via-[#00386b]/60 to-transparent" />
-          <div className="relative w-full max-w-7xl mx-auto px-6 pb-12 z-10 text-white">
-            <span className="bg-school-amber text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">
-              ACADEMIC HUB
-            </span>
-            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight">School Library</h1>
-            <p className="text-base md:text-lg max-w-2xl opacity-90 italic border-l-4 border-school-amber pl-4 font-light">
-              "Igniting curiosity and fostering a lifelong passion for learning through a world-class collection of literature and digital resources."
-            </p>
-          </div>
-        </section>
-
         {/* Introduction Section */}
-        <section className="max-w-7xl mx-auto px-6 py-16 grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <section className="max-w-7xl mx-auto px-6 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Info */}
-          <div className="lg:col-span-8">
-            <h2 className="text-3xl font-extrabold text-school-blue mb-6">A Sanctuary of Knowledge</h2>
-            <div className="space-y-4 text-slate-600 leading-relaxed text-sm md:text-base">
+          <div className="lg:col-span-8 space-y-8">
+            <h2 className="text-3xl md:text-4xl font-black text-school-navy font-display">A Sanctuary of Knowledge</h2>
+            <div className="space-y-4 text-text-secondary leading-relaxed text-sm md:text-base font-sans">
               <p>
                 The Central Academy Anta Library is more than just a repository of books; it is the intellectual heart of our institution. Designed to meet the evolving needs of 21st-century learners, our library provides a serene environment where students can escape into the worlds created by authors or dive deep into rigorous academic research.
               </p>
@@ -60,30 +50,30 @@ export default function LibraryPage() {
 
             {/* Key Features Grid */}
             <div className="mt-12">
-              <h3 className="text-2xl font-bold text-school-blue mb-6">Key Features</h3>
+              <h3 className="text-2xl font-black text-school-navy font-display mb-6">Key Features</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-white p-6 rounded-2xl border border-slate-200 transition-all hover:shadow-md">
-                  <div className="w-10 h-10 bg-school-amber/10 rounded-xl flex items-center justify-center text-school-amber mb-4">
+                <div className="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm transition-all hover:shadow-md">
+                  <div className="w-10 h-10 bg-school-saffron-ghost rounded-xl flex items-center justify-center text-school-saffron mb-4 border border-school-saffron/10">
                     <BookOpen className="h-5 w-5" />
                   </div>
-                  <h4 className="font-bold text-slate-800 mb-2 text-base">10,000+ Books</h4>
-                  <p className="text-slate-500 text-xs leading-relaxed">Extensive collection spanning fiction, non-fiction, and academic journals.</p>
+                  <h4 className="font-bold text-school-navy mb-2 text-base font-display">10,000+ Books</h4>
+                  <p className="text-slate-500 text-xs leading-relaxed font-sans">Extensive collection spanning fiction, non-fiction, and academic journals.</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl border border-slate-200 transition-all hover:shadow-md">
-                  <div className="w-10 h-10 bg-school-blue/10 rounded-xl flex items-center justify-center text-school-blue mb-4">
+                <div className="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm transition-all hover:shadow-md">
+                  <div className="w-10 h-10 bg-school-saffron-ghost rounded-xl flex items-center justify-center text-school-saffron-dark mb-4 border border-school-saffron/10">
                     <Computer className="h-5 w-5" />
                   </div>
-                  <h4 className="font-bold text-slate-800 mb-2 text-base">Digital Center</h4>
-                  <p className="text-slate-500 text-xs leading-relaxed">High-speed terminals with access to global research databases and e-books.</p>
+                  <h4 className="font-bold text-school-navy mb-2 text-base font-display">Digital Center</h4>
+                  <p className="text-slate-500 text-xs leading-relaxed font-sans">High-speed terminals with access to global research databases and e-books.</p>
                 </div>
 
-                <div className="bg-white p-6 rounded-2xl border border-slate-200 transition-all hover:shadow-md">
-                  <div className="w-10 h-10 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-600 mb-4">
+                <div className="bg-white p-6 rounded-2xl border border-slate-200/60 shadow-sm transition-all hover:shadow-md">
+                  <div className="w-10 h-10 bg-school-blue-light/80 text-school-blue rounded-xl flex items-center justify-center mb-4">
                     <GraduationCap className="h-5 w-5" />
                   </div>
-                  <h4 className="font-bold text-slate-800 mb-2 text-base">Quiet Study Zones</h4>
-                  <p className="text-slate-500 text-xs leading-relaxed">Ergonomically designed pods for focused, distraction-free individual study.</p>
+                  <h4 className="font-bold text-school-navy mb-2 text-base font-display">Quiet Study Zones</h4>
+                  <p className="text-slate-500 text-xs leading-relaxed font-sans">Ergonomically designed pods for focused, distraction-free individual study.</p>
                 </div>
               </div>
             </div>
@@ -91,11 +81,11 @@ export default function LibraryPage() {
 
           {/* Sidebar Guidelines */}
           <aside className="lg:col-span-4">
-            <div className="bg-slate-100 p-8 rounded-2xl border border-slate-200 sticky top-24">
-              <h3 className="text-xl font-bold text-school-blue mb-6 flex items-center gap-2">
-                <ShieldCheck className="h-5 w-5 text-school-amber" /> Library Guidelines
+            <div className="bg-white p-8 rounded-[2rem] border border-slate-200/60 shadow-lg sticky top-24">
+              <h3 className="text-xl font-bold text-school-navy font-display mb-6 flex items-center gap-2">
+                <ShieldCheck className="h-5 w-5 text-school-saffron" /> Library Guidelines
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-4 font-sans">
                 {[
                   "Silence must be maintained at all times within the library premises.",
                   "A valid Student ID/Library Card is required for all book transactions.",
@@ -103,16 +93,16 @@ export default function LibraryPage() {
                   "Return all resources by the specified due date to avoid late fees."
                 ].map((item, index) => (
                   <li key={index} className="flex gap-3 items-start">
-                    <CheckCircle className="h-5 w-5 text-school-amber flex-shrink-0 mt-0.5" />
-                    <span className="text-slate-600 text-sm leading-relaxed">{item}</span>
+                    <CheckCircle className="h-5 w-5 text-school-saffron flex-shrink-0 mt-0.5" />
+                    <span className="text-text-secondary text-sm leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
-              <div className="mt-8 pt-6 border-t border-slate-200 text-center">
+              <div className="mt-8 pt-6 border-t border-slate-100 text-center font-sans">
                 <p className="text-xs text-slate-400 mb-4">Questions about availability?</p>
                 <Link 
                   href="/contact" 
-                  className="w-full inline-block text-center bg-school-blue text-white py-3 rounded-xl font-bold text-sm hover:bg-school-blue-dark active:scale-95 transition-all shadow-sm"
+                  className="w-full inline-block text-center bg-gradient-to-r from-school-saffron to-school-saffron-light text-white py-3 rounded-xl font-bold text-sm hover:opacity-95 active:scale-95 transition-all shadow-md"
                 >
                   Contact Dept Head
                 </Link>
@@ -122,11 +112,13 @@ export default function LibraryPage() {
         </section>
 
         {/* Gallery Section */}
-        <section className="bg-school-blue-light py-16">
-          <div className="max-w-7xl mx-auto px-6">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-extrabold text-school-blue">Library Life in Action</h2>
-              <p className="text-slate-600 mt-2 text-sm">A glimpse into how our students engage with our learning spaces.</p>
+        <section className="bg-school-navy py-24 border-t border-white/5 relative">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(232,98,26,0.04)_1px,_transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
+            <div className="text-center mb-16">
+              <span className="text-school-saffron font-bold text-xs uppercase tracking-[0.2em] mb-3 inline-block">LIBRARY LIFE</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white font-display">A Sanctuary of Research</h2>
+              <p className="text-slate-400 mt-2 text-sm font-sans">A glimpse into how our students engage with our learning spaces.</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
@@ -135,9 +127,9 @@ export default function LibraryPage() {
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuC0OokHmhnsgY0F5b0N2IsRNs6u1fsEfDfmibNTQVFMyY6s769GeeeoPcOsGe0igWYy-I80JAY1LfDqKF3Ixo-qAj4VQGIQkeT9a6jWGe_-ldM_5cSQ7NEA7WyyovJhnXhqQC6LhhKkL9p_hbpVHlMLNrYRtL4xpAX8soAo7-46HqOrpQ5ybAXNgnzWTXMggQ89iiHOXlItBNhV7m8ni-90hDJ-8dHLYrYFuomgcsUqw-hr6wifBHH3TqeXA9Uej54jQHuTA4py1d0m",
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuCCHRNPF-ZeS6jGOCSLHJABF7w2JCArksdN6VssDvCY7z2dJq8ZrVCr7FSlq5844oB6ruf4ojp6VARQuVZZm_KOtRNZsCDn4MKOWHgoai6xsAN6vMz2QIEFwtsbU2i-Vai5YKD_Yc3g6K5ltzS-xLbrToEbuuiG6QaYaWcDljpYOPRZ5pyhWBVm3uQwpnE23ibuVwhmH9Hp8gNMJTwsvkPuzlJ4fKzaTn-UW7Lr5uhM5Mc7fOIOR4ir6ir-08jnNzYsQrIc3sbgOTkl"
               ].map((url, i) => (
-                <div key={i} className="overflow-hidden rounded-2xl h-60 relative group shadow-sm">
-                  <img src={url} alt={`Library Life ${i+1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-school-blue/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div key={i} className="overflow-hidden rounded-3xl h-60 relative group shadow-lg border border-white/5">
+                  <img src={url} alt={`Library Life ${i+1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-school-ink/30 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               ))}
             </div>
@@ -145,23 +137,24 @@ export default function LibraryPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 max-w-7xl mx-auto px-6 text-center">
-          <div className="bg-[#00386b] rounded-3xl p-12 text-white relative overflow-hidden shadow-xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32" />
-            <h2 className="text-3xl font-extrabold mb-4 relative z-10">Want to see our facility in person?</h2>
-            <p className="text-slate-200 mb-8 max-w-2xl mx-auto relative z-10">
+        <section className="py-24 max-w-7xl mx-auto px-6 text-center">
+          <div className="bg-school-navy rounded-[2.5rem] p-12 md:p-16 text-white relative overflow-hidden shadow-2xl">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(232,98,26,0.06)_1px,_transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
+            <div className="absolute top-0 right-0 w-80 h-80 bg-school-saffron/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+            <h2 className="text-3xl md:text-4xl font-black mb-4 relative z-10 font-display">Want to see our facility in person?</h2>
+            <p className="text-slate-300 mb-8 max-w-2xl mx-auto relative z-10 font-sans leading-relaxed">
               We welcome prospective parents and students to tour our campus and experience the Central Academy environment firsthand.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center relative z-10 font-sans">
               <Link 
                 href="/admissions" 
-                className="bg-school-amber text-white px-8 py-3 rounded-xl font-bold hover:scale-105 active:scale-95 transition-all shadow-md"
+                className="bg-gradient-to-r from-school-saffron to-school-saffron-light text-white px-8 py-3.5 rounded-xl font-bold hover:opacity-95 active:scale-95 transition-all shadow-md"
               >
                 Inquire for Visit
               </Link>
               <Link 
                 href="/downloads" 
-                className="border border-white text-white px-8 py-3 rounded-xl font-bold hover:bg-white/10 active:scale-95 transition-all"
+                className="bg-white/10 border border-white/25 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/20 active:scale-95 transition-all"
               >
                 Download Brochure
               </Link>

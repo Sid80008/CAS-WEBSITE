@@ -12,10 +12,18 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				/* ── Portal styling tokens ── */
-				'portal-dark': '#002246',      // the dark bg
+				/* ══ Portal styling tokens ══ */
+				'portal-dark': '#001D3A',      // deep navy bg
 				'portal-dark-text': '#e2e8f0', // light text FOR dark bg
-				'portal-card': '#001a3e',
+				'portal-card': '#002D5C',
+
+				/* ══ Midnight Saffron System v3 ══ */
+				'school-saffron': 'var(--school-saffron)',           // #E8621A - THE signature
+				'school-saffron-light': 'var(--school-saffron-light)', // #FF8C42
+				'school-saffron-dark': 'var(--school-saffron-dark)', // #B84A0D
+				'school-saffron-ghost': 'var(--school-saffron-ghost)', // #FFF0E6
+				'school-navy': 'var(--school-navy)',                 // #001D3A
+				'school-ink': 'var(--school-ink)',                   // #040D1A
 
 				/* ── MD3 / Stitch design tokens ── */
 				"background": "#fcf9f8",
@@ -117,7 +125,9 @@ export default {
 				},
 			},
 			fontFamily: {
-				sans: ["Plus Jakarta Sans", "var(--font-sans)", "system-ui", "sans-serif"],
+				sans: ["var(--font-jakarta)", "var(--font-sans)", "system-ui", "sans-serif"],
+				display: ["var(--font-display)", "Georgia", "serif"], /* Playfair Display */
+				jakarta: ["var(--font-jakarta)", "system-ui", "sans-serif"],
 				"body-lg": ["Plus Jakarta Sans"],
 				"body-md": ["Plus Jakarta Sans"],
 				"headline-lg-mobile": ["Plus Jakarta Sans"],

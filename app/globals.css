@@ -4,24 +4,42 @@
 
 @layer base {
   :root {
-    /* Brand Colors - Primitives (HEX) */
-    --school-blue: #1B4F8A;
-    --school-blue-light: #E6F1FB;
-    --school-blue-dark: #0C447C;
-    
-    --school-amber: #BA7517;
-    --school-teal: #0F6E56;
-    --school-coral: #993C1D;
+    /* ═══════════════════════════════════════════════
+       Brand Colors — "Midnight Saffron" System v3
+       Replaces flat amber #fdad4e with Saffron Fire
+    ═══════════════════════════════════════════════ */
+
+    /* Primary Blues */
+    --school-blue: #1B5EAA;          /* Royal blue — links, mid-weight accents */
+    --school-blue-light: #E6F1FB;    /* Blue ghost — badge bg, tinted sections */
+    --school-blue-dark: #003D7A;     /* Cobalt — cards on dark, portal sidebar */
+    --school-navy: #001D3A;          /* Deep navy — section bg, footer */
+    --school-ink: #040D1A;           /* Midnight ink — hero bg, cinematic dark */
+
+    /* Saffron Fire — THE signature accent (replaces #fdad4e entirely) */
+    --school-saffron: #E8621A;       /* Saffron fire — primary accent */
+    --school-saffron-light: #FF8C42; /* Lighter saffron — gradients, glows */
+    --school-saffron-dark: #B84A0D;  /* Dark saffron — text on light bg */
+    --school-saffron-ghost: #FFF0E6; /* Ghost — tinted section bg, badge bg */
+
+    /* Legacy alias so existing code using --school-amber still compiles */
+    --school-amber: #B84A0D;         /* ← maps to saffron-dark for backward compat */
+
+    /* Supporting palette */
+    --school-teal: #0A4A3C;          /* Deep forest — sports, success, fee-paid */
+    --school-teal-light: #E0F2EE;
+    --school-coral: #C73B1E;         /* Alert coral — urgent, deadlines, overdue */
+    --school-coral-light: #FDECEA;
     --school-purple: #534AB7;
     --school-green: #3B6D11;
 
-    /* Neutrals (HEX) */
-    --text-primary: #1a1a1a;
-    --text-secondary: #555555;
-    --text-tertiary: #888888;
-    --border-neutral: #e2e0db;
+    /* Neutrals */
+    --text-primary: #0D1117;
+    --text-secondary: #4A5568;
+    --text-tertiary: #8A94A6;
+    --border-neutral: #E8E6E0;    /* Warmer border */
     --background-white: #ffffff;
-    --background-alt: #f8f7f5;
+    --background-alt: #FAFAF5;    /* Warm cream — not clinical white */
 
     /* Spacing System (4px Grid) */
     --spacing-1: 4px;
@@ -172,7 +190,7 @@ body {
         position: fixed;
         width: 8px;
         height: 8px;
-        background: #fdad4e; /* Default orange dot */
+        background: var(--school-saffron); /* Saffron fire dot */
         border-radius: 50%;
         transform: translate(-50%, -50%);
         transition: transform 0.1s ease-out, opacity 0.2s ease, background-color 0.3s ease;
@@ -184,7 +202,7 @@ body {
         position: fixed;
         width: 40px;
         height: 40px;
-        border: 2px solid rgba(0, 56, 107, 0.5); /* Default blue circle */
+        border: 2px solid rgba(27, 94, 170, 0.5); /* Default blue circle */
         border-radius: 50%;
         transform: translate(-50%, -50%);
         transition: width 0.3s ease, height 0.3s ease, background 0.3s ease, border-color 0.3s ease, transform 0.15s ease-out;
@@ -192,24 +210,24 @@ body {
         pointer-events: none;
     }
 
-    /* On blue background, both turn orange */
+    /* On blue/dark background — cursor becomes saffron fire */
     body.cursor-on-blue .cursor-point {
-        background: #fdad4e;
+        background: var(--school-saffron);
     }
     body.cursor-on-blue .cursor-aura {
-        border-color: rgba(253, 173, 78, 0.7);
+        border-color: rgba(232, 98, 26, 0.7);
     }
 
-    /* Hovering over links/buttons: center turns blue, aura expands and turns orange */
+    /* Hovering over links/buttons: center turns navy, aura expands saffron */
     body.is-hovering .cursor-aura {
         width: 60px;
         height: 60px;
-        background: rgba(253, 173, 78, 0.12);
-        border-color: rgba(253, 173, 78, 0.75);
+        background: rgba(232, 98, 26, 0.1);
+        border-color: rgba(232, 98, 26, 0.75);
     }
 
     body.is-hovering .cursor-point {
-        background: #00386b; /* Center turns blue */
+        background: var(--school-navy);
         transform: translate(-50%, -50%) scale(1.2);
     }
 
@@ -217,13 +235,13 @@ body {
     body.is-clicking .cursor-aura {
         width: 30px;
         height: 30px;
-        background: rgba(0, 56, 107, 0.25);
-        border-color: rgba(0, 56, 107, 0.7);
+        background: rgba(27, 94, 170, 0.2);
+        border-color: rgba(27, 94, 170, 0.7);
         transform: translate(-50%, -50%) scale(0.9);
     }
     body.is-clicking.cursor-on-blue .cursor-aura {
-        background: rgba(253, 173, 78, 0.25);
-        border-color: rgba(253, 173, 78, 0.7);
+        background: rgba(232, 98, 26, 0.2);
+        border-color: rgba(232, 98, 26, 0.7);
     }
 }
 

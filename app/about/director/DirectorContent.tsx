@@ -5,11 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useSearchParams, useRouter } from "next/navigation";
 import PublicLayout from "@/components/layout/PublicLayout";
+import { PageBanner } from "@/components/layout/PageBanner";
 import { Mail, Phone, Quote, GraduationCap, HeartHandshake, Lightbulb, Compass, Award, Users } from "lucide-react";
-import {
-  fadeUp, fadeLeft, fadeRight,
-  staggerContainer, EASE, VIEWPORT
-} from "@/lib/animations";
+import { fadeUp, fadeLeft, fadeRight, staggerContainer, EASE, VIEWPORT } from "../../../lib/animations";
 
 type DirectorKey = "hariprakash" | "rekhraj";
 
@@ -47,17 +45,17 @@ const directors: Record<DirectorKey, DirectorData> = {
     ],
     focusAreas: [
       {
-        icon: <Compass className="h-5 w-5 text-[#885200]" />,
+        icon: <Compass className="h-5 w-5 text-school-saffron" />,
         title: "Holistic Direction",
         desc: "Guiding the institution towards moral and ethical leadership."
       },
       {
-        icon: <Award className="h-5 w-5 text-[#885200]" />,
+        icon: <Award className="h-5 w-5 text-school-saffron" />,
         title: "Legacy of Honor",
         desc: "Maintaining our long-standing record of academic and cultural success."
       },
       {
-        icon: <Users className="h-5 w-5 text-[#885200]" />,
+        icon: <Users className="h-5 w-5 text-school-saffron" />,
         title: "Inclusive Environment",
         desc: "Creating a welcoming sanctuary where every child feels valued."
       }
@@ -83,17 +81,17 @@ const directors: Record<DirectorKey, DirectorData> = {
     ],
     focusAreas: [
       {
-        icon: <Lightbulb className="h-5 w-5 text-[#00386b]" />,
+        icon: <Lightbulb className="h-5 w-5 text-school-saffron" />,
         title: "Modern Pedagogy",
         desc: "Integrating technology and interactive tools for active learning."
       },
       {
-        icon: <GraduationCap className="h-5 w-5 text-[#00386b]" />,
+        icon: <GraduationCap className="h-5 w-5 text-school-saffron" />,
         title: "21st Century Skills",
         desc: "Fostering critical thinking, coding, and problem-solving."
       },
       {
-        icon: <HeartHandshake className="h-5 w-5 text-[#00386b]" />,
+        icon: <HeartHandshake className="h-5 w-5 text-school-saffron" />,
         title: "Global Citizenship",
         desc: "Nurturing empathy and responsibility in a global environment."
       }
@@ -122,68 +120,54 @@ function DirectorContentInner() {
 
   return (
     <PublicLayout>
-      {/* Hero Section */}
-      <section className="bg-school-blue py-20 px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:40px_40px]" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.span
-            className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-white text-xs font-bold uppercase tracking-[0.3em] mb-6"
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE, delay: 0.15 }}
-          >
-            Leadership Vision
-          </motion.span>
-
-          <motion.h1
-            className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tighter"
-            initial={{ opacity: 0, y: 36 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.85, ease: EASE, delay: 0.3 }}
-          >
-            Directors' Message
-          </motion.h1>
-          <div className="w-24 h-1 bg-[#fdad4e] mx-auto rounded-full mb-8"></div>
-
-          {/* Clean Tab Controls */}
-          <div className="inline-flex p-1.5 bg-white/10 backdrop-blur-md rounded-2xl border border-white/10 shadow-lg relative z-20">
-            <button
-              onClick={() => handleTabChange("hariprakash")}
-              className={`relative px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-colors duration-300 ${
-                activeTab === "hariprakash" ? "text-[#00386b]" : "text-white hover:text-white/80"
-              }`}
-            >
-              {activeTab === "hariprakash" && (
-                <motion.div
-                  layoutId="active-bg"
-                  className="absolute inset-0 bg-[#fdad4e] rounded-xl z-0"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Mr. Hariprakash Meena</span>
-            </button>
-            <button
-              onClick={() => handleTabChange("rekhraj")}
-              className={`relative px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-colors duration-300 ${
-                activeTab === "rekhraj" ? "text-[#00386b]" : "text-white hover:text-white/80"
-              }`}
-            >
-              {activeTab === "rekhraj" && (
-                <motion.div
-                  layoutId="active-bg"
-                  className="absolute inset-0 bg-[#fdad4e] rounded-xl z-0"
-                  transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">Mr. Rekhraj Meena</span>
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* ── Page Banner (3-layer depth) ── */}
+      <PageBanner
+        titleEn="Director's Message"
+        titleHi="निदेशक का संदेश"
+        eyebrowEn="Leadership Vision"
+        eyebrowHi="नेतृत्व दृष्टिकोण"
+        imageSrc="/gallery/slider/1758787566_WhatsApp Image 2025-09-14 at 6.jpeg"
+      />
 
       {/* Message Content Section */}
-      <section className="py-20 px-6 bg-[#fcf9f8]">
+      <section className="py-20 px-6 bg-[#FAFAF5]">
         <div className="max-w-7xl mx-auto">
+          {/* Clean Tab Controls */}
+          <div className="flex justify-center mb-16">
+            <div className="inline-flex p-1.5 bg-white rounded-2xl border border-slate-200/60 shadow-lg relative z-20">
+              <button
+                onClick={() => handleTabChange("hariprakash")}
+                className={`relative px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-colors duration-300 ${
+                  activeTab === "hariprakash" ? "text-white" : "text-school-blue hover:text-school-saffron"
+                }`}
+              >
+                {activeTab === "hariprakash" && (
+                  <motion.div
+                    layoutId="active-bg"
+                    className="absolute inset-0 bg-gradient-to-r from-school-saffron to-school-saffron-light rounded-xl z-0"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">Mr. Hariprakash Meena</span>
+              </button>
+              <button
+                onClick={() => handleTabChange("rekhraj")}
+                className={`relative px-6 py-2.5 rounded-xl text-sm font-bold tracking-wide transition-colors duration-300 ${
+                  activeTab === "rekhraj" ? "text-white" : "text-school-blue hover:text-school-saffron"
+                }`}
+              >
+                {activeTab === "rekhraj" && (
+                  <motion.div
+                    layoutId="active-bg"
+                    className="absolute inset-0 bg-gradient-to-r from-school-saffron to-school-saffron-light rounded-xl z-0"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">Mr. Rekhraj Meena</span>
+              </button>
+            </div>
+          </div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -195,8 +179,8 @@ function DirectorContentInner() {
             >
               {/* Portrait & Stats Column */}
               <div className="lg:col-span-4 lg:sticky lg:top-32 space-y-6">
-                <div className="bg-white p-6 rounded-3xl border border-[#E2E0DB] shadow-md">
-                  <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-6 relative bg-slate-100">
+                <div className="bg-white p-6 rounded-[2.5rem] border border-slate-200/60 shadow-xl">
+                  <div className="aspect-[3/4] rounded-[2rem] overflow-hidden mb-6 relative bg-slate-100">
                     <Image
                       alt={`Portrait of ${currentDirector.name}`}
                       src={currentDirector.image}
@@ -206,20 +190,20 @@ function DirectorContentInner() {
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-[#00386b] mb-1 font-sans">{currentDirector.name}</h3>
-                    <p className="text-sm font-semibold text-slate-500 mb-6 uppercase tracking-wider">{currentDirector.title}</p>
+                    <h3 className="text-2xl font-black text-school-navy mb-1 font-display">{currentDirector.name}</h3>
+                    <p className="text-xs font-bold text-school-saffron uppercase tracking-wider mb-6">{currentDirector.title}</p>
                     
-                    <div className="flex justify-center gap-3 border-t border-[#E2E0DB] pt-6">
+                    <div className="flex justify-center gap-3 border-t border-slate-100 pt-6">
                       <a
                         href={`mailto:${currentDirector.email}`}
-                        className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#E6F1FB] text-[#00386b] hover:bg-[#00386b] hover:text-white transition-all duration-300"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-school-saffron-ghost text-school-saffron-dark hover:bg-school-saffron hover:text-white transition-all duration-300"
                         aria-label="Email Director"
                       >
                         <Mail className="h-5 w-5" />
                       </a>
                       <a
                         href={`tel:${currentDirector.phone}`}
-                        className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-[#E6F1FB] text-[#00386b] hover:bg-[#00386b] hover:text-white transition-all duration-300"
+                        className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-school-saffron-ghost text-school-saffron-dark hover:bg-school-saffron hover:text-white transition-all duration-300"
                         aria-label="Call Director"
                       >
                         <Phone className="h-5 w-5" />
@@ -231,8 +215,8 @@ function DirectorContentInner() {
                 {/* Director Stats */}
                 <div className="grid grid-cols-2 gap-4">
                   {currentDirector.stats.map((stat, i) => (
-                    <div key={i} className="bg-white p-5 rounded-2xl border border-[#E2E0DB] text-center shadow-sm">
-                      <div className="text-[#00386b] text-2xl font-black mb-1">{stat.value}</div>
+                    <div key={i} className="bg-school-saffron-ghost p-5 rounded-2xl border border-school-saffron/10 text-center shadow-sm">
+                      <div className="text-school-saffron-dark text-2xl font-black mb-1 font-display">{stat.value}</div>
                       <div className="text-slate-500 text-[10px] font-bold uppercase tracking-wider">{stat.label}</div>
                     </div>
                   ))}
@@ -241,15 +225,15 @@ function DirectorContentInner() {
 
               {/* Message Body Column */}
               <div className="lg:col-span-8 space-y-8">
-                <div className="bg-white p-8 md:p-12 rounded-3xl border border-[#E2E0DB] shadow-md relative">
-                  <Quote className="h-16 w-16 text-[#00386b]/10 absolute -top-4 -left-4 pointer-events-none" />
+                <div className="bg-white p-8 md:p-12 rounded-[2.5rem] border border-slate-200/60 shadow-xl relative overflow-hidden">
+                  <Quote className="h-16 w-16 text-school-saffron/10 absolute -top-4 -left-4 pointer-events-none" />
                   
-                  <div className="prose prose-lg max-w-none text-[#424750] leading-relaxed space-y-6 font-body">
-                    <h3 className="text-2xl font-extrabold text-[#00386b] font-sans mb-6">
+                  <div className="prose prose-lg max-w-none text-text-secondary leading-relaxed space-y-6 font-sans">
+                    <h3 className="text-2xl font-black text-school-navy font-display mb-6">
                       {currentDirector.quoteTitle}
                     </h3>
                     
-                    <p className="text-xl font-medium text-[#1c1b1b] border-l-4 border-[#fdad4e] pl-6 py-2 bg-[#F8F7F5] rounded-r-xl">
+                    <p className="text-xl font-medium text-slate-800 border-l-4 border-school-saffron pl-6 py-2 bg-school-saffron-ghost/50 rounded-r-xl font-sans">
                       "{currentDirector.quote}"
                     </p>
 
@@ -258,25 +242,25 @@ function DirectorContentInner() {
                     ))}
 
                     {/* Focus Areas Grid */}
-                    <div className="pt-8 border-t border-[#E2E0DB]">
-                      <h4 className="text-lg font-bold text-[#00386b] mb-6 font-sans">Core Institutional Pillars</h4>
+                    <div className="pt-8 border-t border-slate-100">
+                      <h4 className="text-lg font-black text-school-navy mb-6 font-display">Core Institutional Pillars</h4>
                       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {currentDirector.focusAreas.map((area, idx) => (
-                          <div key={idx} className="p-5 border border-slate-100 rounded-2xl hover:bg-slate-50 transition-colors">
-                            <div className="bg-[#FAEEDA] h-10 w-10 rounded-lg flex items-center justify-center mb-4">
+                          <div key={idx} className="p-5 border border-slate-150 rounded-2xl hover:bg-school-saffron-ghost/30 hover:border-school-saffron/20 transition-all duration-300">
+                            <div className="bg-school-saffron-ghost h-10 w-10 rounded-xl flex items-center justify-center mb-4 text-school-saffron-dark">
                               {area.icon}
                             </div>
-                            <h5 className="font-semibold text-sm text-[#00386b] mb-2">{area.title}</h5>
+                            <h5 className="font-bold text-sm text-school-navy mb-2 font-display">{area.title}</h5>
                             <p className="text-xs text-slate-500 leading-relaxed">{area.desc}</p>
                           </div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="mt-12 pt-8 border-t border-[#E2E0DB] flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+                    <div className="mt-12 pt-8 border-t border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
                       <div>
-                        <p className="font-semibold text-[#00386b] font-sans">Warm Regards,</p>
-                        <p className="text-lg font-bold text-[#1c1b1b] mt-1">{currentDirector.name}</p>
+                        <p className="font-bold text-school-navy font-display">Warm Regards,</p>
+                        <p className="text-lg font-black text-school-saffron-dark mt-1 font-display">{currentDirector.name}</p>
                         <p className="text-xs text-slate-500 uppercase tracking-wider mt-0.5">{currentDirector.title}, Central Academy Anta</p>
                       </div>
                     </div>
@@ -294,8 +278,8 @@ function DirectorContentInner() {
 export function DirectorContent() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-[#fcf9f8]">
-        <div className="w-12 h-12 border-4 border-[#00386b] border-t-transparent rounded-full animate-spin"></div>
+      <div className="min-h-screen flex items-center justify-center bg-[#FAFAF5]">
+        <div className="w-12 h-12 border-4 border-school-saffron border-t-transparent rounded-full animate-spin"></div>
       </div>
     }>
       <DirectorContentInner />

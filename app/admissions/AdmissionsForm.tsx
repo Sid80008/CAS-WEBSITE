@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { SCHOOL, getCurrentSession } from "@/lib/constants";
 import PublicLayout from "@/components/layout/PublicLayout";
+import { PageBanner } from "@/components/layout/PageBanner";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   Phone,
   Mail,
@@ -46,7 +48,7 @@ function Field({ label, required, children }: { label: string; required?: boolea
 }
 
 const inputClass =
-  "w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:ring-2 focus:ring-school-blue/20 focus:border-school-blue outline-none transition-all text-sm text-slate-800 placeholder:text-slate-400";
+  "w-full px-4 py-3 rounded-xl border border-slate-200 bg-white focus:ring-2 focus:ring-school-saffron/20 focus:border-school-saffron outline-none transition-all text-sm text-slate-800 placeholder:text-slate-400";
 
 // ─── FAQ Accordion ────────────────────────────────────────────────────────────
 
@@ -72,23 +74,23 @@ const FAQS = [
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="bg-white rounded-xl border border-slate-200 overflow-hidden group">
+    <div className="bg-white rounded-2xl border border-slate-200/60 overflow-hidden group hover:border-school-saffron/20 transition-all duration-300">
       <button
         type="button"
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-6 py-5 text-left"
       >
-        <span className="font-semibold text-slate-800 group-hover:text-school-blue transition-colors text-sm md:text-base">
+        <span className="font-semibold text-slate-850 group-hover:text-school-saffron transition-colors text-sm md:text-base">
           {q}
         </span>
         <ChevronDown
-          className={`h-5 w-5 text-slate-500 flex-shrink-0 ml-4 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+          className={`h-5 w-5 text-slate-400 flex-shrink-0 ml-4 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
         />
       </button>
       <div
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${open ? "max-h-40" : "max-h-0"}`}
+        className={`overflow-hidden transition-all duration-350 ease-in-out ${open ? "max-h-40" : "max-h-0"}`}
       >
-        <p className="px-6 pb-5 text-sm text-slate-600 leading-relaxed bg-slate-50">{a}</p>
+        <p className="px-6 pb-5 text-sm text-slate-600 leading-relaxed bg-school-saffron-ghost/10">{a}</p>
       </div>
     </div>
   );
@@ -99,6 +101,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 export default function AdmissionsForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
+  const { language } = useLanguage();
   const [form, setForm] = useState<FormData>({
     studentName: "",
     dob: "",
@@ -152,49 +155,40 @@ export default function AdmissionsForm() {
 
   return (
     <PublicLayout>
-      {/* ── Hero ── */}
-      <section className="relative bg-school-blue-light py-20 px-6 md:px-16 overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-school-blue rounded-full blur-3xl -mr-48 -mt-48 opacity-10 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-school-amber rounded-full blur-3xl -ml-32 -mb-32 opacity-10 pointer-events-none" />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 bg-white rounded-full text-school-amber text-xs font-bold uppercase tracking-widest mb-5 border border-yellow-200 shadow-sm">
-            <BadgeCheck className="h-3.5 w-3.5" />
-            Admissions Open — {getCurrentSession()}
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-school-blue mb-4 tracking-tight">
-            Contact Admissions
-          </h1>
-          <p className="text-slate-600 max-w-2xl text-lg leading-relaxed">
-            Begin your child's journey toward academic excellence. Our admissions team is here to guide you through every step of the process.
-          </p>
-        </div>
-      </section>
+      {/* ── Page Banner ── */}
+      <PageBanner
+        titleEn="Admissions Portal"
+        titleHi="प्रवेश पोर्टल"
+        eyebrowEn={`Admissions Open — ${getCurrentSession()}`}
+        eyebrowHi={`प्रवेश प्रारंभ — ${getCurrentSession()}`}
+        imageSrc="/gallery/photo-dump/1774511691_slider-52.jpg"
+      />
 
       {/* ── Admission Process ── */}
-      <section className="bg-slate-50 border-b border-slate-200 py-16 px-6 md:px-16">
+      <section className="bg-[#FAFAF5] border-b border-slate-200/30 py-20 px-6 md:px-16">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12">
-            <span className="text-school-amber text-xs font-bold uppercase tracking-widest bg-yellow-100/60 px-3 py-1 rounded-full border border-yellow-200">
-              Admission Procedure
+          <div className="text-center mb-16">
+            <span className="text-school-saffron text-xs font-bold uppercase tracking-[0.2em] bg-school-saffron-ghost px-4 py-1.5 rounded-full border border-school-saffron/20">
+              {language === "hi" ? "प्रवेश प्रक्रिया" : "Admission Procedure"}
             </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-school-blue mt-3 tracking-tight">
-              3-Step Admission Process
+            <h2 className="text-3xl md:text-4xl font-extrabold text-school-navy font-display mt-5 tracking-tight">
+              {language === "hi" ? "3-चरणीय प्रवेश प्रक्रिया" : "3-Step Admission Process"}
             </h2>
-            <p className="text-slate-600 max-w-2xl mx-auto mt-2 text-sm md:text-base">
+            <p className="text-slate-600 max-w-2xl mx-auto mt-3 text-sm md:text-base leading-relaxed">
               We aim to make our admission process as simple, transparent, and welcoming as possible. Here is how it works:
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Step 1 */}
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-school-blue/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-school-blue/10 group-hover:scale-110 transition-transform">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/50 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300 hover:border-school-saffron/25">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-school-saffron/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-school-saffron/10 group-hover:scale-110 transition-transform">
                 01
               </div>
-              <div className="w-12 h-12 bg-school-blue/10 text-school-blue rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-school-saffron-ghost text-school-saffron rounded-2xl flex items-center justify-center mb-6">
                 <FileText className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-school-blue mb-4">1. Registration & Application</h3>
+              <h3 className="text-xl font-bold text-school-navy mb-4 font-display">1. Registration & Application</h3>
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-slate-800 text-sm mb-1">Enquiry & Information</h4>
@@ -220,14 +214,14 @@ export default function AdmissionsForm() {
             </div>
 
             {/* Step 2 */}
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-school-amber/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-school-amber/10 group-hover:scale-110 transition-transform">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/50 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300 hover:border-school-saffron/25">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-school-saffron/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-school-saffron/10 group-hover:scale-110 transition-transform">
                 02
               </div>
-              <div className="w-12 h-12 bg-school-amber/10 text-school-amber rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-school-saffron-ghost text-school-saffron rounded-2xl flex items-center justify-center mb-6">
                 <BadgeCheck className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-school-blue mb-4">2. Assessment & Selection</h3>
+              <h3 className="text-xl font-bold text-school-navy mb-4 font-display">2. Assessment & Selection</h3>
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-slate-800 text-sm mb-1">Entrance Test / Assessment</h4>
@@ -253,14 +247,14 @@ export default function AdmissionsForm() {
             </div>
 
             {/* Step 3 */}
-            <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative overflow-hidden group hover:shadow-md transition-all">
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/50 shadow-sm relative overflow-hidden group hover:shadow-md transition-all duration-300 hover:border-school-saffron/25">
               <div className="absolute top-0 right-0 w-24 h-24 bg-emerald-500/5 rounded-bl-full flex items-center justify-center font-extrabold text-4xl text-emerald-500/10 group-hover:scale-110 transition-transform">
                 03
               </div>
-              <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-6">
+              <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
                 <CheckCircle2 className="h-6 w-6" />
               </div>
-              <h3 className="text-xl font-bold text-school-blue mb-4">3. Admission & Enrollment</h3>
+              <h3 className="text-xl font-bold text-school-navy mb-4 font-display">3. Admission & Enrollment</h3>
               <div className="space-y-4">
                 <div>
                   <h4 className="font-semibold text-slate-800 text-sm mb-1">Offer of Admission</h4>
@@ -289,19 +283,19 @@ export default function AdmissionsForm() {
       </section>
 
       {/* ── Form + Sidebar ── */}
-      <section className="max-w-7xl mx-auto py-16 px-6 md:px-16">
-        <div className="flex flex-col lg:flex-row gap-8 items-start">
+      <section className="bg-school-saffron-ghost/20 py-20 px-6 md:px-16 border-b border-slate-200/30">
+        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-10 items-start">
 
           {/* Left — Form (60%) */}
-          <div className="lg:w-3/5 bg-white p-8 rounded-2xl border border-slate-200 shadow-sm">
+          <div className="lg:w-3/5 bg-white p-8 md:p-10 rounded-3xl border border-slate-200/60 shadow-lg">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-1 h-8 bg-school-blue rounded-full" />
-              <h2 className="text-2xl font-bold text-school-blue">Admission Enquiry Form</h2>
+              <div className="w-1 h-8 bg-school-saffron rounded-full" />
+              <h2 className="text-2xl font-bold text-school-navy font-display">Admission Enquiry Form</h2>
             </div>
 
             {/* Success banner */}
             {status === "success" && (
-              <div className="mb-6 p-4 bg-emerald-50 border border-emerald-200 rounded-xl flex items-center gap-3 text-emerald-700 text-sm font-semibold">
+              <div className="mb-6 p-4 bg-emerald-50 border border-emerald-250 rounded-xl flex items-center gap-3 text-emerald-700 text-sm font-semibold">
                 <CheckCircle2 className="h-5 w-5 flex-shrink-0" />
                 Enquiry submitted! Our team will call you within 24–48 hours.
               </div>
@@ -374,7 +368,7 @@ export default function AdmissionsForm() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="inline-flex items-center gap-2 bg-school-blue text-white px-10 py-4 rounded-xl font-bold text-sm shadow-lg hover:bg-school-blue-dark active:scale-95 transition-all disabled:opacity-60"
+                className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-school-saffron to-school-saffron-light hover:brightness-110 text-white px-10 py-4 rounded-xl font-bold text-sm shadow-lg shadow-school-saffron/20 active:scale-95 transition-all duration-300 border-0 disabled:opacity-60"
               >
                 {status === "loading" ? (
                   <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>
@@ -386,39 +380,39 @@ export default function AdmissionsForm() {
           </div>
 
           {/* Right — Sidebar (40%) */}
-          <div className="lg:w-2/5 space-y-6">
+          <div className="lg:w-2/5 w-full space-y-8">
 
             {/* Quick Contact */}
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <h3 className="text-lg font-bold text-school-blue mb-5 flex items-center gap-2">
-                <Phone className="h-5 w-5" /> Quick Contact
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-md">
+              <h3 className="text-lg font-bold text-school-navy font-display mb-6 flex items-center gap-2">
+                <Phone className="h-5 w-5 text-school-saffron" /> Quick Contact
               </h3>
               <div className="space-y-4">
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-school-blue/10 rounded-full flex items-center justify-center text-school-blue flex-shrink-0">
+                  <div className="w-10 h-10 bg-school-saffron-ghost rounded-full flex items-center justify-center text-school-saffron flex-shrink-0">
                     <Phone className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">Phone</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Phone</p>
                     <p className="text-sm text-slate-700 font-semibold">{SCHOOL.phone1}</p>
                     {SCHOOL.phone2 && <p className="text-sm text-slate-500">{SCHOOL.phone2}</p>}
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-school-blue/10 rounded-full flex items-center justify-center text-school-blue flex-shrink-0">
+                  <div className="w-10 h-10 bg-school-saffron-ghost rounded-full flex items-center justify-center text-school-saffron flex-shrink-0">
                     <Mail className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">Email</p>
-                    <a href={`mailto:${SCHOOL.email}`} className="text-sm text-school-blue font-semibold hover:underline">{SCHOOL.email}</a>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Email</p>
+                    <a href={`mailto:${SCHOOL.email}`} className="text-sm text-school-saffron font-semibold hover:text-school-saffron-dark transition-colors">{SCHOOL.email}</a>
                   </div>
                 </div>
                 <div className="flex gap-4">
-                  <div className="w-10 h-10 bg-school-blue/10 rounded-full flex items-center justify-center text-school-blue flex-shrink-0">
+                  <div className="w-10 h-10 bg-school-saffron-ghost rounded-full flex items-center justify-center text-school-saffron flex-shrink-0">
                     <MapPin className="h-4 w-4" />
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-0.5">Address</p>
+                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">Address</p>
                     <p className="text-sm text-slate-600 leading-relaxed">{SCHOOL.address}</p>
                   </div>
                 </div>
@@ -426,9 +420,9 @@ export default function AdmissionsForm() {
             </div>
 
             {/* Office Hours */}
-            <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200 shadow-sm">
-              <h3 className="text-lg font-bold text-school-blue mb-5 flex items-center gap-2">
-                <Clock className="h-5 w-5" /> Office Hours
+            <div className="bg-white p-8 rounded-3xl border border-slate-200/60 shadow-md">
+              <h3 className="text-lg font-bold text-school-navy font-display mb-6 flex items-center gap-2">
+                <Clock className="h-5 w-5 text-school-saffron" /> Office Hours
               </h3>
               <ul className="space-y-3">
                 {[
@@ -445,11 +439,12 @@ export default function AdmissionsForm() {
             </div>
 
             {/* Document Checklist */}
-            <div className="bg-school-blue p-6 rounded-2xl shadow-lg text-white">
-              <h3 className="text-lg font-bold mb-5 flex items-center gap-2">
-                <FileText className="h-5 w-5" /> Document Checklist
+            <div className="bg-school-ink p-8 rounded-3xl border border-white/5 shadow-xl text-white relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-school-saffron/10 rounded-bl-full pointer-events-none" />
+              <h3 className="text-lg font-bold mb-6 flex items-center gap-2 font-display">
+                <FileText className="h-5 w-5 text-school-saffron-light" /> Document Checklist
               </h3>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {[
                   "Birth Certificate (Original & Photocopy)",
                   "Transfer Certificate (TC) from previous school",
@@ -458,14 +453,14 @@ export default function AdmissionsForm() {
                   "Previous Year's Report Card",
                 ].map((doc) => (
                   <li key={doc} className="flex items-start gap-3 text-sm text-white/90">
-                    <CheckCircle2 className="h-4 w-4 text-school-amber flex-shrink-0 mt-0.5" />
+                    <CheckCircle2 className="h-4 w-4 text-school-saffron-light flex-shrink-0 mt-0.5" />
                     {doc}
                   </li>
                 ))}
               </ul>
               <a
                 href="/downloads"
-                className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-school-amber text-white py-3 rounded-xl font-bold text-sm hover:bg-yellow-600 active:scale-95 transition-all"
+                className="mt-8 w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-school-saffron to-school-saffron-light text-white py-3.5 rounded-xl font-bold text-sm hover:brightness-110 shadow-lg shadow-school-saffron/25 active:scale-95 transition-all duration-300 border-0"
               >
                 <Download className="h-4 w-4" /> Download Brochure
               </a>
@@ -475,11 +470,11 @@ export default function AdmissionsForm() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="bg-slate-50 py-16 border-y border-slate-200">
+      <section className="bg-[#FAFAF5] py-20">
         <div className="max-w-4xl mx-auto px-6 md:px-16">
-          <div className="text-center mb-10">
-            <span className="text-school-amber text-xs font-bold uppercase tracking-widest">Help Center</span>
-            <h2 className="text-3xl font-bold text-school-blue mt-2">Frequently Asked Questions</h2>
+          <div className="text-center mb-12">
+            <span className="text-school-saffron text-xs font-bold uppercase tracking-[0.2em]">Help Center</span>
+            <h2 className="text-3xl font-bold text-school-navy font-display mt-3">Frequently Asked Questions</h2>
           </div>
           <div className="space-y-4">
             {FAQS.map((faq) => (

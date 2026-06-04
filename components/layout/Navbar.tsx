@@ -77,8 +77,8 @@ export function Navbar() {
               />
             </motion.div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-lg md:text-xl font-extrabold text-school-blue leading-tight">Central Academy antah</span>
-              <span className="text-[8px] sm:text-[9px] md:text-[10px] font-bold tracking-widest text-school-amber uppercase">Education for Excellence</span>
+              <span className="text-base sm:text-lg md:text-xl font-extrabold leading-tight" style={{ color: "var(--school-navy)" }}>Central Academy Antah</span>
+              <span className="text-[8px] sm:text-[9px] md:text-[10px] font-black tracking-widest uppercase" style={{ color: "var(--school-saffron-dark)" }}>Education for Excellence</span>
             </div>
           </Link>
         </motion.div>
@@ -94,11 +94,12 @@ export function Navbar() {
           <motion.div variants={{ hidden: { opacity: 0, y: -8 }, visible: { opacity: 1, y: 0, transition: { duration: 0.77, ease: EASE } } }}>
             <DropdownMenu>
               <DropdownMenuTrigger
-                className={`flex items-center gap-1 font-semibold transition-colors hover:text-school-amber outline-none ${
+                className={`flex items-center gap-1 font-semibold transition-colors outline-none ${
                   isAboutActive
-                    ? "text-school-amber border-b-2 border-school-amber py-1"
-                    : "text-school-blue"
+                    ? "border-b-2 py-1"
+                    : "text-school-blue hover:text-school-blue"
                 }`}
+              style={isAboutActive ? { color: "var(--school-saffron-dark)", borderColor: "var(--school-saffron)" } : {}}
               >
                 About <ChevronDown className="h-3.5 w-3.5 mt-0.5" />
               </DropdownMenuTrigger>
@@ -127,11 +128,14 @@ export function Navbar() {
               >
                 <Link
                   href={link.href}
-                  className={`font-semibold transition-colors hover:text-school-amber ${
+                  className={`font-semibold transition-colors ${
                     isActive
-                      ? "text-school-amber border-b-2 border-school-amber py-1"
+                      ? "border-b-2 py-1"
                       : "text-school-blue"
                   }`}
+                  style={isActive ? { color: "var(--school-saffron-dark)", borderColor: "var(--school-saffron)" } : { color: "var(--school-navy)" }}
+                  onMouseEnter={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--school-saffron-dark)"; }}
+                  onMouseLeave={(e) => { if (!isActive) (e.currentTarget as HTMLElement).style.color = "var(--school-navy)"; }}
                 >
                   {link.name}
                 </Link>
@@ -163,7 +167,10 @@ export function Navbar() {
               whileTap={{ scale: 0.97 }}
               transition={{ duration: 0.2 }}
             >
-              <Button className="bg-school-blue text-white hover:bg-school-blue-dark transition-all shadow-md flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-school-amber focus-visible:ring-offset-2">
+              <Button
+                className="text-white font-bold hover:opacity-90 transition-all shadow-md flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-offset-2"
+                style={{ background: "linear-gradient(135deg, #E8621A, #FF8C42)", outline: "none" }}
+              >
                 <LogIn className="h-4 w-4" aria-hidden="true" />
                 Portal
               </Button>

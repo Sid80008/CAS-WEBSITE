@@ -1,4 +1,6 @@
+import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
+import { PageBanner } from "@/components/layout/PageBanner";
 import { BookOpen, FlaskConical, Calculator, Globe, Music, Trophy } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -14,21 +16,21 @@ const STREAMS = [
     description:
       "Physics, Chemistry, Biology, Mathematics — rigorous preparation for engineering, medical, and research careers.",
     icon: <FlaskConical className="h-7 w-7" />,
-    color: "bg-blue-50 text-school-blue",
+    color: "bg-school-blue-light/50 text-school-blue",
   },
   {
     title: "Commerce Stream",
     description:
       "Accountancy, Business Studies, Economics, Maths — a strong foundation for CA, MBA, and business careers.",
     icon: <Calculator className="h-7 w-7" />,
-    color: "bg-amber-50 text-school-amber",
+    color: "bg-school-saffron-ghost text-school-saffron-dark",
   },
   {
     title: "Arts Stream",
     description:
       "History, Geography, Political Science, Hindi, English — nurturing thinkers, writers, and civil service aspirants.",
     icon: <BookOpen className="h-7 w-7" />,
-    color: "bg-emerald-50 text-emerald-600",
+    color: "bg-[#E0F2EE] text-[#0A4A3C]",
   },
   {
     title: "Primary (I–V)",
@@ -56,30 +58,24 @@ const STREAMS = [
 export default function AcademicsPage() {
   return (
     <PublicLayout>
-      {/* Hero */}
-      <section className="bg-school-blue py-24 px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:40px_40px]" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <span className="inline-block px-4 py-1.5 bg-white/10 backdrop-blur-md rounded-full text-white text-xs font-bold uppercase tracking-[0.3em] mb-6">
-            RBSE Affiliated · Affiliation No. 1212
-          </span>
-          <h1 className="text-5xl md:text-6xl font-black text-white mb-6 tracking-tighter">
-            Academics
-          </h1>
-          <p className="text-white/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Classes Nursery to XII — a structured, holistic curriculum designed to build strong foundations and prepare every student for their future.
-          </p>
-        </div>
-      </section>
+      {/* ── Page Banner (3-layer depth) ── */}
+      <PageBanner
+        titleEn="Academic Programs"
+        titleHi="शैक्षणिक कार्यक्रम"
+        eyebrowEn="RBSE Affiliated · Est. 2013"
+        eyebrowHi="आरबीएसई संबद्ध · स्थापना 2013"
+        imageSrc="/gallery/slider/1741166451_slider-21.jpg"
+      />
 
       {/* Streams Grid */}
-      <section className="py-24 px-6 bg-slate-50">
+      <section className="py-24 px-6 bg-[#FAFAF5]">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-school-blue tracking-tight">
+            <span className="text-school-saffron font-bold text-xs uppercase tracking-[0.2em] mb-3 inline-block">OUR CURRICULUM</span>
+            <h2 className="text-4xl md:text-5xl font-black text-school-navy font-display tracking-tight">
               Our Academic Programmes
             </h2>
-            <p className="text-slate-500 mt-3 max-w-xl mx-auto">
+            <p className="text-slate-500 mt-3 max-w-xl mx-auto font-sans">
               A complete academic journey from early childhood through Senior Secondary, tailored for Rajasthan's competitive academic environment.
             </p>
           </div>
@@ -87,13 +83,13 @@ export default function AcademicsPage() {
             {STREAMS.map((s) => (
               <div
                 key={s.title}
-                className="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm hover:-translate-y-1 hover:shadow-md transition-all duration-300"
+                className="bg-white p-8 rounded-[2rem] border border-slate-200/60 shadow-md hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group"
               >
-                <div className={`h-14 w-14 rounded-xl flex items-center justify-center mb-5 ${s.color}`}>
+                <div className={`h-14 w-14 rounded-xl flex items-center justify-center mb-6 border border-black/5 group-hover:scale-108 transition-transform duration-300 ${s.color}`}>
                   {s.icon}
                 </div>
-                <h3 className="text-xl font-bold text-school-blue mb-3">{s.title}</h3>
-                <p className="text-slate-500 text-sm leading-relaxed">{s.description}</p>
+                <h3 className="text-xl font-black text-school-navy font-display mb-3">{s.title}</h3>
+                <p className="text-slate-500 text-sm leading-relaxed font-sans">{s.description}</p>
               </div>
             ))}
           </div>
@@ -101,12 +97,14 @@ export default function AcademicsPage() {
       </section>
 
       {/* Board info */}
-      <section className="py-16 px-6 bg-white">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-school-blue mb-4">Board Affiliation</h2>
-          <p className="text-slate-600 leading-relaxed text-lg">
+      <section className="py-24 px-6 bg-school-ink border-t border-white/5 relative overflow-hidden text-center">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(232,98,26,0.04)_1px,_transparent_1px)] bg-[size:40px_40px] opacity-40"></div>
+        <div className="max-w-3xl mx-auto relative z-10 space-y-6">
+          <span className="text-school-saffron font-bold text-xs uppercase tracking-[0.2em] inline-block">RBSE AFFILIATION</span>
+          <h2 className="text-3xl md:text-4xl font-black text-white font-display">Affiliation Details</h2>
+          <p className="text-slate-300 leading-relaxed text-base md:text-lg font-sans">
             Central Academy Senior Secondary School is affiliated with the{" "}
-            <strong className="text-school-blue">
+            <strong className="text-school-saffron-light">
               Rajasthan Board of Secondary Education (RBSE)
             </strong>
             , Affiliation No. <strong>1212</strong>. Our curriculum strictly follows RBSE guidelines while supplementing with enrichment programmes in sports, arts, and life skills.
