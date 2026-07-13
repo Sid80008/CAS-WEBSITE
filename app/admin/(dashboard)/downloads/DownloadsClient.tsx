@@ -1,7 +1,8 @@
 "use client";
 // app/admin/downloads/DownloadsClient.tsx
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import type { Resource } from "@prisma/client";
+import { uploadResource, deleteResource } from "@/app/actions/resourceActions";
 
 interface Props { resources: Resource[]; }
 
@@ -11,6 +12,33 @@ const TYPE_ICONS: Record<string, string> = {
 
 export default function DownloadsClient({ resources }: Props) {
   const [showAdd, setShowAdd] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
+  const handleUpload = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
+    formData.set("published", formData.get("published") === "on" ? "true" : "false");
+
+    startTransition(async () => {
+      try {
+        await uploadResource(formData);
+        setShowAdd(false);
+      } catch (err: any) {
+        alert("Upload failed: " + err.message);
+      }
+    });
+  };
+
+  const handleDelete = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this resource?")) return;
+    startTransition(async () => {
+      try {
+        await deleteResource(id);
+      } catch (err: any) {
+        alert("Delete failed: " + err.message);
+      }
+    });
+  };
 
   return (
     <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
@@ -69,10 +97,7 @@ export default function DownloadsClient({ resources }: Props) {
                         className="p-2 hover:bg-primary-fixed/20 rounded-lg text-on-surface-variant hover:text-primary transition-all">
                         <span className="material-symbols-outlined text-xl">download</span>
                       </a>
-                      <button className="p-2 hover:bg-primary-fixed/20 rounded-lg text-on-surface-variant hover:text-primary transition-all">
-                        <span className="material-symbols-outlined text-xl">edit</span>
-                      </button>
-                      <button className="p-2 hover:bg-error-container rounded-lg text-on-surface-variant hover:text-error transition-all">
+                      <button disabled={isPending} onClick={() => handleDelete(r.id)} className="p-2 hover:bg-error-container rounded-lg text-on-surface-variant hover:text-error transition-all disabled:opacity-50">
                         <span className="material-symbols-outlined text-xl">delete</span>
                       </button>
                     </div>
@@ -95,7 +120,7 @@ export default function DownloadsClient({ resources }: Props) {
                 <span className="material-symbols-outlined">close</span>
               </button>
             </div>
-            <form className="space-y-4">
+            <form className="space-y-4" onSubmit={handleUpload}>
               <div>
                 <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Title *</label>
                 <input name="title" required className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" placeholder="e.g. Admission Form 2024-25" />
@@ -111,18 +136,18 @@ export default function DownloadsClient({ resources }: Props) {
               </div>
               <div>
                 <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">File *</label>
-                <div className="border-2 border-dashed border-outline-variant rounded-xl p-6 text-center bg-[#f6f3f2] cursor-pointer hover:border-primary transition-colors">
+                <div className="border-2 border-dashed border-outline-variant rounded-xl p-6 text-center bg-[#f6f3f2] hover:border-primary transition-colors relative">
                   <span className="material-symbols-outlined text-3xl text-outline block mb-1">upload_file</span>
                   <p className="text-sm text-on-surface-variant">Click to select PDF or DOCX file</p>
-                  <input type="file" accept=".pdf,.doc,.docx" className="hidden" />
+                  <input type="file" name="file" required accept=".pdf,.doc,.docx" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                 </div>
               </div>
               <label className="flex items-center gap-2 cursor-pointer">
                 <input type="checkbox" name="published" className="w-4 h-4 rounded" defaultChecked />
                 <span className="text-sm">Publish on website</span>
               </label>
-              <button type="button" onClick={() => setShowAdd(false)} className="w-full py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2">
-                <span className="material-symbols-outlined">upload</span>Upload Document
+              <button type="submit" disabled={isPending} className="w-full py-3 bg-secondary-container text-on-secondary-container font-bold rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 disabled:opacity-50">
+                <span className="material-symbols-outlined">upload</span>{isPending ? "Uploading..." : "Upload Document"}
               </button>
             </form>
           </div>

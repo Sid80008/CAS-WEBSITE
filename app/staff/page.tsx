@@ -54,7 +54,7 @@ export default async function PublicStaff() {
         titleHi="हमारे शिक्षकगण"
         eyebrowEn="Our Educators"
         eyebrowHi="हमारे शिक्षक"
-        imageSrc="/gallery/photo-dump/1741166362_slider-17.jpg"
+        imageSrc="/banner-main.png"
       />
 
       {/* Faculty Grid */}

@@ -4,6 +4,7 @@ import PublicLayout from "@/components/layout/PublicLayout";
 import { PageBanner } from "@/components/layout/PageBanner";
 import { Palette, Music, Sparkles, CheckCircle, ShieldAlert } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Art & Culture Studio | Central Academy Anta",
@@ -20,7 +21,7 @@ export default function ArtCulturePage() {
           titleHi="कला और संस्कृति स्टूडियो"
           eyebrowEn="CREATIVE & EXPRESSIVE"
           eyebrowHi="रचनात्मक और अभिव्यक्ति"
-          imageSrc="/gallery/photo-dump/celebration.jpg"
+          imageSrc="/banner-main.png"
         />
 
         {/* Breadcrumb - Overlaid nicely */}
@@ -128,7 +129,7 @@ export default function ArtCulturePage() {
                 "/gallery/photo-dump/1741166776-5.jpeg"
               ].map((url, i) => (
                 <div key={i} className="overflow-hidden rounded-3xl h-60 relative group shadow-lg border border-white/5">
-                  <img src={url} alt={`Creative Life ${i+1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={url} alt={`Creative Life ${i+1}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-school-ink/30 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               ))}

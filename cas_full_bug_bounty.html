@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#0a0e1a;color:#e2e8f0;font-size:14px;line-height:1.6}
+.wrap{max-width:900px;margin:0 auto;padding:24px 20px 60px}
+.cover{background:linear-gradient(135deg,#0f172a,#1e3a5f);border:1px solid #1e3a5f;border-radius:12px;padding:24px;margin-bottom:24px}
+.cover h1{font-size:20px;font-weight:700;color:#f1f5f9;margin-bottom:4px}
+.cover p{font-size:13px;color:#94a3b8}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px}
+.stat{background:rgba(255,255,255,.05);border-radius:8px;padding:10px;text-align:center}
+.stat .n{font-size:22px;font-weight:700;display:block}
+.stat .l{font-size:10px;color:#64748b;text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.section{margin-bottom:28px}
+.sec-head{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:6px 0;border-bottom:1px solid #1e293b;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.sec-head .cnt{font-size:10px;background:#1e293b;border-radius:10px;padding:2px 8px;color:#64748b}
+.bug{background:#0f172a;border:1px solid #1e293b;border-radius:8px;margin-bottom:8px;overflow:hidden}
+.bug-head{display:flex;align-items:flex-start;gap:10px;padding:12px 14px;cursor:pointer;user-select:none}
+.bug-head:hover{background:rgba(255,255,255,.02)}
+.sev{font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;white-space:nowrap;flex-shrink:0;margin-top:1px}
+.c{background:#3f1010;color:#f87171}
+.h{background:#3b1e08;color:#fb923c}
+.m{background:#2d2408;color:#fbbf24}
+.l{background:#0d2318;color:#4ade80}
+.bug-title{font-size:13px;font-weight:500;color:#f1f5f9;flex:1}
+.bug-loc{font-size:11px;color:#475569;margin-top:2px;font-family:monospace}
+.bug-body{padding:0 14px 14px;border-top:1px solid #1e293b;margin-top:0}
+.bug-body p{font-size:12.5px;color:#94a3b8;line-height:1.6;padding-top:10px}
+.fix{background:#0c1f12;border:1px solid #14532d;border-radius:6px;padding:10px 12px;margin-top:10px;font-size:12px;color:#86efac;line-height:1.6}
+.fix strong{color:#4ade80;display:block;margin-bottom:3px}
+code{font-family:monospace;font-size:11.5px;background:#1e293b;padding:1px 5px;border-radius:3px;color:#7dd3fc}
+.tag{display:inline-block;font-size:10px;padding:2px 7px;border-radius:4px;margin-right:4px;margin-bottom:6px;font-weight:500}
+.t-auth{background:#1e1b4b;color:#a5b4fc}
+.t-ui{background:#172554;color:#93c5fd}
+.t-data{background:#1a2e05;color:#86efac}
+.t-portal{background:#2d1b69;color:#c4b5fd}
+.t-layout{background:#1c1917;color:#d6d3d1}
+.t-seo{background:#1c0a00;color:#fdba74}
+.t-security{background:#450a0a;color:#fca5a5}
+.id{font-size:10px;color:#334155;font-family:monospace;flex-shrink:0;padding-top:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="cover">
+  <h1>🔍 CAS Bug Bounty — Full Scan Report</h1>
+  <p>centralacademyantah.vercel.app · Fresh scan + manual portal testing · May 23, 2026</p>
+  <div class="stats">
+    <div class="stat"><span class="n" style="color:#f87171">12</span><span class="l">Critical</span></div>
+    <div class="stat"><span class="n" style="color:#fb923c">9</span><span class="l">High</span></div>
+    <div class="stat"><span class="n" style="color:#fbbf24">11</span><span class="l">Medium</span></div>
+    <div class="stat"><span class="n" style="color:#4ade80">5</span><span class="l">Low</span></div>
+    <div class="stat"><span class="n" style="color:#f1f5f9">37</span><span class="l">Total</span></div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION 1: AUTH ═══════════ -->
+<div class="section">
+<div class="sec-head" style="color:#f87171">🔐 Authentication & Session Bugs <span class="cnt">5 bugs</span></div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-01</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Login redirects to homepage after 2–3 login/logout cycles instead of teacher dashboard</div><div class="bug-loc">/admin/login → POST → should go to /admin/dashboard but goes to /</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-auth">Auth</span><span class="tag t-portal">Portal</span>
+    <p>Root cause: NextAuth's <code>callbackUrl</code> gets corrupted across multiple sessions. On first login it works. By the 2nd or 3rd cycle, the cookie holding <code>callbackUrl</code> is either stale, overwritten, or expired — so NextAuth falls back to the default redirect, which is <code>/</code>. This happens because <code>NEXTAUTH_URL</code> in Vercel env might not match exactly, or the <code>redirect</code> callback in <code>auth.ts</code> isn't hardcoding the role-based destination and instead trusting the dynamic <code>callbackUrl</code> which breaks.</p>
+    <div class="fix"><strong>Fix in lib/auth.ts callbacks:</strong>
+Replace the dynamic redirect with a hardcoded role-based one:<br><code>callbacks: {</code><br><code>&nbsp;&nbsp;async redirect({ token }) {</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;const role = token?.role</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;if (role === 'ADMIN' || role === 'TEACHER' || role === 'OFFICE') return '/admin/dashboard'</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;if (role === 'STUDENT') return '/portal/student/dashboard'</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;if (role === 'PARENT') return '/portal/parent/dashboard'</code><br><code>&nbsp;&nbsp;&nbsp;&nbsp;return '/'</code><br><code>&nbsp;&nbsp;}</code><br><code>}</code><br><br>Also set <code>pages: { signIn: '/admin/login' }</code> in auth config so NextAuth always uses admin login as entry point for staff, not <code>/</code>.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-02</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">/login page is a completely blank white screen — no form, no UI, nothing</div><div class="bug-loc">/login → HTTP 200 but renders only &lt;title&gt;CAS - Central Academy School&lt;/title&gt;</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-auth">Auth</span>
+    <p>The <code>app/login/page.tsx</code> file is either: empty, exporting nothing, crashing during SSR with a silent error, or has a broken import. Next.js swallows the crash and serves an empty HTML shell. Every footer "Staff Login" link on old-layout pages goes here — so all of those are dead. Note: <code>/admin/login</code> works fine. This <code>/login</code> route is orphaned and broken.</p>
+    <div class="fix"><strong>Fix:</strong> In Cursor, open <code>app/login/page.tsx</code>. Run <code>npm run build</code> and read the error. Either redirect this route to <code>/admin/login</code>:<br><code>import { redirect } from 'next/navigation'</code><br><code>export default function LoginPage() { redirect('/admin/login') }</code><br>Or delete it entirely and update all links pointing to <code>/login</code> to use <code>/admin/login</code>.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-03</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Portal login ignores ?role= query param — both Student and Parent hit identical form</div><div class="bug-loc">/portal/login?role=student and /portal/login?role=parent are visually identical</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-auth">Auth</span><span class="tag t-ui">UX</span>
+    <p>The /portal page correctly passes <code>?role=student</code> and <code>?role=parent</code> in the links, but <code>/portal/login</code> renders the exact same generic form "User ID / Email + Password" regardless. The query param is being discarded. There's no visual distinction telling a parent they're in the right place. More critically: after login, if the redirect callback doesn't check role from the DB user record, both could land on the same dashboard.</p>
+    <div class="fix"><strong>Fix in app/portal/login/page.tsx:</strong> Read the searchParam:<br><code>const role = searchParams.role // 'student' | 'parent'</code><br>Use it to change the heading ("Student Login" vs "Parent Login"), placeholder ("Student ID / Email" vs "Parent Phone / Email"), and pass it as a hidden field so the server action knows which role to expect during validation.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-04</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">No role-based route protection between teacher / admin / office in admin panel</div><div class="bug-loc">/admin/* — teacher can potentially access admin-only routes</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-auth">Auth</span><span class="tag t-security">Security</span>
+    <p>A teacher logging in goes to <code>/admin/dashboard</code> — the same URL an admin uses. If middleware only checks "is user authenticated and has an admin-group role?" without distinguishing TEACHER from ADMIN, a teacher can access admin CRUD pages for students, staff management, fee configuration etc. This is a role leakage bug.</p>
+    <div class="fix"><strong>Fix in middleware.ts:</strong> For any route under <code>/admin/students/*</code>, <code>/admin/staff/*</code>, <code>/admin/fees/structure</code>, check <code>token.role === 'ADMIN'</code> strictly. Teacher should only access <code>/admin/attendance</code> and <code>/admin/marks</code>. Redirect unauthorized roles to <code>/admin/dashboard</code> with a "Insufficient permissions" toast.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-05</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Fake notification bell — no backend, no real data, no click behavior</div><div class="bug-loc">Top navbar in every portal — notification icon</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-auth">Portal</span><span class="tag t-ui">UI</span>
+    <p>The notification bell in the portal navbar is a static decorative icon. There is no <code>Notification</code> model in the DB, no API route fetching unread counts, no dropdown when clicked, and no real-time delivery. It's a fake UI element that creates a trust problem — users expect it to do something.</p>
+    <div class="fix"><strong>Option A (Quick fix):</strong> Remove the bell icon entirely until the feature is built.<br><strong>Option B (Proper fix):</strong> Add a <code>Notification</code> DB model, a <code>/api/notifications</code> GET route, and a dropdown component. Use SWR with a 30s refetch interval to poll for new notifications. Show unread count badge.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ SECTION 2: ADMIN PANEL ═══════════ -->
+<div class="section">
+<div class="sec-head" style="color:#fb923c">🛡️ Admin Panel Bugs <span class="cnt">4 bugs</span></div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-06</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Admin cannot edit or delete staff records — no CRUD implemented</div><div class="bug-loc">/admin/staff — view works but edit/delete buttons are non-functional</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Admin</span>
+    <p>The admin staff management page shows the 37 staff members but edit and delete actions have no working API route behind them. Either the <code>PUT /api/admin/staff/[id]</code> and <code>DELETE /api/admin/staff/[id]</code> routes don't exist, or the form submit handler in the edit modal is not calling them. Admin is the supreme authority but has no actual power to change data.</p>
+    <div class="fix"><strong>Fix:</strong> In Cursor, build these API routes:<br><code>// app/api/admin/staff/[id]/route.ts</code><br><code>PUT → validate body with Zod → prisma.staff.update({ where: { id }, data: body })</code><br><code>DELETE → check no active assignments → prisma.staff.delete({ where: { id } })</code><br>Then wire the admin UI edit form's onSubmit to call these routes. Same pattern for students.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-07</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Admin cannot edit student records — no student CRUD implemented</div><div class="bug-loc">/admin/students — read-only, no edit/delete/promote functionality</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Admin</span>
+    <p>Same problem as B-06 for student records. Admin should be able to edit name, class, section, parent contact, photo, admission status, and perform end-of-year class promotion. None of these work. The student list is likely populated but entirely read-only.</p>
+    <div class="fix"><strong>Fix:</strong> <code>PUT /api/admin/students/[id]</code> for profile edits. <code>POST /api/admin/students/promote</code> for bulk class promotion (increment classId for all active students). Add an edit modal with all student fields populated from current DB values.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-08</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Admin stats on dashboard are fake/hardcoded numbers</div><div class="bug-loc">/admin/dashboard — KPI cards show static numbers not from DB</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Admin</span><span class="tag t-data">Data</span>
+    <p>Dashboard stat cards (total students, fee collected, attendance %, pending enquiries) show hardcoded placeholder values instead of live DB counts. A Prisma query is either missing or being bypassed in favour of static mock data.</p>
+    <div class="fix"><strong>Fix in app/admin/page.tsx (Server Component):</strong><br><code>const [students, enquiries, notices] = await Promise.all([</code><br><code>&nbsp;&nbsp;prisma.student.count({ where: { status: 'ACTIVE' } }),</code><br><code>&nbsp;&nbsp;prisma.admissionEnquiry.count({ where: { status: 'NEW' } }),</code><br><code>&nbsp;&nbsp;prisma.notice.count(),</code><br><code>])</code><br>Pass these as props to the dashboard stat card components.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-09</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">File/photo upload in admin broken — no Cloudinary integration wired up</div><div class="bug-loc">/admin/staff (photo upload), /admin/gallery (album upload)</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Admin</span>
+    <p>Upload buttons exist in the UI but clicking them either does nothing or opens a file picker that doesn't send the file anywhere. The Cloudinary Upload Widget or a signed upload API route is missing. Files never leave the browser.</p>
+    <div class="fix"><strong>Fix:</strong> Create <code>app/api/upload/route.ts</code> that generates a Cloudinary signed upload URL:<br><code>const timestamp = Math.round(new Date().getTime() / 1000)</code><br><code>const signature = cloudinary.utils.api_sign_request({ timestamp, folder: 'cas-staff' }, process.env.CLOUDINARY_SECRET)</code><br><code>return { signature, timestamp, cloudName, apiKey }</code><br>In the frontend upload component, use this signature with the Cloudinary Upload Widget or a direct fetch to Cloudinary's upload API.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ SECTION 3: TEACHER PORTAL ═══════════ -->
+<div class="section">
+<div class="sec-head" style="color:#c084fc">👩‍🏫 Teacher Portal Bugs <span class="cnt">5 bugs</span></div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-10</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Teacher portal has no sub-screens — dashboard only, zero navigation</div><div class="bug-loc">/portal/teacher/dashboard — sidebar links go nowhere</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Teacher</span>
+    <p>The teacher portal spec requires: Attendance Marking, Marks Entry, Homework posting, My Students list, Timetable, Leave Request. None of these sub-pages exist or are routed. The sidebar may show these items but all links are either <code>#</code>, broken, or 404. Teachers can only see the dashboard and cannot perform any actual school function.</p>
+    <div class="fix"><strong>Build these routes in order of priority:</strong><br>1. <code>app/portal/teacher/attendance/page.tsx</code> — class picker + date + student checklist<br>2. <code>app/portal/teacher/marks/page.tsx</code> — exam + subject picker + marks grid<br>3. <code>app/portal/teacher/homework/page.tsx</code> — post assignment form<br>4. <code>app/portal/teacher/students/page.tsx</code> — read-only student list for assigned classes<br>5. <code>app/portal/teacher/leave/page.tsx</code> — leave request form</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-11</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Class dropdown only shows up to 10-A — school goes Nursery to Class XII with streams</div><div class="bug-loc">Teacher portal marks entry, attendance, homework — all class dropdowns</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Teacher</span><span class="tag t-data">Data</span>
+    <p>The Class model in the DB is seeded with only a single entry "10-A". The complete class structure is: Nursery, LKG, UKG, Class I through X (with sections A/B as applicable), Class XI Science, Class XI Commerce, Class XI Arts, Class XII Science, Class XII Commerce, Class XII Arts. Every dropdown that pulls from the Class table is therefore broken for 90% of real use cases.</p>
+    <div class="fix"><strong>Fix in prisma/seed.ts — add all classes:</strong><br><code>const classes = [</code><br><code>&nbsp;&nbsp;{ name: 'Nursery', section: null },</code><br><code>&nbsp;&nbsp;{ name: 'LKG', section: null },</code><br><code>&nbsp;&nbsp;{ name: 'UKG', section: null },</code><br><code>&nbsp;&nbsp;...Array.from({length:10},(_,i)=>({ name: `Class ${i+1}`, section:'A' })),</code><br><code>&nbsp;&nbsp;{ name: 'Class XI', section: 'Science' },</code><br><code>&nbsp;&nbsp;{ name: 'Class XI', section: 'Commerce' },</code><br><code>&nbsp;&nbsp;{ name: 'Class XI', section: 'Arts' },</code><br><code>&nbsp;&nbsp;{ name: 'Class XII', section: 'Science' },</code><br><code>&nbsp;&nbsp;{ name: 'Class XII', section: 'Commerce' },</code><br><code>&nbsp;&nbsp;{ name: 'Class XII', section: 'Arts' },</code><br><code>]</code><br>Run <code>npx prisma db seed</code> after updating.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-12</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Subject dropdown is incomplete — missing all RBSE subjects for all classes</div><div class="bug-loc">Teacher portal marks entry, homework — subject dropdowns</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Teacher</span><span class="tag t-data">Data</span>
+    <p>Same seeding problem as classes. The Subject table has only a handful of entries. RBSE subjects needed: Hindi, English, Maths, Science, Social Science (primary), Physics, Chemistry, Biology, History, Geography, Political Science, Economics, Accountancy, Business Studies, Physical Education, Computer Science, Art, Music (secondary + Sr. Sec). Subject-Class assignment table is also likely empty.</p>
+    <div class="fix"><strong>Fix in prisma/seed.ts:</strong> Seed subjects per class group. Primary (I–V): Hindi, English, Maths, EVS. Middle (VI–VIII): Hindi, English, Maths, Science, Social Science, Sanskrit. Secondary (IX–X): Hindi, English, Maths, Science, Social Science. Sr. Sec Science: Physics, Chemistry, Biology/Maths, English. Sr. Sec Commerce: Accountancy, Business Studies, Economics, English. Sr. Sec Arts: History, Geography, Political Science, English.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-13</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Teacher portal stats are hardcoded fake numbers</div><div class="bug-loc">/portal/teacher/dashboard — stat cards</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Teacher</span><span class="tag t-data">Data</span>
+    <p>Dashboard shows stats like "My Students: 45", "Attendance Marked: 12/30 days", "Pending Marks: 3" — all hardcoded. These numbers are not pulled from the DB against the logged-in teacher's actual assigned classes and records.</p>
+    <div class="fix"><strong>Fix:</strong> In the teacher dashboard server component, get <code>session.user.staffId</code>, then query:<br><code>prisma.student.count({ where: { class: { assignments: { some: { staffId } } } } })</code><br><code>prisma.attendance.count({ where: { markedBy: staffId, date: { gte: monthStart } } })</code><br>Pass real counts to UI components.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-14</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Fake "Teacher Connect" messaging — messages not sent, stored, or delivered</div><div class="bug-loc">Parent portal → Teacher Connect / Message Teacher feature</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-portal">Teacher</span><span class="tag t-ui">UX</span>
+    <p>The parent portal has a "Message Teacher" or "Teacher Connect" feature that appears to send a message but has no backend. No <code>Message</code> model exists in the DB, no API route handles the POST, and teachers never receive anything. Parents think they've messaged a teacher when nothing actually happened — a serious trust and communication failure.</p>
+    <div class="fix"><strong>Option A (Quick):</strong> Remove the feature from UI entirely and replace with "Contact school office at +91-7737689684".<br><strong>Option B (Proper):</strong> Add a <code>Message</code> Prisma model with <code>fromUserId, toStaffId, content, sentAt, isRead</code>. Add <code>POST /api/messages</code> and <code>GET /api/messages</code> routes. Show inbox in teacher portal sidebar.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ SECTION 4: COLOR / UI BUGS ═══════════ -->
+<div class="section">
+<div class="sec-head" style="color:#67e8f9">🎨 Color Contrast & UI Bugs <span class="cnt">4 bugs</span></div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-15</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Black text rgb(26,26,26) on dark navy bg rgb(0,34,70) — contrast ratio ~1.1:1, completely invisible</div><div class="bug-loc">Fee page in parent portal, student portal fee section, any component using these two colors together</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">Accessibility</span><span class="tag t-ui">Color</span>
+    <p>Color <code>rgb(26,26,26)</code> = hex <code>#1A1A1A</code> (near-black). Color <code>rgb(0,34,70)</code> = hex <code>#002246</code> (deep navy). Contrast ratio between these two is approximately <strong>1.09:1</strong> — almost identical luminosity despite being visually different hues. WCAG AA minimum is 4.5:1 for normal text. This text is effectively invisible. This is happening wherever a dark-text Tailwind class is applied inside a dark-blue card/box.</p>
+    <div class="fix"><strong>Global fix — find every instance of this combination:</strong><br>Search codebase for <code>#002246</code> or <code>rgb(0,34,70)</code> or <code>[#002246]</code>. Any text rendered inside these containers must use <code>text-white</code> or <code>text-blue-100</code> or <code>text-slate-100</code> — never <code>text-gray-900</code>, <code>text-black</code>, or <code>text-[#1A1A1A]</code>. Also fix <code>bg-[#002246]</code> containers in fee breakdown tables — all cell text must be white.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-16</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Same contrast problem spreading across other dark-bg portal sections</div><div class="bug-loc">Anywhere dark text appears inside dark portal sidebar, dark card components</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">Accessibility</span>
+    <p>The contrast issue isn't isolated to the fee box. Any portal component that uses a dark background card (<code>#002246</code>, <code>#001a3e</code>, <code>#0f172a</code>, <code>#1e3a5f</code>) and then renders text with default dark Tailwind text classes will have this problem. This is a systemic theming issue — the dark portal theme was applied to backgrounds but the text colors weren't updated to compensate.</p>
+    <div class="fix"><strong>Fix globally:</strong> In your Tailwind config or global CSS, define a portal theme: any element with class <code>.portal-card</code> or <code>.dark-section</code> should force <code>color: white</code> and <code>color-scheme: dark</code> on all children. Audit every portal page with browser DevTools Accessibility panel → Color Contrast checker.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-17</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Social media icons in contact page footer are all href="#" — dead links</div><div class="bug-loc">/contact → FB, IG, LI, YT icons · /gallery footer and /notices footer → two [#](#) links</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">UX</span>
+    <p>All four social icons (Facebook, Instagram, LinkedIn, YouTube) on the contact page point to <code>#</code>. Clicking them scrolls to top of page. Similarly, the gallery and notices pages have two mystery <code>[#](#)</code> links at the very bottom of the HTML — these are dead social icon links from the old layout that were never assigned real URLs.</p>
+    <div class="fix">School's confirmed social presence: Facebook page "Central Academy School Anta", Twitter @CAS_ANTA. Until real URLs are confirmed: <strong>remove all 4 social icons</strong> from the contact page. Delete the two <code>[#](#)</code> fragments from gallery and notices footer. Don't link to nothing.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-18</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">No Google Maps embed on contact page — "Global Connectivity" text is meaningless</div><div class="bug-loc">/contact → map section</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">UX</span>
+    <p>Where a Google Maps embed should be, there is just the text "Integrated GPS navigation available. Search for 'Central Academy Anta' on Google Maps." This is a cop-out. Parents visiting the contact page want a real embedded map they can click for directions.</p>
+    <div class="fix">Replace the text with:<br><code>&lt;iframe src="https://maps.google.com/maps?q=25.153025,76.284592&amp;output=embed" width="100%" height="300" style="border:0" allowfullscreen loading="lazy"&gt;&lt;/iframe&gt;</code><br>School GPS coords: 25.153025°N, 76.284592°E (confirmed from school profile).</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ SECTION 5: DUAL LAYOUT ═══════════ -->
+<div class="section">
+<div class="sec-head" style="color:#a3e635">⚠️ Dual Layout System — Old vs New <span class="cnt">6 bugs</span></div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-19</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">5 pages still using old Stitch layout — wrong everything simultaneously</div><div class="bug-loc">/events, /admissions, /contact, /facilities, /about/vision-mission</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-layout">Layout</span>
+    <p>These pages use a different layout component than the homepage/notices/gallery. Evidence: they load logo from <code>lh3.googleusercontent.com</code> (volatile Google CDN), show "30 Years of Excellence", show wrong address "Main Road, Anta", show wrong phone "+91 7457 244555", link "Student Portal" → <code>/login</code> (broken), link "Staff Login" → <code>/admin/dashboard</code> (unauthenticated 404). All 6 of these data points are wrong simultaneously on those 5 pages.</p>
+    <div class="fix"><strong>Fix:</strong> Find the old layout file — likely in a route group folder like <code>app/(stitch)/layout.tsx</code> or individual page-level layout files. Delete it. Ensure all 5 pages are covered by <code>app/layout.tsx</code> (root layout). Verify by checking that these pages now show the correct navbar with local <code>/logo.png</code>.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-20</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Old layout "Portal" nav button → /login (blank). New layout → /portal (correct)</div><div class="bug-loc">/events, /admissions, /contact, /facilities navbar Portal button</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-layout">Layout</span><span class="tag t-auth">Auth</span>
+    <p>Any user who visits Gallery, then clicks Portal in the navbar, goes to the correct <code>/portal</code>. But if they're on Events, Admissions, Contact, or Facilities and click Portal, they hit <code>/login</code> — the blank page. Same site, completely different behavior based on which page you're on. Users can't log in from half the site.</p>
+    <div class="fix">Resolved automatically by fixing B-19 (deleting old layout).</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-21</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Google-CDN logo on old pages — will break if Google invalidates the URL</div><div class="bug-loc">/events, /admissions, /contact, /facilities, /about/vision-mission</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-layout">Layout</span>
+    <p>Logo served from <code>lh3.googleusercontent.com/aida/ADBb0u...</code>. This is a Google AI-generated image URL from Stitch. Google can invalidate this URL at any time with no warning, leaving those pages logo-less permanently. It also adds an external HTTP request slowing page load.</p>
+    <div class="fix">Resolved by fixing B-19. The new layout uses local <code>/logo.png</code>.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-22</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Page title inconsistency — "antah" (lowercase) vs "Anta" (correct) across pages</div><div class="bug-loc">Homepage title: "antah" · /portal/login: "Anta" · /gallery: "Anta" · /admin/login: "antah"</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-seo">SEO</span><span class="tag t-data">Data</span>
+    <p>The school town name alternates between "antah" (wrong, lowercase) and "Anta" (correct, proper case) across page titles and meta descriptions. This fragments SEO signals — Google sees two different location names and can't consolidate them for local search ranking.</p>
+    <div class="fix"><strong>Fix in lib/constants.ts:</strong><br><code>export const SCHOOL_TOWN = 'Anta'</code><br>Use this everywhere in <code>generateMetadata()</code>. Standard title format: <code>"[Page] | Central Academy Senior Secondary School, Anta | RBSE"</code></div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-23</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Old layout footer links /academics and /alumni — both 404</div><div class="bug-loc">/events, /admissions, /contact, /facilities footer Quick Links and Portals sections</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-layout">Layout</span>
+    <p>Old layout footer has links to <code>/academics</code> (404) and <code>/alumni</code> (404). These pages don't exist. Every visitor on those 5 pages who clicks either footer link hits a Next.js 404 page.</p>
+    <div class="fix">Resolved by fixing B-19 (new footer doesn't have these links). Additionally build <code>app/not-found.tsx</code> as a custom 404 page so at minimum the error state is branded.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-24</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Old layout footer Sitemap link → /sitemap (404). Should be /sitemap.xml</div><div class="bug-loc">/events, /admissions, /contact, /facilities footer</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-seo">SEO</span>
+    <p>Old layout links to <code>/sitemap</code> which returns 404. The actual sitemap is at <code>/sitemap.xml</code> (confirmed working). New layout pages correctly link to <code>/sitemap.xml</code>.</p>
+    <div class="fix">Resolved by fixing B-19. Also confirmed: new layout already uses correct <code>/sitemap.xml</code> href.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ SECTION 6: CONTENT / DATA ═══════════ -->
+<div class="section">
+<div class="sec-head" style="color:#fbbf24">📋 Content & Data Accuracy Bugs <span class="cnt">8 bugs</span></div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-25</span><span class="sev c">CRITICAL</span>
+    <div><div class="bug-title">Admissions form shows "2024-25 session" — 2 years stale</div><div class="bug-loc">/admissions → "Secure a seat for the 2024-25 session today"</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>Current year is 2026. Current session should be 2026-27. The admissions page headline says 2024-25 — two full academic years behind. A parent seeing this will question whether the site is maintained at all.</p>
+    <div class="fix">Change to the current AcademicSession from DB, or hardcode <code>2026-27</code> until dynamic. Pull from <code>prisma.academicSession.findFirst({ where: { isCurrent: true } })</code> and display <code>session.name</code> in the headline.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-26</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Contact page has 4 wrong data points simultaneously</div><div class="bug-loc">/contact page body — address, phone, email all wrong</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>Contact page shows: (1) Address: "Station Road, Anta" — wrong. Real: Near Sahkari Petrol Pump, Kota Road. (2) Phone: "+91 7457 244555" and "+91 7457 244666" — wrong. Real: +91-7737689684 / 07457-294633. (3) Email: "info@casanta.edu.in" and "admissions@casanta.edu.in" — fake, not real domains. Real: centralacademyantah@gmail.com. (4) Sunday hours "By Appointment Only" — unverified claim.</p>
+    <div class="fix"><strong>lib/constants.ts:</strong><br><code>ADDRESS: 'Near Sahkari Petrol Pump, Kota Road, Anta, Baran, Rajasthan – 325202'</code><br><code>PHONE_PRIMARY: '+91-7737689684'</code><br><code>PHONE_OFFICE: '07457-294633'</code><br><code>EMAIL: 'centralacademyantah@gmail.com'</code><br>Import and use in contact/page.tsx and both footers.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-27</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">Events page is completely empty — zero events listed under "Upcoming Schedule"</div><div class="bug-loc">/events → "Upcoming Schedule" section has no cards</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>The events page has a heading and "Upcoming Schedule" subheading with nothing below. Either the DB Event table has no records, the API fetch is failing silently, or there's no empty-state UI. A blank page with a heading is worse than not having the page at all.</p>
+    <div class="fix">Two-part fix: (1) Seed events: Annual Sports Day, Independence Day, Republic Day, Annual Function, Exam schedule. (2) Add an empty state: <code>if (!events.length) return &lt;p&gt;No upcoming events scheduled. Check back soon.&lt;/p&gt;</code></div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-28</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">"Safe Transport with GPS tracking" on facilities page — unverified, likely false</div><div class="bug-loc">/facilities → Safe Transport card</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>School profile has zero mention of school buses, fleet, or GPS tracking. This is a template placeholder that was never verified. Advertising a facility the school doesn't have is a false claim that parents will discover on their campus visit.</p>
+    <div class="fix">Contact school administration. If they have transport, update with real route info. If not, replace this card with an actual facility — Canteen, Auditorium, Seminar Hall, or Counseling Room — all mentioned in the school profile but not yet on the site.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-29</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Homepage "Academic Achievers" section is empty — no toppers data</div><div class="bug-loc">Homepage → "Academic Achievers" heading with blank content below</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>Homepage renders a section title "Academic Achievers" with nothing below it. Either the Topper table has no seed data, or the data fetch is failing. School has real toppers PDF for session 2025-26.</p>
+    <div class="fix">Seed the Topper table with at least 3–5 entries from the real 2025-26 topper results. Then verify the homepage Toppers component is fetching from <code>/api/toppers?featured=true</code> and rendering cards correctly.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-30</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Gallery all albums show wrong or uniform dates — "Annual Sports Meet 2024" shows April 2026</div><div class="bug-loc">/gallery → all 4 album cards</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>All 4 albums show April 2026 as their event date regardless of the album name. "Annual Sports Meet 2024" showing April 2026 is a factual contradiction. The <code>eventDate</code> field is either seeded with the same date for all, or is not being stored/fetched correctly.</p>
+    <div class="fix">Update seed data with correct dates per album. Verify the gallery API returns <code>eventDate</code> and the gallery card component uses <code>album.eventDate</code> not <code>album.createdAt</code>.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-31</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Only 1 notice in DB — no pagination, no filter, no search, no empty states</div><div class="bug-loc">/notices page</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>The notices page has one seeded notice. Pagination, category filter, and search input (all planned in spec) aren't implemented. When more notices are added by admin, there's no way to navigate or filter them.</p>
+    <div class="fix">Seed 8–10 notices across categories (General, Exam, Holiday, Sports). Build filter tabs and a "Load More" button or pagination component on the notices page.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-32</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">Admissions form grade dropdown shows no options — empty &lt;select&gt;</div><div class="bug-loc">/admissions → "Select Grade (Class)" dropdown</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-data">Data</span>
+    <p>The grade dropdown has only the placeholder "Seeking admission for..." with no actual class options. This is likely fetching from the same under-seeded Class table (same root cause as B-11). Parents can't actually submit an enquiry for any specific class.</p>
+    <div class="fix">After fixing B-11 (seeding all classes), this dropdown will auto-populate if it fetches from <code>/api/classes</code>. As immediate fix: hardcode the options array: Nursery, LKG, UKG, Class I through XII with streams.</div>
+  </div>
+</div>
+</div>
+
+<!-- ═══════════ SECTION 7: MISSING PAGES ═══════════ -->
+<div class="section">
+<div class="sec-head" style="color:#94a3b8">🗺️ Missing Pages & Broken Routes <span class="cnt">5 bugs</span></div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-33</span><span class="sev h">HIGH</span>
+    <div><div class="bug-title">/about → 404. Footer links to it on every new-layout page</div><div class="bug-loc">/about → HTTP 404</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">Routing</span>
+    <p>Every new-layout footer has "About Us" linking to <code>/about</code>. That route returns a 404. The school profile has Director message, Principal message, Founder info, and Vision/Mission — all needed as sub-pages of /about.</p>
+    <div class="fix">Create <code>app/about/page.tsx</code> as an About landing page with links to Director, Principal, Founder, and Vision/Mission sub-pages. Or redirect: <code>redirect('/about/vision-mission')</code> as a minimum stop-gap.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-34</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">/privacy → 404 and /terms → 404 — linked in every page footer</div><div class="bug-loc">Both footers link to these pages · HTTP 404</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">Routing</span>
+    <p>Privacy Policy and Terms of Service are linked in every single page footer. Both 404. Every footer click on these is a dead end.</p>
+    <div class="fix">Create stub pages <code>app/privacy/page.tsx</code> and <code>app/terms/page.tsx</code> with basic school-appropriate boilerplate. 10 minutes each. Better than 404.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-35</span><span class="sev m">MEDIUM</span>
+    <div><div class="bug-title">No custom 404 page — Next.js default error page shows on broken links</div><div class="bug-loc">Any 404 URL — shows unstyled Next.js default</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">UX</span>
+    <p>With 5+ broken links across the site, users hit the default Next.js 404 page frequently. There is no <code>app/not-found.tsx</code> file providing a branded experience that guides users back to the homepage.</p>
+    <div class="fix">Create <code>app/not-found.tsx</code> with school branding, a friendly message, and a "Go to Homepage" button.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-36</span><span class="sev l">LOW</span>
+    <div><div class="bug-title">TC Verification page not built — was in the spec as Phase 3 priority</div><div class="bug-loc">/tc-verify — route does not exist</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">Routing</span>
+    <p>Transfer Certificate verification was a key public feature (replicating the old PHP <code>Tc_search_report.php</code>). No route exists for it yet. Other schools cannot verify TCs online as they could on the old site — this is a regression from the existing site.</p>
+    <div class="fix">Build <code>app/tc-verify/page.tsx</code> with a search form (student name + admission number + year). Wire to <code>POST /api/tc-verify</code> which queries the TcRecord table.</div>
+  </div>
+</div>
+
+<div class="bug">
+  <div class="bug-head">
+    <span class="id">B-37</span><span class="sev l">LOW</span>
+    <div><div class="bug-title">Gallery filter tabs (Academic, Sports Day, Cultural etc.) are non-functional</div><div class="bug-loc">/gallery → filter tab row</div></div>
+  </div>
+  <div class="bug-body">
+    <span class="tag t-ui">UX</span>
+    <p>6 filter tabs rendered on the gallery page. None of them visually activate or filter the album grid. They have no onClick handlers or the handler exists but the albums aren't tagged with categories in the DB.</p>
+    <div class="fix">Add a <code>category</code> field to the Gallery model. Seed each album with correct category. Add <code>useState</code> for active filter. Filter album list client-side: <code>albums.filter(a => activeFilter === 'all' || a.category === activeFilter)</code>. Add active tab styling.</div>
+  </div>
+</div>
+</div>
+
+</div>
+</body>
+</html>

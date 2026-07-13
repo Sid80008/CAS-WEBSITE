@@ -22,9 +22,9 @@ export async function createAlbum(formData: FormData) {
 
   await prisma.gallery.create({
     data: {
-      title,
+      titleEn: title,
       eventDate: new Date(eventDate),
-      isPublished,
+      published: isPublished,
     },
   });
 
@@ -63,7 +63,7 @@ export async function addImageToAlbum(formData: FormData) {
   });
 
   // Persist the image URL to the database. Adjust the model name/fields as needed.
-  await prisma.galleryImage.create({
+  await prisma.media.create({
     data: {
       url: uploadResult.secure_url,
       galleryId,

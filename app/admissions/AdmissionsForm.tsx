@@ -161,7 +161,7 @@ export default function AdmissionsForm() {
         titleHi="प्रवेश पोर्टल"
         eyebrowEn={`Admissions Open — ${getCurrentSession()}`}
         eyebrowHi={`प्रवेश प्रारंभ — ${getCurrentSession()}`}
-        imageSrc="/gallery/photo-dump/1774511691_slider-52.jpg"
+        imageSrc="/banner-main.png"
       />
 
       {/* ── Admission Process ── */}

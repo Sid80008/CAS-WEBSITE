@@ -8,6 +8,8 @@ export const dynamic = 'force-dynamic';
 export async function GET(req: NextRequest) {
     const { prisma } = await import('@/lib/prisma');
   try {
+    const user = await verifyAuth(req);
+    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     const searchParams = req.nextUrl.searchParams
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '10')

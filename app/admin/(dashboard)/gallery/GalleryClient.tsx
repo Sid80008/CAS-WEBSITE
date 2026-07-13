@@ -1,6 +1,7 @@
 "use client";
 // app/admin/gallery/GalleryClient.tsx
 import { useState } from "react";
+import Image from "next/image";
 
 type Album = {
   id: string; titleEn: string; titleHi: string | null; description: string | null;
@@ -41,7 +42,7 @@ export default function GalleryClient({ albums }: Props) {
               {/* Cover */}
               <div className="h-48 bg-[#f6f3f2] flex items-center justify-center relative overflow-hidden">
                 {a.coverImage ? (
-                  <img src={a.coverImage} alt={a.titleEn} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <Image src={a.coverImage} alt={a.titleEn} fill className="object-cover group-hover:scale-105 transition-transform duration-500" sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" />
                 ) : (
                   <span className="material-symbols-outlined text-5xl text-outline">photo_library</span>
                 )}

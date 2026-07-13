@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 
 interface CircularItem {
   id: string;
@@ -336,11 +337,12 @@ export default function CircularsClient({ initialCirculars }: CircularsClientPro
               </div>
 
               {selectedItem.imageUrl && (
-                <div className="border border-[#E2E0DB] rounded-xl overflow-hidden max-h-48 relative">
-                  <img
+                <div className="border border-[#E2E0DB] rounded-xl overflow-hidden h-48 relative w-full">
+                  <Image
                     src={selectedItem.imageUrl}
                     alt="Notice illustration"
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
                   />
                 </div>
               )}

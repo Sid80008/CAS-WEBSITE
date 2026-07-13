@@ -21,7 +21,7 @@ export async function POST(request: Request) {
 
     await resend.emails.send({
       from: "CAS Website <onboarding@resend.dev>",
-      to: "siddharthmeenasiddhu@gmail.com",
+      to: process.env.ADMIN_EMAIL || "admin@cas.com",
       subject: `Contact Form: ${subject || "General Enquiry"} — from ${name}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

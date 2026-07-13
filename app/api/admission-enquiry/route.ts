@@ -51,7 +51,7 @@ export async function POST(request: Request) {
     // Send notification email to school
     await resend.emails.send({
       from: "CAS Website <onboarding@resend.dev>",
-      to: "siddharthmeenasiddhu@gmail.com",
+      to: process.env.ADMIN_EMAIL || "admin@cas.com",
       subject: `New Admission Enquiry — ${studentName} (Class ${grade || "Not specified"})`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -102,7 +102,7 @@ export async function POST(request: Request) {
     if (email) {
       await resend.emails.send({
         from: "Central Academy School <onboarding@resend.dev>",
-        to: "siddharthmeenasiddhu@gmail.com",
+        to: email,
         subject: "We received your admission enquiry — CAS antah",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">

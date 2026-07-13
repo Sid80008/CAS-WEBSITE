@@ -26,7 +26,7 @@ export default function FacultyPage() {
         titleHi="हमारे शिक्षकगण"
         eyebrowEn="Our Educators"
         eyebrowHi="हमारे शिक्षक"
-        imageSrc="/gallery/slider/1741166412_slider-20.jpg"
+        imageSrc="/banner-main.png"
       />
 
       <section className="bg-[#FAFAF5] py-24">

@@ -4,6 +4,7 @@ import PublicLayout from "@/components/layout/PublicLayout";
 import { PageBanner } from "@/components/layout/PageBanner";
 import { BookOpen, Computer, ShieldCheck, CheckCircle, GraduationCap } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "School Library | Central Academy Anta",
@@ -20,7 +21,7 @@ export default function LibraryPage() {
           titleHi="डिजिटल पुस्तकालय"
           eyebrowEn="ACADEMIC HUB"
           eyebrowHi="शैक्षणिक केंद्र"
-          imageSrc="/gallery/slider/1774511691_slider-52.jpg"
+          imageSrc="/banner-main.png"
         />
 
         {/* Breadcrumb */}
@@ -128,7 +129,7 @@ export default function LibraryPage() {
                 "https://lh3.googleusercontent.com/aida-public/AB6AXuCCHRNPF-ZeS6jGOCSLHJABF7w2JCArksdN6VssDvCY7z2dJq8ZrVCr7FSlq5844oB6ruf4ojp6VARQuVZZm_KOtRNZsCDn4MKOWHgoai6xsAN6vMz2QIEFwtsbU2i-Vai5YKD_Yc3g6K5ltzS-xLbrToEbuuiG6QaYaWcDljpYOPRZ5pyhWBVm3uQwpnE23ibuVwhmH9Hp8gNMJTwsvkPuzlJ4fKzaTn-UW7Lr5uhM5Mc7fOIOR4ir6ir-08jnNzYsQrIc3sbgOTkl"
               ].map((url, i) => (
                 <div key={i} className="overflow-hidden rounded-3xl h-60 relative group shadow-lg border border-white/5">
-                  <img src={url} alt={`Library Life ${i+1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={url} alt={`Library Life ${i+1}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-school-ink/30 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
               ))}

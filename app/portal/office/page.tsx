@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function OfficePortalDashboard() {
   return (
     <>
@@ -185,10 +187,12 @@ export default function OfficePortalDashboard() {
 
           {/* Campus View Card */}
           <div className="relative h-48 rounded-xl overflow-hidden shadow-sm group">
-            <img 
+            <Image 
               alt="School Admin Building" 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+              fill
+              className="object-cover group-hover:scale-105 transition-transform duration-500" 
               src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80"
+              sizes="(max-width: 1024px) 100vw, 33vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
               <span className="text-white text-[18px] font-semibold">Campus Central</span>

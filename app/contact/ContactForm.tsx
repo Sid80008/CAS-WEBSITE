@@ -64,7 +64,7 @@ export function ContactForm() {
         titleHi="संपर्क करें"
         eyebrowEn="Reach Out"
         eyebrowHi="हमसे जुड़ें"
-        imageSrc="/gallery/photo-dump/1746853764_DSC_3837.jpg"
+        imageSrc="/banner-main.png"
       />
 
       <section className="py-24 px-6 bg-[#FAFAF5] relative">

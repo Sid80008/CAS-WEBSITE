@@ -1,0 +1,286 @@
+
+<style>
+:root{--navy:#0B1E3D;--gold:#C49A1A;--gold-l:#FDF3D0;--gold-d:#8B6A00;--navy-l:#E6EDF7;--navy-d:#060F1E;--text:var(--color-text-primary);--text2:var(--color-text-secondary);--border:var(--color-border-tertiary)}
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{padding:1.5rem 0 2rem}
+.label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);margin:0 0 10px}
+.section{margin-bottom:2rem}
+
+.verdict{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:2rem}
+.verdict-box{padding:12px 14px;border-radius:var(--border-radius-md);border:0.5px solid var(--border)}
+.verdict-box.steal{background:var(--color-background-success);border-color:var(--color-border-success)}
+.verdict-box.skip{background:var(--color-background-danger);border-color:var(--color-border-danger)}
+.verdict-box h4{font-size:12px;font-weight:500;margin-bottom:6px}
+.verdict-box h4.g{color:var(--color-text-success)}
+.verdict-box h4.r{color:var(--color-text-danger)}
+.verdict-box li{font-size:12px;color:var(--text2);line-height:1.7;padding-left:10px;list-style:none}
+.verdict-box li::before{content:'→ ';opacity:.5}
+
+.palette{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:2rem}
+.swatch{border-radius:var(--border-radius-md);overflow:hidden;flex:1;min-width:80px}
+.swatch-color{height:52px}
+.swatch-info{padding:6px 8px;border:0.5px solid var(--border);border-top:none;border-radius:0 0 var(--border-radius-md) var(--border-radius-md);background:var(--color-background-primary)}
+.swatch-name{font-size:11px;font-weight:500;color:var(--text)}
+.swatch-hex{font-size:10px;color:var(--text2);font-family:monospace}
+.swatch-role{font-size:10px;color:var(--text2);margin-top:2px}
+
+.typo-row{display:flex;flex-direction:column;gap:10px;margin-bottom:2rem}
+.typo-item{padding:12px 14px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);background:var(--color-background-primary)}
+.typo-label{font-size:10px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:var(--text2);margin-bottom:6px}
+.t-hero{font-size:28px;font-weight:500;letter-spacing:-.5px;color:var(--color-text-primary);font-family:'Georgia',serif}
+.t-h1{font-size:20px;font-weight:500;color:var(--color-text-primary)}
+.t-body{font-size:14px;color:var(--color-text-secondary);line-height:1.7}
+.t-hindi{font-size:16px;color:var(--color-text-primary)}
+.t-ui{font-size:12px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;color:var(--text2)}
+
+.layout-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-bottom:2rem}
+.layout-card{border:0.5px solid var(--border);border-radius:var(--border-radius-lg);overflow:hidden;background:var(--color-background-primary)}
+.lc-preview{height:120px;display:flex;flex-direction:column;padding:10px;gap:6px;position:relative;overflow:hidden}
+.lc-label{padding:8px 12px;border-top:0.5px solid var(--border)}
+.lc-name{font-size:12px;font-weight:500;color:var(--text)}
+.lc-desc{font-size:11px;color:var(--text2);margin-top:2px;line-height:1.5}
+
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:2rem}
+.principle{padding:12px 14px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);background:var(--color-background-secondary)}
+.principle .icon{font-size:18px;margin-bottom:6px;color:var(--color-text-secondary)}
+.principle h4{font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px}
+.principle p{font-size:11px;color:var(--text2);line-height:1.5}
+
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:2rem}
+.comp{border-radius:var(--border-radius-lg);overflow:hidden;border:0.5px solid var(--border)}
+.comp-header{padding:8px 12px;font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+.comp-body{padding:10px 12px;background:var(--color-background-primary);min-height:80px}
+
+.pill{display:inline-block;font-size:10px;font-weight:500;padding:2px 8px;border-radius:10px}
+.pill-navy{background:#E6EDF7;color:#0B1E3D}
+.pill-gold{background:#FDF3D0;color:#8B6A00}
+.pill-teal{background:#E1F5EE;color:#0F6E56}
+
+.hero-mock{border-radius:var(--border-radius-lg);overflow:hidden;border:0.5px solid var(--border);margin-bottom:2rem}
+.hero-img{height:180px;background:linear-gradient(135deg,#0B1E3D 0%,#1B4F8A 60%,#2E75B6 100%);display:flex;align-items:flex-end;padding:0 20px 0;position:relative;overflow:hidden}
+.hero-img::before{content:'';position:absolute;top:0;right:-40px;width:220px;height:100%;background:rgba(196,154,26,.08);clip-path:polygon(30% 0%,100% 0%,100% 100%,0% 100%)}
+.hero-img::after{content:'CENTRAL ACADEMY';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.07);font-weight:700;white-space:nowrap;font-size:22px}
+.hero-text-block{background:rgba(11,30,61,.75);padding:12px 16px;border-radius:var(--border-radius-md) var(--border-radius-md) 0 0;backdrop-filter:blur(2px);z-index:1}
+.hero-tag{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#C49A1A;margin-bottom:4px}
+.hero-h{font-size:15px;font-weight:500;color:#fff;line-height:1.3;margin-bottom:4px}
+.hero-sub{font-size:11px;color:rgba(255,255,255,.65)}
+.hero-bottom{background:#fff;padding:10px 16px;display:flex;gap:8px;flex-wrap:wrap;border-top:3px solid #C49A1A}
+.hero-stat{text-align:center;flex:1;min-width:60px}
+.hero-stat .n{font-size:16px;font-weight:500;color:#0B1E3D}
+.hero-stat .l{font-size:9px;color:#888;text-transform:uppercase;letter-spacing:.05em}
+
+.card-mock{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:2rem}
+.staff-card{border:0.5px solid var(--border);border-radius:var(--border-radius-lg);padding:12px;text-align:center;background:var(--color-background-primary)}
+.staff-avatar{width:48px;height:48px;border-radius:50%;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:500;color:#0C447C;background:#E6EDF7;border:2px solid #C49A1A}
+.staff-name{font-size:12px;font-weight:500;color:var(--text)}
+.staff-sub{font-size:10px;color:var(--text2);margin-top:2px}
+
+.notice-mock{border:0.5px solid var(--border);border-radius:var(--border-radius-lg);overflow:hidden;margin-bottom:2rem}
+.notice-item{display:flex;gap:12px;padding:10px 14px;border-bottom:0.5px solid var(--border);align-items:flex-start}
+.notice-item:last-child{border-bottom:none}
+.notice-date{background:#E6EDF7;color:#0C447C;border-radius:var(--border-radius-md);padding:4px 8px;text-align:center;flex-shrink:0;min-width:44px}
+.nd-day{font-size:14px;font-weight:500;display:block;line-height:1}
+.nd-mon{font-size:9px;text-transform:uppercase;letter-spacing:.05em;display:block;margin-top:1px}
+.notice-pin{background:#FDF3D0;color:#8B6A00;font-size:9px;font-weight:600;padding:1px 6px;border-radius:4px;letter-spacing:.04em}
+.notice-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:3px}
+.notice-hint{font-size:11px;color:var(--text2)}
+</style>
+
+<div class="wrap">
+
+<h2 class="sr-only">Theme plan for Central Academy Anta website</h2>
+
+<div class="section">
+<div class="label">What to steal from that image</div>
+<div class="verdict">
+  <div class="verdict-box steal">
+    <h4 class="g"><i class="ti ti-check" aria-hidden="true"></i> Take these ideas</h4>
+    <ul>
+      <li>Circular image cards for staff</li>
+      <li>Hero scene with text layered on image, not below it</li>
+      <li>Quote/testimonial section with person visible</li>
+      <li>Category pills as section headers</li>
+      <li>Content bleeds across section breaks</li>
+      <li>Stat bar anchoring the hero bottom</li>
+    </ul>
+  </div>
+  <div class="verdict-box skip">
+    <h4 class="r"><i class="ti ti-x" aria-hidden="true"></i> Leave behind</h4>
+    <ul>
+      <li>Generic dark navy everywhere</li>
+      <li>Synopsis text dumped in a floating box</li>
+      <li>No breathing room between elements</li>
+      <li>Mobile-only proportions</li>
+      <li>All-caps everywhere (tiring to read)</li>
+      <li>Decorative elements with no function</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="label">Colour palette — "Royal Navy + Academic Gold"</div>
+<div class="palette">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#0B1E3D"></div>
+    <div class="swatch-info"><div class="swatch-name">Navy</div><div class="swatch-hex">#0B1E3D</div><div class="swatch-role">Primary, nav, headers</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#1B4F8A"></div>
+    <div class="swatch-info"><div class="swatch-name">Royal blue</div><div class="swatch-hex">#1B4F8A</div><div class="swatch-role">Links, accents, CTAs</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#C49A1A"></div>
+    <div class="swatch-info"><div class="swatch-name">Academic gold</div><div class="swatch-hex">#C49A1A</div><div class="swatch-role">Highlights, pins, borders</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#F7F4EE"></div>
+    <div class="swatch-info"><div class="swatch-name">Warm white</div><div class="swatch-hex">#F7F4EE</div><div class="swatch-role">Page background</div></div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#2E8B57"></div>
+    <div class="swatch-info"><div class="swatch-name">Forest green</div><div class="swatch-hex">#2E8B57</div><div class="swatch-role">Success, sports, events</div></div>
+  </div>
+</div>
+<div style="padding:10px 12px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);background:var(--color-background-secondary);font-size:12px;color:var(--text2)">
+  <strong style="color:var(--text)">Why this combination:</strong> Navy = authority, trust (parents expect this from a school). Gold = achievement, excellence (works for toppers, awards, important notices). Warm white instead of pure white = more human, less clinical. The green avoids the site looking like a government portal.
+</div>
+</div>
+
+<div class="section">
+<div class="label">Typography system</div>
+<div class="typo-row">
+  <div class="typo-item">
+    <div class="typo-label">Hero headline — Georgia or Playfair Display</div>
+    <div class="t-hero">Excellence in Education Since 1994</div>
+  </div>
+  <div class="typo-item">
+    <div class="typo-label">Section headings — system sans</div>
+    <div class="t-h1">About Our School</div>
+  </div>
+  <div class="typo-item">
+    <div class="typo-label">Body text — 15px, 1.7 line height</div>
+    <div class="t-body">Central Academy Senior Secondary School provides holistic education that challenges and grooms every aspect of a child's personality.</div>
+  </div>
+  <div class="typo-item">
+    <div class="typo-label">Hindi — Noto Sans Devanagari (same weight, same size)</div>
+    <div class="t-hindi">प्रिय अभिभावक गण — नया सत्र 1 अप्रैल 2026 से शुरू होगा।</div>
+  </div>
+</div>
+<div style="padding:10px 12px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);background:var(--color-background-secondary);font-size:12px;color:var(--text2)">
+  <strong style="color:var(--text)">The key insight:</strong> Use serif only for hero/display text. Everything else sans-serif. This is what top Indian school websites (DPS, Birla Vidya) do — it reads as premium without looking like a 2005 Times New Roman document.
+</div>
+</div>
+
+<div class="section">
+<div class="label">Hero section mockup — "scene" approach (stolen from your image)</div>
+<div class="hero-mock">
+  <div class="hero-img">
+    <div class="hero-text-block">
+      <div class="hero-tag">Anta, Baran — Est. 1994</div>
+      <div class="hero-h">Central Academy<br>Senior Secondary School</div>
+      <div class="hero-sub">RBSE Affiliated · English Medium · Pre-Primary to Class XII</div>
+    </div>
+  </div>
+  <div class="hero-bottom">
+    <div class="hero-stat"><div class="n">30+</div><div class="l">Years</div></div>
+    <div class="hero-stat"><div class="n">37</div><div class="l">Faculty</div></div>
+    <div class="hero-stat"><div class="n">Pre–XII</div><div class="l">Classes</div></div>
+    <div class="hero-stat"><div class="n">RBSE</div><div class="l">Affiliated</div></div>
+  </div>
+</div>
+<div style="font-size:12px;color:var(--text2);padding:8px 0">The gold border at the stat bar bottom — that's your signature element. Every real premium school website has one visual anchor that repeats (gold line, navy stripe). Make this yours.</div>
+</div>
+
+<div class="section">
+<div class="label">Staff card — circular photo (stolen from your image)</div>
+<div class="card-mock">
+  <div class="staff-card">
+    <div class="staff-avatar">DV</div>
+    <div class="staff-name">Deepak Vaishnav</div>
+    <div class="staff-sub">Senior Teacher</div>
+  </div>
+  <div class="staff-card">
+    <div class="staff-avatar">RM</div>
+    <div class="staff-name">Radha Meena</div>
+    <div class="staff-sub">Principal</div>
+  </div>
+  <div class="staff-card">
+    <div class="staff-avatar">HP</div>
+    <div class="staff-name">Hemlata Choudhary</div>
+    <div class="staff-sub">Teacher</div>
+  </div>
+  <div class="staff-card" style="border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;min-height:100px;background:var(--color-background-secondary)">
+    <div style="text-align:center"><div style="font-size:11px;color:var(--text2)">34 more staff →</div></div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="label">Notice board — bilingual, date-anchored</div>
+<div class="notice-mock">
+  <div class="notice-item">
+    <div class="notice-date"><span class="nd-day">01</span><span class="nd-mon">Apr</span></div>
+    <div>
+      <div style="margin-bottom:3px"><span class="notice-pin">IMPORTANT</span></div>
+      <div class="notice-title">Admission Open 2026–27</div>
+      <div class="notice-hint">नया सत्र आरंभ — 1 अप्रैल 2026 से अपने बच्चे को विद्यालय भेजें</div>
+    </div>
+  </div>
+  <div class="notice-item">
+    <div class="notice-date"><span class="nd-day">15</span><span class="nd-mon">Mar</span></div>
+    <div>
+      <div class="notice-title">Annual Examination Schedule Released</div>
+      <div class="notice-hint">Classes IX–XII · Download PDF from the Downloads section</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="label">Design principles — what makes it look real, not AI-generated</div>
+<div class="principles">
+  <div class="principle">
+    <div class="icon"><i class="ti ti-layers-intersect" aria-hidden="true"></i></div>
+    <h4>Overlap things</h4>
+    <p>Hero text sits on the image, not below it. Cards slightly overlap section dividers. Nothing lives in its own isolated box.</p>
+  </div>
+  <div class="principle">
+    <div class="icon"><i class="ti ti-line-height" aria-hidden="true"></i></div>
+    <h4>Asymmetric sections</h4>
+    <p>Not every section is full-width centered. About page: image left, text right. Principal message: quote overlapping photo.</p>
+  </div>
+  <div class="principle">
+    <div class="icon"><i class="ti ti-vector-triangle" aria-hidden="true"></i></div>
+    <h4>One signature shape</h4>
+    <p>The gold diagonal stripe (like the anime's color blocks). Use it as a section break, not a flat horizontal rule.</p>
+  </div>
+  <div class="principle">
+    <div class="icon"><i class="ti ti-photo" aria-hidden="true"></i></div>
+    <h4>Real photo textures</h4>
+    <p>Background sections use actual school building/grounds photos at 15% opacity — not flat colors or stock gradients.</p>
+  </div>
+  <div class="principle">
+    <div class="icon"><i class="ti ti-typography" aria-hidden="true"></i></div>
+    <h4>Mixed language rhythm</h4>
+    <p>Hindi text isn't hidden or secondary. It appears alongside English at the same visual weight — notices, labels, taglines.</p>
+  </div>
+  <div class="principle">
+    <div class="icon"><i class="ti ti-border-radius" aria-hidden="true"></i></div>
+    <h4>Consistent corner radius</h4>
+    <p>12px on cards, 8px on chips/tags, 0px on full-bleed sections. The anime image mixes these randomly — that's what looks cheap.</p>
+  </div>
+</div>
+</div>
+
+<div class="section">
+<div class="label">What this theme is NOT</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+  <div style="padding:10px 12px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);font-size:12px;color:var(--text2)"><strong style="color:var(--color-text-danger)">Not</strong> a government portal — no full-width gray headers, no Comic Sans-adjacent fonts, no table-based layouts</div>
+  <div style="padding:10px 12px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);font-size:12px;color:var(--text2)"><strong style="color:var(--color-text-danger)">Not</strong> a corporate SaaS site — no pure white backgrounds with floating cards on white, no generic hero with stock photo of smiling students</div>
+  <div style="padding:10px 12px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);font-size:12px;color:var(--text2)"><strong style="color:var(--color-text-danger)">Not</strong> an AI-generated template — no gradient mesh backgrounds, no glass-morphism, no neon accents, no "hover for floating card" tricks</div>
+  <div style="padding:10px 12px;border:0.5px solid var(--border);border-radius:var(--border-radius-md);font-size:12px;color:var(--text2)"><strong style="color:var(--color-text-danger)">Not</strong> a cheap WordPress theme — no full-width colored banners every 200px, no widget-box syndrome, no 4 different font sizes on one page</div>
+</div>
+</div>
+
+</div>

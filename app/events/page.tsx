@@ -12,10 +12,15 @@ export const metadata = {
 };
 
 async function getEvents() {
-  return await prisma.event.findMany({
-    where: { published: true },
-    orderBy: { date: "asc" }
-  });
+  try {
+    return await prisma.event.findMany({
+      where: { published: true },
+      orderBy: { date: "asc" }
+    });
+  } catch (error) {
+    console.error("Failed to fetch events:", error);
+    return [];
+  }
 }
 
 export default async function PublicEvents() {
@@ -29,7 +34,7 @@ export default async function PublicEvents() {
         titleHi="कार्यक्रम और गतिविधियाँ"
         eyebrowEn="School Calendar"
         eyebrowHi="स्कूल कैलेंडर"
-        imageSrc="/gallery/slider/1741166412_slider-20.jpg"
+        imageSrc="/banner-main.png"
       />
 
       <EventsClient initialEvents={events} />

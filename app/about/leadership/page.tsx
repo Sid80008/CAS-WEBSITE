@@ -19,7 +19,7 @@ export default function LeadershipPage() {
         titleHi="हमारा नेतृत्व"
         eyebrowEn="Institutional Voices"
         eyebrowHi="संस्थागत स्वर"
-        imageSrc="/gallery/slider/1758787566_WhatsApp Image 2025-09-14 at 6.jpeg"
+        imageSrc="/banner-main.png"
       />
 
       <div className="min-h-screen bg-[#FAFAF5] text-text-primary font-sans py-20">
@@ -170,7 +170,7 @@ export default function LeadershipPage() {
                 <div className="lg:w-2/5 relative min-h-[380px] lg:min-h-[480px]">
                   <Image
                     alt="Mrs. Radha Meena, Principal"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbi6VpC17o7iOEsdbeBnC2SwNhfwwNz8_9ydpDjTFbYi_NqpbndwxC4yccBwxuXXQHU6bmsjfH88pBU1myoLaGyIxxEUIJBo5nsc5A6zoELQtBqbziuzkkrQlYxY9HI0YBa_0bAWbuaqbVHpUs6-5yMgPmZ8LaHUIse7PWRxmW6RmKBw5eFTcLYk4JVlXdL0tnpxKiozW0vALo0LkGDcWCVgrgtDCvMh2T0iZUd3n6SlO1KZaLlU3SFJCgAfdt5NFDeGsmJojyQiQD"
+                    src="/principal-main.png"
                     fill
                     className="object-cover"
                   />

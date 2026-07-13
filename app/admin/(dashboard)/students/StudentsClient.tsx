@@ -2,6 +2,7 @@
 import { useState, useRef } from "react";
 import Link from "next/link";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import type { Student, Enrollment, Section, Class } from "@prisma/client";
 import { bulkUploadStudents } from "@/app/actions/bulkActions";
 
@@ -306,7 +307,7 @@ export default function StudentsClient({ students, stats, filteredCount, current
       <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-gutter">
         <div className="lg:col-span-2 bg-surface border border-outline-variant rounded-xl p-6 relative overflow-hidden h-64 flex flex-col justify-end group cursor-pointer">
           <div className="absolute inset-0 z-0">
-            <img alt="School Campus" className="w-full h-full object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-30 transition-all duration-700" src="/gallery/photo-dump/1746853764_DSC_3837.jpg" />
+            <Image alt="School Campus" fill sizes="(max-width: 1024px) 100vw, 66vw" className="object-cover grayscale opacity-20 group-hover:grayscale-0 group-hover:opacity-30 transition-all duration-700" src="/gallery/photo-dump/1746853764_DSC_3837.jpg" />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent"></div>
           </div>
           <div className="relative z-10">

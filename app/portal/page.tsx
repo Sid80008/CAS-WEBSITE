@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { GraduationCap, Users, ArrowRight, BookOpen, BarChart2, Calendar, Bell } from "lucide-react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -26,8 +27,7 @@ export default function PortalPage() {
         transition={{ duration: 0.85, ease: EASE }}
       >
         <Link href="/" className="inline-flex items-center gap-3 mb-8 group">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo.png" alt="CAS Logo" className="h-14 w-14 object-contain group-hover:scale-105 transition-transform" />
+          <Image src="/logo.png" alt="CAS Logo" width={56} height={56} priority className="object-contain group-hover:scale-105 transition-transform" />
           <div className="text-left">
             <p className="text-white font-extrabold text-xl leading-tight">Central Academy</p>
             <p className="text-white/60 text-xs tracking-widest uppercase">antah Campus</p>

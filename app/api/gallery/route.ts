@@ -13,7 +13,9 @@ export async function GET(req: NextRequest) {
     const page = parseInt(searchParams.get('page') || '1')
     const limit = parseInt(searchParams.get('limit') || '12')
     const search = searchParams.get('search') || ''
-    const publishedOnly = searchParams.get('publishedOnly') === 'true'
+    let user = null;
+    try { user = await verifyAuth(req); } catch (e) {}
+    const publishedOnly = !user || searchParams.get('publishedOnly') === 'true'
     
     const skip = (page - 1) * limit
 

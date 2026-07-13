@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useTransition } from "react";
+import Image from "next/image";
 import { createStaff, updateStaff, deleteStaff, assignStaffSubject, unassignStaffSubject } from "@/app/actions/staffActions";
 
 type StaffMember = {
@@ -155,7 +156,7 @@ export default function StaffClient({ staff, sections, subjects }: Props) {
             <div key={s.id} className="bg-white border border-[#E2E0DB] rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow group flex flex-col justify-between">
               <div className="flex flex-col items-center text-center mb-4">
                 <div className="w-16 h-16 rounded-full bg-[#E6F1FB] flex items-center justify-center mb-3 text-[#00386b] font-bold text-xl group-hover:bg-[#b2d4f5] transition-colors">
-                  {s.photo ? <img src={s.photo} alt={s.name} className="w-16 h-16 rounded-full object-cover" /> : s.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()}
+                  {s.photo ? <Image src={s.photo} alt={s.name} width={64} height={64} className="w-16 h-16 rounded-full object-cover" /> : s.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()}
                 </div>
                 <h3 className="font-bold text-sm text-[#1c1b1b]">{s.name}</h3>
                 <p className="text-xs text-[#555555] mt-0.5">{s.designation ?? "Staff"}</p>

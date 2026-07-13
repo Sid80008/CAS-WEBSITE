@@ -12,13 +12,18 @@ export const metadata = {
 };
 
 async function getNotices() {
-  return await prisma.notice.findMany({
-    where: { isPublic: true },
-    orderBy: [
-      { isPinned: "desc" },
-      { publishedAt: "desc" }
-    ]
-  });
+  try {
+    return await prisma.notice.findMany({
+      where: { isPublic: true },
+      orderBy: [
+        { isPinned: "desc" },
+        { publishedAt: "desc" }
+      ]
+    });
+  } catch (error) {
+    console.error("Failed to fetch notices:", error);
+    return [];
+  }
 }
 
 export default async function PublicNotices() {
@@ -32,7 +37,7 @@ export default async function PublicNotices() {
         titleHi="सूचना पट्ट"
         eyebrowEn="LIVE UPDATES"
         eyebrowHi="लाइव अपडेट"
-        imageSrc="/gallery/slider/1758788075_WhatsApp Image 2025-09-25 at 1.jpeg"
+        imageSrc="/banner-main.png"
       />
 
       {/* Notices List Wrapper */}

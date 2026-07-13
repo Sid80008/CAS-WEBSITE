@@ -54,6 +54,9 @@ export async function updateStudent(id: string, formData: FormData) {
   const sectionId = formData.get('sectionId') as string;
   const statusStr = formData.get('status') as string;
 
+  const activeYear = await prisma.academicYear.findFirst({ orderBy: { startDate: 'desc' } });
+  const yearId = activeYear ? activeYear.id : 'ay-2026-27';
+
   await prisma.$transaction(async (tx) => {
     await tx.student.update({
       where: { id },
@@ -72,7 +75,7 @@ export async function updateStudent(id: string, formData: FormData) {
     if (sectionId) {
       await tx.enrollment.upsert({
         where: {
-          studentId_yearId: { studentId: id, yearId: 'ay-2026-27' },
+          studentId_yearId: { studentId: id, yearId },
         },
         update: {
           sectionId,
@@ -80,7 +83,7 @@ export async function updateStudent(id: string, formData: FormData) {
         create: {
           studentId: id,
           sectionId,
-          yearId: 'ay-2026-27',
+          yearId,
         },
       });
     }

@@ -2,6 +2,7 @@ import React from "react";
 import PublicLayout from "@/components/layout/PublicLayout";
 import { PageBanner } from "@/components/layout/PageBanner";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Library, 
   ShieldCheck, 
@@ -75,7 +76,7 @@ export function FacilitiesContent() {
         titleHi="कक्षा से परे"
         eyebrowEn="World Class Infrastructure"
         eyebrowHi="विश्व स्तरीय बुनियादी ढांचा"
-        imageSrc="/gallery/slider/1758787566_WhatsApp Image 2025-09-14 at 6.jpeg"
+        imageSrc="/banner-main.png"
       />
 
       {/* Grid Section */}
@@ -85,7 +86,7 @@ export function FacilitiesContent() {
             {facilityData.map((f, i) => (
               <div key={i} className="group relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-200/60 hover:-translate-y-2 transition-all duration-500 flex flex-col h-full">
                 <div className="aspect-video relative overflow-hidden">
-                  <img src={f.img} alt={f.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                  <Image src={f.img} alt={f.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-school-ink/75 to-transparent"></div>
                   <div className={`absolute bottom-6 left-6 h-12 w-12 rounded-xl flex items-center justify-center text-white backdrop-blur-md shadow-2xl ${f.color === 'saffron' ? 'bg-school-saffron/80' : 'bg-school-blue/80'}`}>
                     {React.cloneElement(f.icon as React.ReactElement, { className: "h-6 w-6" })}
@@ -138,12 +139,14 @@ export function FacilitiesContent() {
             </p>
           </div>
 
-          <div className="relative">
+          <div className="relative aspect-square w-full">
             <div className="absolute -inset-10 bg-school-saffron opacity-10 rounded-full filter blur-3xl animate-pulse"></div>
-            <img 
-              className="relative w-full aspect-square object-cover rounded-[3rem] shadow-2xl border-solid border-8 border-school-navy/80" 
+            <Image 
+              fill
+              className="object-cover rounded-[3rem] shadow-2xl border-solid border-8 border-school-navy/80" 
               src="/gallery/photo-dump/1746853764_DSC_3837.jpg" 
               alt="Safety" 
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 bg-school-navy/90 backdrop-blur-md p-8 rounded-3xl shadow-2xl border border-white/10 max-w-xs transform -rotate-6">
               <h4 className="text-3xl font-black text-white font-display mb-2">Safe Campus</h4>

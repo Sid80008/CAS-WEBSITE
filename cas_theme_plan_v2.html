@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CAS Website — Complete Theme Plan v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #00386b;
+    --navy-mid: #1B4F8A;
+    --navy-light: #E6F1FB;
+    --navy-xlight: #F0F6FC;
+    --amber: #fdad4e;
+    --amber-dark: #BA7517;
+    --amber-light: #FAEEDA;
+    --white: #FFFFFF;
+    --off-white: #F8F7F5;
+    --border: #E2E0DB;
+    --text: #1a1a1a;
+    --text2: #555555;
+    --text3: #888888;
+    --teal: #085041;
+    --teal-light: #E1F5EE;
+    --coral: #993C1D;
+    --coral-light: #FAECE7;
+    --radius-sm: 6px;
+    --radius: 10px;
+    --radius-lg: 16px;
+    --radius-xl: 24px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #0a0e1a;
+    color: var(--text);
+    line-height: 1.6;
+    font-size: 14px;
+  }
+
+  /* ── Top nav ── */
+  .toc-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,14,26,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .toc-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+  .toc-link {
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    text-decoration: none;
+    padding: 3px 10px;
+    border-radius: 20px;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .toc-link:hover { color: var(--amber); border-color: rgba(253,173,78,0.3); background: rgba(253,173,78,0.08); }
+
+  /* ── Page wrapper ── */
+  .page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── Chapter headers ── */
+  .chapter {
+    margin: 64px 0 32px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .chapter-num {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 8px;
+    font-family: 'Inter', sans-serif;
+  }
+  .chapter-title {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
+  }
+  .chapter-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+    max-width: 680px;
+  }
+
+  /* ── Section header ── */
+  .sec-head {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    margin: 32px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .sec-head .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--amber); flex-shrink: 0; }
+
+  .note {
+    background: rgba(253,173,78,0.06);
+    border: 1px solid rgba(253,173,78,0.18);
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    margin-top: 12px;
+    line-height: 1.6;
+  }
+  .note strong { color: var(--amber); }
+
+  /* ── Inspiration analysis ── */
+  .insp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .insp-card {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .insp-header {
+    padding: 10px 14px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .insp-header.steal { background: rgba(8,80,65,0.5); color: #7FFFCB; }
+  .insp-header.skip { background: rgba(153,60,29,0.4); color: #FFB3A0; }
+  .insp-body { background: rgba(255,255,255,0.03); padding: 10px 14px; }
+  .insp-body li {
+    list-style: none;
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
+    padding: 4px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .insp-body li:last-child { border-bottom: none; }
+  .insp-header.steal + .insp-body li::before { content: '✓'; position: absolute; left: 0; color: #7FFFCB; font-size: 10px; top: 5px; }
+  .insp-header.skip + .insp-body li::before { content: '✕'; position: absolute; left: 0; color: #FFB3A0; font-size: 10px; top: 5px; }
+
+  /* ── Color palette ── */
+  .palette { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .swatch { flex: 1; min-width: 90px; border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+  .swatch-color { height: 60px; }
+  .swatch-info { padding: 8px 10px; background: rgba(255,255,255,0.04); }
+  .swatch-name { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .swatch-hex { font-size: 10px; color: rgba(255,255,255,0.4); font-family: monospace; margin-top: 2px; }
+  .swatch-role { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 3px; line-height: 1.4; }
+
+  /* ── Typography specimens ── */
+  .typo-block {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin-top: 10px;
+  }
+  .typo-label { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+
+  /* ── Motion tokens ── */
+  .motion-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; }
+  .motion-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+  .motion-title { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 6px; }
+  .motion-val { font-size: 11px; color: var(--amber); font-family: monospace; }
+  .motion-desc { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; line-height: 1.5; }
+
+  /* ── Page spec cards ── */
+  .page-spec {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius-lg);
+    margin-top: 20px;
+    overflow: hidden;
+  }
+  .ps-header {
+    background: rgba(0,56,107,0.35);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .ps-route {
+    font-size: 10px;
+    font-family: monospace;
+    background: rgba(253,173,78,0.12);
+    color: var(--amber);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .ps-name {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .ps-body { padding: 16px 20px; }
+
+  .section-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+  }
+  .sec-block {
+    flex: 1;
+    min-width: 160px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+  }
+  .sec-block-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 8px;
+  }
+  .sec-block-content { font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+  .sec-block-content li { list-style: none; padding: 2px 0 2px 14px; position: relative; }
+  .sec-block-content li::before { content: '→'; position: absolute; left: 0; color: rgba(255,255,255,0.25); font-size: 10px; top: 3px; }
+
+  /* ── Hero mockup ── */
+  .hero-mock {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+    margin-top: 16px;
+  }
+  .hero-scene {
+    height: 220px;
+    background: linear-gradient(135deg, #00386b 0%, #1B4F8A 50%, #2E75B6 100%);
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 24px;
+    overflow: hidden;
+  }
+  .hero-scene::after {
+    content: '';
+    position: absolute;
+    right: -30px; top: -30px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(253,173,78,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-scene::before {
+    content: 'REAL SCHOOL PHOTO HERE';
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.08);
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding-bottom: 20px;
+    width: 100%;
+  }
+  .hero-overline {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 6px;
+  }
+  .hero-h { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 800; color: #fff; line-height: 1.15; letter-spacing: -0.3px; }
+  .hero-sub { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 6px; }
+  .hero-btns { display: flex; gap: 8px; margin-top: 12px; }
+  .hero-btn-p {
+    font-size: 11px; font-weight: 700;
+    background: var(--amber);
+    color: #1a0800;
+    padding: 7px 16px;
+    border-radius: 6px;
+    border: none;
+  }
+  .hero-btn-s {
+    font-size: 11px; font-weight: 600;
+    background: rgba(255,255,255,0.12);
+    color: #fff;
+    padding: 7px 14px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(4px);
+  }
+  .stat-bar {
+    background: #fff;
+    padding: 12px 20px;
+    display: flex;
+    gap: 0;
+    border-top: 3px solid var(--amber);
+  }
+  .stat-item {
+    flex: 1;
+    text-align: center;
+    padding: 0 8px;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-n { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: var(--navy); }
+  .stat-l { font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); margin-top: 2px; }
+
+  /* ── Image requirements ── */
+  .img-req-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; }
+  .img-req {
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px dashed rgba(253,173,78,0.25);
+  }
+  .img-req-thumb {
+    height: 80px;
+    background: rgba(253,173,78,0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-req-thumb .camera-icon { font-size: 24px; opacity: 0.25; }
+  .img-req-thumb .ratio-badge {
+    position: absolute; bottom: 6px; right: 6px;
+    font-size: 9px; font-weight: 600; font-family: monospace;
+    background: rgba(0,0,0,0.4);
+    color: var(--amber);
+    padding: 2px 6px; border-radius: 4px;
+  }
+  .img-req-info { padding: 10px 12px; background: rgba(255,255,255,0.02); }
+  .img-req-name { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); }
+  .img-req-desc { font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 3px; line-height: 1.5; }
+  .img-req-size { font-size: 10px; color: var(--amber); font-family: monospace; margin-top: 4px; }
+  .img-req-priority {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    padding: 1px 6px; border-radius: 3px; margin-top: 4px;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .img-req-priority.critical { background: rgba(153,60,29,0.3); color: #FFB3A0; }
+  .img-req-priority.high { background: rgba(253,173,78,0.15); color: var(--amber); }
+  .img-req-priority.normal { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.4); }
+
+  /* ── Component previews ── */
+  .comp-preview {
+    background: var(--off-white);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    margin-top: 12px;
+  }
+
+  /* ── Card demos ── */
+  .demo-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+    transition: all 0.2s;
+  }
+  .demo-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+
+  .pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 10px; font-weight: 600; padding: 2px 8px;
+    border-radius: 20px; letter-spacing: 0.04em; text-transform: uppercase;
+  }
+  .pill-blue { background: var(--navy-light); color: var(--navy); }
+  .pill-amber { background: var(--amber-light); color: var(--amber-dark); }
+  .pill-teal { background: var(--teal-light); color: var(--teal); }
+  .pill-coral { background: var(--coral-light); color: var(--coral); }
+
+  .notice-demo {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .notice-row {
+    display: flex; gap: 12px; padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .notice-row:last-child { border-bottom: none; }
+  .ndate {
+    background: var(--navy-light); color: var(--navy);
+    border-radius: 8px; padding: 6px 10px;
+    text-align: center; flex-shrink: 0; min-width: 46px;
+  }
+  .ndate .nd { font-size: 16px; font-weight: 700; display: block; line-height: 1; }
+  .ndate .nm { font-size: 9px; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 1px; }
+  .ntitle { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+  .nhint { font-size: 11px; color: var(--text2); line-height: 1.5; }
+  .pin-badge { background: var(--amber-light); color: var(--amber-dark); font-size: 9px; font-weight: 700; padding: 1px 6px; border-radius: 3px; letter-spacing: 0.04em; }
+
+  /* ── Quote testimonial ── */
+  .quote-block {
+    background: var(--navy);
+    color: #fff;
+    border-radius: var(--radius-xl);
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 12px;
+  }
+  .quote-block::before {
+    content: '"';
+    position: absolute;
+    top: -10px; left: 16px;
+    font-size: 120px;
+    font-family: Georgia, serif;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+  }
+  .quote-text { font-size: 15px; font-style: italic; line-height: 1.7; color: rgba(255,255,255,0.9); position: relative; z-index: 1; }
+  .quote-attr { margin-top: 16px; display: flex; align-items: center; gap: 10px; position: relative; z-index: 1; }
+  .quote-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--amber); color: #1a0800; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+  .quote-name { font-size: 12px; font-weight: 600; color: #fff; }
+  .quote-role { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 1px; }
+
+  /* ── Staff card ── */
+  .staff-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    text-align: center;
+  }
+  .staff-avatar-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--navy-light);
+    color: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; margin: 0 auto 10px;
+    border: 3px solid var(--amber);
+    position: relative;
+  }
+  .staff-avatar-circle img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .staff-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .staff-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+  .staff-dept { margin-top: 6px; }
+
+  /* ── Topper card ── */
+  .topper-card {
+    background: linear-gradient(135deg, #fff 70%, var(--amber-light) 100%);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .topper-rank {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px; font-weight: 800;
+    color: var(--amber-dark); flex-shrink: 0; width: 36px; text-align: center;
+  }
+  .topper-info { flex: 1; }
+  .topper-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .topper-class { font-size: 11px; color: var(--text3); margin-top: 1px; }
+  .topper-pct { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 800; color: var(--navy); }
+
+  /* ── Facility card ── */
+  .facility-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+  .facility-img {
+    height: 120px;
+    background: linear-gradient(135deg, var(--navy-light), var(--off-white));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text3); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+    position: relative; overflow: hidden;
+  }
+  .facility-img::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 40px;
+    background: linear-gradient(to top, rgba(255,255,255,0.8), transparent);
+  }
+  .facility-body { padding: 14px 16px; }
+  .facility-title { font-size: 14px; font-weight: 700; color: var(--text); }
+  .facility-desc { font-size: 12px; color: var(--text2); margin-top: 4px; line-height: 1.5; }
+  .facility-link { font-size: 11px; font-weight: 600; color: var(--navy-mid); margin-top: 8px; display: inline-flex; align-items: center; gap: 4px; }
+
+  /* ── Event card ── */
+  .event-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .event-date-block {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    text-align: center;
+    flex-shrink: 0;
+    min-width: 52px;
+  }
+  .event-day { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 22px; font-weight: 800; display: block; line-height: 1; }
+  .event-mon { font-size: 10px; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; color: var(--amber); display: block; }
+  .event-title { font-size: 14px; font-weight: 600; color: var(--text); }
+  .event-meta { font-size: 11px; color: var(--text3); margin-top: 3px; }
+  .event-category { margin-top: 6px; }
+
+  /* ── Gallery strip ── */
+  .gallery-strip {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-top: 12px;
+  }
+  .gallery-thumb {
+    height: 80px;
+    border-radius: 8px;
+    background: var(--navy-light);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; color: var(--text3);
+    position: relative; overflow: hidden; cursor: pointer;
+  }
+  .gallery-thumb:nth-child(1) { background: linear-gradient(135deg, #E6F1FB, #C5D8F0); }
+  .gallery-thumb:nth-child(2) { background: linear-gradient(135deg, #E1F5EE, #BDE5D3); }
+  .gallery-thumb:nth-child(3) { background: linear-gradient(135deg, #FAEEDA, #F5D9A8); }
+  .gallery-thumb:nth-child(4) { background: linear-gradient(135deg, #FAECE7, #F5C5B5); }
+
+  /* ── Breadcrumb ── */
+  .breadcrumb {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--text3);
+  }
+  .breadcrumb a { color: var(--text2); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--navy-mid); }
+  .breadcrumb .sep { color: var(--border); }
+  .breadcrumb .current { color: var(--text); font-weight: 500; }
+
+  /* ── Portal tag ── */
+  .portal-tag {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 4px; margin-right: 4px;
+  }
+  .portal-admin { background: rgba(0,56,107,0.15); color: var(--navy); }
+  .portal-teacher { background: rgba(8,80,65,0.12); color: var(--teal); }
+  .portal-student { background: rgba(83,74,183,0.12); color: #534AB7; }
+  .portal-parent { background: rgba(186,117,23,0.12); color: var(--amber-dark); }
+
+  /* ── Responsive rule table ── */
+  .resp-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
+  .resp-table th {
+    background: rgba(0,56,107,0.4); color: rgba(255,255,255,0.7);
+    padding: 8px 12px; text-align: left; font-weight: 600;
+    font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .resp-table td {
+    padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.55); vertical-align: top;
+  }
+  .resp-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .resp-table code {
+    background: rgba(253,173,78,0.1); color: var(--amber);
+    padding: 1px 5px; border-radius: 3px; font-family: monospace; font-size: 11px;
+  }
+
+  /* ── Micro-animation demos ── */
+  .anim-demo {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 12px;
+  }
+  .anim-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: var(--radius);
+    padding: 14px;
+  }
+  .anim-title { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+  .anim-spec { font-size: 11px; font-family: monospace; color: var(--amber); line-height: 1.6; }
+
+  /* ── Call-to-action block ── */
+  .cta-block {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border-radius: var(--radius-xl);
+    padding: 28px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap; margin-top: 12px; position: relative; overflow: hidden;
+  }
+  .cta-block::after {
+    content: '';
+    position: absolute; right: -40px; top: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(253,173,78,0.1), transparent 70%);
+    border-radius: 50%;
+  }
+  .cta-text h3 { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; color: #fff; }
+  .cta-text p { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; }
+  .cta-actions { display: flex; gap: 10px; position: relative; z-index: 1; }
+  .cta-btn-p {
+    background: var(--amber); color: #1a0800;
+    font-size: 12px; font-weight: 700; padding: 10px 20px; border-radius: 8px; border: none; white-space: nowrap;
+  }
+  .cta-btn-s {
+    background: rgba(255,255,255,0.1); color: #fff;
+    font-size: 12px; font-weight: 600; padding: 10px 20px; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2); white-space: nowrap;
+  }
+
+  /* ── Divider ── */
+  .divider { border: none; border-top: 1px solid rgba(255,255,255,0.05); margin: 32px 0; }
+
+  /* ── Amber highlight strip ── */
+  .amber-strip {
+    background: linear-gradient(90deg, rgba(253,173,78,0.08), rgba(253,173,78,0.03));
+    border-left: 3px solid var(--amber);
+    padding: 10px 16px; border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 10px; line-height: 1.6;
+  }
+  .amber-strip strong { color: var(--amber); }
+
+  /* ── Status badges ── */
+  .status-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .status-badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px;
+    border: 1px solid;
+  }
+  .status-badge .dot-s { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .status-paid { background: var(--teal-light); color: var(--teal); border-color: rgba(8,80,65,0.2); }
+  .status-paid .dot-s { background: var(--teal); }
+  .status-pending { background: var(--amber-light); color: var(--amber-dark); border-color: rgba(186,117,23,0.2); }
+  .status-pending .dot-s { background: var(--amber-dark); }
+  .status-overdue { background: var(--coral-light); color: var(--coral); border-color: rgba(153,60,29,0.2); }
+  .status-overdue .dot-s { background: var(--coral); }
+
+  /* ── Page flow diagram ── */
+  .flow-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; margin-top: 12px; }
+  .flow-node {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 10px 12px;
+    text-align: center; cursor: default;
+  }
+  .flow-node:hover { border-color: rgba(253,173,78,0.3); background: rgba(253,173,78,0.04); }
+  .flow-node .fn-icon { font-size: 20px; margin-bottom: 4px; }
+  .flow-node .fn-name { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); }
+  .flow-node .fn-route { font-size: 9px; font-family: monospace; color: rgba(255,255,255,0.3); margin-top: 2px; }
+  .flow-node.public { border-color: rgba(27,79,138,0.4); }
+  .flow-node.admin-p { border-color: rgba(0,56,107,0.5); }
+  .flow-node.teacher-p { border-color: rgba(8,80,65,0.4); }
+  .flow-node.student-p { border-color: rgba(83,74,183,0.4); }
+  .flow-node.parent-p { border-color: rgba(186,117,23,0.4); }
+
+  @media (max-width: 768px) {
+    .chapter-title { font-size: 20px; }
+    .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+    .cta-block { flex-direction: column; }
+    .hero-scene { height: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── TOC Nav ── -->
+<nav class="toc-nav">
+  <span class="toc-label">CAS Theme v2</span>
+  <a href="#ch-verdict" class="toc-link">Inspiration</a>
+  <a href="#ch-system" class="toc-link">Design System</a>
+  <a href="#ch-motion" class="toc-link">Motion</a>
+  <a href="#ch-public" class="toc-link">Public Pages</a>
+  <a href="#ch-portals" class="toc-link">Portals</a>
+  <a href="#ch-images" class="toc-link">Image Needs</a>
+  <a href="#ch-principles" class="toc-link">Principles</a>
+</nav>
+
+<div class="page">
+
+<!-- ══════════════════════════════════════════════════════════
+     OPENING
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-intro">
+  <div class="chapter-num">Central Academy Anta — Theme Plan v2 · June 2026</div>
+  <h1 class="chapter-title">The Complete Visual System</h1>
+  <p class="chapter-sub">A ruthlessly honest, production-ready design blueprint for every page of the CAS website — public site, portals, and in between. Not a mood board. Not a style tile. A working system.</p>
+</div>
+
+<div class="note">
+  <strong>What this document covers:</strong> Colour, type, spacing, motion, every major page layout, portal UX, component anatomy, image requirements with exact dimensions, and what NOT to do. Covers 27+ public pages and 4 portal tiers.
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CH 1 — INSPIRATION VERDICT
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-verdict">
+  <div class="chapter-num">Chapter 01</div>
+  <h2 class="chapter-title">Inspiration Verdict</h2>
+  <p class="chapter-sub">Five reference images analysed. Brutal scoring — what belongs on a school website and what doesn't.</p>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Image 1 — Myna UI (3D Character Hero)</div>
+<div class="insp-grid">
+  <div class="insp-card">
+    <div class="insp-header steal">Steal</div>
+    <ul class="insp-body">
+      <li>Hero character breaking the frame — subject bleeds below the fold</li>
+      <li>Tight, bold two-line headline. No word waste.</li>
+      <li>Two CTA buttons: one solid primary, one ghost with avatar proof</li>
+      <li>White background that lets the character pop (no dark overlay)</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header skip">Skip</div>
+    <ul class="insp-body">
+      <li>3D cartoon characters — wrong tone for RBSE-affiliated school</li>
+      <li>The "avatar-as-social-proof" CTA pattern — too startup-y</li>
+      <li>Zero navigation hierarchy — completely flat navbar</li>
+    </ul>
+  </div>
+</div>
+<div class="amber-strip"><strong>What we take:</strong> The idea that the hero subject (for us: real students in motion, or a powerful school building shot) should BREAK OUT of its container and breathe into the page.</div>
+
+<div class="sec-head"><span class="dot"></span> Image 2 — Channel / The Edit Hatch (Illustrated Scene)</div>
+<div class="insp-grid">
+  <div class="insp-card">
+    <div class="insp-header steal">Steal</div>
+    <ul class="insp-body">
+      <li>Full-bleed illustrated/painted hero — photo with painterly treatment</li>
+      <li>Mixed type sizes on one screen — massive display + tiny metadata</li>
+      <li>Section transitions that feel like scrolling through a story</li>
+      <li>Content cards that overlap the hero bottom edge</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header skip">Skip</div>
+    <ul class="insp-body">
+      <li>Anime/illustrated characters — not a school context</li>
+      <li>Cluttered navigation with 6 mega-menu dropdowns</li>
+      <li>Sky-blue brand colour — clashes with our navy system</li>
+      <li>The vertical scrolljack sections — kill mobile UX</li>
+    </ul>
+  </div>
+</div>
+<div class="amber-strip"><strong>What we take:</strong> "Storytelling scroll" — each section feels like the next chapter, not a generic card dump. Section transitions use diagonal cuts or overlapping elements, not flat borders.</div>
+
+<div class="sec-head"><span class="dot"></span> Image 3 — Disney/Pixar Soul UI (Glassmorphism)</div>
+<div class="insp-grid">
+  <div class="insp-card">
+    <div class="insp-header steal">Steal</div>
+    <ul class="insp-body">
+      <li>Hero character emerges from a dreamy, blurred background</li>
+      <li>Glass cards overlaid on a rich scene — not floating in white void</li>
+      <li>Metadata bar: small details (rating, runtime) make it feel alive</li>
+      <li>Soft gradient that fades toward white at the bottom — elegant</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header skip">Skip</div>
+    <ul class="insp-body">
+      <li>Full glassmorphism everywhere — over-used, not school-appropriate</li>
+      <li>Purple-lavender palette — wrong for CAS brand</li>
+      <li>Movie-UI reading pattern — entertainment, not information</li>
+    </ul>
+  </div>
+</div>
+<div class="amber-strip"><strong>What we take:</strong> The "glass panel on rich background" treatment for our hero section. Hero image fills full width, school name + tagline sits in a frosted-glass pill anchored to the bottom-left. Feels premium, not SaaS.</div>
+
+<div class="sec-head"><span class="dot"></span> Image 4 — Pixar Animation Studios</div>
+<div class="insp-grid">
+  <div class="insp-card">
+    <div class="insp-header steal">Steal</div>
+    <ul class="insp-body">
+      <li>Hero split: large scene left, character card panel right</li>
+      <li>Content catalog with date/release filters — straight to facilities page</li>
+      <li>Typography contrast: serif display headline + sans body in same block</li>
+      <li>Color-block section breaks — navy, then white, then photo-background</li>
+      <li>Gallery grid that feels editorial, not widget</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header skip">Skip</div>
+    <ul class="insp-body">
+      <li>Movie poster grid — wrong content type for school</li>
+      <li>Dark-on-dark text sections — accessibility fails</li>
+      <li>Horizontal scrolling filmstrip — frustrating on mobile</li>
+    </ul>
+  </div>
+</div>
+<div class="amber-strip"><strong>What we take:</strong> The "catalog with depth" layout for our Academic Achievements / Gallery pages. Large featured item (Topper of the Year) left. Grid of all toppers right. Feels like editorial journalism, not a school website table.</div>
+
+<div class="sec-head"><span class="dot"></span> Image 5 — Kamui (Japanese Scene, Illustrated)</div>
+<div class="insp-grid">
+  <div class="insp-card">
+    <div class="insp-header steal">Steal</div>
+    <ul class="insp-body">
+      <li>Scene has depth: foreground / midground / background layers</li>
+      <li>Atmospheric lighting — golden hour warmth in the sky</li>
+      <li>The calm, "institutional peace" feeling — trust and tradition</li>
+      <li>Lanterns as accent details — we adapt with warm amber glow points</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header skip">Skip</div>
+    <ul class="insp-body">
+      <li>Fantasy illustration style — not a school aesthetic</li>
+      <li>The mysterious darkness — school needs to feel safe and open</li>
+      <li>Japanese architecture — obviously irrelevant</li>
+    </ul>
+  </div>
+</div>
+<div class="amber-strip"><strong>What we take:</strong> "Layered depth" in our hero photograph. We achieve it with parallax: campus building in back, students in middle, text in front. The amber/warm-gold sunset feeling translates directly to our amber accent system.</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CH 2 — DESIGN SYSTEM
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-system">
+  <div class="chapter-num">Chapter 02</div>
+  <h2 class="chapter-title">Design System</h2>
+  <p class="chapter-sub">Colors, type, spacing, and components. Every token that shows up on every page.</p>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Color Palette — "Heritage Navy + Academic Amber"</div>
+<div class="palette">
+  <div class="swatch">
+    <div class="swatch-color" style="background:#00386b"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">School Blue</div>
+      <div class="swatch-hex">#00386b</div>
+      <div class="swatch-role">Primary — Nav, headers, CTAs, logo</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#1B4F8A"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Royal Blue</div>
+      <div class="swatch-hex">#1B4F8A</div>
+      <div class="swatch-role">Links, mid-weight accents, buttons</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#E6F1FB"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Blue Light</div>
+      <div class="swatch-hex">#E6F1FB</div>
+      <div class="swatch-role">Section bg, badge bg, card tints</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#fdad4e"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Academic Amber</div>
+      <div class="swatch-hex">#fdad4e</div>
+      <div class="swatch-role">★ Signature accent — CTAs, stat bars, dividers, topper highlights</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#BA7517"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Amber Dark</div>
+      <div class="swatch-hex">#BA7517</div>
+      <div class="swatch-role">Amber text on light bg, icons</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#FAEEDA"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Amber Light</div>
+      <div class="swatch-hex">#FAEEDA</div>
+      <div class="swatch-role">Badge bg, notice highlight bg</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#F8F7F5"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Warm White</div>
+      <div class="swatch-hex">#F8F7F5</div>
+      <div class="swatch-role">Page bg, alt section bg</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#085041"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Forest Teal</div>
+      <div class="swatch-hex">#085041</div>
+      <div class="swatch-role">Sports, success, nature, fee-paid</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="swatch-color" style="background:#993C1D"></div>
+    <div class="swatch-info">
+      <div class="swatch-name">Alert Coral</div>
+      <div class="swatch-hex">#993C1D</div>
+      <div class="swatch-role">Urgent notices, deadlines, overdue</div>
+    </div>
+  </div>
+</div>
+<div class="note"><strong>Golden rule:</strong> Only two colours can appear as large fills on any given page — Navy and White (or off-white). Amber is never a background; it's always a highlight, border, or accent line. This is what separates premium from garish.</div>
+
+<div class="sec-head"><span class="dot"></span> Typography — "Plus Jakarta Sans + Inter"</div>
+<div class="typo-block">
+  <div class="typo-label">Display / Hero — Plus Jakarta Sans 800 — 48px</div>
+  <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:32px; font-weight:800; color:var(--text); letter-spacing:-0.5px; line-height:1.1;">Excellence in Education<br/>Since 1994</div>
+</div>
+<div class="typo-block">
+  <div class="typo-label">H1 / Page Title — Plus Jakarta Sans 700 — 36px</div>
+  <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:24px; font-weight:700; color:var(--text); letter-spacing:-0.3px;">Principal's Message</div>
+</div>
+<div class="typo-block">
+  <div class="typo-label">H2 / Section Header — Plus Jakarta Sans 600 — 28px</div>
+  <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:18px; font-weight:600; color:var(--text);">Academic Toppers 2025–26</div>
+</div>
+<div class="typo-block">
+  <div class="typo-label">Body — Inter 400 — 16px / 1.6 line-height</div>
+  <div style="font-family:'Inter',sans-serif; font-size:14px; color:#555; line-height:1.7;">Central Academy Senior Secondary School provides holistic education that challenges every aspect of a child's personality — academic, emotional, and social. Our curriculum balances RBSE requirements with modern pedagogy.</div>
+</div>
+<div class="typo-block">
+  <div class="typo-label">Hindi Body — Same font stack (Noto Sans Devanagari fallback) — same size, +0.05 line-height</div>
+  <div style="font-size:14px; color:#555; line-height:1.75; font-family:'Inter', system-ui, sans-serif;">प्रिय अभिभावक गण — नया सत्र 1 अप्रैल 2026 से शुरू होगा। अपने बच्चे का प्रवेश अभी सुनिश्चित करें।</div>
+</div>
+<div class="typo-block">
+  <div class="typo-label">Overline / Label — Inter 700 — 11px UPPERCASE, 0.12em tracking</div>
+  <div style="font-size:11px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#1B4F8A;">Academic Excellence</div>
+</div>
+
+<div class="note"><strong>Why two fonts:</strong> Plus Jakarta Sans for all headlines — its tight letter-spacing at large sizes feels premium and modern. Inter for all body/UI text — unbeatable readability at small sizes, especially for Hindi users unfamiliar with Latin script nuances. Do NOT use Noto Sans as the primary display font — it looks like a government health portal.</div>
+
+<div class="sec-head"><span class="dot"></span> Signature Design Element — The Amber Line</div>
+<div class="comp-preview">
+  <!-- Amber line demo -->
+  <div style="background:var(--navy); border-radius:12px; padding:20px 24px; position:relative; overflow:hidden;">
+    <div style="position:absolute; bottom:0; left:0; right:0; height:4px; background:linear-gradient(90deg, var(--amber) 0%, rgba(253,173,78,0.3) 100%);"></div>
+    <div style="font-size:10px; color:rgba(255,255,255,0.4); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:8px;">Est. 1994 · Anta, Baran</div>
+    <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:18px; font-weight:800; color:#fff;">Central Academy<br/>Senior Secondary School</div>
+  </div>
+  <div style="margin-top:12px; display:flex; gap:12px;">
+    <div style="flex:1; background:#fff; border:1px solid var(--border); border-radius:10px; padding:16px; border-top:4px solid var(--amber);">
+      <div style="font-size:11px; color:var(--text3);">Card variant — top amber border</div>
+      <div style="font-size:13px; font-weight:600; color:var(--text); margin-top:6px;">Featured Notice</div>
+    </div>
+    <div style="flex:1; background:#fff; border:1px solid var(--border); border-radius:10px; padding:16px; border-left:4px solid var(--amber);">
+      <div style="font-size:11px; color:var(--text3);">Card variant — left amber border</div>
+      <div style="font-size:13px; font-weight:600; color:var(--text); margin-top:6px;">Section divider</div>
+    </div>
+    <div style="flex:1; display:flex; align-items:center; justify-content:center;">
+      <div style="width:48px; height:4px; background:var(--amber); border-radius:99px; margin-bottom:4px;"></div>
+    </div>
+  </div>
+</div>
+<div class="amber-strip"><strong>The amber line</strong> appears in three forms: (1) 3px bottom border on hero stat bar, (2) 4px top or left border on featured cards, (3) 48px×4px decorative line below section headers. It is the ONE recurring motif that unifies every page. Never use it as a background fill.</div>
+
+<div class="sec-head"><span class="dot"></span> Component Demos</div>
+<div class="comp-preview">
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:12px;">
+
+    <!-- Staff Card -->
+    <div class="staff-card">
+      <div class="staff-avatar-circle">RM</div>
+      <div class="staff-name">Mrs. Radha Meena</div>
+      <div class="staff-sub">Principal</div>
+      <div class="staff-dept"><span class="pill pill-blue">Leadership</span></div>
+    </div>
+
+    <!-- Topper Card -->
+    <div class="topper-card">
+      <div class="topper-rank">#1</div>
+      <div class="topper-info">
+        <div class="topper-name">Dwitika Sharma</div>
+        <div class="topper-class">Class X · 2025–26</div>
+      </div>
+      <div class="topper-pct">96%</div>
+    </div>
+
+    <!-- Event Card -->
+    <div class="event-card">
+      <div class="event-date-block">
+        <span class="event-day">15</span>
+        <span class="event-mon">Aug</span>
+      </div>
+      <div>
+        <div class="event-title">Independence Day Celebration</div>
+        <div class="event-meta">8:00 AM · School Ground</div>
+        <div class="event-category"><span class="pill pill-teal">Cultural</span></div>
+      </div>
+    </div>
+
+    <!-- Status badges -->
+    <div class="demo-card">
+      <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">Fee Status Badges</div>
+      <div class="status-row">
+        <span class="status-badge status-paid"><span class="dot-s"></span>Paid</span>
+        <span class="status-badge status-pending"><span class="dot-s"></span>Pending</span>
+        <span class="status-badge status-overdue"><span class="dot-s"></span>Overdue</span>
+      </div>
+    </div>
+
+    <!-- Category pills demo -->
+    <div class="demo-card">
+      <div style="font-size:12px; font-weight:600; color:var(--text); margin-bottom:10px;">Category Pills</div>
+      <div style="display:flex; gap:6px; flex-wrap:wrap;">
+        <span class="pill pill-blue">Academic</span>
+        <span class="pill pill-amber">Admission</span>
+        <span class="pill pill-teal">Sports</span>
+        <span class="pill pill-coral">Urgent</span>
+      </div>
+    </div>
+
+    <!-- Facility Card -->
+    <div class="facility-card">
+      <div class="facility-img">📚 Library</div>
+      <div class="facility-body">
+        <div class="facility-title">School Library</div>
+        <div class="facility-desc">10,000+ books, digital resources, quiet study zones.</div>
+        <div class="facility-link">Explore →</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Notice Board Component</div>
+<div class="comp-preview">
+  <div class="notice-demo">
+    <div class="notice-row">
+      <div class="ndate"><span class="nd">01</span><span class="nm">Apr</span></div>
+      <div>
+        <div style="margin-bottom:4px;"><span class="pin-badge">PINNED</span></div>
+        <div class="ntitle">Admission Open 2026–27 — Nursery to Class XII</div>
+        <div class="nhint">नया सत्र आरंभ — 1 अप्रैल 2026 से अपने बच्चे का प्रवेश अभी सुनिश्चित करें</div>
+      </div>
+    </div>
+    <div class="notice-row">
+      <div class="ndate"><span class="nd">20</span><span class="nm">Mar</span></div>
+      <div>
+        <div class="ntitle">Annual Examination Schedule — Class IX to XII</div>
+        <div class="nhint">Download PDF · Time Table Released</div>
+      </div>
+    </div>
+    <div class="notice-row">
+      <div class="ndate" style="background:var(--coral-light); color:var(--coral);"><span class="nd">10</span><span class="nm">Jun</span></div>
+      <div>
+        <div style="margin-bottom:4px;"><span class="pill pill-coral" style="font-size:9px;">DEADLINE</span></div>
+        <div class="ntitle">Fee Submission Last Date — Term 1</div>
+        <div class="nhint">Late fee applicable after this date</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Parent Testimonial Block</div>
+<div class="quote-block">
+  <div class="quote-text">"Central Academy has transformed our daughter. The teachers here don't just teach — they guide. Her Class X result of 96% is proof of the school's genuine dedication to every child."</div>
+  <div class="quote-attr">
+    <div class="quote-avatar">SS</div>
+    <div>
+      <div class="quote-name">Mr. Suresh Sharma</div>
+      <div class="quote-role">Parent of Dwitika Sharma, Class X Topper 2025–26</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CH 3 — MOTION
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-motion">
+  <div class="chapter-num">Chapter 03</div>
+  <h2 class="chapter-title">Motion & Animation</h2>
+  <p class="chapter-sub">Every transition has a purpose. Nothing moves without a reason. Speed communicates confidence.</p>
+</div>
+
+<div class="motion-grid">
+  <div class="motion-card">
+    <div class="motion-title">Entrance — Hero</div>
+    <div class="motion-val">duration: 1.2s<br/>ease: [0.22, 1, 0.36, 1]</div>
+    <div class="motion-desc">Fade up + scale from 1.05. The zoom-out says "this place is bigger than you expected."</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Scroll Reveal</div>
+    <div class="motion-val">y: 32px → 0<br/>opacity: 0 → 1<br/>delay: stagger 0.08s</div>
+    <div class="motion-desc">Cards reveal one by one as you scroll. Not all at once — that's lazy.</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Button Hover</div>
+    <div class="motion-val">translateY: -2px<br/>boxShadow: +4px<br/>duration: 220ms</div>
+    <div class="motion-desc">Lift effect on hover. Confirms interactivity without distracting.</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Page Transition</div>
+    <div class="motion-val">opacity: 0 → 1<br/>duration: 300ms<br/>ease: easeOut</div>
+    <div class="motion-desc">Simple fade. No slides, no flips. School parents aren't a gaming audience.</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Card Hover</div>
+    <div class="motion-val">translateY: -4px<br/>shadow: medium → strong<br/>duration: 200ms</div>
+    <div class="motion-desc">Lifts off the surface. Combined with border darkening on hover.</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Counter Animation</div>
+    <div class="motion-val">0 → target<br/>duration: 1.8s<br/>ease: easeOut<br/>trigger: viewport</div>
+    <div class="motion-desc">Stats on homepage count up when you scroll into view. Emotional impact.</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Image Parallax</div>
+    <div class="motion-val">Hero bg: 0.15x scroll rate<br/>Lazy on mobile</div>
+    <div class="motion-desc">Hero photo moves slower than the page on desktop. Creates depth.</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Notice Ticker</div>
+    <div class="motion-val">marquee: 40s linear<br/>pause on hover<br/>direction: RTL</div>
+    <div class="motion-desc">Scrolling notice strip below hero. RTL because Rajasthan parents often read Hindi first.</div>
+  </div>
+  <div class="motion-card">
+    <div class="motion-title">Gallery Hover</div>
+    <div class="motion-val">scale: 1.04<br/>overlay: opacity 0→0.2<br/>duration: 350ms</div>
+    <div class="motion-desc">Photos breathe on hover. Blue overlay tint maintains brand in gallery view.</div>
+  </div>
+</div>
+
+<div class="note"><strong>Mobile rule:</strong> <code>prefers-reduced-motion</code> must disable all transforms and parallax. Counter animation becomes instant. Page transitions remain (they're functional).</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CH 4 — PUBLIC PAGES
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-public">
+  <div class="chapter-num">Chapter 04</div>
+  <h2 class="chapter-title">Public Page Layouts</h2>
+  <p class="chapter-sub">Every public-facing page, section by section. This is the source of truth for every developer building the frontend.</p>
+</div>
+
+<!-- ── HOME ── -->
+<div class="sec-head"><span class="dot"></span> Home Page — / </div>
+<div class="hero-mock">
+  <div class="hero-scene">
+    <div class="hero-content">
+      <div class="hero-overline">Anta, Baran · Est. 1994 · RBSE Affiliated</div>
+      <div class="hero-h">Central Academy<br/>Senior Secondary School</div>
+      <div class="hero-sub">Nurturing minds. Building futures. Shaping citizens.</div>
+      <div class="hero-btns">
+        <button class="hero-btn-p">Apply for Admission →</button>
+        <button class="hero-btn-s">Explore Campus</button>
+      </div>
+    </div>
+  </div>
+  <div class="stat-bar">
+    <div class="stat-item"><div class="stat-n">30+</div><div class="stat-l">Years Legacy</div></div>
+    <div class="stat-item"><div class="stat-n">2000+</div><div class="stat-l">Students</div></div>
+    <div class="stat-item"><div class="stat-n">50+</div><div class="stat-l">Faculty</div></div>
+    <div class="stat-item"><div class="stat-n">96%</div><div class="stat-l">Top Result</div></div>
+    <div class="stat-item"><div class="stat-n">RBSE</div><div class="stat-l">Affiliated</div></div>
+  </div>
+</div>
+
+<div class="section-row">
+  <div class="sec-block">
+    <div class="sec-block-title">Section 1 — Hero</div>
+    <ul class="sec-block-content">
+      <li>Full-bleed photo (100vw × 620px)</li>
+      <li>Dark overlay: rgba(0,0,0,0.42)</li>
+      <li>Text anchored bottom-left (not centered)</li>
+      <li>Stat bar below with amber 3px top border</li>
+      <li>Scrolling notice ticker above hero OR below stat bar</li>
+    </ul>
+  </div>
+  <div class="sec-block">
+    <div class="sec-block-title">Section 2 — Quick Access</div>
+    <ul class="sec-block-content">
+      <li>4 large icon buttons: Notices, Fee, TC, Admission</li>
+      <li>Float slightly over stat bar bottom edge (overlap)</li>
+      <li>Background: white cards on navy section bg</li>
+      <li>Each card: icon (32px) + label + arrow</li>
+    </ul>
+  </div>
+  <div class="sec-block">
+    <div class="sec-block-title">Section 3 — Toppers Strip</div>
+    <ul class="sec-block-content">
+      <li>Background: amber-light tint (#FAEEDA)</li>
+      <li>Horizontal scroll on mobile</li>
+      <li>Top 5 toppers with rank, name, percentage</li>
+      <li>"View All Results" link at end</li>
+    </ul>
+  </div>
+  <div class="sec-block">
+    <div class="sec-block-title">Section 4 — About Snippet</div>
+    <ul class="sec-block-content">
+      <li>2-col: text left, campus photo right</li>
+      <li>Stats: 30yr, students, faculty animated</li>
+      <li>Director quote in pull-quote style</li>
+      <li>CTA: "Our Story" button</li>
+    </ul>
+  </div>
+  <div class="sec-block">
+    <div class="sec-block-title">Section 5 — Facilities Grid</div>
+    <ul class="sec-block-content">
+      <li>6 facility cards (library, labs, sports, smart class, transport, arts)</li>
+      <li>Each: photo + name + short desc + link</li>
+      <li>3-col desktop, 2-col tablet, 1-col mobile</li>
+    </ul>
+  </div>
+  <div class="sec-block">
+    <div class="sec-block-title">Section 6 — Events</div>
+    <ul class="sec-block-content">
+      <li>Horizontal timeline or card row</li>
+      <li>Next 3 upcoming events</li>
+      <li>Date block (navy bg, amber month)</li>
+      <li>"All Events" link</li>
+    </ul>
+  </div>
+  <div class="sec-block">
+    <div class="sec-block-title">Section 7 — Gallery Preview</div>
+    <ul class="sec-block-content">
+      <li>Masonry-style: 1 large + 4 small</li>
+      <li>Hover overlay with view icon</li>
+      <li>CTA: "Visit Full Gallery"</li>
+    </ul>
+  </div>
+  <div class="sec-block">
+    <div class="sec-block-title">Section 8 — CTA Block</div>
+    <ul class="sec-block-content">
+      <li>Navy gradient bg with amber accent</li>
+      <li>"Ready to join our family?" headline</li>
+      <li>Two buttons: Apply Now + Contact Us</li>
+      <li>Download Brochure link</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── ABOUT PAGES ── -->
+<div class="sec-head"><span class="dot"></span> About Pages — /about/*</div>
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/about/principal</span>
+    <span class="ps-name">Principal's Message</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Hero Banner</div>
+        <ul class="sec-block-content">
+          <li>Navy bg with radial dot pattern overlay (opacity 8%)</li>
+          <li>Badge pill: "Leadership Vision"</li>
+          <li>H1: "Principal's Message"</li>
+          <li>48px amber underline bar</li>
+          <li>Height: 240px desktop, auto mobile</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Portrait Column (4/12)</div>
+        <ul class="sec-block-content">
+          <li>3:4 aspect portrait — ideal upload: 600×800px</li>
+          <li>White card, rounded-3xl, amber ring on avatar</li>
+          <li>Sticky on scroll (lg only)</li>
+          <li>Contact icons: email + phone</li>
+          <li>3 value pillars: Holistic, Experiential, Values</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Message Column (8/12)</div>
+        <ul class="sec-block-content">
+          <li>Giant quotation mark watermark in corner</li>
+          <li>Body: 18px, 1.7 line-height, max 680px wide</li>
+          <li>Signature: handwritten-style font or real scan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/about/director</span>
+    <span class="ps-name">Director's Message (2 directors)</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Tab Switch</div>
+        <ul class="sec-block-content">
+          <li>Pill-tab toggle in hero: Hariprakash / Rekhraj</li>
+          <li>Active: amber bg, navy text</li>
+          <li>Content switches with fade animation</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Same layout as Principal</div>
+        <ul class="sec-block-content">
+          <li>3:4 portrait each director</li>
+          <li>Stats: 30+ yrs, 50k+ alumni</li>
+          <li>Focus area icons: 3 pillars</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/about/faculty</span>
+    <span class="ps-name">Faculty Page</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Filter Bar</div>
+        <ul class="sec-block-content">
+          <li>Tabs: All / Science / Commerce / Arts / Sports / Admin</li>
+          <li>Active tab: navy bg, white text</li>
+          <li>Search input: filter by name</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Staff Grid</div>
+        <ul class="sec-block-content">
+          <li>4-col desktop, 2-col mobile</li>
+          <li>Circular portrait (1:1 ratio)</li>
+          <li>Name + subject + experience</li>
+          <li>Amber ring border on avatar</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── ADMISSIONS ── -->
+<div class="sec-head"><span class="dot"></span> Admissions — /admissions</div>
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/admissions</span>
+    <span class="ps-name">Admissions Page</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Hero</div>
+        <ul class="sec-block-content">
+          <li>Background: happy students on first day photo</li>
+          <li>"Start Your Journey" headline</li>
+          <li>Amber pill: "Admissions Open 2026–27"</li>
+          <li>Two CTAs: "Apply Now" + "Download Form"</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">3-Step Process</div>
+        <ul class="sec-block-content">
+          <li>Numbered steps with connecting line</li>
+          <li>Step 1: Registration &amp; Application</li>
+          <li>Step 2: Assessment &amp; Selection</li>
+          <li>Step 3: Admission &amp; Enrollment</li>
+          <li>Each step: icon + heading + 3 sub-bullets</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Enquiry Form</div>
+        <ul class="sec-block-content">
+          <li>Left: form (name, phone, class, email)</li>
+          <li>Right: sidebar (contact info + fee structure + brochure)</li>
+          <li>Submit triggers email + DB save</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── ACADEMICS ── -->
+<div class="sec-head"><span class="dot"></span> Academics — /academics/*</div>
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/academics/toppers</span>
+    <span class="ps-name">Academic Achievers</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Hero Split Layout</div>
+        <ul class="sec-block-content">
+          <li>Left 60%: Large featured Topper #1 card</li>
+          <li>Name, percentage, school year in huge type</li>
+          <li>Photo: 3:4 portrait, navy frame</li>
+          <li>Right 40%: #2 and #3 stacked</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Full List</div>
+        <ul class="sec-block-content">
+          <li>Rank + name + class + percentage</li>
+          <li>Top 3 get gold/silver/bronze badges</li>
+          <li>Alternating amber-tint rows for odd items</li>
+          <li>Class-filter tabs (X, XII Science, XII Commerce)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── FACILITIES ── -->
+<div class="sec-head"><span class="dot"></span> Facilities — /facilities/*</div>
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/facilities/[slug]</span>
+    <span class="ps-name">Each Facility Detail Page (Library, Labs, Sports, etc.)</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Hero (450px)</div>
+        <ul class="sec-block-content">
+          <li>Full-bleed facility photo</li>
+          <li>Category pill: "Academic Hub" / "Sports" etc.</li>
+          <li>H1 + italic quote overlaid bottom-left</li>
+          <li>Dark gradient: bottom-to-top</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Content + Sidebar</div>
+        <ul class="sec-block-content">
+          <li>Left 8/12: intro paragraphs + key features grid (3 cards)</li>
+          <li>Right 4/12: rules list (sticky on desktop)</li>
+          <li>Features: icon + stat + description</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Gallery + CTA</div>
+        <ul class="sec-block-content">
+          <li>4-photo grid (hover scale, blue overlay)</li>
+          <li>Navy CTA strip: "Visit us in person"</li>
+          <li>"Download Brochure" button</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider"/>
+
+<!-- ── EVENTS / GALLERY / CONTACT ── -->
+<div class="sec-head"><span class="dot"></span> Events, Gallery, Contact</div>
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/events</span>
+    <span class="ps-name">Events Page</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Filter + Calendar View</div>
+        <ul class="sec-block-content">
+          <li>Month tabs or dropdown year filter</li>
+          <li>Category filters: Academic / Cultural / Sports / Holiday</li>
+          <li>View toggle: Card view / List view</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Event Cards</div>
+        <ul class="sec-block-content">
+          <li>Date block (navy bg) + event title + time + location</li>
+          <li>Category pill + description snippet</li>
+          <li>Upcoming events: full opacity, past: 60% opacity</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/gallery</span>
+    <span class="ps-name">Gallery Page</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Masonry Grid</div>
+        <ul class="sec-block-content">
+          <li>3-col on desktop, 2 on tablet, 1 on mobile</li>
+          <li>Variable height — images fill natural aspect</li>
+          <li>Hover: navy overlay + zoom icon</li>
+          <li>Click: full-screen lightbox with keyboard nav</li>
+        </ul>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-title">Category Tabs</div>
+        <ul class="sec-block-content">
+          <li>All / Sports / Annual Day / Campus / Academics / Cultural</li>
+          <li>Each tab filters with smooth fade</li>
+          <li>Year dropdown for archive access</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-header">
+    <span class="ps-route">/contact</span>
+    <span class="ps-name">Contact Page</span>
+  </div>
+  <div class="ps-body">
+    <div class="section-row">
+      <div class="sec-block">
+        <div class="sec-block-title">Two-Column Layout</div>
+        <ul class="sec-block-content">
+          <li>Left: Contact form (name, email, phone, message)</li>
+          <li>Right: Map embed + address + hours</li>
+          <li>3 contact info cards: Phone, Email, Address</li>
+          <li>Each card: icon (32px) + label + value + copy button</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CH 5 — PORTALS
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-portals">
+  <div class="chapter-num">Chapter 05</div>
+  <h2 class="chapter-title">Portal UX Design</h2>
+  <p class="chapter-sub">Four distinct portal tiers. Each must feel like a different "tool" while sharing the same brand DNA.</p>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Portal Visual Identity Map</div>
+<div class="comp-preview">
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px;">
+    <div style="background:var(--navy); color:#fff; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; opacity:0.5; margin-bottom:8px;">Admin Portal</div>
+      <div style="width:32px; height:4px; background:var(--amber); margin:0 auto 10px; border-radius:99px;"></div>
+      <div style="font-size:12px; opacity:0.75;">Navy + Amber<br/>Command-center feel<br/>Data tables, bulk actions</div>
+    </div>
+    <div style="background:var(--teal); color:#fff; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; opacity:0.5; margin-bottom:8px;">Teacher Portal</div>
+      <div style="width:32px; height:4px; background:#84d6b9; margin:0 auto 10px; border-radius:99px;"></div>
+      <div style="font-size:12px; opacity:0.75;">Teal + Soft green<br/>Workflow-focused<br/>Class, attendance, marks</div>
+    </div>
+    <div style="background:#2D2A7A; color:#fff; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; opacity:0.5; margin-bottom:8px;">Student Portal</div>
+      <div style="width:32px; height:4px; background:#a6c8ff; margin:0 auto 10px; border-radius:99px;"></div>
+      <div style="font-size:12px; opacity:0.75;">Indigo + Sky<br/>Friendly, card-based<br/>Results, schedule, homework</div>
+    </div>
+    <div style="background:#633806; color:#fff; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:11px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; opacity:0.5; margin-bottom:8px;">Parent Portal</div>
+      <div style="width:32px; height:4px; background:var(--amber); margin:0 auto 10px; border-radius:99px;"></div>
+      <div style="font-size:12px; opacity:0.75;">Amber + Brown<br/>Warm, reassuring<br/>Fee, attendance, messages</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Portal Shell Layout</div>
+<div class="comp-preview" style="background:#0f172a; border-radius:12px; padding:0; overflow:hidden;">
+  <div style="display:flex; height:300px;">
+    <!-- Sidebar -->
+    <div style="width:56px; background:rgba(0,56,107,0.95); display:flex; flex-direction:column; align-items:center; padding:12px 0; gap:8px; flex-shrink:0;">
+      <div style="width:32px; height:32px; background:var(--amber); border-radius:8px; margin-bottom:8px;"></div>
+      <div style="width:32px; height:32px; background:rgba(255,255,255,0.12); border-radius:8px;"></div>
+      <div style="width:32px; height:32px; background:rgba(255,255,255,0.12); border-radius:8px;"></div>
+      <div style="width:32px; height:32px; background:rgba(255,255,255,0.12); border-radius:8px;"></div>
+      <div style="width:32px; height:32px; background:rgba(255,255,255,0.12); border-radius:8px;"></div>
+    </div>
+    <!-- Wide sidebar -->
+    <div style="width:180px; background:rgba(0,30,60,0.9); padding:16px; flex-shrink:0; border-right:1px solid rgba(255,255,255,0.06);">
+      <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:12px;">Navigation</div>
+      <div style="background:rgba(253,173,78,0.15); border-left:3px solid var(--amber); padding:6px 10px; border-radius:0 6px 6px 0; margin-bottom:6px;">
+        <div style="font-size:11px; font-weight:600; color:var(--amber);">Dashboard</div>
+      </div>
+      <div style="padding:6px 10px; margin-bottom:4px;"><div style="font-size:11px; color:rgba(255,255,255,0.5);">Students</div></div>
+      <div style="padding:6px 10px; margin-bottom:4px;"><div style="font-size:11px; color:rgba(255,255,255,0.5);">Attendance</div></div>
+      <div style="padding:6px 10px; margin-bottom:4px;"><div style="font-size:11px; color:rgba(255,255,255,0.5);">Fee Records</div></div>
+      <div style="padding:6px 10px; margin-bottom:4px;"><div style="font-size:11px; color:rgba(255,255,255,0.5);">Notices</div></div>
+      <div style="padding:6px 10px;"><div style="font-size:11px; color:rgba(255,255,255,0.5);">Settings</div></div>
+    </div>
+    <!-- Main area -->
+    <div style="flex:1; background:#f8f7f5; padding:20px; overflow:auto;">
+      <div style="font-size:10px; color:var(--text3); margin-bottom:12px;">Admin · Dashboard</div>
+      <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:18px; font-weight:700; color:var(--navy); margin-bottom:16px;">Good morning, Admin 👋</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:8px;">
+        <div style="background:#fff; border:1px solid var(--border); border-radius:8px; padding:12px; border-top:3px solid var(--amber);">
+          <div style="font-size:10px; color:var(--text3); text-transform:uppercase; letter-spacing:0.07em;">Total Students</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:22px; font-weight:800; color:var(--navy); margin-top:4px;">2,147</div>
+        </div>
+        <div style="background:#fff; border:1px solid var(--border); border-radius:8px; padding:12px; border-top:3px solid var(--teal);">
+          <div style="font-size:10px; color:var(--text3); text-transform:uppercase; letter-spacing:0.07em;">Today Present</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:22px; font-weight:800; color:var(--teal); margin-top:4px;">1,984</div>
+        </div>
+        <div style="background:#fff; border:1px solid var(--border); border-radius:8px; padding:12px; border-top:3px solid var(--navy-mid);">
+          <div style="font-size:10px; color:var(--text3); text-transform:uppercase; letter-spacing:0.07em;">Fee Collected</div>
+          <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:22px; font-weight:800; color:var(--navy-mid); margin-top:4px;">₹4.2L</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="amber-strip"><strong>Portal rule:</strong> All four portals share the same sidebar shell width (220px open, 64px collapsed), top header height (56px), and card/table styling. Only the sidebar accent color and primary action color change per role. One codebase, four skins.</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CH 6 — IMAGE REQUIREMENTS
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-images">
+  <div class="chapter-num">Chapter 06</div>
+  <h2 class="chapter-title">Image Requirements</h2>
+  <p class="chapter-sub">Every image slot on the site, with exact dimensions, what to shoot, and a priority level. These are not optional. Placeholder images will be generated for launch but must be replaced with real photos within 30 days.</p>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Hero / Banner Images</div>
+<div class="img-req-grid">
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#00386b,#1B4F8A);">
+      <span class="camera-icon">📷</span>
+      <span class="ratio-badge">16:9</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Homepage Hero</div>
+      <div class="img-req-desc">Students in school uniform, morning assembly or sports ground. Energy, diversity, real faces. No staged poses.</div>
+      <div class="img-req-size">Min: 1920×1080px</div>
+      <span class="img-req-priority critical">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#1B4F8A,#2E75B6);">
+      <span class="camera-icon">📷</span>
+      <span class="ratio-badge">21:9</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Campus Wide-Angle</div>
+      <div class="img-req-desc">School building exterior, full campus shot, clear sky. For about page hero and footer background.</div>
+      <div class="img-req-size">Min: 2400×1080px</div>
+      <span class="img-req-priority critical">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#085041,#0F6E56);">
+      <span class="camera-icon">📷</span>
+      <span class="ratio-badge">3:1</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Admissions Banner</div>
+      <div class="img-req-desc">Parent + child walking through school gate OR classroom on first day. Warm, welcoming moment.</div>
+      <div class="img-req-size">Min: 1920×640px</div>
+      <span class="img-req-priority critical">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#633806,#BA7517);">
+      <span class="camera-icon">📷</span>
+      <span class="ratio-badge">16:7</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Academic Achievers Banner</div>
+      <div class="img-req-desc">Students receiving awards/certificates. Or students celebrating board exam results with teacher.</div>
+      <div class="img-req-size">Min: 1920×840px</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Portrait / People Photos</div>
+<div class="img-req-grid">
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(180deg,#E6F1FB,#b8d4f0);">
+      <span class="camera-icon">🎓</span>
+      <span class="ratio-badge">3:4</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Principal Portrait</div>
+      <div class="img-req-desc">Mrs. Radha Meena. Clean background (white or navy wall). Professional attire. Natural smile.</div>
+      <div class="img-req-size">Min: 600×800px</div>
+      <span class="img-req-priority critical">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(180deg,#E6F1FB,#b8d4f0);">
+      <span class="camera-icon">🎓</span>
+      <span class="ratio-badge">3:4</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Director Portrait × 2</div>
+      <div class="img-req-desc">Mr. Hariprakash Meena + Mr. Rekhraj Meena. Same consistent backdrop for both. Formal attire.</div>
+      <div class="img-req-size">Min: 600×800px each</div>
+      <span class="img-req-priority critical">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(180deg,#E1F5EE,#BDE5D3);">
+      <span class="camera-icon">👩‍🏫</span>
+      <span class="ratio-badge">1:1</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Faculty Headshots × 50+</div>
+      <div class="img-req-desc">All teaching staff. Square crop, consistent neutral background. Can be done in one photo session.</div>
+      <div class="img-req-size">Min: 400×400px each</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(180deg,#FAEEDA,#F5D9A8);">
+      <span class="camera-icon">🏆</span>
+      <span class="ratio-badge">3:4</span>
+    </div>
+    <div class="img-req-info">
+      <div class="img-req-name">Top Topper Portraits × 3</div>
+      <div class="img-req-desc">Dwitika Sharma, Bhakti Nagar, Nipurn Malav. With merit certificate or in school uniform. Proud expression.</div>
+      <div class="img-req-size">Min: 480×640px each</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Facility Photos</div>
+<div class="img-req-grid">
+  <div class="img-req">
+    <div class="img-req-thumb"><span class="camera-icon">📚</span><span class="ratio-badge">16:9</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Library</div>
+      <div class="img-req-desc">Wide shot showing shelves + students reading. Natural light preferred.</div>
+      <div class="img-req-size">1920×1080px + 4 detail shots</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#E1F5EE,#BDE5D3);"><span class="camera-icon">🔬</span><span class="ratio-badge">16:9</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Science / Computer Labs</div>
+      <div class="img-req-desc">Students at lab benches or computer stations. Equipment visible and organized.</div>
+      <div class="img-req-size">1920×1080px + 4 detail shots each</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#EAF3DE,#C5DEA8);"><span class="camera-icon">⚽</span><span class="ratio-badge">16:9</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Sports Ground + Facilities</div>
+      <div class="img-req-desc">Wide ground shot + students playing cricket/football. Action shots preferred.</div>
+      <div class="img-req-size">1920×1080px + 4 action shots</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#EEEDFE,#C8C5F5);"><span class="camera-icon">📺</span><span class="ratio-badge">16:9</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Smart Classrooms</div>
+      <div class="img-req-desc">Teacher at smartboard, students engaged. Shows technology in use, not empty.</div>
+      <div class="img-req-size">1920×1080px + 3 detail shots</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#FAECE7,#F5C5B5);"><span class="camera-icon">🎨</span><span class="ratio-badge">16:9</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Art & Culture</div>
+      <div class="img-req-desc">Students painting / dance performance / music class. Cultural richness visible.</div>
+      <div class="img-req-size">1920×1080px + 4 event shots</div>
+      <span class="img-req-priority normal">Normal</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#E6F1FB,#C5D8F0);"><span class="camera-icon">🚌</span><span class="ratio-badge">4:3</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Transport</div>
+      <div class="img-req-desc">School bus exterior (clean, branded). Route map if possible.</div>
+      <div class="img-req-size">1200×900px</div>
+      <span class="img-req-priority normal">Normal</span>
+    </div>
+  </div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Gallery / Event Photos</div>
+<div class="img-req-grid">
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#FAEEDA,#F5D9A8);"><span class="camera-icon">🎉</span><span class="ratio-badge">4:3</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Annual Day / Prize Distribution</div>
+      <div class="img-req-desc">Stage, students receiving prizes, audience, colorful costumes.</div>
+      <div class="img-req-size">Min 20 photos, 1600×1200px</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#E1F5EE,#BDE5D3);"><span class="camera-icon">🏅</span><span class="ratio-badge">4:3</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Sports Day / Tournaments</div>
+      <div class="img-req-desc">Action shots: running, jumping, team sports. Trophy presentation photo a must.</div>
+      <div class="img-req-size">Min 15 photos, 1600×1200px</div>
+      <span class="img-req-priority high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb"><span class="camera-icon">🇮🇳</span><span class="ratio-badge">4:3</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">National Day Celebrations</div>
+      <div class="img-req-desc">Republic Day, Independence Day — flag hoisting, morning assembly, parade if any.</div>
+      <div class="img-req-size">Min 10 photos, 1600×1200px</div>
+      <span class="img-req-priority normal">Normal</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-req-thumb" style="background:linear-gradient(135deg,#FAECE7,#F5C5B5);"><span class="camera-icon">📖</span><span class="ratio-badge">4:3</span></div>
+    <div class="img-req-info">
+      <div class="img-req-name">Classroom / Study Scenes</div>
+      <div class="img-req-desc">Students studying, teacher explaining, engaged learners. No posed "looking at book" shots.</div>
+      <div class="img-req-size">Min 12 photos, 1600×1200px</div>
+      <span class="img-req-priority normal">Normal</span>
+    </div>
+  </div>
+</div>
+
+<div class="note"><strong>Photo session checklist for the school:</strong> Hero shots (school building exterior: 3-4 angles, golden hour preferred), All faculty in one session (plain wall, no photo studio needed), Top 3 topper portraits (within their merit cards), 4 facility deep-dives (library, labs, sports, smart class). <strong>Total estimated shots needed: ~120 usable images.</strong></div>
+
+<!-- ══════════════════════════════════════════════════════════
+     CH 7 — DESIGN PRINCIPLES
+════════════════════════════════════════════════════════════ -->
+<div class="chapter" id="ch-principles">
+  <div class="chapter-num">Chapter 07</div>
+  <h2 class="chapter-title">Design Principles</h2>
+  <p class="chapter-sub">The difference between a premium website and a template. Seven rules that every component, every page, every line of code must obey.</p>
+</div>
+
+<div class="insp-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));">
+  <div class="insp-card">
+    <div class="insp-header steal" style="background:rgba(0,56,107,0.5); color:#a6c8ff; font-size:12px; font-weight:800;">01 — Depth Over Flatness</div>
+    <ul class="insp-body">
+      <li>Hero text always overlays the photo. Never below it.</li>
+      <li>Cards overlap section borders — never floating in isolation</li>
+      <li>3 layers minimum in every hero: background photo / overlay / text + CTA</li>
+      <li>Quick-access cards start inside the hero and extend below the stat bar</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header steal" style="background:rgba(0,56,107,0.5); color:#a6c8ff; font-size:12px; font-weight:800;">02 — Asymmetry Is Intelligence</div>
+    <ul class="insp-body">
+      <li>About pages: image on one side, text on other — NEVER centered</li>
+      <li>Section headers default left-aligned, center only for isolated CTA sections</li>
+      <li>One "editorial break" per page: a full-bleed photo between text sections</li>
+      <li>Toppers page: feature #1 large, #2 and #3 stacked — not 3 equal columns</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header steal" style="background:rgba(0,56,107,0.5); color:#a6c8ff; font-size:12px; font-weight:800;">03 — One Signature, Many Expressions</div>
+    <ul class="insp-body">
+      <li>The amber line appears on: stat bar, section headers (48px×4px), featured card borders, topper rank badges, CTA button colour</li>
+      <li>It never fills a large area. It is always a line or a highlight.</li>
+      <li>If a parent visits 5 different pages, amber should appear in 5 consistent ways</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header steal" style="background:rgba(0,56,107,0.5); color:#a6c8ff; font-size:12px; font-weight:800;">04 — Real Over Polished</div>
+    <ul class="insp-body">
+      <li>Use real school photos even if slightly imperfect — AI-looking stock photos immediately destroy trust with Rajasthan parents</li>
+      <li>Staff cards with real initials are better than "image loading" placeholders</li>
+      <li>Real topper names and percentages in the actual hero — not generic "Award Winner" text</li>
+      <li>Director's message must have a real signature scan, not typed name</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header steal" style="background:rgba(0,56,107,0.5); color:#a6c8ff; font-size:12px; font-weight:800;">05 — Hindi Is First Class</div>
+    <ul class="insp-body">
+      <li>Every notice must have Hindi subtitle at equal visual weight</li>
+      <li>Language toggle in nav must be prominent — not tucked away</li>
+      <li>CTA buttons on homepage appear in both: "Apply Now / अभी आवेदन करें"</li>
+      <li>No font-switching flash: use Noto Sans as fallback for all Devanagari</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header steal" style="background:rgba(0,56,107,0.5); color:#a6c8ff; font-size:12px; font-weight:800;">06 — Mobile Is Primary</div>
+    <ul class="insp-body">
+      <li>All touch targets minimum 44×44px</li>
+      <li>Bottom navigation bar on mobile portals (not sidebar)</li>
+      <li>Fee receipts and notices must be full-readable on 375px screens</li>
+      <li>Hero height: 100svh on mobile, 620px fixed on desktop</li>
+    </ul>
+  </div>
+  <div class="insp-card">
+    <div class="insp-header steal" style="background:rgba(0,56,107,0.5); color:#a6c8ff; font-size:12px; font-weight:800;">07 — Speed Is Respect</div>
+    <ul class="insp-body">
+      <li>All hero images: WebP format, next/image with priority</li>
+      <li>Portal dashboard must load in &lt;2s on 4G (Anta network speeds)</li>
+      <li>Never load more than 6 images above the fold</li>
+      <li>Fonts: preload only Plus Jakarta Sans 700+800, Inter 400+600</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> What This Site Is NOT</div>
+<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:10px; margin-top:12px;">
+  <div style="padding:14px 16px; border:1px solid rgba(153,60,29,0.25); border-radius:var(--radius); background:rgba(153,60,29,0.05);">
+    <div style="font-size:10px; font-weight:700; color:#FFB3A0; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">✕ Not a Government Portal</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.6;">No full-width grey banners, no table-first layouts, no "Visit Counter" widgets, no blinking text, no Comic Sans adjacent fonts.</div>
+  </div>
+  <div style="padding:14px 16px; border:1px solid rgba(153,60,29,0.25); border-radius:var(--radius); background:rgba(153,60,29,0.05);">
+    <div style="font-size:10px; font-weight:700; color:#FFB3A0; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">✕ Not a SaaS Landing Page</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.6;">No pure white floating cards on white background. No "free trial" hero hooks. No mesh gradients or neon glows. No testimonials with generic stock faces.</div>
+  </div>
+  <div style="padding:14px 16px; border:1px solid rgba(153,60,29,0.25); border-radius:var(--radius); background:rgba(153,60,29,0.05);">
+    <div style="font-size:10px; font-weight:700; color:#FFB3A0; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">✕ Not a WordPress Theme</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.6;">No full-width colored banner every 200px. No widget-box syndrome. No 4 different font sizes per page. No "latest tweets" sidebar. No generic countdown timers.</div>
+  </div>
+  <div style="padding:14px 16px; border:1px solid rgba(153,60,29,0.25); border-radius:var(--radius); background:rgba(153,60,29,0.05);">
+    <div style="font-size:10px; font-weight:700; color:#FFB3A0; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px;">✕ Not an AI-Generated Template</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.4); line-height:1.6;">No glassmorphism everywhere. No particle animations. No hero with "smiling diverse students" stock image. No generic "Our Mission, Vision, Values" in three equal cards.</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SITE MAP
+════════════════════════════════════════════════════════════ -->
+<div class="chapter">
+  <div class="chapter-num">Chapter 08</div>
+  <h2 class="chapter-title">Complete Site Architecture</h2>
+  <p class="chapter-sub">Every page, every route, every portal tier. Color-coded by section.</p>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Public Pages</div>
+<div class="flow-grid">
+  <div class="flow-node public"><div class="fn-icon">🏠</div><div class="fn-name">Home</div><div class="fn-route">/</div></div>
+  <div class="flow-node public"><div class="fn-icon">📋</div><div class="fn-name">About</div><div class="fn-route">/about</div></div>
+  <div class="flow-node public"><div class="fn-icon">🎓</div><div class="fn-name">Principal</div><div class="fn-route">/about/principal</div></div>
+  <div class="flow-node public"><div class="fn-icon">👔</div><div class="fn-name">Director</div><div class="fn-route">/about/director</div></div>
+  <div class="flow-node public"><div class="fn-icon">👩‍🏫</div><div class="fn-name">Faculty</div><div class="fn-route">/about/faculty</div></div>
+  <div class="flow-node public"><div class="fn-icon">🎯</div><div class="fn-name">Vision</div><div class="fn-route">/about/vision-mission</div></div>
+  <div class="flow-node public"><div class="fn-icon">📝</div><div class="fn-name">Admissions</div><div class="fn-route">/admissions</div></div>
+  <div class="flow-node public"><div class="fn-icon">📚</div><div class="fn-name">Academics</div><div class="fn-route">/academics</div></div>
+  <div class="flow-node public"><div class="fn-icon">🏆</div><div class="fn-name">Toppers</div><div class="fn-route">/academics/toppers</div></div>
+  <div class="flow-node public"><div class="fn-icon">📅</div><div class="fn-name">Syllabus</div><div class="fn-route">/academics/syllabus</div></div>
+  <div class="flow-node public"><div class="fn-icon">🏛️</div><div class="fn-name">Facilities</div><div class="fn-route">/facilities</div></div>
+  <div class="flow-node public"><div class="fn-icon">📖</div><div class="fn-name">Library</div><div class="fn-route">/facilities/library</div></div>
+  <div class="flow-node public"><div class="fn-icon">🔬</div><div class="fn-name">Labs</div><div class="fn-route">/facilities/labs</div></div>
+  <div class="flow-node public"><div class="fn-icon">⚽</div><div class="fn-name">Sports</div><div class="fn-route">/facilities/sports</div></div>
+  <div class="flow-node public"><div class="fn-icon">💻</div><div class="fn-name">Smart Class</div><div class="fn-route">/facilities/smart-classrooms</div></div>
+  <div class="flow-node public"><div class="fn-icon">🎨</div><div class="fn-name">Art</div><div class="fn-route">/facilities/art-culture</div></div>
+  <div class="flow-node public"><div class="fn-icon">🚌</div><div class="fn-name">Transport</div><div class="fn-route">/facilities/transport</div></div>
+  <div class="flow-node public"><div class="fn-icon">🎉</div><div class="fn-name">Events</div><div class="fn-route">/events</div></div>
+  <div class="flow-node public"><div class="fn-icon">🖼️</div><div class="fn-name">Gallery</div><div class="fn-route">/gallery</div></div>
+  <div class="flow-node public"><div class="fn-icon">📢</div><div class="fn-name">Notices</div><div class="fn-route">/notices</div></div>
+  <div class="flow-node public"><div class="fn-icon">📞</div><div class="fn-name">Contact</div><div class="fn-route">/contact</div></div>
+  <div class="flow-node public"><div class="fn-icon">👥</div><div class="fn-name">Staff</div><div class="fn-route">/staff</div></div>
+</div>
+
+<div class="sec-head"><span class="dot"></span> Portal Pages</div>
+<div class="flow-grid">
+  <div class="flow-node admin-p"><div class="fn-icon">🔑</div><div class="fn-name">Admin Dashboard</div><div class="fn-route">/portal/admin</div></div>
+  <div class="flow-node admin-p"><div class="fn-icon">👨‍🎓</div><div class="fn-name">Students Mgmt</div><div class="fn-route">/portal/admin/students</div></div>
+  <div class="flow-node admin-p"><div class="fn-icon">💰</div><div class="fn-name">Fee Mgmt</div><div class="fn-route">/portal/admin/fee</div></div>
+  <div class="flow-node admin-p"><div class="fn-icon">📣</div><div class="fn-name">Notices</div><div class="fn-route">/portal/admin/notices</div></div>
+  <div class="flow-node admin-p"><div class="fn-icon">📋</div><div class="fn-name">Admissions</div><div class="fn-route">/portal/admin/admissions</div></div>
+  <div class="flow-node teacher-p"><div class="fn-icon">📊</div><div class="fn-name">Teacher Dashboard</div><div class="fn-route">/portal/teacher</div></div>
+  <div class="flow-node teacher-p"><div class="fn-icon">✅</div><div class="fn-name">Attendance</div><div class="fn-route">/portal/teacher/attendance</div></div>
+  <div class="flow-node teacher-p"><div class="fn-icon">📝</div><div class="fn-name">Marks Entry</div><div class="fn-route">/portal/teacher/marks</div></div>
+  <div class="flow-node teacher-p"><div class="fn-icon">🏖️</div><div class="fn-name">Leave Request</div><div class="fn-route">/portal/teacher/leave</div></div>
+  <div class="flow-node teacher-p"><div class="fn-icon">💬</div><div class="fn-name">Messages</div><div class="fn-route">/portal/teacher/messages</div></div>
+  <div class="flow-node student-p"><div class="fn-icon">📈</div><div class="fn-name">Student Dashboard</div><div class="fn-route">/portal/student</div></div>
+  <div class="flow-node student-p"><div class="fn-icon">📅</div><div class="fn-name">Attendance View</div><div class="fn-route">/portal/student/attendance</div></div>
+  <div class="flow-node student-p"><div class="fn-icon">🏅</div><div class="fn-name">Results</div><div class="fn-route">/portal/student/results</div></div>
+  <div class="flow-node parent-p"><div class="fn-icon">👪</div><div class="fn-name">Parent Dashboard</div><div class="fn-route">/portal/parent</div></div>
+  <div class="flow-node parent-p"><div class="fn-icon">💸</div><div class="fn-name">Fee Status</div><div class="fn-route">/portal/parent/fee</div></div>
+  <div class="flow-node parent-p"><div class="fn-icon">📱</div><div class="fn-name">Connect</div><div class="fn-route">/portal/parent/connect</div></div>
+</div>
+
+<!-- RESPONSIVE TABLE -->
+<div class="sec-head"><span class="dot"></span> Responsive Breakpoints</div>
+<table class="resp-table">
+  <thead>
+    <tr>
+      <th>Breakpoint</th>
+      <th>Width</th>
+      <th>Hero Height</th>
+      <th>Sidebar</th>
+      <th>Grid</th>
+      <th>Nav</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Mobile</td>
+      <td><code>&lt; 640px</code></td>
+      <td>100svh</td>
+      <td>Bottom nav bar</td>
+      <td>1 col</td>
+      <td>Hamburger drawer</td>
+    </tr>
+    <tr>
+      <td>Tablet</td>
+      <td><code>640–1024px</code></td>
+      <td>520px</td>
+      <td>Icon-only (64px)</td>
+      <td>2 col</td>
+      <td>Hamburger or slim nav</td>
+    </tr>
+    <tr>
+      <td>Desktop</td>
+      <td><code>1024–1280px</code></td>
+      <td>620px</td>
+      <td>Full (220px)</td>
+      <td>3 col</td>
+      <td>Full horizontal</td>
+    </tr>
+    <tr>
+      <td>Wide</td>
+      <td><code>&gt; 1280px</code></td>
+      <td>620px (capped)</td>
+      <td>Full (220px)</td>
+      <td>3–4 col</td>
+      <td>Full, max-w-7xl centered</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- FINAL CTA -->
+<div class="cta-block">
+  <div class="cta-text">
+    <h3>Ready to Build This?</h3>
+    <p>This theme plan covers every pixel of the CAS website. Approve it and the implementation begins.</p>
+  </div>
+  <div class="cta-actions">
+    <button class="cta-btn-p">Approve &amp; Execute →</button>
+    <button class="cta-btn-s">Request Changes</button>
+  </div>
+</div>
+
+<div style="margin-top:40px; text-align:center; font-size:11px; color:rgba(255,255,255,0.2); letter-spacing:0.06em;">
+  CAS WEBSITE — THEME PLAN v2 · JUNE 2026 · COMPLETE &amp; UNCOMPROMISED
+</div>
+
+</div><!-- /page -->
+</body>
+</html>

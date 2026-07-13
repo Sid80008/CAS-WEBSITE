@@ -35,8 +35,10 @@ export class AnalyticsService {
       ? ((thisYearAdmissions - lastYearAdmissions) / lastYearAdmissions) * 100 
       : 0;
 
-    // 3. Attendance Rate (Last 30 days)
+    // 3. Attendance Rate (Last 30 days vs Previous 30 days)
     const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
+    const sixtyDaysAgo = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000);
+
     const attendanceRecords = await prisma.attendance.findMany({
       where: { date: { gte: thirtyDaysAgo } },
       select: { status: true }
@@ -45,6 +47,17 @@ export class AnalyticsService {
     const attendanceRate = attendanceRecords.length > 0 
       ? (presentCount / attendanceRecords.length) * 100 
       : 0;
+
+    const prevAttendanceRecords = await prisma.attendance.findMany({
+      where: { date: { gte: sixtyDaysAgo, lt: thirtyDaysAgo } },
+      select: { status: true }
+    });
+    const prevPresentCount = prevAttendanceRecords.filter(r => r.status === 'PRESENT').length;
+    const prevAttendanceRate = prevAttendanceRecords.length > 0 
+      ? (prevPresentCount / prevAttendanceRecords.length) * 100 
+      : 0;
+    
+    const attendanceTrend = attendanceRate >= prevAttendanceRate ? 'up' : 'down';
 
     // 4. Fee Collection (Total Paid vs Total Expected this year)
     const totalPaid = await prisma.payment.aggregate({
@@ -69,7 +82,7 @@ export class AnalyticsService {
       },
       attendance: {
         rate: Number(attendanceRate.toFixed(1)),
-        trend: 'up' // Simplified for now
+        trend: attendanceTrend
       },
       fees: {
         collected: totalPaid._sum.amount || 0,

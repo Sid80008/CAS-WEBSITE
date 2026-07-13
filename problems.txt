@@ -1,0 +1,455 @@
+cannot add/change staff and events
+cannot make invoice in fee
+cannot add new enquiry in admissions
+admission enquiry is nor actually syncronizing to admin/staff portal (btw make sure csv download is working for admission enquiries)
+in the portals page the background and cursore are getting mixed up due to color. lets make change to global cursor(use the two color scheme we are using for full website theme (dark/light/mid blue and orange), when the cursor is in blue bg it should be orange and when its in blue bg it should be orange but whne its in white or black we will use a mix of both (center do with orange and outer circle with blue))
+teacher portal side bar not synchronized
+teacher is not assigned any class. how am i supposed to assign teacher class? is ther any button, setting, admin authority or something like that? i gues i am not able to see any class in class dropdown in attendance page for teacher due to this
+messages page is missing completely
+where will leave request be visible ?
+where the fuck is setting page in teacher portal
+add admission process ["
+Admission Process
+ 
+
+1. Registration and Application:
+
+Enquiry and Information:
+
+Parents often start by contacting the CAS  school to inquire about the admission process and gather information about the CAS  school and its programs. 
+
+ 
+
+Registration:
+
+Parents need to register their child for admission, which may involve filling out a registration form and paying a registration fee. 
+
+ 
+
+Application Form:
+
+After registration, parents need to obtain and complete the school's admission application form. 
+
+ 
+
+2. Assessment and Selection:
+
+ 
+
+Entrance Test/Assessment:
+
+Depending on the school and grade level, there may be an entrance test or assessment to evaluate the child's skills and knowledge. 
+
+ 
+
+Interview:
+
+Some schools may also conduct interviews with the child and/or parents to assess their suitability for the school. 
+
+ 
+
+Selection:
+
+The school will review the applications and assessments, and select students based on merit and seat availability. 
+
+ 
+
+3. Admission and Enrollment:
+
+ 
+
+Offer of Admission:
+
+Successful applicants will receive an offer of admission from the school. 
+
+ 
+
+Acceptance and Fee Payment:
+
+Parents need to accept the offer and pay the required fees, which may include admission fees, tuition fees, and other charges. 
+
+ 
+
+Documentation and Enrollment:
+
+Parents will need to submit necessary documents, such as birth certificates, school records, and proof of residence, and complete the enrollment process. 
+
+ 
+
+Orientation:
+
+Many schools conduct orientation programs for new students and parents to help them familiarize themselves with the school environment and routines
+
+ "]
+ academic achievers list (class 10th toppers)[Name,Percentage
+Dwitika Sharma,96.00%
+Bhakti Nagar,95.50%
+Nipurn Malav,95.17%
+Kirti Prajapati,95.00%
+Khushi Soni,94.83%
+Naina Galav,94.83%
+Yogita Khandelwal,94.17%
+Hitesh Nagar,93.83%
+Manvi Malav,93.33%
+Himanshu Meena,92.67%
+Bhavya Singhal,92.33%
+Prathvi Nagar,92.33%
+Ananya Saini,92.00%
+Uday Kumar Shakya,92.00%
+Gopesh Mehra,91.67%
+Aarushi Hada,90.83%
+Tushant Nagar,89.83%
+Bhavesh Gautam,88.83%
+Samiksha Meena,88.83%
+Vaidehi Malav,87.00%
+Pawan Kumawat,86.83%
+Kusum Dhakad,86.50%
+Bhavesh Dhakad,86.17%
+Kanishka Suman,85.50%
+Radhika Meena,87.17%
+Yashasvi Nagar,84.33%
+Prachi Nagar,83.83%
+Akshara Nagar,82.67%
+Ishika Mahavar,81.83%
+Akshara Panwar,80.33%]
+
+we created a brochure now we can add it on website
+use this page code as template for detailed page for each and every facility. it will give users a good brief description and pictures and (some rules if needed) [<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>School Library | Central Academy Anta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-overlay {
+            background: rgba(0, 56, 107, 0.7);
+            backdrop-filter: blur(8px);
+        }
+        .gallery-hover img {
+            transition: transform 0.5s ease;
+        }
+        .gallery-hover:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "green": "#3B6D11",
+                    "surface": "#fcf9f8",
+                    "secondary-fixed-dim": "#ffb869",
+                    "on-surface-variant": "#424750",
+                    "secondary-fixed": "#ffdcbb",
+                    "amber-dark": "#633806",
+                    "text-tertiary": "#888888",
+                    "surface-variant": "#e5e2e1",
+                    "coral": "#993C1D",
+                    "primary-container": "#1b4f8a",
+                    "outline": "#737781",
+                    "teal-dark": "#085041",
+                    "on-secondary-fixed-variant": "#673d00",
+                    "outline-variant": "#c2c6d1",
+                    "on-secondary-container": "#704200",
+                    "amber-light": "#FAEEDA",
+                    "primary-fixed": "#d4e3ff",
+                    "on-primary-container": "#9ac2ff",
+                    "coral-light": "#FAECE7",
+                    "on-tertiary-container": "#7ed0b3",
+                    "on-primary-fixed-variant": "#0e4782",
+                    "tertiary": "#004031",
+                    "border-default": "#E2E0DB",
+                    "on-secondary-fixed": "#2b1700",
+                    "on-tertiary-fixed-variant": "#00513e",
+                    "background": "#fcf9f8",
+                    "surface-container": "#f0eded",
+                    "on-primary-fixed": "#001c3a",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-container": "#005a45",
+                    "school-blue-extra-light": "#F0F6FC",
+                    "tertiary-fixed": "#a0f3d4",
+                    "on-surface": "#1c1b1b",
+                    "surface-bright": "#fcf9f8",
+                    "tertiary-fixed-dim": "#84d6b9",
+                    "on-primary": "#ffffff",
+                    "secondary-container": "#fdad4e",
+                    "inverse-on-surface": "#f3f0ef",
+                    "school-blue-light": "#E6F1FB",
+                    "text-secondary": "#555555",
+                    "secondary": "#885200",
+                    "bg-secondary": "#F8F7F5",
+                    "on-error-container": "#93000a",
+                    "primary": "#00386b",
+                    "school-blue-dark": "#0C447C",
+                    "on-background": "#1c1b1b",
+                    "inverse-surface": "#313030",
+                    "border-hover": "#B4B2A9",
+                    "on-secondary": "#ffffff",
+                    "surface-container-highest": "#e5e2e1",
+                    "primary-fixed-dim": "#a6c8ff",
+                    "surface-tint": "#305f9b",
+                    "on-tertiary-fixed": "#002117",
+                    "bg-tertiary": "#F1EFE8",
+                    "surface-container-high": "#eae7e7",
+                    "purple": "#534AB7",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "error-container": "#ffdad6",
+                    "teal-light": "#E1F5EE",
+                    "error": "#ba1a1a",
+                    "on-error": "#ffffff",
+                    "inverse-primary": "#a6c8ff",
+                    "surface-dim": "#dcd9d9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section": "48px",
+                    "xl": "32px",
+                    "page-mobile": "24px",
+                    "sm": "8px",
+                    "md": "16px",
+                    "container-max": "1280px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "page-desktop": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "h4": ["Plus Jakarta Sans"],
+                    "display": ["Plus Jakarta Sans"],
+                    "overline": ["Inter"],
+                    "h1": ["Plus Jakarta Sans"],
+                    "body-large": ["Inter"],
+                    "body": ["Inter"],
+                    "h3": ["Plus Jakarta Sans"],
+                    "label": ["Inter"],
+                    "h2": ["Plus Jakarta Sans"],
+                    "body-small": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "h4": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "display": ["48px", {"lineHeight": "1.1", "fontWeight": "700"}],
+                    "overline": ["11px", {"lineHeight": "1.4", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                    "h1": ["36px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "body-large": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "h3": ["22px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                    "label": ["14px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                    "h2": ["28px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-small": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "caption": ["12px", {"lineHeight": "1.5", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+</head>
+<body class="bg-surface text-on-surface font-body">
+<!-- TopNavBar -->
+<header class="bg-surface sticky top-0 z-40 shadow-sm">
+<nav class="flex justify-between items-center w-full px-page-desktop max-w-container-max mx-auto h-20">
+<div class="flex items-center gap-md">
+<span class="text-h3 font-h3 text-primary">Central Academy Anta</span>
+</div>
+<div class="hidden md:flex gap-lg items-center">
+<a class="font-label text-label text-on-surface-variant hover:text-primary transition-colors" href="#">Home</a>
+<a class="font-label text-label text-on-surface-variant hover:text-primary transition-colors" href="#">Admissions</a>
+<a class="font-label text-label text-primary border-b-2 border-primary pb-1" href="#">Academics</a>
+<a class="font-label text-label text-on-surface-variant hover:text-primary transition-colors" href="#">Infrastructure</a>
+<a class="font-label text-label text-on-surface-variant hover:text-primary transition-colors" href="#">About Us</a>
+<a class="font-label text-label text-on-surface-variant hover:text-primary transition-colors" href="#">Contact</a>
+<button class="bg-primary text-on-primary px-lg py-sm rounded-lg font-label text-label hover:bg-school-blue-dark transition-all">Apply Now</button>
+</div>
+</nav>
+</header>
+<main>
+<!-- Breadcrumb -->
+<section class="max-w-container-max mx-auto px-page-desktop py-md">
+<nav class="flex items-center gap-xs font-caption text-caption text-text-secondary">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Facilities</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-on-surface font-medium">School Library</span>
+</nav>
+</section>
+<!-- Hero Section -->
+<section class="relative h-[500px] w-full overflow-hidden">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A grand, high-ceilinged school library with rows of polished wooden bookshelves and large arched windows letting in soft natural sunlight. The space is designed with a clean, academic light-mode aesthetic, featuring deep blues and amber accents. Students are seen quietly reading at organized study pods. The mood is one of profound intellectual serenity and corporate modernism." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBDRfVrq57P6xqBMsbQgys51YgtF1SfWQrRxj7KiV7i2ggySOOiGOq02rMTMH_BiR3XsAor6NrOXKfUqvkBNgG_jtMreS5fuA5thHR6BXLyZYFo_vT4pyC1QIxpTgXOqT_IIBYlbPFF-ze5wFCEj2czuqtOIEgCrrgajBeuyB_Ovt_s5YHzs4EadTlaoMDPoNWciz_N8PnAcEg2_7llEqwyskz3BzH4-ZHBjGyfREj7dbbO7-4kfndV-57Ez6CzL5X6DfHf30ZjufHc');"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent"></div>
+<div class="relative h-full max-w-container-max mx-auto px-page-desktop flex flex-col justify-end pb-section">
+<div class="max-w-2xl text-on-primary">
+<span class="bg-secondary-container text-on-secondary-container px-md py-xs rounded-full font-overline text-overline mb-md inline-block">ACADEMIC HUB</span>
+<h1 class="font-display text-display mb-md">School Library</h1>
+<p class="font-body-large text-body-large opacity-90 italic border-l-4 border-secondary-container pl-md">
+                        "Igniting curiosity and fostering a lifelong passion for learning through a world-class collection of literature and digital resources."
+                    </p>
+</div>
+</div>
+</section>
+<!-- Introduction Section -->
+<section class="max-w-container-max mx-auto px-page-desktop py-section grid grid-cols-1 lg:grid-cols-12 gap-xl">
+<div class="lg:col-span-8">
+<h2 class="font-h2 text-h2 text-primary mb-lg">A Sanctuary of Knowledge</h2>
+<div class="space-y-md text-on-surface-variant font-body text-body">
+<p>
+                        The Central Academy Anta Library is more than just a repository of books; it is the intellectual heart of our institution. Designed to meet the evolving needs of 21st-century learners, our library provides a serene environment where students can escape into the worlds created by authors or dive deep into rigorous academic research.
+                    </p>
+<p>
+                        We believe that literacy and information fluency are fundamental to student success. Our facility supports the curriculum across all grades, offering a balanced collection that caters to both leisure reading and advanced inquiry. From the earliest learners discovering picture books to senior students conducting complex digital research, the library serves as a critical partner in the academic journey of every Centralian.
+                    </p>
+</div>
+<!-- Key Features Grid -->
+<div class="mt-section">
+<h3 class="font-h3 text-h3 text-primary mb-lg">Key Features</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-low p-6 rounded-lg border-l-4 border-secondary transition-all hover:shadow-md">
+<span class="material-symbols-outlined text-secondary text-[32px] mb-md" data-weight="fill">menu_book</span>
+<h4 class="font-h4 text-h4 mb-xs">10,000+ Books</h4>
+<p class="font-body-small text-body-small text-on-surface-variant">Extensive collection spanning fiction, non-fiction, and academic journals.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border-l-4 border-primary transition-all hover:shadow-md">
+<span class="material-symbols-outlined text-primary text-[32px] mb-md" data-weight="fill">computer</span>
+<h4 class="font-h4 text-h4 mb-xs">Digital Center</h4>
+<p class="font-body-small text-body-small text-on-surface-variant">High-speed terminals with access to global research databases and e-books.</p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border-l-4 border-teal-dark transition-all hover:shadow-md">
+<span class="material-symbols-outlined text-teal-dark text-[32px] mb-md" data-weight="fill">self_improvement</span>
+<h4 class="font-h4 text-h4 mb-xs">Quiet Study Zones</h4>
+<p class="font-body-small text-body-small text-on-surface-variant">Ergonomically designed pods for focused, distraction-free individual study.</p>
+</div>
+</div>
+</div>
+</div>
+<aside class="lg:col-span-4">
+<div class="bg-surface-container-high p-lg rounded-xl shadow-sm sticky top-24">
+<h3 class="font-h3 text-h3 text-primary mb-md flex items-center gap-sm">
+<span class="material-symbols-outlined">gavel</span>
+                        Library Guidelines
+                    </h3>
+<ul class="space-y-md">
+<li class="flex gap-sm items-start">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-1">check_circle</span>
+<span class="font-body text-body text-on-surface-variant">Silence must be maintained at all times within the library premises.</span>
+</li>
+<li class="flex gap-sm items-start">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-1">check_circle</span>
+<span class="font-body text-body text-on-surface-variant">A valid Student ID/Library Card is required for all book transactions.</span>
+</li>
+<li class="flex gap-sm items-start">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-1">check_circle</span>
+<span class="font-body text-body text-on-surface-variant">Eating and drinking (except water) are strictly prohibited.</span>
+</li>
+<li class="flex gap-sm items-start">
+<span class="material-symbols-outlined text-secondary text-[20px] mt-1">check_circle</span>
+<span class="font-body text-body text-on-surface-variant">Return all resources by the specified due date to avoid late fees.</span>
+</li>
+</ul>
+<hr class="my-lg border-outline-variant"/>
+<div class="text-center">
+<p class="font-caption text-caption text-text-tertiary mb-md">Questions about availability?</p>
+<button class="w-full bg-primary text-on-primary py-md rounded-lg font-label text-label hover:translate-y-[-2px] transition-all shadow-sm">Contact Dept Head</button>
+</div>
+</div>
+</aside>
+</section>
+<!-- Image Gallery Section -->
+<section class="bg-school-blue-extra-light py-section">
+<div class="max-w-container-max mx-auto px-page-desktop">
+<div class="text-center mb-xl">
+<h2 class="font-h2 text-h2 text-primary">Library Life in Action</h2>
+<p class="font-body text-body text-on-surface-variant mt-xs">A glimpse into how our students engage with our learning spaces.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="gallery-hover overflow-hidden rounded-lg h-64 relative group">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of high school students collaborating quietly around a large circular table in the school library. The lighting is soft and warm, highlighting their focused expressions. The background shows organized shelves of academic books in a clean, modern setting with school blue and cream color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRiSbMiwrMCWMLRoJEOpgSIsCNO75qdEI35eMHIRW1kKkj_Gvzpr0hhyFGp14zgWoi9W6PzbtmYYgCaaV-ph9_1afz4sa2iXyRqSG3gw3W8R0yQOcehs6D4PSia1GCSzqTU1g9mS0rJmDNKdym4IgBK2BcIw0av5jrFNZt8DmmQYf_-noAovWxOQU_3YJXUINpZ7kIMjGAzKTENmRC7GW4G49CXp_nrm_crzMrKK2UrGh8-cAt2EQQMnjgMYPIva7o6qtjG944I8Sz"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="gallery-hover overflow-hidden rounded-lg h-64 relative group">
+<img class="w-full h-full object-cover" data-alt="A young student sitting cross-legged on a comfortable blue beanbag in the primary section of the library, engrossed in a colorful picture book. The environment is bright and welcoming, featuring light wood textures and soft amber accents typical of an elite academic institution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBntIf3OXQRwA9bbSZdGR8MuwcpSkAdlYXH5YAb0squhyx84E5Pzh7Hw2xAD38RaRnWROCBXoWOuocap4Z7iGcoSVLU8pFNg_2X-Nm3gxD5yUCe3KWquMbJergk8-gMU0UUPjpc-VfVj135QJV0BMSZJ9YScokm8bkvVaTD6lU0UXh-Xxi-NuEmHgsJKfSowQVsBw45_pqs3PQDxFUmVzBUMbi5B4SDpPsLDeOpIQVi4TNR7DXpBL_0-_u1oAAjTnk20Y0Jxce3ZPui"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="gallery-hover overflow-hidden rounded-lg h-64 relative group">
+<img class="w-full h-full object-cover" data-alt="A rows of modern computer terminals in the library's digital research center. A teacher is seen assisting a student with an online database search. The space is sleek and professional, with a corporate modernism aesthetic, emphasizing technology and academic rigor." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0OokHmhnsgY0F5b0N2IsRNs6u1fsEfDfmibNTQVFMyY6s769GeeeoPcOsGe0igWYy-I80JAY1LfDqKF3Ixo-qAj4VQGIQkeT9a6jWGe_-ldM_5cSQ7NEA7WyyovJhnXhqQC6LhhKkL9p_hbpVHlMLNrYRtL4xpAX8soAo7-46HqOrpQ5ybAXNgnzWTXMggQ89iiHOXlItBNhV7m8ni-90hDJ-8dHLYrYFuomgcsUqw-hr6wifBHH3TqeXA9Uej54jQHuTA4py1d0m"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="gallery-hover overflow-hidden rounded-lg h-64 relative group">
+<img class="w-full h-full object-cover" data-alt="An artistic shot focusing on a library trolley filled with new arrivals being organized by a librarian. The background is a blurred view of the expansive, well-lit library hall with its distinctive blue and amber branding elements. The mood is busy yet orderly and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCHRNPF-ZeS6jGOCSLHJABF7w2JCArksdN6VssDvCY7z2dJq8ZrVCr7FSlq5844oB6ruf4ojp6VARQuVZZm_KOtRNZsCDn4MKOWHgoai6xsAN6vMz2QIEFwtsbU2i-Vai5YKD_Yc3g6K5ltzS-xLbrToEbuuiG6QaYaWcDljpYOPRZ5pyhWBVm3uQwpnE23ibuVwhmH9Hp8gNMJTwsvkPuzlJ4fKzaTn-UW7Lr5uhM5Mc7fOIOR4ir6ir-08jnNzYsQrIc3sbgOTkl"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-section max-w-container-max mx-auto px-page-desktop text-center">
+<div class="bg-primary rounded-xl p-xl text-on-primary relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32"></div>
+<h2 class="font-h2 text-h2 mb-md relative z-10">Want to see our facility in person?</h2>
+<p class="font-body-large text-body-large opacity-90 mb-xl max-w-2xl mx-auto relative z-10">
+                    We welcome prospective parents and students to tour our campus and experience the Central Academy environment firsthand.
+                </p>
+<div class="flex flex-col sm:flex-row gap-md justify-center relative z-10">
+<button class="bg-secondary-container text-on-secondary-container px-xl py-md rounded-lg font-label text-label font-bold hover:scale-105 transition-all shadow-lg">Inquire for Visit</button>
+<button class="border-2 border-on-primary text-on-primary px-xl py-md rounded-lg font-label text-label hover:bg-white/10 transition-all">Download Brochure</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary text-on-primary py-page-desktop px-page-desktop">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-start gap-xl mb-xl">
+<div class="max-w-sm">
+<span class="text-h2 font-h2 text-on-primary mb-md block">Central Academy Anta</span>
+<p class="font-body-small text-body-small opacity-80">Empowering students through academic excellence and holistic development for over three decades.</p>
+</div>
+<div class="grid grid-cols-2 gap-xl">
+<div>
+<h5 class="font-label text-label mb-md uppercase tracking-wider opacity-60">Navigation</h5>
+<ul class="space-y-sm">
+<li><a class="font-body-small text-body-small opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a></li>
+<li><a class="font-body-small text-body-small opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a></li>
+<li><a class="font-body-small text-body-small opacity-80 hover:opacity-100 transition-opacity" href="#">Alumni</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-label text-label mb-md uppercase tracking-wider opacity-60">Quick Links</h5>
+<ul class="space-y-sm">
+<li><a class="font-body-small text-body-small opacity-80 hover:opacity-100 transition-opacity" href="#">Careers</a></li>
+<li><a class="font-body-small text-body-small opacity-80 hover:opacity-100 transition-opacity" href="#">Sitemap</a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto border-t border-white/10 pt-lg text-center md:text-left">
+<p class="font-body-small text-body-small opacity-60">© 2024 Central Academy Anta. All Rights Reserved.</p>
+</div>
+</footer>
+<script>
+        // Simple scroll interaction for header
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('header');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.remove('shadow-sm');
+            } else {
+                nav.classList.add('shadow-sm');
+                nav.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>]

@@ -20,7 +20,7 @@ export function VisionMissionContent() {
         titleHi="दृष्टिकोण, लक्ष्य और मूल मूल्य"
         eyebrowEn="Our DNA"
         eyebrowHi="हमारा डीएनए"
-        imageSrc="/gallery/slider/1741166362_slider-17.jpg"
+        imageSrc="/banner-main.png"
       />
 
       {/* ── Vision & Mission Cards ── */}

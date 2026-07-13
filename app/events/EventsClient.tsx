@@ -3,6 +3,7 @@
 import React from "react";
 import { Calendar, MapPin, Clock, Trophy, ChevronRight } from "lucide-react";
 import { format } from "date-fns";
+import Image from "next/image";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface Event {
@@ -37,10 +38,13 @@ export function EventsClient({ initialEvents }: EventsClientProps) {
           <div className="max-w-7xl mx-auto">
             <div className="bg-white rounded-[2.5rem] shadow-xl border border-slate-200/60 overflow-hidden grid grid-cols-1 lg:grid-cols-12">
               <div className="lg:col-span-5 bg-school-navy h-[400px] lg:h-auto relative overflow-hidden">
-                <img
+                <Image
                   src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=800"
                   alt="Featured Event"
-                  className="w-full h-full object-cover opacity-75 brightness-75"
+                  fill
+                  className="object-cover opacity-75 brightness-75"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
                 />
                 <div className="absolute top-10 left-10 p-6 bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl text-center min-w-[100px] border border-slate-100">
                   <span className="block text-4xl font-black text-school-navy font-display leading-none">

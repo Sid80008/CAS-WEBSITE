@@ -228,9 +228,11 @@ export default async function TeacherPortalDashboard() {
           </div>
           
           <div className="relative rounded-xl overflow-hidden h-64 shadow-lg group">
-            <img 
+            <Image 
               alt="Digital Resources" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+              fill
+              sizes="(max-width: 1024px) 100vw, 33vw"
+              className="object-cover transition-transform duration-700 group-hover:scale-110" 
               src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&q=80"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-6 flex flex-col justify-end">

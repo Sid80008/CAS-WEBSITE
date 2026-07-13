@@ -64,7 +64,7 @@ export default function AcademicsPage() {
         titleHi="शैक्षणिक कार्यक्रम"
         eyebrowEn="RBSE Affiliated · Est. 2013"
         eyebrowHi="आरबीएसई संबद्ध · स्थापना 2013"
-        imageSrc="/gallery/slider/1741166451_slider-21.jpg"
+        imageSrc="/banner-main.png"
       />
 
       {/* Streams Grid */}

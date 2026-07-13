@@ -126,7 +126,7 @@ function DirectorContentInner() {
         titleHi="निदेशक का संदेश"
         eyebrowEn="Leadership Vision"
         eyebrowHi="नेतृत्व दृष्टिकोण"
-        imageSrc="/gallery/slider/1758787566_WhatsApp Image 2025-09-14 at 6.jpeg"
+        imageSrc="/banner-main.png"
       />
 
       {/* Message Content Section */}

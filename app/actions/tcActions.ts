@@ -4,6 +4,7 @@
 import prisma from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { auth } from "@/auth";
 
 export async function issueTC(formData: FormData) {
   const studentId = formData.get('studentId') as string;
@@ -11,21 +12,22 @@ export async function issueTC(formData: FormData) {
   const conductGrade = formData.get('conductGrade') as string;
   const dateOfLeaving = formData.get('dateOfLeaving') as string;
 
-  // DEV WORKAROUND: Get or create a mock Staff member since issuedBy requires a Staff ID
-  let staff = await prisma.staff.findFirst();
+  const session = await auth();
+  const userId = (session?.user as any)?.id;
+  
+  if (!userId) {
+    throw new Error("Unauthorized: Must be logged in");
+  }
+
+  const staff = await prisma.staff.findUnique({ where: { userId } });
   if (!staff) {
-    const user = await prisma.user.create({
-      data: { email: 'office@cas.com', passwordHash: 'mock', role: 'OFFICE' },
-    });
-    staff = await prisma.staff.create({
-      data: { empCode: 'EMP001', name: 'Office Admin', designation: 'Clerk', userId: user.id },
-    });
+    throw new Error("Unauthorized: Must be logged in as Staff");
   }
 
   // Fetch student to get their current class
   const student = await prisma.student.findUnique({
     where: { id: studentId },
-    include: { class: true },
+    include: { enrollments: { include: { section: { include: { class: true } } } } },
   });
 
   if (!student) throw new Error('Student not found');
@@ -33,16 +35,22 @@ export async function issueTC(formData: FormData) {
   const tcNumber = `TC-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
 
   // Use a transaction to ensure both records update simultaneously
+  const currentEnrollment = student.enrollments[0];
+  const classAtLeaving = currentEnrollment ? `${currentEnrollment.section.class.name} - ${currentEnrollment.section.name}` : "Unknown";
+  
   await prisma.$transaction([
     prisma.tcRecord.create({
       data: {
-        tcNumber,
+        certificateNo: tcNumber,
         dateOfLeaving: new Date(dateOfLeaving),
-        classAtLeaving: `${student.class.name} - ${student.class.section}`,
-        reasonForLeaving,
+        classAtLeaving,
+        reason: reasonForLeaving,
         conductGrade,
         studentId,
         issuedById: staff.id,
+        approvedBy: staff.userId,
+        issuedAt: new Date(),
+        fileUrl: "#",
       },
     }),
     prisma.student.update({

@@ -84,7 +84,7 @@ export default async function PublicGallery() {
         titleHi="स्कूल के कुछ पल"
         eyebrowEn="Visual Legacy"
         eyebrowHi="दृश्य विरासत"
-        imageSrc="/gallery/photo-dump/1746853764_DSC_3837.jpg"
+        imageSrc="/banner-main.png"
       />
 
       {/* Client component: tabs + grid + lightbox */}

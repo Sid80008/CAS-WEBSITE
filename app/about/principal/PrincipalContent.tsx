@@ -20,7 +20,7 @@ export function PrincipalContent() {
         titleHi="प्राचार्या का संदेश"
         eyebrowEn="Leadership Vision"
         eyebrowHi="नेतृत्व दृष्टिकोण"
-        imageSrc="/gallery/slider/1746853764_DSC_3837.jpg"
+        imageSrc="/banner-main.png"
       />
 
       {/* Message Content Section */}
@@ -42,7 +42,7 @@ export function PrincipalContent() {
                 <div className="aspect-[3/4] rounded-[2rem] overflow-hidden mb-6 relative bg-slate-100">
                   <Image
                     alt="Portrait of Principal Mrs. Radha Meena"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbi6VpC17o7iOEsdbeBnC2SwNhfwwNz8_9ydpDjTFbYi_NqpbndwxC4yccBwxuXXQHU6bmsjfH88pBU1myoLaGyIxxEUIJBo5nsc5A6zoELQtBqbziuzkkrQlYxY9HI0YBa_0bAWbuaqbVHpUs6-5yMgPmZ8LaHUIse7PWRxmW6RmKBw5eFTcLYk4JVlXdL0tnpxKiozW0vALo0LkGDcWCVgrgtDCvMh2T0iZUd3n6SlO1KZaLlU3SFJCgAfdt5NFDeGsmJojyQiQD"
+                    src="/principal-main.png"
                     fill
                     className="object-cover"
                     priority

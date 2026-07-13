@@ -1,0 +1,1604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CAS — Cinematic Theme Plan v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* ═══════════════════════════════════════════
+     NEW PALETTE — "Midnight Saffron"
+     Heritage depth of Indian institutions
+     + the fire of Rajasthani sunrise
+  ═══════════════════════════════════════════ */
+  --ink:       #040D1A;  /* Darkest — hero backgrounds, deep drama */
+  --navy:      #001D3A;  /* Deep navy — section backgrounds, footers */
+  --cobalt:    #003D7A;  /* Medium blue — cards on dark bg */
+  --royal:     #1B5EAA;  /* Royal blue — links, mid-weight */
+  --sky:       #4A9CC8;  /* Lighter blue — gradient companions */
+
+  --saffron:   #E8621A;  /* ★ THE SIGNATURE — Rajasthani sunrise fire */
+  --saffron-l: #FF8C42;  /* Lighter saffron — gradients, glow */
+  --saffron-d: #B84A0D;  /* Dark saffron — text on light bg */
+  --saffron-g: #FFF0E6;  /* Saffron ghost — tinted sections */
+
+  --cream:     #FAFAF5;  /* Warm page bg — not clinical white */
+  --white:     #FFFFFF;
+  --card-bg:   #F5F4EE;  /* Slightly warm card bg */
+
+  --teal:      #0A4A3C;  /* Deep forest — sports, nature */
+  --teal-l:    #E0F2EE;
+  --coral:     #C73B1E;  /* Urgent red-orange */
+  --coral-l:   #FDECEA;
+
+  --text:      #0D1117;
+  --text2:     #4A5568;
+  --text3:     #8A94A6;
+  --border:    #E8E6E0;
+
+  /* Cinematic gradients */
+  --grad-hero:      linear-gradient(to top, rgba(4,13,26,0.92) 0%, rgba(4,13,26,0.6) 40%, rgba(4,13,26,0.15) 100%);
+  --grad-section:   linear-gradient(135deg, #001D3A 0%, #003D7A 100%);
+  --grad-saffron:   linear-gradient(135deg, #E8621A 0%, #FF8C42 100%);
+  --grad-midnight:  linear-gradient(180deg, #040D1A 0%, #001D3A 100%);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--ink);
+  color: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Nav ── */
+.plan-nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(4,13,26,0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(232,98,26,0.15);
+  padding: 0 32px;
+  height: 52px;
+  display: flex; align-items: center; gap: 4px;
+}
+.plan-nav-logo {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 800;
+  letter-spacing: -0.3px;
+  color: #fff;
+  margin-right: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.plan-nav-logo::before {
+  content: '';
+  display: block; width: 20px; height: 20px;
+  background: var(--grad-saffron);
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.nav-a {
+  font-size: 11px; font-weight: 500;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none; padding: 6px 10px;
+  border-radius: 6px; transition: all 0.18s;
+}
+.nav-a:hover { color: var(--saffron-l); background: rgba(232,98,26,0.08); }
+
+/* ── Page wrapper ── */
+.wrap { max-width: 1140px; margin: 0 auto; padding: 0 32px 120px; }
+
+/* ── Chapter headers ── */
+.chapter {
+  padding: 80px 0 40px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+}
+.chapter:first-child { border-top: none; }
+.ch-eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: 16px;
+}
+.ch-eyebrow::before {
+  content: ''; display: block;
+  width: 24px; height: 2px; background: var(--grad-saffron);
+  border-radius: 99px;
+}
+.ch-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 900; letter-spacing: -1.5px;
+  color: #fff; line-height: 1.05; margin-bottom: 16px;
+}
+.ch-sub {
+  font-size: 15px; color: rgba(255,255,255,0.4);
+  max-width: 620px; line-height: 1.65;
+}
+
+/* ── Section label ── */
+.sl {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(255,255,255,0.3);
+  margin: 48px 0 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sl::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+/* ── The concept card — full width cinematic ── */
+.concept-card {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(232,98,26,0.15);
+  margin-bottom: 24px;
+}
+.concept-scene {
+  min-height: 260px;
+  background: var(--grad-midnight);
+  position: relative;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+/* Parallax layers - visual metaphor */
+.layer-back {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 60% 40%, rgba(27,94,170,0.3) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(232,98,26,0.12) 0%, transparent 50%);
+}
+.layer-mid {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(4,13,26,0.95) 0%, transparent 100%);
+}
+.layer-fore {
+  position: relative; z-index: 3; padding: 36px 40px;
+  width: 100%;
+}
+.concept-eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--saffron);
+  margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
+}
+.concept-eyebrow span {
+  width: 20px; height: 1px; background: var(--saffron); display: block;
+}
+.concept-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 900; color: #fff;
+  line-height: 1.05; letter-spacing: -1px;
+  margin-bottom: 14px; max-width: 600px;
+}
+.concept-h em { font-style: italic; color: var(--saffron-l); }
+.concept-p {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  max-width: 500px; line-height: 1.7;
+}
+.concept-meta {
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 16px 40px;
+  display: flex; gap: 32px; flex-wrap: wrap;
+}
+.meta-item { display: flex; flex-direction: column; gap: 2px; }
+.meta-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.25); }
+.meta-val { font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7); }
+.meta-val.accent { color: var(--saffron-l); }
+
+/* ── Color palette ── */
+.palette-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px; margin-top: 16px;
+}
+.swatch { border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+.sw-color { height: 72px; position: relative; }
+.sw-info { padding: 10px 12px; background: rgba(255,255,255,0.03); }
+.sw-name { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.8); }
+.sw-hex { font-size: 10px; color: rgba(255,255,255,0.35); font-family: monospace; margin-top: 2px; }
+.sw-role { font-size: 10px; color: rgba(255,255,255,0.28); margin-top: 4px; line-height: 1.4; }
+.sw-new { position: absolute; top: 8px; right: 8px; background: var(--saffron); color: #fff; font-size: 8px; font-weight: 800; padding: 1px 6px; border-radius: 4px; letter-spacing: 0.04em; }
+
+/* ── Scroll story diagram ── */
+.story-flow {
+  display: flex; flex-direction: column; gap: 0;
+  position: relative; margin-top: 16px;
+}
+.story-flow::before {
+  content: ''; position: absolute;
+  left: 28px; top: 0; bottom: 0; width: 2px;
+  background: linear-gradient(to bottom, var(--saffron) 0%, rgba(232,98,26,0.1) 100%);
+}
+.story-scene {
+  display: flex; gap: 24px; align-items: flex-start;
+  padding: 20px 0;
+  position: relative;
+}
+.story-dot {
+  width: 56px; height: 56px; flex-shrink: 0;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; position: relative; z-index: 1;
+}
+.story-dot.active {
+  background: rgba(232,98,26,0.12);
+  border-color: rgba(232,98,26,0.4);
+}
+.story-body { flex: 1; padding-top: 4px; }
+.story-num { font-size: 10px; font-weight: 700; color: var(--saffron); letter-spacing: 0.1em; margin-bottom: 4px; }
+.story-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 17px; font-weight: 800; color: #fff;
+  letter-spacing: -0.3px; margin-bottom: 6px;
+}
+.story-desc { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; max-width: 600px; }
+.story-tag {
+  display: inline-block; margin-top: 8px;
+  font-size: 9px; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 8px;
+  border-radius: 4px; background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.4);
+}
+.story-tag.saf { background: rgba(232,98,26,0.12); color: var(--saffron-l); }
+
+/* ── Hero mock ── */
+.hero-demo {
+  border-radius: 20px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.08);
+  margin-top: 16px;
+}
+.hd-scene {
+  height: 320px;
+  background: linear-gradient(125deg, #001020 0%, #001D3A 35%, #002850 60%, #001020 100%);
+  position: relative; overflow: hidden;
+  display: flex; align-items: flex-end;
+}
+/* Depth layers */
+.hd-layer-1 {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 30%, rgba(27,94,170,0.25) 0%, transparent 55%),
+              radial-gradient(ellipse at 10% 70%, rgba(232,98,26,0.08) 0%, transparent 40%);
+}
+.hd-layer-2 {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 70%;
+  background: linear-gradient(to top, rgba(4,13,26,0.97) 0%, rgba(4,13,26,0.7) 40%, transparent 100%);
+}
+.hd-photo-placeholder {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(255,255,255,0.06); font-weight: 700;
+  z-index: 0;
+}
+.hd-photo-placeholder::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent, transparent 40px,
+    rgba(255,255,255,0.01) 40px, rgba(255,255,255,0.01) 80px
+  );
+}
+/* Floating depth elements */
+.hd-depth-el {
+  position: absolute;
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  background: rgba(232,98,26,0.06);
+  border: 1px solid rgba(232,98,26,0.12);
+}
+.hd-depth-el.e1 { top: 20%; right: 15%; width: 120px; height: 120px; }
+.hd-depth-el.e2 { top: 50%; right: 30%; width: 50px; height: 50px; opacity: 0.5; }
+.hd-content {
+  position: relative; z-index: 4;
+  padding: 0 44px 40px; width: 100%;
+}
+.hd-eyebrow {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--saffron);
+  margin-bottom: 12px; display: flex; align-items: center; gap: 8px;
+}
+.hd-eyebrow span { width: 24px; height: 1px; background: var(--saffron); display: block; }
+.hd-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 5vw, 56px);
+  font-weight: 900; color: #fff;
+  line-height: 1.0; letter-spacing: -1.5px;
+  margin-bottom: 16px; max-width: 680px;
+}
+.hd-h1 em { font-style: italic; color: var(--saffron-l); font-weight: 700; }
+.hd-sub {
+  font-size: 14px; color: rgba(255,255,255,0.55);
+  margin-bottom: 24px; max-width: 420px; line-height: 1.65;
+}
+.hd-btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--grad-saffron);
+  color: #fff; font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px; font-weight: 800;
+  padding: 10px 24px; border-radius: 8px;
+  border: none; display: inline-flex; align-items: center; gap: 6px;
+  letter-spacing: 0.02em;
+}
+.btn-glass {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  color: rgba(255,255,255,0.85);
+  font-size: 12px; font-weight: 600;
+  padding: 10px 20px; border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+
+/* Stat bar */
+.stat-bar {
+  background: rgba(255,255,255,0.97);
+  border-top: 3px solid var(--saffron);
+  padding: 16px 44px;
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+}
+.stat-item { text-align: center; padding: 0 10px; border-right: 1px solid rgba(0,0,0,0.08); }
+.stat-item:last-child { border-right: none; }
+.stat-n {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 24px; font-weight: 900;
+  color: var(--navy); letter-spacing: -0.5px;
+}
+.stat-l { font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: #8A94A6; margin-top: 2px; }
+
+/* ── Section transition technique ── */
+.transition-demo {
+  margin-top: 16px; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.td-sec {
+  padding: 32px 36px;
+  position: relative;
+  overflow: hidden;
+}
+.td-sec.dark { background: var(--ink); }
+.td-sec.mid { background: var(--navy); }
+.td-sec.light { background: var(--cream); color: var(--text); }
+.td-sec.saf { background: linear-gradient(135deg, rgba(232,98,26,0.08), rgba(232,98,26,0.03)); border-top: 1px solid rgba(232,98,26,0.12); }
+.td-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.4; margin-bottom: 8px; }
+.td-h { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 800; }
+.td-p { font-size: 12px; opacity: 0.5; margin-top: 4px; }
+/* Diagonal clip between sections */
+.diag-down {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  margin-bottom: -40px;
+}
+.diag-up {
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+  padding-top: 60px;
+}
+
+/* ── Component demos ── */
+.comp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 16px; }
+
+/* Staff card */
+.staff-card {
+  background: var(--white); border-radius: 16px;
+  padding: 20px; text-align: center;
+  border: 1px solid var(--border);
+  transition: all 0.25s;
+}
+.staff-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.1); transform: translateY(-4px); }
+.staff-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  margin: 0 auto 12px;
+  background: linear-gradient(135deg, rgba(0,29,58,0.07), rgba(27,94,170,0.1));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 22px; font-weight: 800; color: var(--cobalt);
+  border: 3px solid var(--saffron); /* ← SAFFRON ring, not amber */
+  position: relative;
+}
+.staff-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 700; color: var(--text); }
+.staff-role { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.staff-dept { margin-top: 8px; }
+
+/* Topper — editorial */
+.topper-editorial {
+  background: var(--white); border-radius: 16px;
+  overflow: hidden; border: 1px solid var(--border);
+}
+.te-badge {
+  background: var(--grad-saffron);
+  padding: 8px 16px; text-align: center;
+  font-size: 9px; font-weight: 800; color: #fff;
+  letter-spacing: 0.18em; text-transform: uppercase;
+}
+.te-body { padding: 16px; display: flex; align-items: center; gap: 12px; }
+.te-rank {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px; font-weight: 900;
+  color: var(--saffron); line-height: 1;
+  width: 52px; text-align: center; flex-shrink: 0;
+}
+.te-info { flex: 1; }
+.te-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 800; color: var(--text); }
+.te-class { font-size: 11px; color: var(--text3); margin-top: 2px; }
+.te-pct {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 28px; font-weight: 900;
+  color: var(--navy); letter-spacing: -0.5px;
+}
+.te-pct span { font-size: 14px; font-weight: 500; color: var(--text3); }
+
+/* Notice board */
+.notice-board { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+.nb-header {
+  background: var(--navy); padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nb-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; color: #fff; }
+.nb-live { display: flex; align-items: center; gap: 5px; font-size: 9px; font-weight: 700; color: var(--saffron-l); letter-spacing: 0.1em; }
+.nb-live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--saffron); display: block; }
+.nb-row { display: flex; gap: 12px; padding: 12px 20px; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.nb-row:last-child { border-bottom: none; }
+.nb-date {
+  background: rgba(0,29,58,0.06); color: var(--navy);
+  border-radius: 8px; padding: 6px 10px; text-align: center;
+  flex-shrink: 0; min-width: 46px;
+}
+.nb-day { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 18px; font-weight: 900; display: block; line-height: 1; }
+.nb-mon { font-size: 9px; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 2px; display: block; color: var(--saffron-d); }
+.nb-pin { background: var(--saffron-g); color: var(--saffron-d); font-size: 8px; font-weight: 800; padding: 1px 6px; border-radius: 3px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-block; margin-bottom: 3px; }
+.nb-title-row { font-size: 13px; font-weight: 600; color: var(--text); }
+.nb-hint { font-size: 11px; color: var(--text3); margin-top: 2px; line-height: 1.5; }
+
+/* Facility card */
+.fac-card { background: var(--white); border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+.fac-img {
+  height: 130px; position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+}
+.fac-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,29,58,0.6) 0%, transparent 50%);
+}
+.fac-body { padding: 14px 16px; }
+.fac-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 800; color: var(--text); }
+.fac-desc { font-size: 11px; color: var(--text3); margin-top: 4px; line-height: 1.5; }
+.fac-cta { margin-top: 10px; font-size: 11px; font-weight: 700; color: var(--saffron-d); display: flex; align-items: center; gap: 4px; }
+
+/* CTA block */
+.cta-cinematic {
+  border-radius: 20px; overflow: hidden;
+  position: relative;
+  background: var(--navy);
+}
+.cta-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(232,98,26,0.2) 0%, transparent 60%),
+              radial-gradient(ellipse at 10% 50%, rgba(27,94,170,0.3) 0%, transparent 50%);
+}
+.cta-body {
+  position: relative; z-index: 2;
+  padding: 44px 48px;
+  display: flex; align-items: center; gap: 32px; flex-wrap: wrap;
+}
+.cta-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(20px, 3vw, 32px); font-weight: 900;
+  color: #fff; letter-spacing: -0.5px; margin-bottom: 8px;
+}
+.cta-text p { font-size: 14px; color: rgba(255,255,255,0.5); max-width: 380px; line-height: 1.6; }
+
+/* Pill / badge */
+.pill {
+  display: inline-flex; align-items: center;
+  font-size: 9px; font-weight: 700; padding: 3px 9px;
+  border-radius: 99px; letter-spacing: 0.07em; text-transform: uppercase;
+}
+.p-navy { background: rgba(0,29,58,0.08); color: var(--navy); }
+.p-saffron { background: var(--saffron-g); color: var(--saffron-d); }
+.p-teal { background: var(--teal-l); color: var(--teal); }
+.p-coral { background: var(--coral-l); color: var(--coral); }
+
+/* Status */
+.status { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 99px; border: 1px solid; }
+.st-paid { background: var(--teal-l); color: var(--teal); border-color: rgba(10,74,60,0.2); }
+.st-pending { background: var(--saffron-g); color: var(--saffron-d); border-color: rgba(232,98,26,0.2); }
+.st-overdue { background: var(--coral-l); color: var(--coral); border-color: rgba(199,59,30,0.2); }
+.st-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+/* Quote */
+.quote-card {
+  background: var(--navy); border-radius: 16px; padding: 28px 32px;
+  position: relative; overflow: hidden;
+}
+.q-mark {
+  position: absolute; top: -16px; left: 20px;
+  font-family: 'Playfair Display', serif;
+  font-size: 140px; font-weight: 900;
+  color: rgba(232,98,26,0.08); line-height: 1;
+  pointer-events: none; user-select: none;
+}
+.q-text { font-size: 15px; font-style: italic; line-height: 1.7; color: rgba(255,255,255,0.85); position: relative; z-index: 1; }
+.q-attr { display: flex; align-items: center; gap: 10px; margin-top: 16px; position: relative; z-index: 1; }
+.q-av { width: 36px; height: 36px; border-radius: 50%; background: var(--saffron); color: #fff; display: flex; align-items: center; justify-content: center; font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; flex-shrink: 0; }
+.q-name { font-size: 12px; font-weight: 700; color: #fff; }
+.q-role { font-size: 10px; color: rgba(255,255,255,0.4); margin-top: 1px; }
+
+/* Page spec */
+.page-spec { margin-top: 20px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+.ps-head {
+  background: rgba(0,29,58,0.6); padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+}
+.ps-route { font-size: 10px; font-family: monospace; background: rgba(232,98,26,0.12); color: var(--saffron-l); padding: 2px 8px; border-radius: 4px; }
+.ps-name { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 800; color: #fff; }
+.ps-body { padding: 20px; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.ps-col { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 10px; padding: 14px 16px; }
+.ps-col-title { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 10px; }
+.ps-col ul { list-style: none; }
+.ps-col li { font-size: 12px; color: rgba(255,255,255,0.5); padding: 3px 0 3px 14px; position: relative; line-height: 1.5; }
+.ps-col li::before { content: '→'; position: absolute; left: 0; color: rgba(255,255,255,0.2); font-size: 10px; top: 4px; }
+
+/* Image req */
+.img-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; margin-top: 16px; }
+.img-req { border-radius: 12px; overflow: hidden; border: 1px dashed rgba(232,98,26,0.2); }
+.img-thumb { height: 90px; display: flex; align-items: center; justify-content: center; font-size: 28px; position: relative; }
+.img-ratio { position: absolute; bottom: 6px; right: 6px; font-size: 9px; font-family: monospace; font-weight: 700; background: rgba(0,0,0,0.5); color: var(--saffron-l); padding: 1px 6px; border-radius: 4px; }
+.img-info { padding: 10px 12px; background: rgba(255,255,255,0.02); }
+.img-name { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.7); }
+.img-desc { font-size: 10px; color: rgba(255,255,255,0.3); margin-top: 3px; line-height: 1.5; }
+.img-size { font-size: 10px; color: var(--saffron); font-family: monospace; margin-top: 4px; }
+.badge-crit { display: inline-block; font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 1px 6px; border-radius: 3px; margin-top: 4px; background: rgba(232,98,26,0.18); color: var(--saffron-l); }
+.badge-high { display: inline-block; font-size: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; padding: 1px 6px; border-radius: 3px; margin-top: 4px; background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); }
+
+/* Motion cards */
+.motion-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; }
+.motion-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; padding: 16px; }
+.mc-title { font-size: 12px; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 8px; }
+.mc-val { font-size: 11px; font-family: monospace; color: var(--saffron-l); line-height: 1.7; }
+.mc-desc { font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 8px; line-height: 1.6; }
+
+/* Responsive table */
+.r-table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 12px; }
+.r-table th { background: rgba(0,29,58,0.5); color: rgba(255,255,255,0.5); padding: 10px 14px; text-align: left; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+.r-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); color: rgba(255,255,255,0.45); vertical-align: top; }
+.r-table tr:hover td { background: rgba(255,255,255,0.02); }
+.r-table code { background: rgba(232,98,26,0.1); color: var(--saffron-l); padding: 1px 5px; border-radius: 3px; font-family: monospace; }
+
+/* Site map */
+.site-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 8px; margin-top: 12px; }
+.site-node { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 10px; padding: 10px 12px; text-align: center; cursor: default; transition: all 0.18s; }
+.site-node:hover { border-color: rgba(232,98,26,0.3); background: rgba(232,98,26,0.04); }
+.sn-icon { font-size: 18px; margin-bottom: 4px; }
+.sn-name { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.65); }
+.sn-route { font-size: 9px; font-family: monospace; color: rgba(255,255,255,0.25); margin-top: 2px; }
+.sn-public { border-color: rgba(27,94,170,0.25); }
+.sn-admin { border-color: rgba(0,29,58,0.5); }
+.sn-teacher { border-color: rgba(10,74,60,0.4); }
+.sn-student { border-color: rgba(83,74,183,0.35); }
+.sn-parent { border-color: rgba(232,98,26,0.3); }
+
+/* Portal demo */
+.portal-demo { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
+.pd-top { background: rgba(0,29,58,0.8); padding: 10px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.pd-brand { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 800; color: #fff; display: flex; align-items: center; gap: 6px; }
+.pd-brand::before { content: ''; width: 16px; height: 16px; background: var(--grad-saffron); border-radius: 5px; display: block; }
+.pd-role { margin-left: auto; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; }
+.pd-admin { background: rgba(232,98,26,0.15); color: var(--saffron-l); }
+.pd-teacher { background: rgba(10,74,60,0.3); color: #7FFFCB; }
+.pd-student { background: rgba(83,74,183,0.3); color: #a6c8ff; }
+.pd-parent { background: rgba(186,117,23,0.2); color: #FBBF24; }
+.pd-body { display: flex; height: 200px; }
+.pd-sidebar { width: 52px; background: rgba(0,10,25,0.9); display: flex; flex-direction: column; align-items: center; padding: 12px 0; gap: 8px; border-right: 1px solid rgba(255,255,255,0.05); flex-shrink: 0; }
+.pd-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; background: rgba(255,255,255,0.06); }
+.pd-icon.active { background: rgba(232,98,26,0.2); }
+.pd-main { flex: 1; background: var(--cream); padding: 16px 20px; overflow: auto; }
+.pd-greeting { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+.pd-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pd-kpi { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; }
+.pd-kpi-label { font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text3); }
+.pd-kpi-val { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 20px; font-weight: 900; color: var(--navy); margin-top: 2px; }
+.pd-kpi-val.saf { color: var(--saffron); }
+.pd-kpi-val.teal { color: var(--teal); }
+
+/* Callout */
+.callout { background: rgba(232,98,26,0.07); border: 1px solid rgba(232,98,26,0.18); border-radius: 10px; padding: 14px 18px; font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.65; margin-top: 12px; }
+.callout strong { color: var(--saffron-l); }
+
+/* What's NOT */
+.not-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 10px; margin-top: 16px; }
+.not-card { padding: 14px 16px; border: 1px solid rgba(199,59,30,0.18); border-radius: 10px; background: rgba(199,59,30,0.04); }
+.not-title { font-size: 10px; font-weight: 700; color: rgba(255,140,120,0.8); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+.not-desc { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+
+/* Principle cards */
+.principle-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 16px; }
+.principle-card { border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+.pc-top {
+  padding: 16px 20px 14px;
+  background: rgba(0,29,58,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  display: flex; align-items: flex-start; gap: 12px;
+}
+.pc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900;
+  color: rgba(232,98,26,0.3); line-height: 1; flex-shrink: 0;
+}
+.pc-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 15px; font-weight: 800; color: #fff; padding-top: 4px; }
+.pc-body { padding: 14px 20px; background: rgba(255,255,255,0.02); }
+.pc-body li { list-style: none; font-size: 12px; color: rgba(255,255,255,0.45); padding: 4px 0 4px 14px; position: relative; line-height: 1.5; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.pc-body li:last-child { border-bottom: none; }
+.pc-body li::before { content: '•'; position: absolute; left: 0; color: var(--saffron); font-size: 12px; top: 4px; }
+
+/* Final CTA */
+.final-cta {
+  margin-top: 64px; border-radius: 24px;
+  background: var(--navy); position: relative; overflow: hidden;
+}
+.fc-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 75% 50%, rgba(232,98,26,0.18) 0%, transparent 55%),
+              radial-gradient(ellipse at 15% 50%, rgba(27,94,170,0.25) 0%, transparent 50%);
+}
+.fc-body { position: relative; z-index: 2; padding: 56px 56px; }
+.fc-eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--saffron); margin-bottom: 12px; }
+.fc-h {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(24px, 4vw, 44px); font-weight: 900;
+  color: #fff; letter-spacing: -1px; line-height: 1.05; margin-bottom: 14px;
+}
+.fc-h em { color: var(--saffron-l); }
+.fc-p { font-size: 14px; color: rgba(255,255,255,0.45); max-width: 520px; line-height: 1.7; margin-bottom: 28px; }
+.fc-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+
+/* Decorative footer line */
+.deco-line {
+  margin-top: 64px; text-align: center;
+  font-size: 10px; color: rgba(255,255,255,0.12);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding-bottom: 24px;
+}
+
+@media (max-width: 768px) {
+  .wrap { padding: 0 20px 80px; }
+  .plan-nav { padding: 0 16px; }
+  .concept-h, .hd-h1, .fc-h { font-size: 26px; }
+  .hd-scene { height: 280px; }
+  .hd-content { padding: 0 24px 28px; }
+  .stat-bar { grid-template-columns: repeat(3, 1fr); padding: 12px 20px; }
+  .stat-item:nth-child(n+4) { display: none; }
+  .pd-cards { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Nav ── -->
+<nav class="plan-nav">
+  <div class="plan-nav-logo">CAS Theme v3</div>
+  <a href="#concept" class="nav-a">Concept</a>
+  <a href="#palette" class="nav-a">Colors</a>
+  <a href="#hero" class="nav-a">Hero</a>
+  <a href="#scroll" class="nav-a">Story</a>
+  <a href="#pages" class="nav-a">Pages</a>
+  <a href="#portals" class="nav-a">Portals</a>
+  <a href="#motion" class="nav-a">Motion</a>
+  <a href="#images" class="nav-a">Images</a>
+  <a href="#principles" class="nav-a">Laws</a>
+</nav>
+
+<div class="wrap">
+
+<!-- ══ OPENING ══ -->
+<div class="chapter" id="concept">
+  <div class="ch-eyebrow">Central Academy Anta · Theme Plan v3 · June 2026</div>
+  <h1 class="ch-title">Not a Website.<br/><em style="color:var(--saffron-l); font-style:italic; font-family:'Playfair Display',serif;">An Experience.</em></h1>
+  <p class="ch-sub">The previous version rearranged the furniture. This one burns the house down and builds something that makes parents feel something — curiosity, pride, trust. The kind of site they send to their relatives. <br/><br/>Cinematic. Editorial. Immersive. Distinctly Indian.</p>
+</div>
+
+<!-- Concept card -->
+<div class="concept-card">
+  <div class="concept-scene">
+    <div class="layer-back"></div>
+    <div class="layer-mid"></div>
+    <div class="layer-fore">
+      <div class="concept-eyebrow"><span></span> Core Design Philosophy</div>
+      <h2 class="concept-h">Scroll through a school.<br/><em>Not a webpage.</em></h2>
+      <p class="concept-p">Every section is a scene. Every transition is a camera move. The user doesn't read about Central Academy — they <em>walk through</em> it. Like the first day of school.</p>
+    </div>
+  </div>
+  <div class="concept-meta">
+    <div class="meta-item">
+      <span class="meta-label">Direction</span>
+      <span class="meta-val accent">Cinematic Storytelling</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Palette</span>
+      <span class="meta-val">Midnight Saffron</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Typography</span>
+      <span class="meta-val">Playfair Display + Plus Jakarta Sans</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Signature</span>
+      <span class="meta-val accent">Diagonal Transitions</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Scroll Feel</span>
+      <span class="meta-val">Scene → Scene → Scene</span>
+    </div>
+  </div>
+</div>
+
+<div class="callout"><strong>What changed from v2:</strong> v2 was a polished version of the old site — same blue/amber, same horizontal sections, same "professional school website" feeling. v3 is a completely different philosophy. We're stealing the "world building" and "cinematic scroll" from the inspiration images, adapted for a school context. The colour is new. The typography is new. The section transitions are new. The hero philosophy is new.</div>
+
+<!-- ══ PALETTE ══ -->
+<div class="chapter" id="palette">
+  <div class="ch-eyebrow">Chapter 01</div>
+  <h2 class="ch-title">New Color System<br/>"Midnight Saffron"</h2>
+  <p class="ch-sub">Out: flat amber #fdad4e (logo carry-over, never intentional, not beautiful). In: deep midnight + Rajasthani saffron fire. A palette that feels authoritative at night and alive in daylight.</p>
+</div>
+
+<div class="sl">Primary Blues</div>
+<div class="palette-grid">
+  <div class="swatch">
+    <div class="sw-color" style="background:#040D1A;"></div>
+    <div class="sw-info">
+      <div class="sw-name">Midnight Ink</div>
+      <div class="sw-hex">#040D1A</div>
+      <div class="sw-role">Hero backgrounds, cinematic sections</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#001D3A;"></div>
+    <div class="sw-info">
+      <div class="sw-name">Deep Navy</div>
+      <div class="sw-hex">#001D3A</div>
+      <div class="sw-role">Footer, nav, section bg</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#003D7A;"></div>
+    <div class="sw-info">
+      <div class="sw-name">Cobalt</div>
+      <div class="sw-hex">#003D7A</div>
+      <div class="sw-role">Cards on dark bg, portal sidebar</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#1B5EAA;"></div>
+    <div class="sw-info">
+      <div class="sw-name">Royal Blue</div>
+      <div class="sw-hex">#1B5EAA</div>
+      <div class="sw-role">Links, mid-weight accents, CTAs</div>
+    </div>
+  </div>
+</div>
+
+<div class="sl">The Signature Accent</div>
+<div class="palette-grid">
+  <div class="swatch">
+    <div class="sw-color" style="background: linear-gradient(135deg, #E8621A, #FF8C42);">
+      <div class="sw-new">★ NEW</div>
+    </div>
+    <div class="sw-info">
+      <div class="sw-name">Saffron Fire</div>
+      <div class="sw-hex">#E8621A → #FF8C42</div>
+      <div class="sw-role">THE signature. Rajasthani sunrise. Replaces fdad4e entirely. CTAs, stat bars, hover states, rank badges.</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#B84A0D;"></div>
+    <div class="sw-info">
+      <div class="sw-name">Saffron Dark</div>
+      <div class="sw-hex">#B84A0D</div>
+      <div class="sw-role">Saffron text on light bg</div>
+    </div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#FFF0E6;"></div>
+    <div class="sw-info">
+      <div class="sw-name">Saffron Ghost</div>
+      <div class="sw-hex">#FFF0E6</div>
+      <div class="sw-role">Tinted sections, badge backgrounds</div>
+    </div>
+  </div>
+</div>
+<div class="callout"><strong>Why saffron over amber:</strong> #fdad4e is a flat, lifeless yellow-orange. It belongs in a logo. Saffron (#E8621A) is saturated, directional, and charged. It evokes Rajasthan's brick dust and morning sun. Against deep navy, it doesn't just sit there — it <em>glows</em>. The gradient form (E8621A → FF8C42) gives it dimensionality that amber never had.</div>
+
+<div class="sl">Neutrals + Supporting</div>
+<div class="palette-grid">
+  <div class="swatch">
+    <div class="sw-color" style="background:#FAFAF5;"></div>
+    <div class="sw-info"><div class="sw-name">Warm Cream</div><div class="sw-hex">#FAFAF5</div><div class="sw-role">Page bg — warmer than #FFFFFF, not clinical</div></div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#0A4A3C;"></div>
+    <div class="sw-info"><div class="sw-name">Forest Deep</div><div class="sw-hex">#0A4A3C</div><div class="sw-role">Sports, nature, success, fee-paid</div></div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#C73B1E;"></div>
+    <div class="sw-info"><div class="sw-name">Alert Coral</div><div class="sw-hex">#C73B1E</div><div class="sw-role">Urgent, deadlines, overdue</div></div>
+  </div>
+  <div class="swatch">
+    <div class="sw-color" style="background:#E8E6E0;"></div>
+    <div class="sw-info"><div class="sw-name">Warm Border</div><div class="sw-hex">#E8E6E0</div><div class="sw-role">Card borders, dividers</div></div>
+  </div>
+</div>
+
+<div class="sl">Typography System — New Direction</div>
+<div style="display:flex; flex-direction:column; gap:10px; margin-top:12px;">
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:20px 24px;">
+    <div style="font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:10px;">Hero / Display — Playfair Display 900 (NEW)</div>
+    <div style="font-family:'Playfair Display',serif; font-size:clamp(28px,4vw,52px); font-weight:900; color:#fff; letter-spacing:-1.5px; line-height:1.0;">Excellence Since <em style="color:var(--saffron-l);">1994.</em></div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.25); margin-top:10px;">Editorial serif for hero titles only. Creates the "premium magazine / film brochure" feeling from the inspiration images. Italic variant used for emotional emphasis.</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:20px 24px;">
+    <div style="font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:10px;">Section Headings — Plus Jakarta Sans 800</div>
+    <div style="font-family:'Plus Jakarta Sans',sans-serif; font-size:26px; font-weight:800; color:#fff; letter-spacing:-0.5px;">Academic Achievers 2025–26</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:20px 24px;">
+    <div style="font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:10px;">Body — Inter 400 — 16px / 1.65 line-height</div>
+    <div style="font-size:14px; color:rgba(255,255,255,0.5); line-height:1.7;">Central Academy Senior Secondary School nurtures every student's potential across academic, cultural, and athletic dimensions. Our 30-year legacy in Anta speaks through the achievements of our students.</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:20px 24px;">
+    <div style="font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:10px;">Oversized Typography — The "Editorial Break"</div>
+    <div style="font-family:'Playfair Display',serif; font-size:clamp(48px,8vw,96px); font-weight:900; color:rgba(255,255,255,0.06); letter-spacing:-3px; line-height:0.9; user-select:none;">CENTRAL<br/>ACADEMY</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.25); margin-top:8px;">Watermark-style oversized text as section background element. Stolen from "LEARN AND EDIT" in the inspiration. Used at 5–8% opacity so it's felt not read.</div>
+  </div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); border-radius:12px; padding:20px 24px;">
+    <div style="font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:rgba(255,255,255,0.3); margin-bottom:10px;">Hindi — Noto Sans Devanagari (same size, +0.05 line-height)</div>
+    <div style="font-size:16px; color:rgba(255,255,255,0.6); line-height:1.75;">प्रिय अभिभावक — नया सत्र अप्रैल 2026 से शुरू होगा। अभी प्रवेश सुनिश्चित करें।</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.25); margin-top:8px;">Hindi is not a second-class citizen. Same font size, same visual weight as English. Language toggle is prominent in nav.</div>
+  </div>
+</div>
+
+<!-- ══ HERO ══ -->
+<div class="chapter" id="hero">
+  <div class="ch-eyebrow">Chapter 02</div>
+  <h2 class="ch-title">The Hero — Three Depth Layers</h2>
+  <p class="ch-sub">Stolen from Kamui and the Soul concept: background environment, mid-ground subject, foreground content. The page opens like a film, not like a brochure.</p>
+</div>
+
+<div class="hero-demo">
+  <div class="hd-scene">
+    <div class="hd-layer-1"></div>
+    <div class="hd-layer-2"></div>
+    <div class="hd-photo-placeholder">
+      ← LAYER 1: CAMPUS PHOTO (full-bleed, parallax 0.15x on scroll)
+      <br/><br/>
+      LAYER 2: Directional gradient overlay (bottom-to-top, not flat black)
+      <br/><br/>
+      LAYER 3: Content anchored bottom-left
+    </div>
+    <div class="hd-depth-el e1"></div>
+    <div class="hd-depth-el e2"></div>
+    <div class="hd-content">
+      <div class="hd-eyebrow"><span></span> Anta, Baran · Est. 1994 · RBSE Affiliated</div>
+      <h1 class="hd-h1">Where Every Child<br/>Finds Their <em>Best Self.</em></h1>
+      <p class="hd-sub">Central Academy Senior Secondary School — 30 years of nurturing minds, building character, and shaping futures in Anta.</p>
+      <div class="hd-btns">
+        <button class="btn-primary">Apply for Admission <span>→</span></button>
+        <button class="btn-glass">Explore Campus</button>
+      </div>
+    </div>
+  </div>
+  <div class="stat-bar">
+    <div class="stat-item"><div class="stat-n">30+</div><div class="stat-l">Years</div></div>
+    <div class="stat-item"><div class="stat-n">2000+</div><div class="stat-l">Students</div></div>
+    <div class="stat-item"><div class="stat-n">50+</div><div class="stat-l">Faculty</div></div>
+    <div class="stat-item"><div class="stat-n">96%</div><div class="stat-l">Top Result</div></div>
+    <div class="stat-item"><div class="stat-n">RBSE</div><div class="stat-l">Affiliated</div></div>
+  </div>
+</div>
+
+<div class="callout">
+<strong>Hero anatomy:</strong> Text is bottom-left anchored (not centered) — like how movie titles sit on a film frame. Gradient goes bottom-to-top (dark → transparent), not flat 42% black overlay everywhere. The saffron eyebrow line is the first color impression. Stat bar has saffron 3px top border. Quick-access cards float above the stat bar bottom edge (overlap).<br/><br/>
+<strong>Playfair Display italic</strong> for "Best Self" — the emotional word gets the serif italic treatment. This is the editorial technique from the Pixar-inspired layout.
+</div>
+
+<!-- ══ SCROLL STORY ══ -->
+<div class="chapter" id="scroll">
+  <div class="ch-eyebrow">Chapter 03</div>
+  <h2 class="ch-title">The Scroll Narrative</h2>
+  <p class="ch-sub">Each section is a scene in a film about what it means to be part of Central Academy. The transitions between scenes are architectural — diagonal cuts, depth shifts, not flat horizontal lines.</p>
+</div>
+
+<div class="story-flow">
+  <div class="story-scene">
+    <div class="story-dot active">🌅</div>
+    <div class="story-body">
+      <div class="story-num">SCENE 01 — HERO</div>
+      <div class="story-title">The Opening Shot</div>
+      <div class="story-desc">Full-screen campus photo emerges as page loads. Text fades in from bottom. The school reveals itself, like walking through the gate for the first time. Counter animation on stats when scrolled into view.</div>
+      <span class="story-tag saf">Parallax · Stagger reveal · Counter animation</span>
+    </div>
+  </div>
+  <div class="story-scene">
+    <div class="story-dot">⚡</div>
+    <div class="story-body">
+      <div class="story-num">SCENE 02 — QUICK ACCESS</div>
+      <div class="story-title">The Lobby</div>
+      <div class="story-desc">4 large cards (Notices · Fee · TC Verification · Admissions) float above the stat bar — they overlap the hero-to-body transition. Immediately useful for returning parents. Section background: dark midnight.</div>
+      <span class="story-tag saf">Overlap effect · Floating cards</span>
+    </div>
+  </div>
+  <div class="story-scene">
+    <div class="story-dot">🏆</div>
+    <div class="story-body">
+      <div class="story-num">SCENE 03 — ACADEMIC FIRE</div>
+      <div class="story-title">The Toppers Reveal</div>
+      <div class="story-desc">Editorial split layout: #1 topper large left, #2 and #3 stacked right. Saffron rank numbers in Playfair Display. Behind the names, oversized watermark text "EXCELLENCE" at 4% opacity. This is the emotional peak of the homepage.</div>
+      <span class="story-tag saf">Editorial layout · Oversized typography · Reveal animation</span>
+    </div>
+  </div>
+  <div class="story-scene">
+    <div class="story-dot">📖</div>
+    <div class="story-body">
+      <div class="story-num">SCENE 04 — THE LEGACY</div>
+      <div class="story-title">30 Years of Stories</div>
+      <div class="story-desc">Full-bleed section break: school building photo at 15% opacity as texture background. 2-col layout: legacy text left, director quote right (pull-quote style with oversized quotation mark). Section feels like a chapter title page.</div>
+      <span class="story-tag">Photo texture · Pull-quote · Asymmetric</span>
+    </div>
+  </div>
+  <div class="story-scene">
+    <div class="story-dot">🌍</div>
+    <div class="story-body">
+      <div class="story-num">SCENE 05 — THE WORLD</div>
+      <div class="story-title">Your Child's Universe</div>
+      <div class="story-desc">6 facility cards. Each one is a world: Library = "Knowledge World", Lab = "Discovery World", Sports = "Achievement World". The headline for each card reads like a world name. Background shifts to warm cream from midnight, creating a natural breath.</div>
+      <span class="story-tag">World-naming · Background rhythm</span>
+    </div>
+  </div>
+  <div class="story-scene">
+    <div class="story-dot">🎉</div>
+    <div class="story-body">
+      <div class="story-num">SCENE 06 — LIFE HAPPENS HERE</div>
+      <div class="story-title">Events & Gallery</div>
+      <div class="story-desc">Side-by-side: upcoming events (3 cards, dark section) + gallery preview (masonry, 1 large + 4 small). The gallery images hover with a saffron color overlay. Clicking opens lightbox.</div>
+      <span class="story-tag">Masonry · Hover overlay · Lightbox</span>
+    </div>
+  </div>
+  <div class="story-scene">
+    <div class="story-dot active">🚀</div>
+    <div class="story-body">
+      <div class="story-num">SCENE 07 — THE INVITATION</div>
+      <div class="story-title">Join Our Family</div>
+      <div class="story-desc">The closing scene. Dark navy background with saffron glow. Playfair Display headline: "Ready to Begin?" Two CTAs: Apply Now + Contact Us. Below that: parent testimonial. Ends like a film credits roll.</div>
+      <span class="story-tag saf">Cinematic CTA · Testimonial · Film metaphor</span>
+    </div>
+  </div>
+</div>
+
+<div class="sl">Section Transition Technique — Diagonal Cuts</div>
+<div class="transition-demo">
+  <div class="td-sec dark diag-down">
+    <div class="td-label">Section A — Dark / Hero</div>
+    <h3 class="td-h" style="color:#fff;">Hero Content</h3>
+    <p class="td-p" style="color:rgba(255,255,255,0.4);">Full-bleed dark. Diagonal bottom edge cuts into next section.</p>
+  </div>
+  <div class="td-sec light diag-up" style="margin-top:-1px;">
+    <div class="td-label">Section B — Light / Cards</div>
+    <h3 class="td-h" style="color:var(--navy);">Quick Access Cards</h3>
+    <p class="td-p" style="color:var(--text3);">The diagonal creates visual energy between sections. Not a flat horizontal rule.</p>
+  </div>
+  <div class="td-sec saf">
+    <div class="td-label">Section C — Saffron tint</div>
+    <h3 class="td-h" style="color:var(--saffron-d);">Toppers / Featured Content</h3>
+    <p class="td-p" style="color:var(--text3);">Warm saffron ghost background signals "important content".</p>
+  </div>
+  <div class="td-sec mid">
+    <div class="td-label">Section D — Navy / CTA</div>
+    <h3 class="td-h" style="color:#fff;">Cinematic CTA</h3>
+    <p class="td-p" style="color:rgba(255,255,255,0.4);">Returns to deep navy for the closing act.</p>
+  </div>
+</div>
+<div class="callout"><strong>The Diagonal:</strong> <code>clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%)</code> on outgoing section. The next section overlaps by 40px. This one technique — stolen from the layered Kamui/editorial designs — makes every section transition feel alive instead of generic.</div>
+
+<!-- ══ COMPONENTS ══ -->
+<div class="sl">Live Component Demos</div>
+<div class="comp-grid">
+  <div class="topper-editorial">
+    <div class="te-badge">Class X Topper 2025–26</div>
+    <div class="te-body">
+      <div class="te-rank">#1</div>
+      <div class="te-info">
+        <div class="te-name">Dwitika Sharma</div>
+        <div class="te-class">Class X · 2025–26</div>
+      </div>
+      <div class="te-pct">96<span>%</span></div>
+    </div>
+  </div>
+  <div class="staff-card" style="background:var(--white);">
+    <div class="staff-avatar">RM</div>
+    <div class="staff-name" style="color:var(--text);">Mrs. Radha Meena</div>
+    <div class="staff-role">Principal</div>
+    <div class="staff-dept"><span class="pill p-navy">Leadership</span></div>
+  </div>
+  <div style="background:var(--white); border-radius:16px; padding:16px; border:1px solid var(--border);">
+    <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:12px;">Status Badges</div>
+    <div style="display:flex; flex-direction:column; gap:6px;">
+      <span class="status st-paid"><span class="st-dot"></span>Fee Paid</span>
+      <span class="status st-pending"><span class="st-dot"></span>Pending</span>
+      <span class="status st-overdue"><span class="st-dot"></span>Overdue</span>
+    </div>
+  </div>
+  <div style="background:var(--white); border-radius:16px; padding:16px; border:1px solid var(--border);">
+    <div style="font-size:12px; font-weight:700; color:var(--text); margin-bottom:10px;">Category Pills</div>
+    <div style="display:flex; gap:6px; flex-wrap:wrap;">
+      <span class="pill p-navy">Academic</span>
+      <span class="pill p-saffron">Admission</span>
+      <span class="pill p-teal">Sports</span>
+      <span class="pill p-coral">Urgent</span>
+    </div>
+  </div>
+</div>
+
+<div class="sl">Notice Board — With Saffron Signature</div>
+<div class="notice-board">
+  <div class="nb-header">
+    <span class="nb-title">Notice Board</span>
+    <span class="nb-live">LIVE UPDATES</span>
+  </div>
+  <div class="nb-row">
+    <div class="nb-date"><span class="nb-day">01</span><span class="nb-mon">Apr</span></div>
+    <div>
+      <span class="nb-pin">Pinned</span>
+      <div class="nb-title-row">Admission Open 2026–27 — Nursery to Class XII</div>
+      <div class="nb-hint">नया सत्र आरंभ — अभी प्रवेश सुनिश्चित करें · Download Form PDF</div>
+    </div>
+  </div>
+  <div class="nb-row">
+    <div class="nb-date"><span class="nb-day">20</span><span class="nb-mon">Mar</span></div>
+    <div>
+      <div class="nb-title-row">Annual Examination Schedule Released — Class IX to XII</div>
+      <div class="nb-hint">वार्षिक परीक्षा कार्यक्रम · Download Time Table</div>
+    </div>
+  </div>
+  <div class="nb-row">
+    <div class="nb-date" style="background:rgba(199,59,30,0.08); color:var(--coral);"><span class="nb-day">10</span><span class="nb-mon" style="color:var(--coral);">Jun</span></div>
+    <div>
+      <span class="pill p-coral" style="margin-bottom:4px; display:inline-block;">Deadline</span>
+      <div class="nb-title-row">Term 1 Fee Last Date</div>
+      <div class="nb-hint">Late fee applicable after this date · Pay Now</div>
+    </div>
+  </div>
+</div>
+
+<div class="sl">Parent Testimonial — The Emotional Anchor</div>
+<div class="quote-card">
+  <div class="q-mark">"</div>
+  <div class="q-text">"Central Academy didn't just prepare my daughter for exams. They prepared her for life. Her Class X result of 96% is not just a number — it's the product of 12 years of genuine care from every teacher in this school."</div>
+  <div class="q-attr">
+    <div class="q-av">SS</div>
+    <div>
+      <div class="q-name">Mr. Suresh Sharma</div>
+      <div class="q-role">Parent of Dwitika Sharma, Class X Topper 2025–26</div>
+    </div>
+  </div>
+</div>
+
+<div class="sl">Cinematic CTA Block</div>
+<div class="cta-cinematic">
+  <div class="cta-bg"></div>
+  <div class="cta-body">
+    <div class="cta-text">
+      <h3>Ready to Begin?</h3>
+      <p>Admission for 2026–27 is open. Join the Central Academy family and give your child a head start that lasts a lifetime.</p>
+    </div>
+    <div style="display:flex; gap:10px; flex-wrap:wrap; position:relative; z-index:2;">
+      <button class="btn-primary">Apply for Admission →</button>
+      <button class="btn-glass">Contact Us</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PAGES ══ -->
+<div class="chapter" id="pages">
+  <div class="ch-eyebrow">Chapter 04</div>
+  <h2 class="ch-title">Public Page Specs</h2>
+  <p class="ch-sub">Every public page, section by section. This is the production blueprint.</p>
+</div>
+
+<div class="page-spec">
+  <div class="ps-head">
+    <span class="ps-route">/</span>
+    <span class="ps-name">Home Page — 7 Cinematic Scenes</span>
+  </div>
+  <div class="ps-body">
+    <div class="ps-col"><div class="ps-col-title">Scene 1 — Hero</div><ul><li>Full-bleed campus photo, 100vh mobile / 680px desktop</li><li>Playfair Display 900 headline, bottom-left</li><li>Directional gradient (bottom-up not flat)</li><li>Saffron eyebrow + CTA buttons</li><li>Stat bar: saffron 3px top border</li><li>Scroll ticker strip below stat bar</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Scene 2 — Quick Access</div><ul><li>4 cards float above stat bar (overlap)</li><li>Dark midnight background</li><li>Cards: Notices · Fee · TC · Admission</li><li>Icon (32px) + label + arrow</li><li>Hover: saffron border glow</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Scene 3 — Toppers</div><ul><li>Saffron-tinted bg (#FFF0E6)</li><li>Split: #1 large left, #2&#8211;#3 right</li><li>Playfair serif rank numbers</li><li>Oversized "EXCELLENCE" watermark</li><li>View All button at bottom</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Scene 4 — Legacy</div><ul><li>School photo as section texture (15%)</li><li>2-col: legacy stats left, director pull-quote right</li><li>Counter animation: 30yr, 2000+, 50+</li><li>Dark navy bg for gravitas</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Scene 5 — Facilities</div><ul><li>Cream bg (breath after darkness)</li><li>6 cards: each named as a "world"</li><li>Library = Knowledge World</li><li>Sports = Achievement World</li><li>Photo + title + one-line desc + link</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Scene 6 — Events + Gallery</div><ul><li>Side by side on desktop</li><li>Events: 3 upcoming cards, dark section</li><li>Gallery: masonry 1 large + 4 small</li><li>Hover: saffron color overlay on photos</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Scene 7 — Invitation</div><ul><li>Navy bg + saffron radial glow</li><li>Playfair: "Ready to Begin?"</li><li>Two CTAs + parent testimonial</li><li>Download brochure link</li></ul></div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-head">
+    <span class="ps-route">/about/principal</span>
+    <span class="ps-name">Principal's Message</span>
+  </div>
+  <div class="ps-body">
+    <div class="ps-col"><div class="ps-col-title">Hero Banner</div><ul><li>Navy bg + radial dot pattern (6% opacity)</li><li>Eyebrow: "Leadership Vision"</li><li>Playfair H1: "Principal's Message"</li><li>Saffron 3px underline bar (48px)</li><li>Height: 280px desktop</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Portrait Card (4/12)</div><ul><li>3:4 ratio — ideal upload 600×800px</li><li>White card, saffron avatar ring</li><li>Sticky lg:top-32 on scroll</li><li>Contact icons (email + phone)</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Message Body (8/12)</div><ul><li>Playfair serif 140px watermark quote mark</li><li>Body 18px / 1.7 line-height</li><li>3 value pillars (colored cards)</li><li>Signature area at bottom</li></ul></div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-head">
+    <span class="ps-route">/academics/toppers</span>
+    <span class="ps-name">Academic Achievers — Editorial Spread</span>
+  </div>
+  <div class="ps-body">
+    <div class="ps-col"><div class="ps-col-title">Hero Feature Split</div><ul><li>Left 55%: Topper #1 large card</li><li>Playfair saffron rank "1"</li><li>Name 36px / 800 weight</li><li>Photo: 3:4 portrait in navy frame</li><li>Right 45%: #2 and #3 stacked</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Full List</div><ul><li>Rank + name + class + percentage</li><li>Gold/silver/bronze for top 3</li><li>Alternating saffron-ghost rows</li><li>Class filter tabs</li><li>Oversized "CLASS X 2025–26" watermark</li></ul></div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-head">
+    <span class="ps-route">/facilities/[slug]</span>
+    <span class="ps-name">Facility Pages — "Enter a World" Design</span>
+  </div>
+  <div class="ps-body">
+    <div class="ps-col"><div class="ps-col-title">Hero (450px)</div><ul><li>Full-bleed facility photo</li><li>Gradient: bottom-to-top navy</li><li>Category pill in saffron</li><li>World-name H1: "The Knowledge World"</li><li>Italic tagline in Playfair</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Content + Rules</div><ul><li>Left 8/12: intro + features grid</li><li>Right 4/12: rules list (sticky)</li><li>Features: saffron icon + stat + desc</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Gallery + CTA</div><ul><li>4-photo grid, saffron hover overlay</li><li>Navy CTA: "Visit In Person"</li><li>Download brochure link</li></ul></div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-head">
+    <span class="ps-route">/admissions</span>
+    <span class="ps-name">Admissions — "Begin Your Journey"</span>
+  </div>
+  <div class="ps-body">
+    <div class="ps-col"><div class="ps-col-title">Hero</div><ul><li>Students on first day photo</li><li>Saffron pill: "Open 2026–27"</li><li>Playfair: "Your Child's Story Starts Here"</li><li>Apply Now + Download Form CTAs</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">3-Step Journey</div><ul><li>Horizontal steps with connecting path line</li><li>Each step: saffron number + title + bullets</li><li>Step 1: Register → Step 2: Assess → Step 3: Enroll</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Enquiry Form</div><ul><li>Left: form (name, phone, class, email)</li><li>Right: sidebar (contact + brochure + fees)</li><li>Submit → email confirmation + DB</li></ul></div>
+  </div>
+</div>
+
+<div class="page-spec">
+  <div class="ps-head">
+    <span class="ps-route">/gallery</span>
+    <span class="ps-name">Gallery — Visual Storytelling</span>
+  </div>
+  <div class="ps-body">
+    <div class="ps-col"><div class="ps-col-title">Masonry Grid</div><ul><li>3-col desktop, 2 tablet, 1 mobile</li><li>Variable heights — natural aspect ratios</li><li>Hover: saffron tint overlay + zoom icon</li><li>Click: fullscreen lightbox</li></ul></div>
+    <div class="ps-col"><div class="ps-col-title">Filter Tabs</div><ul><li>All / Sports / Annual Day / Campus / Cultural</li><li>Active tab: saffron bg, white text</li><li>Year dropdown for archives</li><li>Smooth fade on filter change</li></ul></div>
+  </div>
+</div>
+
+<!-- ══ PORTALS ══ -->
+<div class="chapter" id="portals">
+  <div class="ch-eyebrow">Chapter 05</div>
+  <h2 class="ch-title">Portal Design System</h2>
+  <p class="ch-sub">Four portals, one shell, four identities. The public website is cinematic. The portals are focused tools — but they share the same DNA.</p>
+</div>
+
+<div class="portal-demo">
+  <div class="pd-top">
+    <span class="pd-brand">Central Academy</span>
+    <span class="pd-role pd-admin">Admin</span>
+  </div>
+  <div class="pd-body">
+    <div class="pd-sidebar">
+      <div class="pd-icon active">🏠</div>
+      <div class="pd-icon">👥</div>
+      <div class="pd-icon">✅</div>
+      <div class="pd-icon">💰</div>
+      <div class="pd-icon">📢</div>
+    </div>
+    <div class="pd-main">
+      <div class="pd-greeting">Good morning, Admin 👋</div>
+      <div class="pd-cards">
+        <div class="pd-kpi">
+          <div class="pd-kpi-label">Students</div>
+          <div class="pd-kpi-val">2,147</div>
+        </div>
+        <div class="pd-kpi">
+          <div class="pd-kpi-label">Today Present</div>
+          <div class="pd-kpi-val teal">1,984</div>
+        </div>
+        <div class="pd-kpi">
+          <div class="pd-kpi-label">Fee (Today)</div>
+          <div class="pd-kpi-val saf">₹4.2L</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:10px; margin-top:12px;">
+  <div style="background:rgba(0,29,58,0.6); border-radius:12px; padding:16px; border:1px solid rgba(232,98,26,0.15);">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--saffron-l); margin-bottom:8px;">Admin Portal</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.45); line-height:1.6;">Navy + Saffron. Command-center density. Data tables, CSV export, bulk actions. Sidebar accent: saffron.</div>
+  </div>
+  <div style="background:rgba(10,74,60,0.3); border-radius:12px; padding:16px; border:1px solid rgba(10,74,60,0.4);">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#7FFFCB; margin-bottom:8px;">Teacher Portal</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.45); line-height:1.6;">Deep forest teal. Workflow-focused. Attendance, marks, leave, messages. Sidebar accent: teal glow.</div>
+  </div>
+  <div style="background:rgba(33,30,100,0.4); border-radius:12px; padding:16px; border:1px solid rgba(83,74,183,0.3);">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#a6c8ff; margin-bottom:8px;">Student Portal</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.45); line-height:1.6;">Indigo + sky blue. Card-based, friendly. Results, schedule, homework. Sidebar accent: blue.</div>
+  </div>
+  <div style="background:rgba(70,30,0,0.4); border-radius:12px; padding:16px; border:1px solid rgba(232,98,26,0.25);">
+    <div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:#FBBF24; margin-bottom:8px;">Parent Portal</div>
+    <div style="font-size:11px; color:rgba(255,255,255,0.45); line-height:1.6;">Warm saffron-brown. Reassuring, simple. Fee status, attendance, messages. Sidebar accent: saffron.</div>
+  </div>
+</div>
+<div class="callout"><strong>Portal law:</strong> All four portals share the same sidebar shell (220px open, 64px collapsed icon-only), same top header height (52px), same card/table component library. Only sidebar accent colour and dashboard KPI colour changes. One codebase, four paint jobs.</div>
+
+<!-- ══ MOTION ══ -->
+<div class="chapter" id="motion">
+  <div class="ch-eyebrow">Chapter 06</div>
+  <h2 class="ch-title">Motion System</h2>
+  <p class="ch-sub">Motion creates the cinematic feel. Every animation has one job. Nothing moves without a reason. Speed = confidence.</p>
+</div>
+
+<div class="motion-grid">
+  <div class="motion-card">
+    <div class="mc-title">Page Load — Hero Reveal</div>
+    <div class="mc-val">opacity: 0 → 1 (1.8s)<br/>scale: 1.06 → 1 (1.8s)<br/>ease: [0.22, 1, 0.36, 1]</div>
+    <div class="mc-desc">The campus photo zooms out as it fades in. Like a camera pulling back to reveal a world. The single most important animation on the site.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Text Stagger — Hero</div>
+    <div class="mc-val">eyebrow: delay 0.4s<br/>h1: delay 0.65s (y: +36px)<br/>sub: delay 0.85s<br/>btns: delay 1.05s</div>
+    <div class="mc-desc">Text reveals one by one from bottom. The headline arrives last — creates anticipation. Stolen from film title reveals.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Scroll — Section Reveal</div>
+    <div class="mc-val">y: 48px → 0<br/>opacity: 0 → 1<br/>duration: 0.85s<br/>stagger: 0.1s per child</div>
+    <div class="mc-desc">Cards in grids reveal one at a time as you scroll. Not all at once — that's lazy and fails to create momentum.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Hero Parallax</div>
+    <div class="mc-val">background-position: 0 → -15% on scroll<br/>(desktop only)</div>
+    <div class="mc-desc">Photo moves at 0.15x scroll speed. The depth layers shift at different rates — creates the 3D world feeling from Kamui/Soul.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Stat Counter</div>
+    <div class="mc-val">0 → target value<br/>duration: 2.2s<br/>ease: easeOut cubic<br/>trigger: IntersectionObserver</div>
+    <div class="mc-desc">Fires once when stat bar enters viewport. 30+ counts up from 0. Emotional. Proves the school is real and has history.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Card Hover</div>
+    <div class="mc-val">translateY: -6px<br/>shadow: 0→16px<br/>border-color: → saffron<br/>duration: 220ms</div>
+    <div class="mc-desc">Cards lift when hovered. Saffron border glow appears. Confirms the element is interactive without being jarring.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Gallery Hover</div>
+    <div class="mc-val">scale: 1.05<br/>overlay: opacity 0 → 0.35<br/>overlay color: saffron<br/>duration: 350ms</div>
+    <div class="mc-desc">Photos breathe on hover. Saffron tint overlay reinforces brand. Eye icon fades in at center.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Notice Ticker</div>
+    <div class="mc-val">marquee: CSS animation<br/>duration: 45s<br/>direction: left<br/>pause on hover</div>
+    <div class="mc-desc">Scrolling notice strip below the stat bar. Fast enough to be dynamic, slow enough to be readable. Pauses when mouse enters.</div>
+  </div>
+  <div class="motion-card">
+    <div class="mc-title">Portal — Tab Switch</div>
+    <div class="mc-val">opacity: 0 → 1 (200ms)<br/>x: -12px → 0<br/>ease: easeOut</div>
+    <div class="mc-desc">Portal content slides in when switching tabs. Directional: forward tabs slide right→left, back tabs slide left→right. Users feel navigation momentum.</div>
+  </div>
+</div>
+<div class="callout"><strong>Accessibility rule:</strong> <code>@media (prefers-reduced-motion: reduce)</code> disables all transforms and parallax. Counter becomes instant. Page fades remain (functional, not decorative). This is already in globals.css.</div>
+
+<!-- ══ IMAGES ══ -->
+<div class="chapter" id="images">
+  <div class="ch-eyebrow">Chapter 07</div>
+  <h2 class="ch-title">Image Requirements</h2>
+  <p class="ch-sub">~120 real photos needed. Placeholders will be AI-generated for launch but must be replaced with real school photos. Every slot is described so the school knows exactly what to shoot.</p>
+</div>
+
+<div class="sl">Critical — Site Cannot Launch Without These</div>
+<div class="img-grid">
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#001D3A,#003D7A);">🏫<span class="img-ratio">16:9</span></div>
+    <div class="img-info">
+      <div class="img-name">Homepage Hero</div>
+      <div class="img-desc">Campus exterior, golden hour preferred. Students visible but not the main subject. The building is the world they're entering.</div>
+      <div class="img-size">1920×1080px min</div>
+      <span class="badge-crit">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(180deg,#E8F0F8,#C5D8F0);">🎓<span class="img-ratio">3:4</span></div>
+    <div class="img-info">
+      <div class="img-name">Principal Portrait</div>
+      <div class="img-desc">Mrs. Radha Meena. White or soft navy wall. Professional, natural smile. Not a studio photo — genuine expression.</div>
+      <div class="img-size">600×800px min</div>
+      <span class="badge-crit">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(180deg,#E8F0F8,#C5D8F0);">👔<span class="img-ratio">3:4</span></div>
+    <div class="img-info">
+      <div class="img-name">Director Portraits ×2</div>
+      <div class="img-desc">Mr. Hariprakash + Mr. Rekhraj Meena. Same backdrop both. Same lighting. Consistent styling so they look like a set.</div>
+      <div class="img-size">600×800px min each</div>
+      <span class="badge-crit">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#001D3A,#002850);">👩‍🎓<span class="img-ratio">3:1</span></div>
+    <div class="img-info">
+      <div class="img-name">Admissions Banner</div>
+      <div class="img-desc">Parent and child walking through the school gate, or child's first day in classroom. Warm, hope-filled moment.</div>
+      <div class="img-size">1920×640px min</div>
+      <span class="badge-crit">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#FFF0E6,#FFD9C0);">🏆<span class="img-ratio">3:4</span></div>
+    <div class="img-info">
+      <div class="img-name">Topper Portraits ×3</div>
+      <div class="img-desc">Dwitika Sharma, Bhakti Nagar, Nipurn Malav. With merit certificate or in uniform. Proud, genuine expression. Not posed.</div>
+      <div class="img-size">480×640px min each</div>
+      <span class="badge-crit">Critical</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#001D3A,#004060);">📷<span class="img-ratio">21:9</span></div>
+    <div class="img-info">
+      <div class="img-name">Campus Wide-Angle</div>
+      <div class="img-desc">Full campus aerial or wide exterior. Clear sky. Used in footer and about page. Shows the scale of the institution.</div>
+      <div class="img-size">2400×1080px min</div>
+      <span class="badge-crit">Critical</span>
+    </div>
+  </div>
+</div>
+
+<div class="sl">High Priority — Shoot in One Session</div>
+<div class="img-grid">
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#E6EFF8,#BFD5EC);">📚<span class="img-ratio">16:9</span></div>
+    <div class="img-info">
+      <div class="img-name">Library (4 shots)</div>
+      <div class="img-desc">Wide establishing shot + students reading + digital terminals + book shelves. Natural daylight preferred.</div>
+      <div class="img-size">1920×1080px each</div>
+      <span class="badge-high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#E0F2EE,#BDE5D3);">🔬<span class="img-ratio">16:9</span></div>
+    <div class="img-info">
+      <div class="img-name">Science + Computer Labs (4 each)</div>
+      <div class="img-desc">Students at equipment, teacher guiding. Must show real activity, not empty room.</div>
+      <div class="img-size">1920×1080px each</div>
+      <span class="badge-high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#E8F8EC,#C0E8C8);">⚽<span class="img-ratio">16:9</span></div>
+    <div class="img-info">
+      <div class="img-name">Sports Ground (4 action shots)</div>
+      <div class="img-desc">Students mid-action (running, cricket, football). Trophy presentation photo mandatory. Energy over posed.</div>
+      <div class="img-size">1920×1080px each</div>
+      <span class="badge-high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#EEF0FE,#C8CCF5);">💻<span class="img-ratio">16:9</span></div>
+    <div class="img-info">
+      <div class="img-name">Smart Classrooms (3 shots)</div>
+      <div class="img-desc">Teacher at smartboard + engaged students. Must show technology in use. A second shot of the board content itself.</div>
+      <div class="img-size">1920×1080px each</div>
+      <span class="badge-high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#E0F2EE,#BDE5D3);">👩‍🏫<span class="img-ratio">1:1</span></div>
+    <div class="img-info">
+      <div class="img-name">Faculty Headshots ×50+</div>
+      <div class="img-desc">All teaching staff in one photo session. Consistent neutral background. Square crop. Can use any blank wall in school.</div>
+      <div class="img-size">400×400px min each</div>
+      <span class="badge-high">High</span>
+    </div>
+  </div>
+  <div class="img-req">
+    <div class="img-thumb" style="background:linear-gradient(135deg,#FFF0E6,#FFD9C0);">🎉<span class="img-ratio">4:3</span></div>
+    <div class="img-info">
+      <div class="img-name">Annual Day + Prize Dist. (20+ shots)</div>
+      <div class="img-desc">Stage moments, prize receiving, audience, colorful costumes. These fill the gallery and create the "life" feeling.</div>
+      <div class="img-size">1600×1200px min</div>
+      <span class="badge-high">High</span>
+    </div>
+  </div>
+</div>
+
+<div class="callout"><strong>Placeholder strategy:</strong> For launch, AI-generated placeholder images will be created at exact dimensions needed. They'll use the correct aspect ratio and a navy+saffron color treatment so the design doesn't break. Mark each placeholder with a visible "Replace Me" watermark in dev — invisible in production. Real photos slot in without layout changes.</div>
+
+<!-- ══ PRINCIPLES ══ -->
+<div class="chapter" id="principles">
+  <div class="ch-eyebrow">Chapter 08</div>
+  <h2 class="ch-title">The Laws</h2>
+  <p class="ch-sub">Eight non-negotiable design laws. If any component breaks any of these, it gets rebuilt.</p>
+</div>
+
+<div class="principle-grid">
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">01</div><div class="pc-title">Depth Over Flatness</div></div>
+    <ul class="pc-body">
+      <li>Three layers in every hero: bg photo / directional gradient / text</li>
+      <li>Cards overlap section boundaries — never isolated in their own box</li>
+      <li>Quick-access cards start inside hero and extend below stat bar</li>
+      <li>Photo sections use the subject as a foreground element, not a background fill</li>
+    </ul>
+  </div>
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">02</div><div class="pc-title">Scenes, Not Sections</div></div>
+    <ul class="pc-body">
+      <li>Every section has a "scene name": Opening Shot, The Lobby, The Toppers Reveal</li>
+      <li>Diagonal clip-path transitions between sections — never flat horizontal borders</li>
+      <li>Background alternates: dark → light → saffron tint → dark — creates rhythm</li>
+      <li>Each section should feel like entering a different room of the same school</li>
+    </ul>
+  </div>
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">03</div><div class="pc-title">Saffron is Sacred</div></div>
+    <ul class="pc-body">
+      <li>Saffron (#E8621A) appears in gradient form on primary CTAs, stat bar border, topper rank badges</li>
+      <li>Never as a large fill — always as a highlight, glow, or accent line</li>
+      <li>Against navy: it glows. Against white: it anchors. Against cream: it warms.</li>
+      <li>The old amber #fdad4e is fully retired. It appears nowhere in the new system.</li>
+    </ul>
+  </div>
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">04</div><div class="pc-title">Editorial Typography</div></div>
+    <ul class="pc-body">
+      <li>Playfair Display for hero/display titles ONLY — creates serif editorial gravitas</li>
+      <li>Italic emphasis in Playfair for the "emotional word" in a headline</li>
+      <li>Oversized watermark text (5–8% opacity) as section background element</li>
+      <li>Never two display font families on same page — Playfair + Jakarta only</li>
+    </ul>
+  </div>
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">05</div><div class="pc-title">Real Over Perfect</div></div>
+    <ul class="pc-body">
+      <li>Real school photos even if slightly imperfect — AI stock destroys trust instantly with Indian parents</li>
+      <li>Real topper names in the hero, not generic "Award Winner" placeholder</li>
+      <li>Principal signature scan, not typed name, in the message</li>
+      <li>Staff initials avatars better than "photo loading" broken images</li>
+    </ul>
+  </div>
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">06</div><div class="pc-title">Hindi is First Class</div></div>
+    <ul class="pc-body">
+      <li>Every notice: English title + Hindi subtitle at equal visual weight</li>
+      <li>Language toggle: prominent in nav, never hidden or tiny</li>
+      <li>Homepage CTA: "Apply Now / अभी आवेदन करें" — both visible</li>
+      <li>Font system: Noto Sans Devanagari as fallback, no flash-of-wrong-font</li>
+    </ul>
+  </div>
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">07</div><div class="pc-title">Mobile is Primary</div></div>
+    <ul class="pc-body">
+      <li>All touch targets: 44×44px minimum. This is a Rajasthan school — mobile-first audience.</li>
+      <li>Hero: 100svh on mobile, 680px fixed on desktop</li>
+      <li>Portal: bottom nav bar on mobile, sidebar on desktop</li>
+      <li>All content readable on 375px without horizontal scroll</li>
+    </ul>
+  </div>
+  <div class="principle-card">
+    <div class="pc-top"><div class="pc-num">08</div><div class="pc-title">Performance is Respect</div></div>
+    <ul class="pc-body">
+      <li>All hero images: WebP format, next/image with priority=true</li>
+      <li>Fonts: preload only Playfair 700+900, Jakarta 700+800+900, Inter 400+600</li>
+      <li>Portal dashboard: &lt;2s on 4G (Anta network speeds)</li>
+      <li>Never load more than 6 images above the fold</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sl">What This Is Not</div>
+<div class="not-grid">
+  <div class="not-card">
+    <div class="not-title">✕ Not a Government Portal</div>
+    <div class="not-desc">No full-width grey headers. No blinking "NOTICE" text. No table-based layouts from 2008. No Visit Counter widget. No "Best viewed in Chrome" footnote.</div>
+  </div>
+  <div class="not-card">
+    <div class="not-title">✕ Not a SaaS Landing Page</div>
+    <div class="not-desc">No white cards floating on white. No feature grids with rocket icons. No "Start for Free" hero hook. No gradient mesh backgrounds. No social proof avatar clusters.</div>
+  </div>
+  <div class="not-card">
+    <div class="not-title">✕ Not a WordPress Theme</div>
+    <div class="not-desc">No colored banner every 200px. No 4 font families per page. No widget-box sidebar. No "powered by" footer spam. No generic slider with crossfade.</div>
+  </div>
+  <div class="not-card">
+    <div class="not-title">✕ Not an AI Template</div>
+    <div class="not-desc">No glassmorphism everywhere. No neon particle animations. No "smiling diverse students" stock photos. No purple-to-pink gradient. No floating blob backgrounds.</div>
+  </div>
+</div>
+
+<!-- ══ SITE MAP ══ -->
+<div class="sl">Complete Site Architecture</div>
+<div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin-bottom:10px;">PUBLIC PAGES</div>
+<div class="site-grid">
+  <div class="site-node sn-public"><div class="sn-icon">🏠</div><div class="sn-name">Home</div><div class="sn-route">/</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">📋</div><div class="sn-name">About</div><div class="sn-route">/about</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🎓</div><div class="sn-name">Principal</div><div class="sn-route">/about/principal</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">👔</div><div class="sn-name">Director</div><div class="sn-route">/about/director</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">👩‍🏫</div><div class="sn-name">Faculty</div><div class="sn-route">/about/faculty</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🎯</div><div class="sn-name">Vision</div><div class="sn-route">/about/vision-mission</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">📝</div><div class="sn-name">Admissions</div><div class="sn-route">/admissions</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">📚</div><div class="sn-name">Academics</div><div class="sn-route">/academics</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🏆</div><div class="sn-name">Toppers</div><div class="sn-route">/academics/toppers</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">📅</div><div class="sn-name">Syllabus</div><div class="sn-route">/academics/syllabus</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🏛️</div><div class="sn-name">Facilities</div><div class="sn-route">/facilities</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">📖</div><div class="sn-name">Library</div><div class="sn-route">/facilities/library</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🔬</div><div class="sn-name">Labs</div><div class="sn-route">/facilities/labs</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">⚽</div><div class="sn-name">Sports</div><div class="sn-route">/facilities/sports</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">💻</div><div class="sn-name">Smart Class</div><div class="sn-route">/facilities/smart-classrooms</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🎨</div><div class="sn-name">Art</div><div class="sn-route">/facilities/art-culture</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🚌</div><div class="sn-name">Transport</div><div class="sn-route">/facilities/transport</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🎉</div><div class="sn-name">Events</div><div class="sn-route">/events</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">🖼️</div><div class="sn-name">Gallery</div><div class="sn-route">/gallery</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">📢</div><div class="sn-name">Notices</div><div class="sn-route">/notices</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">📞</div><div class="sn-name">Contact</div><div class="sn-route">/contact</div></div>
+  <div class="site-node sn-public"><div class="sn-icon">👥</div><div class="sn-name">Staff</div><div class="sn-route">/staff</div></div>
+</div>
+
+<div style="font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:rgba(255,255,255,0.25); margin: 20px 0 10px;">PORTAL PAGES</div>
+<div class="site-grid">
+  <div class="site-node sn-admin"><div class="sn-icon">🔑</div><div class="sn-name">Admin</div><div class="sn-route">/portal/admin</div></div>
+  <div class="site-node sn-admin"><div class="sn-icon">👨‍🎓</div><div class="sn-name">Students</div><div class="sn-route">/portal/admin/students</div></div>
+  <div class="site-node sn-admin"><div class="sn-icon">💰</div><div class="sn-name">Fee Mgmt</div><div class="sn-route">/portal/admin/fee</div></div>
+  <div class="site-node sn-admin"><div class="sn-icon">📣</div><div class="sn-name">Notices</div><div class="sn-route">/portal/admin/notices</div></div>
+  <div class="site-node sn-teacher"><div class="sn-icon">📊</div><div class="sn-name">Teacher</div><div class="sn-route">/portal/teacher</div></div>
+  <div class="site-node sn-teacher"><div class="sn-icon">✅</div><div class="sn-name">Attendance</div><div class="sn-route">/portal/teacher/attendance</div></div>
+  <div class="site-node sn-teacher"><div class="sn-icon">📝</div><div class="sn-name">Marks</div><div class="sn-route">/portal/teacher/marks</div></div>
+  <div class="site-node sn-teacher"><div class="sn-icon">💬</div><div class="sn-name">Messages</div><div class="sn-route">/portal/teacher/messages</div></div>
+  <div class="site-node sn-student"><div class="sn-icon">📈</div><div class="sn-name">Student</div><div class="sn-route">/portal/student</div></div>
+  <div class="site-node sn-student"><div class="sn-icon">🏅</div><div class="sn-name">Results</div><div class="sn-route">/portal/student/results</div></div>
+  <div class="site-node sn-parent"><div class="sn-icon">👪</div><div class="sn-name">Parent</div><div class="sn-route">/portal/parent</div></div>
+  <div class="site-node sn-parent"><div class="sn-icon">💸</div><div class="sn-name">Fee Status</div><div class="sn-route">/portal/parent/fee</div></div>
+</div>
+
+<!-- Responsive table -->
+<div class="sl">Responsive Breakpoints</div>
+<table class="r-table">
+  <thead>
+    <tr><th>Breakpoint</th><th>Width</th><th>Hero</th><th>Grid</th><th>Nav</th><th>Portal Sidebar</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Mobile</td><td><code>&lt;640px</code></td><td>100svh</td><td>1 col</td><td>Hamburger drawer</td><td>Bottom nav bar (5 icons)</td></tr>
+    <tr><td>Tablet</td><td><code>640–1024px</code></td><td>520px</td><td>2 col</td><td>Slim horizontal</td><td>Icon-only 64px</td></tr>
+    <tr><td>Desktop</td><td><code>1024–1280px</code></td><td>680px</td><td>3 col</td><td>Full horizontal</td><td>Full 220px open</td></tr>
+    <tr><td>Wide</td><td><code>&gt;1280px</code></td><td>680px (capped)</td><td>3–4 col</td><td>Full, max-w-7xl</td><td>Full 220px open</td></tr>
+  </tbody>
+</table>
+
+<!-- Final CTA -->
+<div class="final-cta">
+  <div class="fc-glow"></div>
+  <div class="fc-body">
+    <div class="fc-eyebrow">Ready to Build</div>
+    <h2 class="fc-h">This is the design that makes<br/>parents <em>feel something.</em></h2>
+    <p class="fc-p">Approve this theme plan and we start building the public pages — Home first, then the complete site. Every page will make the previous version look like a draft.</p>
+    <div class="fc-actions">
+      <button class="btn-primary">Approve & Build → </button>
+      <button class="btn-glass">Request Changes</button>
+    </div>
+  </div>
+</div>
+
+<div class="deco-line">CAS WEBSITE · CINEMATIC THEME PLAN V3 · JUNE 2026 · MIDNIGHT SAFFRON</div>
+
+</div><!-- /wrap -->
+</body>
+</html>

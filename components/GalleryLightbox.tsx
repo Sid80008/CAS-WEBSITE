@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 interface MediaItem {
@@ -89,16 +90,13 @@ export function GalleryLightbox({
       )}
 
       {/* Main photo */}
-      <div className="max-w-4xl max-h-[80vh] relative flex items-center justify-center">
-        <img
+      <div className="w-full max-w-4xl h-[75vh] relative flex items-center justify-center">
+        <Image
           key={photo.url}
           src={photo.url}
           alt={photo.caption || title}
-          className="max-h-[75vh] max-w-full object-contain rounded-xl shadow-2xl"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "/placeholder.png";
-            (e.target as HTMLImageElement).onerror = null;
-          }}
+          fill
+          className="object-contain rounded-xl shadow-2xl"
         />
         {photo.caption && (
           <p className="absolute -bottom-8 left-0 right-0 text-white/60 text-xs text-center">
@@ -125,21 +123,19 @@ export function GalleryLightbox({
             <button
               key={i}
               onClick={() => setCurrentIndex(i)}
-              className={`flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden border-2 transition-all duration-200
+              className={`relative flex-shrink-0 w-14 h-14 rounded-lg overflow-hidden border-2 transition-all duration-200
                 ${i === currentIndex
                   ? "border-white scale-105 shadow-lg"
                   : "border-transparent opacity-50 hover:opacity-80"
                 }`}
               aria-label={`Go to photo ${i + 1}`}
             >
-              <img
+              <Image
                 src={p.url}
                 alt=""
-                className="w-full h-full object-cover"
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = "/placeholder.png";
-                  (e.target as HTMLImageElement).onerror = null;
-                }}
+                fill
+                sizes="56px"
+                className="object-cover"
               />
             </button>
           ))}

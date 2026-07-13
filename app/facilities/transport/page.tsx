@@ -26,7 +26,7 @@ export default function TransportPage() {
           titleHi="स्कूल परिवहन"
           eyebrowEn="SECURE JOURNEYS"
           eyebrowHi="सुरक्षित यात्रा"
-          imageSrc="/gallery/students/1741166878-13.jpeg"
+          imageSrc="/banner-main.png"
         />
 
         {/* Breadcrumb */}

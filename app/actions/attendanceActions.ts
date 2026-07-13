@@ -23,17 +23,11 @@ export async function saveBulkAttendance(formData: FormData) {
   }
 
   if (!staffId) {
-    let staff = await prisma.staff.findFirst();
-    if (!staff) {
-      const user = await prisma.user.create({
-        data: { email: 'office@cas.com', passwordHash: 'mock', role: 'OFFICE' },
-      });
-      staff = await prisma.staff.create({
-        data: { empCode: 'EMP001', name: 'Office Admin', designation: 'Clerk', userId: user.id },
-      });
-    }
-    staffId = staff.id;
+    throw new Error("Unauthorized: Must be logged in as Staff");
   }
+
+  const activeYear = await prisma.academicYear.findFirst({ orderBy: { startDate: 'desc' } });
+  const yearId = activeYear ? activeYear.id : 'ay-2026-27';
 
   const attendancePromises: Promise<any>[] = [];
 
@@ -53,7 +47,7 @@ export async function saveBulkAttendance(formData: FormData) {
         create: {
           studentId,
           classId,
-          yearId: 'ay-2026-27',
+          yearId,
           date,
           status,
           markedById: staffId,
