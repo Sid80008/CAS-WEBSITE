@@ -5,6 +5,15 @@ import { revalidatePath } from 'next/cache';
 import { AdmissionStatus } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
+import { auth } from '@/auth';
+import { hasPermission } from '@/lib/auth-utils';
+
+async function requirePermission(permission: string) {
+  const session = await auth();
+  if (!session?.user || !hasPermission(session.user, permission)) {
+    throw new Error("Unauthorized");
+  }
+}
 
 const admissionSchema = z.object({
   studentName: z.string().min(1, "Student name is required"),
@@ -71,6 +80,7 @@ export async function submitEnquiry(formData: FormData) {
 
 // Create Admission manual entry (For Admin UI)
 export async function createAdmission(formData: FormData) {
+  await requirePermission('MANAGE_ADMISSIONS');
   const studentName = formData.get('studentName') as string;
   const parentName = formData.get('parentName') as string;
   const phone = formData.get('phone') as string;
@@ -97,9 +107,20 @@ export async function createAdmission(formData: FormData) {
 
 // Admin status update
 export async function updateAdmissionStatus(id: string, status: AdmissionStatus) {
+  await requirePermission('MANAGE_ADMISSIONS');
   await prisma.admission.update({
     where: { id },
     data: { status },
+  });
+
+  revalidatePath('/admin/admissions');
+}
+
+// Delete admission
+export async function deleteAdmission(id: string) {
+  await requirePermission('MANAGE_ADMISSIONS');
+  await prisma.admission.delete({
+    where: { id },
   });
 
   revalidatePath('/admin/admissions');

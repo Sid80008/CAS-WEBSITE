@@ -3,8 +3,18 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import bcrypt from 'bcryptjs';
+import { auth } from '@/auth';
+import { hasPermission } from '@/lib/auth-utils';
+
+async function requirePermission(permission: string) {
+  const session = await auth();
+  if (!session?.user || !hasPermission(session.user, permission)) {
+    throw new Error("Unauthorized");
+  }
+}
 
 export async function createStaff(formData: FormData) {
+  await requirePermission('MANAGE_STAFF');
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const role = formData.get('role') as string; // 'ADMIN', 'TEACHER', 'OFFICE'
@@ -62,6 +72,7 @@ export async function createStaff(formData: FormData) {
 }
 
 export async function updateStaff(id: string, formData: FormData) {
+  await requirePermission('MANAGE_STAFF');
   const name = formData.get('name') as string;
   const email = formData.get('email') as string;
   const role = formData.get('role') as string;
@@ -114,6 +125,7 @@ export async function updateStaff(id: string, formData: FormData) {
 }
 
 export async function deleteStaff(id: string) {
+  await requirePermission('MANAGE_STAFF');
   await prisma.$transaction(async (tx) => {
     const staff = await tx.staff.findUnique({ where: { id } });
     if (staff) {
@@ -132,6 +144,7 @@ export async function deleteStaff(id: string) {
 }
 
 export async function assignStaffSubject(staffId: string, sectionId: string, subjectId: string) {
+  await requirePermission('MANAGE_STAFF');
   // Check if link already exists
   const existing = await prisma.staffSubject.findUnique({
     where: {
@@ -157,6 +170,7 @@ export async function assignStaffSubject(staffId: string, sectionId: string, sub
 }
 
 export async function unassignStaffSubject(staffId: string, sectionId: string, subjectId: string) {
+  await requirePermission('MANAGE_STAFF');
   await prisma.staffSubject.delete({
     where: {
       staffId_subjectId_sectionId: {

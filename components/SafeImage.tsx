@@ -34,25 +34,4 @@ export function SafeImage({
   );
 }
 
-/**
- * Plain <img> version for places that use a raw img tag.
- * Usage: <SafeImg src="/gallery/photo.jpg" alt="Photo" className="..." />
- */
-export function SafeImg({
-  src,
-  alt,
-  fallbackSrc = "/placeholder.png",
-  ...props
-}: React.ImgHTMLAttributes<HTMLImageElement> & { fallbackSrc?: string }) {
-  return (
-    <img
-      {...props}
-      src={src}
-      alt={alt}
-      onError={(e) => {
-        (e.target as HTMLImageElement).src = fallbackSrc;
-        (e.target as HTMLImageElement).onerror = null; // prevent infinite loop
-      }}
-    />
-  );
-}
+

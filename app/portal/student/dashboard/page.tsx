@@ -71,7 +71,7 @@ export default async function StudentDashboardPage() {
       {/* Welcome Header */}
       <div className="mb-8">
         <h1 className="font-h1 text-3xl font-bold text-[#00386b]">Good Morning, {student.firstName}!</h1>
-        <p className="text-[#424750] mt-1">Here is what's happening today in Central Academy.</p>
+        <p className="text-[#424750] mt-1">Here is what&apos;s happening today in Central Academy.</p>
       </div>
 
       {/* Top Widgets */}

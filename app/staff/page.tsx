@@ -74,7 +74,7 @@ export default async function PublicStaff() {
                           </button>
                        </div>
                        <p className="text-xs text-white/80 italic leading-relaxed">
-                         "Committed to nurturing curiosity and excellence in every student I mentor."
+                         &quot;Committed to nurturing curiosity and excellence in every student I mentor.&quot;
                        </p>
                     </div>
                     

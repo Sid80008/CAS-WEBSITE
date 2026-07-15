@@ -3,6 +3,14 @@
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
 import { auth } from "@/auth";
+import { hasPermission } from '@/lib/auth-utils';
+
+async function requireAdmin() {
+  const session = await auth();
+  if (!session?.user || !hasPermission(session.user, 'MANAGE_STAFF')) {
+    throw new Error("Unauthorized");
+  }
+}
 
 export async function submitLeaveRequest(formData: FormData) {
   const session = await auth();
@@ -43,6 +51,7 @@ export async function submitLeaveRequest(formData: FormData) {
 }
 
 export async function approveLeaveRequest(id: string) {
+  await requireAdmin();
   await prisma.leaveRequest.update({
     where: { id },
     data: { status: 'APPROVED' }
@@ -52,6 +61,7 @@ export async function approveLeaveRequest(id: string) {
 }
 
 export async function rejectLeaveRequest(id: string) {
+  await requireAdmin();
   await prisma.leaveRequest.update({
     where: { id },
     data: { status: 'REJECTED' }

@@ -33,7 +33,6 @@ export default function ParentProfileForm({ parent, email }: ParentProfileFormPr
     const formData = new FormData(event.currentTarget);
     
     // Validate passwords
-    const currentPassword = formData.get("currentPassword") as string;
     const newPassword = formData.get("newPassword") as string;
     const confirmPassword = formData.get("confirmPassword") as string;
 

@@ -4,8 +4,18 @@
 import prisma from '@/lib/prisma';
 import { redirect } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { auth } from '@/auth';
+import { hasPermission } from '@/lib/auth-utils';
+
+async function requirePermission(permission: string) {
+  const session = await auth();
+  if (!session?.user || !hasPermission(session.user, permission)) {
+    throw new Error("Unauthorized");
+  }
+}
 
 export async function createStudent(formData: FormData) {
+  await requirePermission('CREATE_STUDENTS');
   const admissionNo = formData.get('admissionNo') as string;
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
@@ -44,6 +54,7 @@ export async function createStudent(formData: FormData) {
 }
 
 export async function updateStudent(id: string, formData: FormData) {
+  await requirePermission('CREATE_STUDENTS');
   const admissionNo = formData.get('admissionNo') as string;
   const firstName = formData.get('firstName') as string;
   const lastName = formData.get('lastName') as string;
@@ -95,6 +106,7 @@ export async function updateStudent(id: string, formData: FormData) {
 }
 
 export async function deleteStudent(id: string) {
+  await requirePermission('CREATE_STUDENTS');
   await prisma.$transaction(async (tx) => {
     // Delete exam results, homework submissions, enrollments, attendance, and then student
     await tx.examResult.deleteMany({ where: { studentId: id } });

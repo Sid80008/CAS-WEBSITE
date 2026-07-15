@@ -31,7 +31,7 @@ export default function TermsOfServicePage() {
 
               <h2 className="text-xl font-bold mt-6 mb-2">3. Online Payments</h2>
               <p className="mb-4">
-                Fee payments made through this website are processed securely. However, the school is not responsible for any failures or delays in payment processing caused by third-party payment gateways or banking networks. Refunds, if applicable, will be processed according to the school's fee policy.
+                Fee payments made through this website are processed securely. However, the school is not responsible for any failures or delays in payment processing caused by third-party payment gateways or banking networks. Refunds, if applicable, will be processed according to the school&apos;s fee policy.
               </p>
 
               <h2 className="text-xl font-bold mt-6 mb-2">4. Intellectual Property</h2>
@@ -41,12 +41,12 @@ export default function TermsOfServicePage() {
 
               <h2 className="text-xl font-bold mt-6 mb-2">5. Disclaimer of Warranties</h2>
               <p className="mb-4">
-                The materials on Central Academy Anta's website are provided "as is". The school makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                The materials on Central Academy Anta&apos;s website are provided &quot;as is&quot;. The school makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
               </p>
 
               <h2 className="text-xl font-bold mt-6 mb-2">6. Governing Law</h2>
               <p className="mb-4">
-                Any claim relating to Central Academy Anta's website shall be governed by the laws of the State of Rajasthan without regard to its conflict of law provisions.
+                Any claim relating to Central Academy Anta&apos;s website shall be governed by the laws of the State of Rajasthan without regard to its conflict of law provisions.
               </p>
             </div>
           </div>

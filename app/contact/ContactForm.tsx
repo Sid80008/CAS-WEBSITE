@@ -196,7 +196,7 @@ export function ContactForm() {
         <iframe
           title="School Location"
           className="w-full h-full border-none"
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14399.71887207432!2d76.28716719555803!3d25.153292198968455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1714000000000!5m2!1sen!2sin"
+          src="https://maps.google.com/maps?q=25.153292,76.287167&hl=en&z=14&output=embed"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
