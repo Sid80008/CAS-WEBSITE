@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { saveBulkMarks } from "@/app/actions/markActions";
 import Link from "next/link";
+import ComboSelect from "./ComboSelect";
 
 export const dynamic = 'force-dynamic';
 
@@ -162,21 +163,10 @@ export default async function TeacherReportsPage({ searchParams }: PageProps) {
             <form method="GET" className="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
               <div className="space-y-[4px]">
                 <label className="text-[14px] font-medium text-[#424750]">Class, Section & Subject</label>
-                <select
-                  name="combo"
-                  defaultValue={selectedCombo ? `${selectedCombo.sectionId}_${selectedCombo.subjectId}` : ""}
-                  onChange={(e) => {
-                    const [secId, subId] = e.target.value.split('_');
-                    window.location.search = `?sectionId=${secId}&subjectId=${subId}`;
-                  }}
-                  className="w-full px-4 py-3 rounded-lg border border-[#E2E0DB] focus:ring-2 focus:ring-[#00386b] bg-white outline-none"
-                >
-                  {taughtCombinations.map((combo, idx) => (
-                    <option key={idx} value={`${combo.sectionId}_${combo.subjectId}`}>
-                      {combo.sectionName} - {combo.subjectName}
-                    </option>
-                  ))}
-                </select>
+                <ComboSelect 
+                  taughtCombinations={taughtCombinations} 
+                  selectedComboId={selectedCombo ? `${selectedCombo.sectionId}_${selectedCombo.subjectId}` : ""} 
+                />
                 {/* Hidden fields so they submit correctly in standard form submissions */}
                 {selectedCombo && (
                   <>

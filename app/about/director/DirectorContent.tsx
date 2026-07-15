@@ -28,7 +28,7 @@ const directors: Record<DirectorKey, DirectorData> = {
   hariprakash: {
     name: "Mr. Hariprakash Meena",
     title: "Founder & Director",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCtgGlPOmb1peJGGdj3he6z7DLYUZ8bFAwJ8u62d8XmGjyzqjIl1C_e3LFuSBciUrhH2yCPofE01a5WvTTd-vRrnDGXYY24dc3_2vHAqCaCxhufGq-6zD-04XaAHk5mujSIjAmwX0lfRzGfpmB9su5sYL4CmT7W0BVXAwWC1u6XltzGwmHX3AEEFUGYJRcURsyQaqnCCCNoC6X6HCXX5UhbwJU3ABygV8szfSOTS9zV8yFmNNQ1HgGwapv9mWQKnl89JIuk8ovLpSzj",
+    image: "/placeholder.png",
     email: "centralacademyantah@gmail.com",
     phone: "+917737689684",
     quote: "Education is not merely the accumulation of facts; it is the preparation for life itself.",
@@ -64,7 +64,7 @@ const directors: Record<DirectorKey, DirectorData> = {
   rekhraj: {
     name: "Mr. Rekhraj Meena",
     title: "Founder & Director",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD19IB8h3HM8Ot30jYe7j7guM_snnrm0dIcaYILeg7IxggRMlZAFy6Cb45Rxc7LjTx9OE8Oo5xHlYCW1OTkRVELGD7BY8528WK5VWFbF3xht8BCXO6wJB19YeA_o5NvYKB0U75Gy7LWTeVY9j-BBlpr5GVq2pm6_9Por2nz7OvdvAJwp9qRcTRxk8JWxL-bGEsfhlpRrBHumBLwdfN0O5jNtyLaRL6SAv7C6-hy_rttf903zy5bfKptrkZzn1PLfrlGcZBg9TlOatJ6",
+    image: "/placeholder.png",
     email: "centralacademyantah@gmail.com",
     phone: "+917737689684",
     quote: "We focus on holistic development—nurturing the mind, body, and spirit.",

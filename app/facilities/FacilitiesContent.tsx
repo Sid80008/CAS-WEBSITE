@@ -22,7 +22,7 @@ export function FacilitiesContent() {
       title: "Smart Classrooms", 
       desc: "Fully digitized classrooms equipped with high-definition interactive panels and audio-visual tools.", 
       icon: <Monitor />, 
-      img: "/gallery/photo-dump/1741166362_slider-17.jpg",
+      img: "/facilities/smart class 1.jpeg",
       color: "saffron",
       slug: "smart-classrooms"
     },
@@ -30,7 +30,7 @@ export function FacilitiesContent() {
       title: "Science Laboratories", 
       desc: "Advanced physics, chemistry, and biology labs for hands-on experimental learning.", 
       icon: <Microscope />, 
-      img: "/gallery/photo-dump/1741166776-5.jpeg",
+      img: "/facilities/lab main.jpeg",
       color: "blue",
       slug: "labs"
     },
@@ -38,7 +38,7 @@ export function FacilitiesContent() {
       title: "Digital Library", 
       desc: "A well-stocked library with books, journals, and reference materials to support academic research and a love of reading.", 
       icon: <Library />, 
-      img: "/gallery/slider/1774511691_slider-52.jpg",
+      img: "/facilities/digital library.jpeg",
       color: "saffron",
       slug: "library"
     },
@@ -46,7 +46,7 @@ export function FacilitiesContent() {
       title: "Sports Complex", 
       desc: "State-of-the-art courts for basketball, volleyball, and a professional-grade cricket ground.", 
       icon: <Trophy />, 
-      img: "/gallery/photo-dump/1741166412_slider-20.jpg",
+      img: "/facilities/soccer.jpeg",
       color: "blue",
       slug: "sports"
     },
@@ -54,7 +54,7 @@ export function FacilitiesContent() {
       title: "Art & Culture Studio", 
       desc: "Creative spaces for fine arts, dance, and music to nurture the artistic side of students.", 
       icon: <Palette />, 
-      img: "/gallery/photo-dump/celebration.jpg",
+      img: "/facilities/cultural activity  (1).jpg",
       color: "saffron",
       slug: "art-culture"
     },
