@@ -46,7 +46,7 @@ export async function updateStudentProfile(formData: FormData) {
   const newPassword = formData.get("newPassword") as string;
 
   try {
-    const hashedPassword = await verifyAndHashPassword(userId, currentPassword, newPassword);
+    const hashedPassword = await verifyAndHashPassword(userId as string, currentPassword, newPassword);
 
     await prisma.$transaction(async (tx) => {
       // 1. Update Student Table
@@ -92,7 +92,7 @@ export async function updateParentProfile(formData: FormData) {
   const newPassword = formData.get("newPassword") as string;
 
   try {
-    const hashedPassword = await verifyAndHashPassword(userId, currentPassword, newPassword);
+    const hashedPassword = await verifyAndHashPassword(userId as string, currentPassword, newPassword);
 
     await prisma.$transaction(async (tx) => {
       // 1. Update Parent Table
@@ -134,7 +134,7 @@ export async function updateTeacherProfile(formData: FormData) {
   const newPassword = formData.get("newPassword") as string;
 
   try {
-    const hashedPassword = await verifyAndHashPassword(userId, currentPassword, newPassword);
+    const hashedPassword = await verifyAndHashPassword(userId as string, currentPassword, newPassword);
 
     await prisma.$transaction(async (tx) => {
       // 1. Update Staff Table
@@ -175,7 +175,7 @@ export async function updateAdminProfile(formData: FormData) {
   const newPassword = formData.get("newPassword") as string;
 
   try {
-    const hashedPassword = await verifyAndHashPassword(userId, currentPassword, newPassword);
+    const hashedPassword = await verifyAndHashPassword(userId as string, currentPassword, newPassword);
 
     await prisma.user.update({
       where: { id: userId },

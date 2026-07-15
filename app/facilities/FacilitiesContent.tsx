@@ -62,7 +62,7 @@ export function FacilitiesContent() {
       title: "Safe Transport", 
       desc: "A fleet of school buses with GPS tracking and dedicated attendants for secure commuting.", 
       icon: <ShieldCheck />, 
-      img: "/gallery/students/1741166878-13.jpeg",
+      img: "/facilities/safe school image.jpeg",
       color: "blue",
       slug: "transport"
     }
@@ -89,7 +89,7 @@ export function FacilitiesContent() {
                   <Image src={f.img} alt={f.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 33vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
                   <div className="absolute inset-0 bg-gradient-to-t from-school-ink/75 to-transparent"></div>
                   <div className={`absolute bottom-6 left-6 h-12 w-12 rounded-xl flex items-center justify-center text-white backdrop-blur-md shadow-2xl ${f.color === 'saffron' ? 'bg-school-saffron/80' : 'bg-school-blue/80'}`}>
-                    {React.cloneElement(f.icon as React.ReactElement, { className: "h-6 w-6" })}
+                    {React.cloneElement(f.icon as React.ReactElement, { className: "h-6 w-6" } as any)}
                   </div>
                 </div>
                 <div className="p-10 flex flex-col flex-grow justify-between">
@@ -144,7 +144,7 @@ export function FacilitiesContent() {
             <Image 
               fill
               className="object-cover rounded-[3rem] shadow-2xl border-solid border-8 border-school-navy/80" 
-              src="/gallery/photo-dump/1746853764_DSC_3837.jpg" 
+              src="/facilities/school campus.jpeg" 
               alt="Safety" 
               sizes="(max-width: 1024px) 100vw, 50vw"
             />
@@ -169,7 +169,7 @@ function FeatureItem({ title, icon }: FeatureItemProps) {
   return (
     <div className="flex items-center gap-4 group">
       <div className="h-10 w-10 rounded-xl bg-white/5 border border-white/10 text-school-saffron-light flex items-center justify-center group-hover:bg-school-saffron group-hover:text-white transition-all shadow-sm">
-        {React.cloneElement(icon as React.ReactElement, { className: "h-4 w-4" })}
+        {React.cloneElement(icon as React.ReactElement, { className: "h-4 w-4" } as any)}
       </div>
       <span className="font-bold text-white uppercase text-[10px] tracking-widest font-sans">{title}</span>
     </div>

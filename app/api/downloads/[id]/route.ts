@@ -10,7 +10,7 @@ export async function PUT(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const { id } = await params;
     const user = await verifyAuth(req)
@@ -35,7 +35,7 @@ export async function DELETE(
   req: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const { id } = await params
     const user = await verifyAuth(req)

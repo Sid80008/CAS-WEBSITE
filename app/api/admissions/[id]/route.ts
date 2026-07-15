@@ -12,7 +12,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
     const admission = await prisma.admission.findUnique({
       where: { id }
     })
@@ -39,7 +39,7 @@ export async function PUT(
     }
 
     const body = await req.json()
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
     const validated = updateAdmissionSchema.parse(body)
     const admission = await prisma.admission.update({
       where: { id },
@@ -58,7 +58,7 @@ export async function DELETE(
 ) {
   try {
     const { id } = await params
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
     const user = await verifyAuth(req)
     if (!hasPermission(user, 'DELETE_ADMISSIONS')) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

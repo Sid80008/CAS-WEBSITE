@@ -181,7 +181,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
   const heroY = useTransform(scrollY, [0, 600], [0, -90]);
 
   // Live student count override
-  const displayCount = studentCount > 400 ? studentCount : 400;
+  const displayCount = studentCount > 800 ? studentCount : 800;
 
   return (
     <>
@@ -332,7 +332,7 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
           >
             <AnimatedStat value={`${displayCount}+`} label={language === "hi" ? "विद्यार्थी" : "Students"} delay={0} />
             <AnimatedStat value={`${SCHOOL.yearsOfExcellence}`} label={language === "hi" ? "वर्षों का अनुभव" : "Years of Excellence"} delay={0.08} />
-            <AnimatedStat value="37+" label={language === "hi" ? "योग्य शिक्षक" : "Qualified Teachers"} delay={0.16} />
+            <AnimatedStat value="50+" label={language === "hi" ? "योग्य शिक्षक" : "Qualified Teachers"} delay={0.16} />
             <AnimatedStat value="I–XII" label={language === "hi" ? "कक्षाएं" : "All Classes"} delay={0.24} />
           </motion.div>
           {/* Saffron accent line — THE signature */}
@@ -521,10 +521,6 @@ export function HomeClient({ notices, toppers, studentCount }: HomeProps) {
                         <div className="text-sm text-white/50 mb-4">
                           {language === "hi" ? `कक्षा ${toppers[0].class} · ${toppers[0].year}` : `Class ${toppers[0].class} · ${toppers[0].year}`}
                         </div>
-                        {/* PLACEHOLDER: Real quote needed — see PLACEHOLDER_CONTENT.md #2 */}
-                        <p className="text-sm text-white/40 italic leading-relaxed">
-                          &ldquo;Grateful to my teachers and parents for their constant support and guidance.&rdquo;
-                        </p>
                       </div>
                       {/* Percentage */}
                       <div className="flex-shrink-0 text-right">

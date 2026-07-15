@@ -48,6 +48,11 @@ export default async function TeacherMessagesPage() {
       yearId: 'ay-2026-27'
     },
     include: {
+      section: {
+        include: {
+          class: true
+        }
+      },
       student: {
         include: {
           parents: {
@@ -57,8 +62,7 @@ export default async function TeacherMessagesPage() {
                   user: {
                     select: {
                       id: true,
-                      email: true,
-                      phone: true
+                      email: true
                     }
                   }
                 }

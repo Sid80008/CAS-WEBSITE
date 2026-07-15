@@ -82,7 +82,7 @@ export default async function ParentConnectPage() {
           Direct messaging and meeting requests with {student.firstName}'s instructors.
         </p>
       </div>
-      <ConnectClient teachers={teachers} studentName={`${student.firstName} ${student.lastName}`} activeUserId={session.user.id} />
+      <ConnectClient teachers={teachers} studentName={`${student.firstName} ${student.lastName}`} activeUserId={session.user?.id || ""} />
     </div>
   );
 }

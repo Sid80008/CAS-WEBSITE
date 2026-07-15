@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const searchParams = req.nextUrl.searchParams
     const page = parseInt(searchParams.get('page') || '1')
@@ -55,7 +55,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const user = await verifyAuth(req)
     if (!hasPermission(user, 'CREATE_EVENTS')) {
@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
       data: {
         ...validated,
         slug: `${slug}-${Date.now()}`,
-        createdBy: user!.id
+        createdBy: user!.id as string
       }
     })
 

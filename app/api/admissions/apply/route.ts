@@ -6,7 +6,7 @@ export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const body = await req.json()
     const validated = admissionSchema.parse(body)

@@ -9,7 +9,7 @@ export default async function NewTcPage() {
   // Fetch active students (status ACTIVE)
   const activeStudents = await prisma.student.findMany({
     where: { status: 'ACTIVE' },
-    orderBy: { name: 'asc' },
+    orderBy: { firstName: 'asc' },
   });
 
   return (
@@ -26,7 +26,7 @@ export default async function NewTcPage() {
             <option value="">Search student...</option>
             {activeStudents.map((student) => (
               <option key={student.id} value={student.id}>
-                {student.name} (Adm: {student.admissionNo})
+                {student.firstName} {student.lastName} (Adm: {student.admissionNo})
               </option>
             ))}
           </select>

@@ -6,18 +6,20 @@ import AttendanceClient from "./AttendanceClient";
 export const metadata: Metadata = { title: "Attendance | CAS Admin" };
 export const dynamic = "force-dynamic";
 
-export default async function AttendancePage({
-  searchParams,
-}: {
-  searchParams: { classId?: string; date?: string };
-}) {
+interface AttendancePageProps {
+  searchParams: Promise<{ classId?: string; date?: string }>;
+}
+
+export default async function AttendancePage({ searchParams }: AttendancePageProps) {
+  const resolvedSearchParams = await searchParams;
+  const { classId: selectedClassId = "", date: dateParam } = resolvedSearchParams;
+  const selectedDate = dateParam || new Date().toISOString().split("T")[0];
+
   const classes = await prisma.class.findMany({
     orderBy: { name: "asc" },
     include: { sections: true },
   });
 
-  const selectedClassId = searchParams.classId || "";
-  const selectedDate = searchParams.date || new Date().toISOString().split("T")[0];
 
   let students: any[] = [];
   const existingAttendance: Record<string, string> = {};

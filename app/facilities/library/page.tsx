@@ -121,12 +121,10 @@ export default function LibraryPage() {
               <h2 className="text-3xl md:text-4xl font-black text-white font-display">A Sanctuary of Research</h2>
               <p className="text-slate-400 mt-2 text-sm font-sans">A glimpse into how our students engage with our learning spaces.</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
               {[
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuDRiSbMiwrMCWMLRoJEOpgSIsCNO75qdEI35eMHIRW1kKkj_Gvzpr0hhyFGp14zgWoi9W6PzbtmYYgCaaV-ph9_1afz4sa2iXyRqSG3gw3W8R0yQOcehs6D4PSia1GCSzqTU1g9mS0rJmDNKdym4IgBK2BcIw0av5jrFNZt8DmmQYf_-noAovWxOQU_3YJXUINpZ7kIMjGAzKTENmRC7GW4G49CXp_nrm_crzMrKK2UrGh8-cAt2EQQMnjgMYPIva7o6qtjG944I8Sz",
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuBntIf3OXQRwA9bbSZdGR8MuwcpSkAdlYXH5YAb0squhyx84E5Pzh7Hw2xAD38RaRnWROCBXoWOuocap4Z7iGcoSVLU8pFNg_2X-Nm3gxD5yUCe3KWquMbJergk8-gMU0UUPjpc-VfVj135QJV0BMSZJ9YScokm8bkvVaTD6lU0UXh-Xxi-NuEmHgsJKfSowQVsBw45_pqs3PQDxFUmVzBUMbi5B4SDpPsLDeOpIQVi4TNR7DXpBL_0-_u1oAAjTnk20Y0Jxce3ZPui",
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuC0OokHmhnsgY0F5b0N2IsRNs6u1fsEfDfmibNTQVFMyY6s769GeeeoPcOsGe0igWYy-I80JAY1LfDqKF3Ixo-qAj4VQGIQkeT9a6jWGe_-ldM_5cSQ7NEA7WyyovJhnXhqQC6LhhKkL9p_hbpVHlMLNrYRtL4xpAX8soAo7-46HqOrpQ5ybAXNgnzWTXMggQ89iiHOXlItBNhV7m8ni-90hDJ-8dHLYrYFuomgcsUqw-hr6wifBHH3TqeXA9Uej54jQHuTA4py1d0m",
-                "https://lh3.googleusercontent.com/aida-public/AB6AXuCCHRNPF-ZeS6jGOCSLHJABF7w2JCArksdN6VssDvCY7z2dJq8ZrVCr7FSlq5844oB6ruf4ojp6VARQuVZZm_KOtRNZsCDn4MKOWHgoai6xsAN6vMz2QIEFwtsbU2i-Vai5YKD_Yc3g6K5ltzS-xLbrToEbuuiG6QaYaWcDljpYOPRZ5pyhWBVm3uQwpnE23ibuVwhmH9Hp8gNMJTwsvkPuzlJ4fKzaTn-UW7Lr5uhM5Mc7fOIOR4ir6ir-08jnNzYsQrIc3sbgOTkl"
+                "/facilities/digital library.jpeg",
+                "/facilities/digital library 2.jpeg"
               ].map((url, i) => (
                 <div key={i} className="overflow-hidden rounded-3xl h-60 relative group shadow-lg border border-white/5">
                   <Image src={url} alt={`Library Life ${i+1}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -152,12 +150,6 @@ export default function LibraryPage() {
                 className="bg-gradient-to-r from-school-saffron to-school-saffron-light text-white px-8 py-3.5 rounded-xl font-bold hover:opacity-95 active:scale-95 transition-all shadow-md"
               >
                 Inquire for Visit
-              </Link>
-              <Link 
-                href="/downloads" 
-                className="bg-white/10 border border-white/25 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/20 active:scale-95 transition-all"
-              >
-                Download Brochure
               </Link>
             </div>
           </div>

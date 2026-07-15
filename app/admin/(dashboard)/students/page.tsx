@@ -7,14 +7,11 @@ import { StudentStatus } from "@prisma/client";
 export const metadata: Metadata = { title: "Students | CAS Admin" };
 export const dynamic = "force-dynamic";
 
-export default async function StudentsPage({
-  searchParams,
-}: {
-  searchParams: { q?: string; status?: string; page?: string };
-}) {
-  const q = searchParams.q || "";
-  const statusParam = searchParams.status || "All Status";
-  const page = parseInt(searchParams.page || "1", 10);
+export default async function StudentsPage({ searchParams }: { searchParams: Promise<{ q?: string; status?: string; page?: string }> }) {
+  const resolvedSearchParams = await searchParams;
+  const q = resolvedSearchParams.q || "";
+  const statusParam = resolvedSearchParams.status || "All Status";
+  const page = parseInt(resolvedSearchParams.page || "1", 10);
   const pageSize = 10;
   const skip = (page - 1) * pageSize;
 

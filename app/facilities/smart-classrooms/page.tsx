@@ -121,12 +121,10 @@ export default function SmartClassroomsPage() {
               <h2 className="text-3xl md:text-4xl font-black text-white font-display">Technology Meets Education</h2>
               <p className="text-slate-400 mt-2 text-sm font-sans">Visual recordings of digital learning modules and active classroom interactions.</p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
               {[
-                "/gallery/photo-dump/1741166362_slider-17.jpg",
-                "/gallery/photo-dump/1741166776-5.jpeg",
-                "/gallery/photo-dump/1741166412_slider-20.jpg",
-                "/gallery/photo-dump/celebration.jpg"
+                "/facilities/smart class 1.jpeg",
+                "/facilities/smarrt class 2.jpeg"
               ].map((url, i) => (
                 <div key={i} className="overflow-hidden rounded-3xl h-60 relative group shadow-lg border border-white/5">
                   <Image src={url} alt={`Smart Classroom ${i+1}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -152,12 +150,6 @@ export default function SmartClassroomsPage() {
                 className="bg-gradient-to-r from-school-saffron to-school-saffron-light text-white px-8 py-3.5 rounded-xl font-bold hover:opacity-95 active:scale-95 transition-all shadow-md"
               >
                 Inquire for Visit
-              </Link>
-              <Link 
-                href="/downloads" 
-                className="bg-white/10 border border-white/25 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/20 active:scale-95 transition-all"
-              >
-                Download Brochure
               </Link>
             </div>
           </div>

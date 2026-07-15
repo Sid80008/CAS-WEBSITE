@@ -26,7 +26,7 @@ export default async function StudentDetailsPage({ params }: PageProps) {
       attendance: true,
       fees: {
         include: {
-          feeStructure: true
+          structure: true
         }
       }
     }
@@ -42,8 +42,8 @@ export default async function StudentDetailsPage({ params }: PageProps) {
   const attendanceRate = totalDays > 0 ? Math.round((presentDays / totalDays) * 100) : 100;
 
   // Calculate fee status
-  const totalFees = student.fees.reduce((sum, f) => sum + f.feeStructure.amount, 0);
-  const paidFees = student.fees.filter(f => f.status === 'PAID').reduce((sum, f) => sum + f.feeStructure.amount, 0);
+  const totalFees = (student as any).fees.reduce((sum: number, f: any) => sum + f.structure.amount, 0);
+  const paidFees = (student as any).fees.filter((f: any) => f.status === 'PAID').reduce((sum: number, f: any) => sum + f.structure.amount, 0);
   const unpaidFees = totalFees - paidFees;
 
   const deleteAction = deleteStudent.bind(null, student.id);

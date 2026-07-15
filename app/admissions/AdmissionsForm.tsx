@@ -98,7 +98,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 
-export default function AdmissionsForm() {
+export default function AdmissionsForm({ settings }: { settings?: any }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const { language } = useLanguage();
@@ -153,14 +153,23 @@ export default function AdmissionsForm() {
 
   const grades = ["Nursery", "LKG", "UKG", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
 
+  let eyebrowEn = `Admissions Open — ${getCurrentSession()}`;
+  let eyebrowHi = `प्रवेश प्रारंभ — ${getCurrentSession()}`;
+  if (settings?.admissionStartDate && settings?.admissionEndDate) {
+    const start = new Date(settings.admissionStartDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' });
+    const end = new Date(settings.admissionEndDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+    eyebrowEn = `Admissions Open: ${start} to ${end}`;
+    eyebrowHi = `प्रवेश प्रारंभ: ${start} से ${end}`;
+  }
+
   return (
     <PublicLayout>
       {/* ── Page Banner ── */}
       <PageBanner
         titleEn="Admissions Portal"
         titleHi="प्रवेश पोर्टल"
-        eyebrowEn={`Admissions Open — ${getCurrentSession()}`}
-        eyebrowHi={`प्रवेश प्रारंभ — ${getCurrentSession()}`}
+        eyebrowEn={eyebrowEn}
+        eyebrowHi={eyebrowHi}
         imageSrc="/banner-main.png"
       />
 
@@ -177,6 +186,16 @@ export default function AdmissionsForm() {
             <p className="text-slate-600 max-w-2xl mx-auto mt-3 text-sm md:text-base leading-relaxed">
               We aim to make our admission process as simple, transparent, and welcoming as possible. Here is how it works:
             </p>
+            <div className="mt-8">
+              <a 
+                href="/downloads/CAS_Anta_Admissions_Brochure.pdf" 
+                download 
+                className="inline-flex items-center gap-2 bg-school-saffron text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-orange-600 transition-all hover:-translate-y-0.5 active:scale-95"
+              >
+                <Download className="w-5 h-5" />
+                Download Admission Brochure
+              </a>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -458,12 +477,6 @@ export default function AdmissionsForm() {
                   </li>
                 ))}
               </ul>
-              <a
-                href="/downloads"
-                className="mt-8 w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-school-saffron to-school-saffron-light text-white py-3.5 rounded-xl font-bold text-sm hover:brightness-110 shadow-lg shadow-school-saffron/25 active:scale-95 transition-all duration-300 border-0"
-              >
-                <Download className="h-4 w-4" /> Download Brochure
-              </a>
             </div>
           </div>
         </div>

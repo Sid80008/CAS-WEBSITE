@@ -153,12 +153,6 @@ export default function LabsPage() {
               >
                 Inquire for Visit
               </Link>
-              <Link 
-                href="/downloads" 
-                className="bg-white/10 border border-white/25 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/20 active:scale-95 transition-all"
-              >
-                Download Brochure
-              </Link>
             </div>
           </div>
         </section>

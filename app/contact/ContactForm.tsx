@@ -196,7 +196,7 @@ export function ContactForm() {
         <iframe
           title="School Location"
           className="w-full h-full border-none"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.34440537233!2d76.5164101!3d24.8715893!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396ff5e78ec89307%3A0xcf9570f7d5668e1a!2sCentral%20Academy%20School%2C%20antah!5e0!3m2!1sen!2sin!4v1714000000000!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14399.71887207432!2d76.28716719555803!3d25.153292198968455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1714000000000!5m2!1sen!2sin"
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

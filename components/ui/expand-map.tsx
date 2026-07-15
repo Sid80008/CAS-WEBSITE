@@ -27,10 +27,8 @@ export function ExpandMap({
 }: ExpandMapProps) {
   const [isOpen, setIsOpen] = useState(false)
 
-  // Google Maps embed URL – the short‑link redirects to a proper embed page.
-  const mapSrc = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.941918842942!2d-122.084249984692!3d37.42206597982381!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb24c9c8b2eb1%3A0xe4c7a3c23b9c9c9c!2sGoogleplex!5e0!3m2!1sen!2sus!4v1610000000000!5m2!1sen!2sus"
-  // The above link is a placeholder – replace it with the actual embed URL generated from the
-  // https://maps.app.goo.gl/tTGVmcR53dF2bkfz8 link if you want a precise location.
+  // Google Maps embed URL
+  const mapSrc = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14399.71887207432!2d76.28716719555803!3d25.153292198968455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1714000000000!5m2!1sen!2sin";
 
   return (
     <div className={`relative w-full ${className}`}>

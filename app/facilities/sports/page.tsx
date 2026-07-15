@@ -125,7 +125,7 @@ export default function SportsPage() {
               {[
                 "/gallery/photo-dump/1741166412_slider-20.jpg",
                 "/gallery/photo-dump/1741166362_slider-17.jpg",
-                "/gallery/photo-dump/1741166776-5.jpeg",
+                "/facilities/soccer.jpeg",
                 "/gallery/photo-dump/celebration.jpg"
               ].map((url, i) => (
                 <div key={i} className="overflow-hidden rounded-3xl h-60 relative group shadow-lg border border-white/5">
@@ -152,12 +152,6 @@ export default function SportsPage() {
                 className="bg-gradient-to-r from-school-saffron to-school-saffron-light text-white px-8 py-3.5 rounded-xl font-bold hover:opacity-95 active:scale-95 transition-all shadow-md"
               >
                 Inquire for Visit
-              </Link>
-              <Link 
-                href="/downloads" 
-                className="bg-white/10 border border-white/25 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/20 active:scale-95 transition-all"
-              >
-                Download Brochure
               </Link>
             </div>
           </div>

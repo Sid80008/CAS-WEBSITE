@@ -1,16 +1,8 @@
-// app/actions/galleryActions.ts
 'use server';
 
 import prisma from '@/lib/prisma';
 import { revalidatePath } from 'next/cache';
-import { v2 as cloudinary } from 'cloudinary';
-
-// Configure Cloudinary using environment variables. Ensure these are set in your .env.local file.
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+import { auth } from '@/auth';
 
 /**
  * Create a new album (gallery) entry.
@@ -20,56 +12,95 @@ export async function createAlbum(formData: FormData) {
   const eventDate = formData.get('eventDate') as string;
   const isPublished = formData.get('isPublished') === 'true';
 
-  await prisma.gallery.create({
+  const session = await auth();
+  const userId = session?.user?.id || 'system';
+
+  const album = await prisma.gallery.create({
     data: {
       titleEn: title,
       eventDate: new Date(eventDate),
       published: isPublished,
+      createdBy: userId,
     },
   });
 
   revalidatePath('/admin/gallery');
+  return { success: true, id: album.id };
 }
 
 /**
- * Upload an image to Cloudinary and associate it with an existing album.
- * Expects a multipart/form-data request containing:
- *   - galleryId: string (the album ID)
- *   - image: File (the image to upload)
+ * Associate an uploaded image URL with an existing album.
  */
-export async function addImageToAlbum(formData: FormData) {
-  const galleryId = formData.get('galleryId') as string;
-  const file = formData.get('image') as File;
-
-  if (!file) {
-    throw new Error('No image file provided');
+export async function addMediaToAlbum(galleryId: string, url: string) {
+  if (!galleryId || !url) {
+    throw new Error('Gallery ID and URL are required');
   }
 
-  // Convert the File to a Buffer for Cloudinary upload.
-  const arrayBuffer = await file.arrayBuffer();
-  const buffer = Buffer.from(arrayBuffer);
-
-  const uploadResult: any = await new Promise((resolve, reject) => {
-    cloudinary.uploader.upload_stream(
-      {
-        folder: `gallery/${galleryId}`,
-        resource_type: 'image',
-      },
-      (error, result) => {
-        if (error) reject(error);
-        else resolve(result);
-      }
-    ).end(buffer);
+  // Update album coverImage if it's the first image
+  const gallery = await prisma.gallery.findUnique({
+    where: { id: galleryId },
+    include: { media: true }
   });
 
-  // Persist the image URL to the database. Adjust the model name/fields as needed.
-  await prisma.media.create({
+  if (gallery && !gallery.coverImage) {
+    await prisma.gallery.update({
+      where: { id: galleryId },
+      data: { coverImage: url }
+    });
+  }
+
+  const media = await prisma.media.create({
     data: {
-      url: uploadResult.secure_url,
+      url,
       galleryId,
     },
   });
 
-  // Re‑validate the admin gallery page so the new image appears immediately.
   revalidatePath('/admin/gallery');
+  return { success: true, media };
+}
+
+/**
+ * Delete an album and all associated media records.
+ */
+export async function deleteAlbum(galleryId: string) {
+  await prisma.media.deleteMany({
+    where: { galleryId }
+  });
+  
+  await prisma.gallery.delete({
+    where: { id: galleryId }
+  });
+
+  revalidatePath('/admin/gallery');
+  return { success: true };
+}
+
+/**
+ * Delete a single image record.
+ */
+export async function deleteMedia(mediaId: string) {
+  const media = await prisma.media.findUnique({ where: { id: mediaId } });
+  if (!media) throw new Error('Media not found');
+
+  await prisma.media.delete({
+    where: { id: mediaId }
+  });
+
+  // If this was the cover image, clear it or pick another
+  const gallery = await prisma.gallery.findUnique({
+    where: { id: media.galleryId },
+    include: { media: true }
+  });
+
+  if (gallery && gallery.coverImage === media.url) {
+    const nextMedia = gallery.media.length > 0 ? gallery.media[0].url : null;
+    await prisma.gallery.update({
+      where: { id: gallery.id },
+      data: { coverImage: nextMedia }
+    });
+  }
+
+  revalidatePath('/admin/gallery');
+  return { success: true };
 }

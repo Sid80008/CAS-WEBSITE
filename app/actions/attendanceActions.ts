@@ -57,7 +57,7 @@ export async function saveBulkAttendance(formData: FormData) {
     }
   }
 
-  await prisma.$transaction(attendancePromises);
+  await prisma.$transaction(attendancePromises as any);
 
   revalidatePath('/admin/attendance');
   revalidatePath('/portal/teacher/attendance');

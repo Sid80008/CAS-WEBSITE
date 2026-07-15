@@ -27,50 +27,7 @@ async function getAlbums() {
   }
 
   // Static fallback when DB is empty or unreachable
-  return [
-    {
-      id: "f1",
-      titleEn: "Annual Sports Meet",
-      categoryEn: "Sports Day",
-      createdAt: new Date("2024-12-15"),
-      media: [
-        { url: "/gallery/photo-dump/1741166362_slider-17.jpg", caption: null },
-        { url: "/gallery/photo-dump/1741166412_slider-20.jpg", caption: null },
-        { url: "/gallery/photo-dump/1741166451_slider-21.jpg", caption: null },
-      ],
-    },
-    {
-      id: "f2",
-      titleEn: "Campus Infrastructure",
-      categoryEn: "Campus",
-      createdAt: new Date("2025-01-10"),
-      media: [
-        { url: "/gallery/photo-dump/1746853764_DSC_3837.jpg", caption: null },
-        { url: "/gallery/photo-dump/1774511691_slider-52.jpg", caption: null },
-      ],
-    },
-    {
-      id: "f3",
-      titleEn: "Student Life & Activities",
-      categoryEn: "Cultural",
-      createdAt: new Date("2025-02-05"),
-      media: [
-        { url: "/gallery/students/1741166797-7.jpeg", caption: null },
-        { url: "/gallery/students/1741166816-9.jpeg", caption: null },
-        { url: "/gallery/students/1741166831-10.jpeg", caption: null },
-      ],
-    },
-    {
-      id: "f4",
-      titleEn: "Celebrations & Events",
-      categoryEn: "Celebrations",
-      createdAt: new Date("2025-03-01"),
-      media: [
-        { url: "/gallery/photo-dump/celebration.jpg", caption: null },
-        { url: "/gallery/photo-dump/1758788086_WhatsApp Image 2025-09-25 at 1.jpeg", caption: null },
-      ],
-    },
-  ];
+  return [];
 }
 
 export default async function PublicGallery() {

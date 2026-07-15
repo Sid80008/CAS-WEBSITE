@@ -123,10 +123,10 @@ export default function ArtCulturePage() {
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                "/gallery/photo-dump/celebration.jpg",
-                "/gallery/photo-dump/1741166362_slider-17.jpg",
-                "/gallery/photo-dump/1741166412_slider-20.jpg",
-                "/gallery/photo-dump/1741166776-5.jpeg"
+                "/facilities/cultural activity  (1).jpg",
+                "/facilities/cultural activity  (2).jpg",
+                "/facilities/cultural activity  (3).JPG",
+                "/facilities/cultural activity  (4).jpg"
               ].map((url, i) => (
                 <div key={i} className="overflow-hidden rounded-3xl h-60 relative group shadow-lg border border-white/5">
                   <Image src={url} alt={`Creative Life ${i+1}`} fill sizes="(max-width: 768px) 50vw, 25vw" className="object-cover transition-transform duration-700 group-hover:scale-110" />
@@ -152,12 +152,6 @@ export default function ArtCulturePage() {
                 className="bg-gradient-to-r from-school-saffron to-school-saffron-light text-white px-8 py-3.5 rounded-xl font-bold hover:opacity-95 active:scale-95 transition-all shadow-md"
               >
                 Inquire for Visit
-              </Link>
-              <Link 
-                href="/downloads" 
-                className="bg-white/10 border border-white/25 text-white px-8 py-3.5 rounded-xl font-bold hover:bg-white/20 active:scale-95 transition-all"
-              >
-                Download Brochure
               </Link>
             </div>
           </div>

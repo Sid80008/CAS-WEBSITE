@@ -71,7 +71,7 @@ export default {
 				"on-surface": "#1b1c1b",
 				"surface-container-low": "#f6f3f2",
 				"sidebar-bg": "#F6F3F2",
-				"secondary": "#885200",
+
 				"surface-variant": "#e4e2e1",
 				"surface-container-highest": "#e4e2e1",
 				"on-primary-container": "#7ca3dc",

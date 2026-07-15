@@ -39,7 +39,7 @@ export async function issueTC(formData: FormData) {
   const classAtLeaving = currentEnrollment ? `${currentEnrollment.section.class.name} - ${currentEnrollment.section.name}` : "Unknown";
   
   await prisma.$transaction([
-    prisma.tcRecord.create({
+    prisma.tCRecord.create({
       data: {
         certificateNo: tcNumber,
         dateOfLeaving: new Date(dateOfLeaving),

@@ -101,16 +101,16 @@ export default async function Page() {
                   Total Outstanding Balance
                 </p>
                 <h3 className="text-4xl font-extrabold font-h1">
-                  ₹{hasFeeRecords ? totalOutstanding.toLocaleString("en-IN") : "14,500"}
+                  ₹{totalOutstanding.toLocaleString("en-IN")}
                 </h3>
               </div>
 
               <div className="flex items-center gap-2 bg-white/10 w-fit px-4 py-2 rounded-xl border border-white/10">
                 <span className="material-symbols-outlined text-sm">calendar_month</span>
                 <p className="text-sm font-medium">
-                  Next Due: {hasFeeRecords && unpaidFees.length > 0
-                    ? formatDate(unpaidFees[0].dueDate, "Jan 31, 2027")
-                    : "Jan 15, 2027"}
+                  Next Due: {unpaidFees.length > 0
+                    ? formatDate(unpaidFees[0].dueDate, "N/A")
+                    : "No pending dues"}
                 </p>
               </div>
 
@@ -126,12 +126,12 @@ export default async function Page() {
             <div className="flex items-center justify-between">
               <h4 className="text-lg font-bold text-[#00386b] font-h4">Upcoming Dues</h4>
               <span className="text-xs font-semibold text-[#424750] bg-slate-100 px-2.5 py-1 rounded-full">
-                {hasFeeRecords ? unpaidFees.length : 2} Pending
+                {unpaidFees.length} Pending
               </span>
             </div>
 
             <div className="space-y-3">
-              {hasFeeRecords ? (
+              {unpaidFees.length > 0 ? (
                 unpaidFees.map((fee) => {
                   const feeName = fee.structure?.name || `${fee.structure?.feeType || "Tuition"} Fee`;
                   const amount = (fee.amountDue ?? fee.structure?.amount ?? 0) - fee.amountPaid;
@@ -166,54 +166,7 @@ export default async function Page() {
                   );
                 })
               ) : (
-                <>
-                  {/* Default Simulated Dues */}
-                  <div className="bg-white border border-[#E2E0DB] hover:border-[#1b4f8a] rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:shadow-md transition-all">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-[#E6F1FB] flex items-center justify-center shrink-0">
-                        <span className="material-symbols-outlined text-[#00386b]">menu_book</span>
-                      </div>
-                      <div>
-                        <h5 className="font-bold text-slate-800 text-base">Quarter 3 Tuition Fee</h5>
-                        <p className="text-xs text-[#424750] mt-0.5">Due by: Jan 15, 2027</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 pt-3 sm:pt-0">
-                      <div className="sm:text-right">
-                        <p className="font-bold text-lg text-[#00386b]">₹12,000</p>
-                        <span className="inline-block px-2.5 py-0.5 bg-[#ffdad6] text-[#ba1a1a] text-[10px] font-bold rounded-md uppercase tracking-wider">
-                          High Priority
-                        </span>
-                      </div>
-                      <button className="px-4 py-2 border-2 border-[#00386b] text-[#00386b] hover:bg-[#00386b] hover:text-white rounded-lg text-xs font-bold transition-all">
-                        Pay
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="bg-white border border-[#E2E0DB] hover:border-[#1b4f8a] rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-sm hover:shadow-md transition-all">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-[#E1F5EE] flex items-center justify-center shrink-0">
-                        <span className="material-symbols-outlined text-[#085041]">science</span>
-                      </div>
-                      <div>
-                        <h5 className="font-bold text-slate-800 text-base">Lab &amp; Activity Fees</h5>
-                        <p className="text-xs text-[#424750] mt-0.5">Due by: Jan 20, 2027</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center justify-between sm:justify-end gap-6 border-t sm:border-t-0 pt-3 sm:pt-0">
-                      <div className="sm:text-right">
-                        <p className="font-bold text-lg text-[#00386b]">₹2,500</p>
-                        <span className="inline-block px-2.5 py-0.5 bg-[#FAEEDA] text-[#633806] text-[10px] font-bold rounded-md uppercase tracking-wider">
-                          Mandatory
-                        </span>
-                      </div>
-                      <button className="px-4 py-2 border-2 border-[#00386b] text-[#00386b] hover:bg-[#00386b] hover:text-white rounded-lg text-xs font-bold transition-all">
-                        Pay
-                      </button>
-                    </div>
-                  </div>
-                </>
+                <div className="text-center py-6 text-[#424750]">No upcoming dues.</div>
               )}
             </div>
           </div>
@@ -224,20 +177,13 @@ export default async function Page() {
           {/* Quick Actions */}
           <div className="bg-white border border-[#E2E0DB] rounded-2xl p-6 shadow-sm space-y-4">
             <h4 className="text-base font-bold text-slate-800 font-h4">Quick Actions</h4>
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 gap-3">
               <div className="p-4 rounded-xl border border-[#E2E0DB] bg-[#fcf9f8] hover:bg-[#E6F1FB] hover:border-[#00386b] active:scale-95 transition-all cursor-pointer text-center group">
                 <span className="material-symbols-outlined text-[#00386b] mb-2 block group-hover:scale-110 transition-transform">
                   request_quote
                 </span>
                 <h5 className="font-bold text-xs text-slate-700">Fee Structure</h5>
                 <p className="text-[10px] text-[#424750] mt-0.5">AY 2026-27</p>
-              </div>
-              <div className="p-4 rounded-xl border border-[#E2E0DB] bg-[#fcf9f8] hover:bg-[#FAEEDA] hover:border-[#885200] active:scale-95 transition-all cursor-pointer text-center group">
-                <span className="material-symbols-outlined text-[#885200] mb-2 block group-hover:scale-110 transition-transform">
-                  savings
-                </span>
-                <h5 className="font-bold text-xs text-slate-700">Scholarships</h5>
-                <p className="text-[10px] text-[#424750] mt-0.5">Check Eligibility</p>
               </div>
             </div>
           </div>

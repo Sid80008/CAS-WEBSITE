@@ -3,11 +3,8 @@ import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
 import Link from "next/link"
 
-export default async function StudentAcademicsPage({
-  searchParams
-}: {
-  searchParams: { tab?: string }
-}) {
+export default async function StudentAcademicsPage({ searchParams }: { searchParams: Promise<{ tab?: string }> }) {
+  const resolvedSearchParams = await searchParams;
   const session = await auth()
   if (!session?.user) redirect("/login")
 
@@ -27,7 +24,7 @@ export default async function StudentAcademicsPage({
   const sectionName = enrollment?.section.name || "N/A"
   const yearName = enrollment?.year.name || "N/A"
 
-  const currentTab = searchParams.tab || "marksheet"
+  const currentTab = resolvedSearchParams.tab || "marksheet"
 
   // Fetch Exam Results
   const examResultsRaw = await prisma.examResult.findMany({
@@ -147,10 +144,33 @@ export default async function StudentAcademicsPage({
       )}
 
       {currentTab === 'syllabus' && (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="col-span-3 text-center py-8 text-[#424750]">
-            Syllabus progress tracking is currently being updated by the faculty.
-          </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {syllabus.length > 0 ? (
+            syllabus.map(item => (
+              <div key={item.id} className="p-6 bg-[#ffffff] rounded-xl border border-[#E2E0DB] shadow-sm">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="font-h4 text-lg font-bold text-[#00386b]">{item.subject.name}</h4>
+                  <span className="font-bold text-[#00386b]">{(item as any).completionPercentage || (item.chaptersTotal > 0 ? Math.round((item.chaptersCompleted / item.chaptersTotal) * 100) : 0)}%</span>
+                </div>
+                <div className="w-full bg-[#eae7e7] h-2 rounded-full overflow-hidden">
+                  <div 
+                    className="bg-[#00386b] h-full rounded-full transition-all duration-1000" 
+                    style={{ width: `${(item as any).completionPercentage || (item.chaptersTotal > 0 ? Math.round((item.chaptersCompleted / item.chaptersTotal) * 100) : 0)}%` }}
+                  ></div>
+                </div>
+                {(item as any).currentTopic && (
+                  <p className="mt-4 text-sm text-[#424750]">
+                    <span className="font-bold text-slate-700">Current Topic: </span>
+                    {(item as any).currentTopic}
+                  </p>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className="col-span-2 text-center py-8 text-[#424750]">
+              Syllabus progress has not been updated yet for your section.
+            </div>
+          )}
         </div>
       )}
     </div>

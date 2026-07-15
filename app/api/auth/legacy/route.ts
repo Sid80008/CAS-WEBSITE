@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
 
 export async function POST(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const { email, password } = await req.json()
 
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const user = await verifyAuth(req)
     if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   const response = new NextResponse(null, { status: 204 })
   response.cookies.delete('access_token')
   return response

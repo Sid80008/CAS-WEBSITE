@@ -105,7 +105,7 @@ export default async function ParentFeesPage() {
           </p>
         </div>
         <div className="bg-school-blue-light text-primary px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-primary/10">
-          Academic Year {enrollment?.year?.name || "Active"}
+          Academic Year {(enrollment as any)?.year?.name || "Active"}
         </div>
       </div>
 

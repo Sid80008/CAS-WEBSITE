@@ -12,7 +12,13 @@ const contactSchema = z.object({
   message: z.string().min(5, "Message must be at least 5 characters"),
 });
 
-export async function submitContact(prevState: any, formData: FormData) {
+export type ContactFormState = {
+  success: boolean;
+  error?: string;
+  message?: string;
+};
+
+export async function submitContact(prevState: any, formData: FormData): Promise<ContactFormState> {
   const data = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
@@ -25,7 +31,7 @@ export async function submitContact(prevState: any, formData: FormData) {
   if (!parsed.success) {
     return {
       success: false,
-      error: parsed.error.errors[0].message,
+      error: parsed.error.issues[0].message,
     };
   }
 

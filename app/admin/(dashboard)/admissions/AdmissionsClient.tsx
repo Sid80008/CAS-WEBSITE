@@ -17,6 +17,7 @@ type Enquiry = {
 interface Props {
   enquiries: Enquiry[];
   stats: { total: number; pending: number; enrolled: number; called: number };
+  settings?: { admissionStartDate: Date | null; admissionEndDate: Date | null };
 }
 
 const STATUS_COLORS: Record<string, string> = {
@@ -29,12 +30,16 @@ const STATUS_COLORS: Record<string, string> = {
   REJECTED:  "bg-error-container text-error",
 };
 
-export default function AdmissionsClient({ enquiries, stats }: Props) {
+export default function AdmissionsClient({ enquiries, stats, settings }: Props) {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState("All");
   const [selected, setSelected] = useState<Enquiry | null>(null);
   const [isAddOpen, setIsAddOpen] = useState(false);
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [isPending, startTransition] = useTransition();
+  const [startDate, setStartDate] = useState(settings?.admissionStartDate ? new Date(settings.admissionStartDate).toISOString().split('T')[0] : "");
+  const [endDate, setEndDate] = useState(settings?.admissionEndDate ? new Date(settings.admissionEndDate).toISOString().split('T')[0] : "");
+
 
   const filtered = useMemo(() =>
     enquiries.filter((e) => {
@@ -57,6 +62,19 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
     startTransition(async () => {
       await updateAdmissionStatus(id, newStatus as any);
       setSelected((prev) => prev ? { ...prev, status: newStatus } : null);
+    });
+  };
+
+  const handleSettingsSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    startTransition(async () => {
+      const { updateAdmissionDates } = await import("@/app/actions/settingsActions");
+      await updateAdmissionDates(
+        startDate ? new Date(startDate) : null,
+        endDate ? new Date(endDate) : null
+      );
+      setIsSettingsOpen(false);
+      alert("Settings saved successfully.");
     });
   };
 
@@ -95,6 +113,13 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
           <p className="text-sm text-on-surface-variant">Manage enquiries, track status and convert to enrollments.</p>
         </div>
         <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setIsSettingsOpen(true)} 
+            className="flex items-center gap-2 px-6 py-2.5 bg-white border border-outline text-primary font-bold rounded-lg shadow-sm hover:bg-[#f6f3f2] active:scale-95 transition-all text-sm"
+          >
+            <span className="material-symbols-outlined">settings</span>
+            Settings
+          </button>
           <button 
             onClick={downloadCsv} 
             className="flex items-center gap-2 px-6 py-2.5 bg-white border border-outline text-primary font-bold rounded-lg shadow-sm hover:bg-[#f6f3f2] active:scale-95 transition-all text-sm"
@@ -222,6 +247,37 @@ export default function AdmissionsClient({ enquiries, stats }: Props) {
                 <button type="button" onClick={() => setIsAddOpen(false)} className="px-4 py-2 border border-outline rounded-lg text-slate-600">Cancel</button>
                 <button type="submit" disabled={isPending} className="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:opacity-90 shadow-sm disabled:opacity-60">
                   {isPending ? "Saving..." : "Save Enquiry"}
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* Settings Modal */}
+      {isSettingsOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setIsSettingsOpen(false)} />
+          <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 z-10 max-h-[90vh] overflow-y-auto">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="font-bold text-xl text-primary">Admission Settings</h2>
+              <button onClick={() => setIsSettingsOpen(false)} className="p-2 hover:bg-[#eae7e7] rounded-lg">
+                <span className="material-symbols-outlined">close</span>
+              </button>
+            </div>
+            <form onSubmit={handleSettingsSubmit} className="space-y-4">
+              <div>
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Admission Start Date</label>
+                <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
+              </div>
+              <div>
+                <label className="text-xs font-bold text-outline uppercase tracking-wider block mb-1">Admission End Date</label>
+                <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} className="w-full border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-primary" />
+              </div>
+              <div className="flex gap-3 justify-end pt-4 border-t border-outline-variant">
+                <button type="button" onClick={() => setIsSettingsOpen(false)} className="px-4 py-2 border border-outline rounded-lg text-slate-600">Cancel</button>
+                <button type="submit" disabled={isPending} className="px-6 py-2 bg-primary text-white font-bold rounded-lg hover:opacity-90 shadow-sm disabled:opacity-60">
+                  {isPending ? "Saving..." : "Save Settings"}
                 </button>
               </div>
             </form>

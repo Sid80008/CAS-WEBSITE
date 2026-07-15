@@ -6,18 +6,15 @@ import MarksClient from "./MarksClient";
 export const metadata: Metadata = { title: "Marks & Results | CAS Admin" };
 export const dynamic = "force-dynamic";
 
-export default async function MarksPage({
-  searchParams,
-}: {
-  searchParams: { examId?: string };
-}) {
+export default async function MarksPage({ searchParams }: { searchParams: Promise<{ examId?: string }> }) {
+  const resolvedSearchParams = await searchParams;
   const [exams, classes] = await Promise.all([
     prisma.exam.findMany({ orderBy: { date: "desc" }, include: { class: true } }),
     prisma.class.findMany({ orderBy: { name: "asc" } }),
   ]);
 
-  const selectedExam = searchParams.examId
-    ? exams.find((e) => e.id === searchParams.examId)
+  const selectedExam = resolvedSearchParams.examId
+    ? exams.find((e) => e.id === resolvedSearchParams.examId)
     : null;
 
   let results: any[] = [];

@@ -14,10 +14,7 @@
 - **What's needed:** A real 1–2 sentence school tagline/mission in English. Can also provide Hindi version.
 
 ### 2. Topper Quotes
-- **File:** `app/HomeClient.tsx` (line ~248)
-- **Current fake text:** *"Excellence is not an act, but a habit. Grateful for the support from CAS faculty."*
-- **What's needed:** Real quotes from the toppers (Dwitika Sharma, Bhakti Nagar, Nipurn Malav).
-  Contact the students or use quotes from their merit certificates if available.
+- **Status:** ✅ Fake quote removed from `app/HomeClient.tsx`. Real quotes can be added when available.
 
 ### 3. Hero Image (Slider)
 - **File:** `app/HomeClient.tsx` — uses `/gallery/slider/1741166362_slider-17.jpg`
@@ -129,10 +126,7 @@ Placeholders will be used until real photos are provided.
 | B | Campus wide-angle (full building) | 2400×1080px | About page, footer bg | 🔴 Critical |
 | C | Students on first day / admission | 1920×640px | Admissions page hero | 🔴 Critical |
 | D | Toppers celebrating / receiving awards | 1920×840px | Toppers page hero | 🟠 High |
-| E | Library interior (students reading) | 1920×1080px | Facility page | 🟠 High |
 | F | Science Lab (students at benches) | 1920×1080px | Facility page | 🟠 High |
-| G | Sports ground + action shots | 1920×1080px | Facility page | 🟠 High |
-| H | Smart classroom (teacher at board) | 1920×1080px | Facility page | 🟠 High |
 | I | Faculty headshots (all teachers) | 400×400px each | Faculty page | 🟠 High |
 | J | Annual Day / Prize Distribution | 1600×1200px min 20 photos | Gallery | 🟡 Medium |
 | K | Sports Day action shots | 1600×1200px min 15 photos | Gallery | 🟡 Medium |
@@ -152,8 +146,8 @@ These items are verified from `lib/constants.ts`, `lib/stats.ts`, and the databa
 - **Established:** 2013
 - **Affiliation:** RBSE
 - **Classes:** I – XII
-- **Students:** 400+ enrolled
-- **Teachers:** 37+ qualified
+- **Students:** 800+ enrolled
+- **Teachers:** 50+ qualified
 - **Navbar tagline:** "Education for Excellence"
 - **Facebook:** https://www.facebook.com/profile.php?id=100084479980362
 - **Instagram:** https://www.instagram.com/central_academy_school_anta/

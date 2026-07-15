@@ -8,7 +8,7 @@ export const runtime = "nodejs";
 export const dynamic = 'force-dynamic';
 
 export async function GET(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const user = await verifyAuth(req)
     if (!hasPermission(user, 'VIEW_USERS')) {
@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-    const { prisma } = await import('@/lib/prisma');
+    const prisma = (await import('@/lib/prisma')).default;
   try {
     const user = await verifyAuth(req)
     if (!hasPermission(user, 'CREATE_USER')) {

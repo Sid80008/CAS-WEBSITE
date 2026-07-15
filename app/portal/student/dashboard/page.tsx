@@ -11,7 +11,8 @@ export default async function StudentDashboardPage() {
     include: {
       enrollments: {
         include: {
-          year: true
+          year: true,
+          section: true
         }
       }
     }
@@ -47,6 +48,22 @@ export default async function StudentDashboardPage() {
   const pendingHomework = await prisma.homeworkSubmission.findMany({
     where: { studentId: student.id, status: 'PENDING' },
     include: { homework: true }
+  })
+
+  // Fetch Latest Notice
+  const latestNotice = await prisma.notice.findFirst({
+    where: { published: true },
+    orderBy: { createdAt: 'desc' }
+  })
+
+  // Fetch Upcoming Exams for this student's class
+  const upcomingExams = await prisma.exam.findMany({
+    where: { 
+      startDate: { gte: new Date() },
+      classId: enrollment?.section.classId
+    },
+    orderBy: { startDate: 'asc' },
+    take: 3
   })
 
   return (
@@ -120,27 +137,29 @@ export default async function StudentDashboardPage() {
       {/* Bento Content Layout */}
       <div className="grid grid-cols-12 gap-8">
         <div className="col-span-12 lg:col-span-8 space-y-8">
-          {/* Timetable Placeholder */}
-          <section className="bg-[#ffffff] rounded-xl border border-[#E2E0DB] shadow-sm overflow-hidden p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h3 className="font-h3 text-xl text-[#00386b] flex items-center gap-2 font-bold">
-                <span className="material-symbols-outlined">calendar_view_week</span>Weekly Timetable
-              </h3>
-            </div>
-            <div className="text-center py-12 text-[#424750]">
-              Timetable module is currently syncing with your class section.
-            </div>
-          </section>
-
           {/* Notice Banner */}
-          <section className="relative h-64 rounded-xl overflow-hidden group shadow-lg">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#00386b] to-[#00386b]/60"></div>
-            <div className="absolute inset-0 flex flex-col justify-center p-12 text-white relative z-10">
-              <span className="inline-block px-3 py-1 bg-[#fdad4e] text-[#633806] font-bold text-xs rounded-full w-fit mb-4">NOTICE OF THE DAY</span>
-              <h2 className="font-h2 text-2xl font-bold mb-2 max-w-md">Inter-School Science Fair 2024</h2>
-              <p className="text-[#F0F6FC]/80 max-w-sm font-body mb-6">Showcase your innovation. Registrations close this Friday.</p>
-            </div>
-          </section>
+          {latestNotice ? (
+            <section className="relative h-64 rounded-xl overflow-hidden group shadow-lg">
+              {latestNotice.imageUrl ? (
+                <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${latestNotice.imageUrl})` }}></div>
+              ) : null}
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00386b] to-[#00386b]/80"></div>
+              <div className="absolute inset-0 flex flex-col justify-center p-12 text-white relative z-10">
+                <span className="inline-block px-3 py-1 bg-[#fdad4e] text-[#633806] font-bold text-xs rounded-full w-fit mb-4">NOTICE OF THE DAY</span>
+                <h2 className="font-h2 text-2xl font-bold mb-2 max-w-md line-clamp-2">{latestNotice.titleEn}</h2>
+                <p className="text-[#F0F6FC]/80 max-w-sm font-body mb-6 line-clamp-2">{latestNotice.contentEn}</p>
+              </div>
+            </section>
+          ) : (
+            <section className="relative h-64 rounded-xl overflow-hidden group shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#00386b] to-[#00386b]/60"></div>
+              <div className="absolute inset-0 flex flex-col justify-center p-12 text-white relative z-10">
+                <span className="inline-block px-3 py-1 bg-[#fdad4e] text-[#633806] font-bold text-xs rounded-full w-fit mb-4">NOTICES</span>
+                <h2 className="font-h2 text-2xl font-bold mb-2 max-w-md">No Recent Notices</h2>
+                <p className="text-[#F0F6FC]/80 max-w-sm font-body mb-6">Check back later for school announcements.</p>
+              </div>
+            </section>
+          )}
         </div>
 
         {/* Sidebar */}
@@ -150,9 +169,18 @@ export default async function StudentDashboardPage() {
               <span className="material-symbols-outlined">assignment</span>Upcoming Tests
             </h3>
             <div className="space-y-4">
-              <div className="text-center py-8 text-[#424750] text-sm bg-[#f6f3f2] rounded-lg">
-                No upcoming tests scheduled for this week.
-              </div>
+              {upcomingExams.length > 0 ? (
+                upcomingExams.map(exam => (
+                  <div key={exam.id} className="p-4 rounded-lg bg-[#F0F6FC] border border-[#E6F1FB] hover:shadow-sm transition-all">
+                    <h4 className="font-bold text-[#00386b]">{exam.title}</h4>
+                    <p className="text-xs text-[#424750] mt-1">Starts: {exam.startDate?.toLocaleDateString() || "TBD"}</p>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center py-8 text-[#424750] text-sm bg-[#f6f3f2] rounded-lg">
+                  No upcoming tests scheduled for this week.
+                </div>
+              )}
             </div>
           </section>
         </div>

@@ -142,7 +142,7 @@ export default async function ParentPerformancePage() {
           </p>
         </div>
         <div className="bg-teal-light text-teal-dark px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border border-teal-dark/10">
-          Session {enrollment?.year?.name || "Active"}
+          Session {(enrollment as any)?.year?.name || "Active"}
         </div>
       </div>
 
